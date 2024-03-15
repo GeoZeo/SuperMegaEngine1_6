@@ -1,4 +1,3 @@
-//Hi! Welcome to Github!!
 if object_index == prtPlayer {
     instance_create(x, y, global.character);
     instance_destroy();
