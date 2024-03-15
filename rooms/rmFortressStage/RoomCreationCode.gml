@@ -1,0 +1,1 @@
+playMusicVolume(bgmWilyCastle1, 0.9);

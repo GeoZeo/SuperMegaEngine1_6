@@ -1,0 +1,56 @@
+function macros() {
+#macro initialRoom rmBeta
+#macro cfgEnableSlideKey false
+#macro cfgEnableDamageNumbers false
+#macro cfgEnableCharge true
+#macro cfgEnableSlide true
+#macro cfgEnableScrews true
+#macro cfgMaxNumberOfBusterShots 3
+#macro cfgMaxHealth 28
+#macro cfgMaxAmmo 28
+#macro cfgDebug false
+#macro cfgEnableDebugKeys true
+#macro cfgWeaponPreview true
+#macro cfgSwitchWeaponsWhileLocked true
+#macro cfgSwitchWeaponsWhileTransitioning true
+#macro cfgLockSwitchingOnBossDeath false
+#macro cfgShowLives false
+#macro cfgShotSplash false
+#macro cfgInitialStage -1
+#macro cfgShader noone
+#macro cfgEnableKeyConfig true
+#macro cfgEnableSaving true
+#macro cfgEnablePasswords true
+#macro cfgLoseChargeOnHit true
+#macro cfgLoseChargeOnLock false
+#macro cfgBeginChargeOnSlide false
+#macro cfgContinueChargeMidSlide true
+#macro cfgChargeWhileLocked true
+#macro cfgContinueChargeAnimWhileLocked false
+#macro cfgDestroyBossProjectilesOnBossDeath false
+#macro cfgRushTeleportSpeed 10
+#macro cfgGravity 0.25
+#macro cfgGravityWater 0.095
+#macro cfgJumpSpeed 5.25
+#macro cfgJumpSpeedWater 5.35
+#macro cfgMaxFallingSpeed 7
+#macro cfgWalkSpeed 1.296875
+#macro cfgHitTime 20
+#macro cfgStepSpeed 1/7
+#macro cfgStepFrames 7
+#macro cfgCanTurnaroundStep true
+#macro cfgIceAcc 0.025
+#macro cfgIceAccWalk 0.05
+#macro cfgIceDec 0.025
+#macro cfgIceDecWalk 0.05
+#macro cfgSlideSpeed 2.5
+#macro cfgSlideFrames 26
+#macro cfgClimbSpeed 1.296875
+#macro cfgInitChargeTime 20
+#macro cfgChargeTime 57
+#macro cfgKnockback 0.5
+#macro cfgInvincibilityTime 60
+
+
+
+}

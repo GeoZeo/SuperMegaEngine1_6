@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"reset_keys",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"reset_keys",
+  "parent":{
+    "name":"Gamepad",
+    "path":"folders/Scripts/Gamepad.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

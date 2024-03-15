@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"drawSelf3ColorsFixed",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"drawSelf3ColorsFixed",
+  "parent":{
+    "name":"Player",
+    "path":"folders/Scripts/Player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

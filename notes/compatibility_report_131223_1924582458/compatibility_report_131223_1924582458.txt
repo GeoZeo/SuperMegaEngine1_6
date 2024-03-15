@@ -1,0 +1,1209 @@
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawPlayer\drawPlayer.gml
+Converted description /// @description drawPlayer(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerStep\playerStep.gml
+Converted description /// @description playerStep(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerShoot\playerShoot.gml
+Converted description /// @description playerShoot(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerCollision\playerCollision.gml
+Converted description /// @description playerCollision(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerMovingPlatform\playerMovingPlatform.gml
+Converted description /// @description playerMovingPlatform(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerHandleSprites\playerHandleSprites.gml
+Converted description /// @description playerHandleSprites(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerPause\playerPause.gml
+Converted description /// @description playerPause(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerCameraInit\playerCameraInit.gml
+Converted description /// @description playerCameraInit(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerCamera\playerCamera.gml
+Converted builtin - line 10: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 12: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 22: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 24: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 6: view_xview[0] = round(x - view_wview[0] / 2) -> __view_set( e__VW.XView, 0, round(x - view_wview[0] / 2) )
+Converted builtin - line 11: view_xview[0] = sectionRight-view_wview[0] -> __view_set( e__VW.XView, 0, sectionRight-view_wview[0] )
+Converted builtin - line 13: view_xview[0] = sectionLeft -> __view_set( e__VW.XView, 0, sectionLeft )
+Converted builtin - line 23: view_xview[0] = room_width-view_wview[0] -> __view_set( e__VW.XView, 0, room_width-view_wview[0] )
+Converted builtin - line 25: view_xview[0] = 0 -> __view_set( e__VW.XView, 0, 0 )
+Converted builtin - line 15: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 17: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 27: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 29: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 7: view_yview[0] = round(y - view_hview[0] / 2) -> __view_set( e__VW.YView, 0, round(y - view_hview[0] / 2) )
+Converted builtin - line 16: view_yview[0] = sectionBottom-view_hview[0] -> __view_set( e__VW.YView, 0, sectionBottom-view_hview[0] )
+Converted builtin - line 18: view_yview[0] = sectionTop -> __view_set( e__VW.YView, 0, sectionTop )
+Converted builtin - line 28: view_yview[0] = room_height-view_hview[0] -> __view_set( e__VW.YView, 0, room_height-view_hview[0] )
+Converted builtin - line 30: view_yview[0] = 0 -> __view_set( e__VW.YView, 0, 0 )
+Converted builtin - line 10: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 22: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 15: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 27: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description playerCamera(
+Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 11: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 23: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 7: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 16: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 28: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerSwitchSections\playerSwitchSections.gml
+Converted builtin - line 22: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 24: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 44: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 46: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 24: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 46: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description playerSwitchSections(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerSwitchWeapons\playerSwitchWeapons.gml
+Converted description /// @description playerSwitchWeapons(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerGetHit\playerGetHit.gml
+Converted description /// @description playerGetHit(health
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerDeactivateObjects\playerDeactivateObjects.gml
+Converted description /// @description playerDeactivateObjects(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerLockMovement\playerLockMovement.gml
+Converted description /// @description playerLockMovement(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerFreeMovement\playerFreeMovement.gml
+Converted description /// @description playerFreeMovement(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSelf3Colors\drawSelf3Colors.gml
+Converted description /// @description  drawSelf3Colors(col1, col2, col3
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSelf3ColorsFixed\drawSelf3ColorsFixed.gml
+Converted description /// @description  drawSelf3Colors(col1, col2, col3
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\projectileCount\projectileCount.gml
+Converted description /// @description projectileCount(): returns the number of player active projectiles on scree
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\setPlayer\setPlayer.gml
+Converted description /// @description setPlayer(player): set the current player character/// @param player
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSelf\drawSelf.gml
+Converted description /// @description drawSelf(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_xcenter\sprite_get_xcenter.gml
+Converted description /// @description sprite_get_xcenter(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_ycenter\sprite_get_ycenter.gml
+Converted description /// @description sprite_get_ycenter(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_xcenter_object\sprite_get_xcenter_object.gml
+Converted description /// @description sprite_get_xcenter_object(id
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_ycenter_object\sprite_get_ycenter_object.gml
+Converted description /// @description sprite_get_ycenter_object(id
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_left\sprite_get_left.gml
+Converted description /// @description sprite_get_left(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_right\sprite_get_right.gml
+Converted description /// @description sprite_get_right(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_top\sprite_get_top.gml
+Converted description /// @description sprite_get_top(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\sprite_get_bottom\sprite_get_bottom.gml
+Converted description /// @description sprite_get_bottom(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mask_get_xcenter\mask_get_xcenter.gml
+Converted description /// @description mask_get_xcenter(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mask_get_ycenter\mask_get_ycenter.gml
+Converted description /// @description mask_get_ycenter(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mask_get_xcenter_object\mask_get_xcenter_object.gml
+Converted description /// @description mask_get_xcenter_object(obj
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mask_get_ycenter_object\mask_get_ycenter_object.gml
+Converted description /// @description mask_get_ycenter_object(obj
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSpriteTiled\drawSpriteTiled.gml
+Converted builtin - line 32: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 32: view_yview -> __view_get( e__VW.YView, 0 )
+Converted description /// @description drawSpriteTiled(tile width, tile height, top sprite tile, middle sprite tile, bottom sprite tile
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSpriteColorSwap\drawSpriteColorSwap.gml
+Converted description /// @description  drawSpriteColorSwap(spr, subimg, sx, sy, src_col1, src_col2, src_col3, col1, col2, col3
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\checkGround\checkGround.gml
+Converted description /// @description checkGround(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\generalCollision\generalCollision.gml
+Converted description /// @description generalCollision(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gravityCheckGround\gravityCheckGround.gml
+Converted description /// @description gravityCheckGround(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gravityCheckGroundExt\gravityCheckGroundExt.gml
+Converted description /// @description gravityCheckGroundExt(grav
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gravityNoGround\gravityNoGround.gml
+Converted description /// @description gravityNoGround(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gravityNoGroundExt\gravityNoGroundExt.gml
+Converted description /// @description gravityNoGroundExt(grav
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\escapeWall\escapeWall.gml
+Converted description /// @description  escapeWall(): avoids getting stuck into wall
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mergeBlocksHorizontal\mergeBlocksHorizontal.gml
+Converted description /// @description  mergeBlocksHorizontal(type
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mergeBlocksVertical\mergeBlocksVertical.gml
+Converted description /// @description  mergeBlocksVertical(type
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\mergeBlocks\mergeBlocks.gml
+Converted description /// @description  mergeBlocks(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\move\move.gml
+Converted description /// @description  move(xs, ys
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\insideView\insideView.gml
+Converted builtin - line 5: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 5: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 5: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 6: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description insideView(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\insideViewObj\insideViewObj.gml
+Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 7: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 8: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description  insideViewObj(obj
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\insideViewAny\insideViewAny.gml
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 9: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted description /// @description  insideViewAny(obj
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\deactivateUnimportantObjects\deactivateUnimportantObjects.gml
+Converted description /// @description deactivateUnimportantObjects(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playSFX\playSFX.gml
+Converted description /// @description playSFX(index
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playMusic\playMusic.gml
+Converted description /// @description playMusic(filename
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playMusicVolume\playMusicVolume.gml
+Converted description /// @description playMusicVolume(filename, volume
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playMusicLoopPoint\playMusicLoopPoint.gml
+Converted description /// @description playMusic(filename, loop start, loop end
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playMusicVolumeLoopPoint\playMusicVolumeLoopPoint.gml
+Converted description /// @description playMusic(filename, volume, loop start, loop end
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playMusicNoLoop\playMusicNoLoop.gml
+Converted description /// @description playMusicNoLoop(filename
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playMusicNoLoopVolume\playMusicNoLoopVolume.gml
+Converted description /// @description playMusicNoLoopVolume(filename, volume
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\stopSFX\stopSFX.gml
+Converted description /// @description stopSFX(index
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\loopSFX\loopSFX.gml
+Converted description /// @description loopSFX(index
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\stopAllSFX\stopAllSFX.gml
+Converted description /// @description stopAllSFX(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\split\split.gml
+Converted description /// @description  ds_queue split(String s, [char delimiter]);/// @param String s
+/// @param  [char delimiter]
+String not found: ConversionLog_ConvertedString 21 "\" "\\"
+String not found: ConversionLog_ConvertedString 24 '"' "\""
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\string_lpad\string_lpad.gml
+Converted description /// @description  string_lpad(str,length,padstr
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\string_rpad\string_rpad.gml
+Converted description /// @description  string_rpad(str,length,padstr
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\string_apad\string_apad.gml
+Converted description /// @description  string_apad(str,length,padstr
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\string_replace_at\string_replace_at.gml
+Converted description /// @description  string_replace_at(str, index, substr
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\concat\concat.gml
+Converted description /// @description  concat(variables or strings
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\key_to_string\key_to_string.gml
+Converted description /// @description  key_to_string( key 
+String not found: ConversionLog_ConvertedString 30 "\" "\\"
+String not found: ConversionLog_ConvertedString 73 "\" "\\"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\button_to_string\button_to_string.gml
+Converted description /// @description  button_to_string( button 
+String not found: ConversionLog_ConvertedString 22 "\" "\\"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\password_checksum\password_checksum.gml
+Converted description /// @description password_checksum(bin_pass
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\apply_password\apply_password.gml
+Converted description /// @description apply_password(tern_pass
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSave\drawSave.gml
+Converted description /// @description  drawSave(id, map, selected
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\debug_password\debug_password.gml
+Converted description /// @description  debug_password(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\block_base_convert\block_base_convert.gml
+Converted description /// @description block_base_convert(input, base_from, base_to, block_size_from, block_size_to
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\save_configs\save_configs.gml
+Converted description /// @description  save_configs(
+String not found: ConversionLog_ConvertedString 6 'leftKey' "leftKey"
+String not found: ConversionLog_ConvertedString 7 'rightKey' "rightKey"
+String not found: ConversionLog_ConvertedString 8 'upKey' "upKey"
+String not found: ConversionLog_ConvertedString 9 'downKey' "downKey"
+String not found: ConversionLog_ConvertedString 10 'jumpKey' "jumpKey"
+String not found: ConversionLog_ConvertedString 11 'shootKey' "shootKey"
+String not found: ConversionLog_ConvertedString 12 'slideKey' "slideKey"
+String not found: ConversionLog_ConvertedString 13 'pauseKey' "pauseKey"
+String not found: ConversionLog_ConvertedString 14 'selectKey' "selectKey"
+String not found: ConversionLog_ConvertedString 15 'weaponSwitchLeftKey' "weaponSwitchLeftKey"
+String not found: ConversionLog_ConvertedString 16 'weaponSwitchRightKey' "weaponSwitchRightKey"
+String not found: ConversionLog_ConvertedString 19 'leftButton' "leftButton"
+String not found: ConversionLog_ConvertedString 20 'rightButton' "rightButton"
+String not found: ConversionLog_ConvertedString 21 'upButton' "upButton"
+String not found: ConversionLog_ConvertedString 22 'downButton' "downButton"
+String not found: ConversionLog_ConvertedString 23 'jumpButton' "jumpButton"
+String not found: ConversionLog_ConvertedString 24 'shootButton' "shootButton"
+String not found: ConversionLog_ConvertedString 25 'slideButton' "slideButton"
+String not found: ConversionLog_ConvertedString 26 'pauseButton' "pauseButton"
+String not found: ConversionLog_ConvertedString 27 'selectButton' "selectButton"
+String not found: ConversionLog_ConvertedString 28 'weaponSwitchLeftButton' "weaponSwitchLeftButton"
+String not found: ConversionLog_ConvertedString 29 'weaponSwitchRightButton' "weaponSwitchRightButton"
+String not found: ConversionLog_ConvertedString 31 'config.dat' "config.dat"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\load_configs\load_configs.gml
+Converted description /// @description  load_configs(
+String not found: ConversionLog_ConvertedString 3 'config.dat' "config.dat"
+String not found: ConversionLog_ConvertedString 8 'leftKey' "leftKey"
+String not found: ConversionLog_ConvertedString 9 'rightKey' "rightKey"
+String not found: ConversionLog_ConvertedString 10 'upKey' "upKey"
+String not found: ConversionLog_ConvertedString 11 'downKey' "downKey"
+String not found: ConversionLog_ConvertedString 12 'jumpKey' "jumpKey"
+String not found: ConversionLog_ConvertedString 13 'shootKey' "shootKey"
+String not found: ConversionLog_ConvertedString 14 'slideKey' "slideKey"
+String not found: ConversionLog_ConvertedString 15 'pauseKey' "pauseKey"
+String not found: ConversionLog_ConvertedString 16 'selectKey' "selectKey"
+String not found: ConversionLog_ConvertedString 17 'weaponSwitchLeftKey' "weaponSwitchLeftKey"
+String not found: ConversionLog_ConvertedString 18 'weaponSwitchRightKey' "weaponSwitchRightKey"
+String not found: ConversionLog_ConvertedString 21 'leftButton' "leftButton"
+String not found: ConversionLog_ConvertedString 22 'rightButton' "rightButton"
+String not found: ConversionLog_ConvertedString 23 'upButton' "upButton"
+String not found: ConversionLog_ConvertedString 24 'downButton' "downButton"
+String not found: ConversionLog_ConvertedString 25 'jumpButton' "jumpButton"
+String not found: ConversionLog_ConvertedString 26 'shootButton' "shootButton"
+String not found: ConversionLog_ConvertedString 27 'slideButton' "slideButton"
+String not found: ConversionLog_ConvertedString 28 'pauseButton' "pauseButton"
+String not found: ConversionLog_ConvertedString 29 'selectButton' "selectButton"
+String not found: ConversionLog_ConvertedString 30 'weaponSwitchLeftButton' "weaponSwitchLeftButton"
+String not found: ConversionLog_ConvertedString 31 'weaponSwitchRightButton' "weaponSwitchRightButton"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\base_convert\base_convert.gml
+Converted description /// @description  base_convert(number,oldbase,newbase
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\dec_to_bin\dec_to_bin.gml
+Converted description /// @description  dec_to_bin(dec, [size]
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\implode\implode.gml
+Converted description /// @description  implode(delimiter,array
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\implode_real\implode_real.gml
+Converted description /// @description  implode_real(delimiter,array
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\iif\iif.gml
+Converted description /// @description  iif(cond, a, b
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\refillHealthBar\refillHealthBar.gml
+Converted description /// @description  refillHealthBar(): nullifies effects of death and starts a new phas
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawDamageNumber\drawDamageNumber.gml
+Converted description /// @description drawDamageNumber(position x, position y, int amount
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\doExplosion\doExplosion.gml
+Converted description /// @description doExplosion(xx,yy,spd
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\numRushBossesDefeated\numRushBossesDefeated.gml
+Converted description /// @description numRushBossesDefeated(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\platesCollectedCount\platesCollectedCount.gml
+Converted description /// @description  platesCollectedCount(): returns the number of collected plate
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\platesCount\platesCount.gml
+Converted description /// @description  platesCount(): returns the total number of plates in the gam
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\makeMap\makeMap.gml
+Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 12: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 9: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 13: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\placeHorizontalBorders\placeHorizontalBorders.gml
+Converted builtin - line 3: view_wview -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 7: view_wview -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 2: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 5: view_hview -> __view_get( e__VW.HView, 0 )
+Converted description /// @description  Place horizontal borders (top and bottom
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\placeRoomBorders\placeRoomBorders.gml
+Converted builtin - line 2: view_hview -> __view_get( e__VW.HView, 0 )
+Converted description /// @description  Place room borders (left and right
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\instance_nth_nearest\instance_nth_nearest.gml
+Converted description /// @description  instance_nth_nearest(x,y,obj,n
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\instance_distance\instance_distance.gml
+Converted description /// @description  instance_distance(obj1, obj2
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\assert\assert.gml
+Converted description /// @description  assert(condition, [msg]
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\print\print.gml
+Converted description /// @description  print(variables or strings
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gamepad_axis_value_any\gamepad_axis_value_any.gml
+Converted description /// @description  gamepad_axis_value_any(axis
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gamepad_button_check_any\gamepad_button_check_any.gml
+Converted description /// @description  gamepad_button_check_any(button
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gamepad_button_check_pressed_any\gamepad_button_check_pressed_any.gml
+Converted description /// @description  gamepad_button_check_pressed_any(button
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gamepad_button_check_released_any\gamepad_button_check_released_any.gml
+Converted description /// @description  gamepad_button_check_released_any(button
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gamepad_button_check_all\gamepad_button_check_all.gml
+Converted description /// @description  gamepad_button_check_all() : Returns currently pressed button (any
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\gamepad_button_check_pressed_all\gamepad_button_check_pressed_all.gml
+Converted description /// @description  gamepad_button_check_pressed_all() : Returns currently pressed button (any
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\reset_controls\reset_controls.gml
+Converted description /// @description  reset_controls(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\reset_buttons\reset_buttons.gml
+Converted description /// @description  reset_buttons(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\reset_keys\reset_keys.gml
+Converted description /// @description  reset_keys(
+String not found: ConversionLog_ConvertedString 8 'Z' "Z"
+String not found: ConversionLog_ConvertedString 9 'X' "X"
+String not found: ConversionLog_ConvertedString 10 'C' "C"
+String not found: ConversionLog_ConvertedString 13 'A' "A"
+String not found: ConversionLog_ConvertedString 14 'S' "S"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\readTileObjects\readTileObjects.gml
+Converted description /// @description  readTileObject
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\readTileAnimations\readTileAnimations.gml
+Converted description /// @description  readTileAnimation
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\tile_get_type\tile_get_type.gml
+Converted description /// @description  tile_get_type(id, dx, dy
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\placeTileObjects\placeTileObjects.gml
+Converted description /// @description  placeTileObjects(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\placeTileAnimations\placeTileAnimations.gml
+Converted description /// @description  placeTileAnimations(
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\load_achievements\load_achievements.gml
+Converted description /// @description  load_achievements(
+String not found: ConversionLog_ConvertedString 3 'achievements.dat' "achievements.dat"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\add_achievement\add_achievement.gml
+Converted description /// @description  add_achievement(achievement
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\save_achievements\save_achievements.gml
+Converted description /// @description  save_achievements(
+String not found: ConversionLog_ConvertedString 12 'achievements.dat' "achievements.dat"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objGlobalControl\Create_0.gml
+String not found: ConversionLog_ConvertedString 12 '!' "!"
+String not found: ConversionLog_ConvertedString 13 '!' "!"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objGlobalControl\Step_1.gml
+Converted description /// @description Key
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objGlobalControl\Other_10.gml
+Converted description /// @description  When starting a level, none of the pickups have been used yet; however, they can be picked up, and shouldn't respawn when the room restart
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Alarm_2.gml
+Converted description /// @description Initialize switching sections for door
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Alarm_1.gml
+Converted description /// @description Initialize switching section
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Alarm_0.gml
+Converted description /// @description Executed 1 frame after the Create even
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Other_11.gml
+Converted description /// @description Reflectio
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Other_10.gml
+Converted description /// @description  Change colors depending on the special weapo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Draw_0.gml
+Converted builtin - line 70: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 23: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 58: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 70: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 70: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 70: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml - 10: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml - 10: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml - 10: unexpected terminal operator =
+Too many errors - GML not processed : C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_17.gml
+Converted description /// @description onWeaponGetDra
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_16.gml
+Converted description /// @description onWeaponGetSte
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_15.gml
+Converted description /// @description onWeaponGetCreat
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_14.gml
+Converted description /// @description  onReleaseCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_13.gml
+Converted description /// @description  onChargin
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_12.gml
+Converted description /// @description  onBeginCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_11.gml
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_11.gml - 43: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_11.gml - 43: expected expression
+Too many errors - GML not processed : C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_11.gml
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Other_10.gml
+Converted description /// @description  onSelec
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMegaBusterWeapon\Other_14.gml
+Converted description /// @description  onReleaseCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMegaBusterWeapon\Other_13.gml
+Converted description /// @description  onChargin
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMegaBusterWeapon\Other_12.gml
+Converted description /// @description  onBeginCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMegaBusterWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objProtoBusterWeapon\Other_14.gml
+Converted description /// @description  onReleaseCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objProtoBusterWeapon\Other_13.gml
+Converted description /// @description  onChargin
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objProtoBusterWeapon\Other_12.gml
+Converted description /// @description  onBeginCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objProtoBusterWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMetalBladeWeapon\Create_0.gml
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMetalBladeWeapon\Create_0.gml - 8: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMetalBladeWeapon\Create_0.gml - 8: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMetalBladeWeapon\Create_0.gml - 8: unexpected terminal operator =
+Too many errors - GML not processed : C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMetalBladeWeapon\Create_0.gml
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMetalBladeWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objNeedleCannonWeapon\Other_13.gml
+Converted description /// @description onCharging (used here for rapid fire
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objNeedleCannonWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Create_0.gml
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Create_0.gml - 9: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Create_0.gml - 9: unexpected syntax error
+ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Create_0.gml - 9: unexpected terminal operator =
+Too many errors - GML not processed : C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Create_0.gml
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Other_16.gml
+Converted description /// @description onWeaponGetSte
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Other_14.gml
+Converted description /// @description  onReleaseCharg
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Other_13.gml
+Converted description /// @description  onChargin
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaohShotWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objDrillBombWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objDrillBomb\Other_10.gml
+Converted description /// @description  Explod
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objStarCrashWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objChargeKick\Other_40.gml
+Converted description /// @description  Just to remove parent event (doesn't destroy when outside the view
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objChargeKickWeapon\Other_11.gml
+Converted description /// @description  onShoot (just to cancel the inherited event
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objSilverTomahawkWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWindStormWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objCentaurFlash\Other_40.gml
+Converted description /// @description Just to cancel the parent even
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objCentaurFlash\Other_0.gml
+Converted description /// @description Just to cancel the parent even
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objCentaurFlashWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objHornetChaserWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushCoil\Draw_0.gml
+Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 37: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 37: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 44: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 83: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 37: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushCoilWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushJet\Draw_0.gml
+Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 38: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 38: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 45: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 89: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 38: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushJetWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTimeSlowWeapon\Other_11.gml
+Converted description /// @description  onShoo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTimeSlow\Other_40.gml
+Converted description /// @description Just to cancel the parent even
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTimeSlow\Other_0.gml
+Converted description /// @description Just to cancel the parent even
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTimeSlow\Draw_0.gml
+Converted builtin - line 25: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 25: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 25: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 25: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objHealthWeaponBar\Draw_0.gml
+Converted builtin - line 6: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 10: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 11: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 19: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 19: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 21: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 21: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 25: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 26: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 34: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 37: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 38: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 44: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 10: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 11: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 19: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 19: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 21: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 21: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 26: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 34: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 37: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 38: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 44: view_yview[0] -> __view_get( e__VW.YView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFadeIn\Draw_0.gml
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 8: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFadeout\Draw_0.gml
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 8: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objOctoper\Step_0.gml
+Converted builtin - line 9: view_xview -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 13: view_xview -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 17: view_yview -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 24: view_yview -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 13: view_wview -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 17: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 24: view_hview -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEnemy\Other_25.gml
+Converted description /// @description  Event: onDeath - called when the enemy is kille
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEnemy\Other_24.gml
+Converted description /// @description  Event: onHit - called when the enemy is hi
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtMiniBoss\Step_0.gml
+Converted builtin - line 18: background_blend[0] = c_black -> __background_set( e__BG.Blend, 0, c_black )
+Converted builtin - line 21: background_blend[0] = c_white -> __background_set( e__BG.Blend, 0, c_white )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossControl\Step_0.gml
+Converted builtin - line 1: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 1: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 2: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 2: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 1: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 2: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossControl\Draw_0.gml
+Converted builtin - line 3: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 3: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDoor\Create_0.gml
+Converted builtin - line 19: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 19: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaoh\Other_25.gml
+Converted description /// @description  onDeat
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtBoss\Alarm_10.gml
+Converted description /// @description  Stop hit spar
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtBoss\Alarm_9.gml
+Converted description /// @description  Hitspar
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtBoss\Alarm_8.gml
+Converted description /// @description  Put the boss at the top of the scree
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtBoss\Step_1.gml
+Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted description /// @description  Starting the intro pose (and falling down
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDeathTimer\Alarm_2.gml
+Converted description /// @description  Go to next roo
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDeathTimer\Alarm_1.gml
+Converted description /// @description  Initialize fake Mega Man movemen
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDeathTimer\Alarm_0.gml
+Converted description /// @description  Lock movement and play musi
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDeathTimer\Step_0.gml
+Converted builtin - line 9: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 75: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 77: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 9: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 98: view_wview[0] -> __view_get( e__VW.WView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossShadow\Alarm_0.gml
+Converted description /// @description  Destroy itsel
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevil\Alarm_1.gml
+Converted description /// @description  Close ey
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevil\Alarm_0.gml
+Converted builtin - line 3: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 3: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted description /// @description  Create bloc
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevil\Step_0.gml
+Converted builtin - line 19: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 22: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 24: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 57: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 19: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 24: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevilBlock\Alarm_1.gml
+Converted description /// @description Deat
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevilBlock\Alarm_0.gml
+Converted description /// @description UNFI
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevilBlock\Step_0.gml
+Converted builtin - line 39: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 41: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 43: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 45: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 43: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 45: view_wview[0] -> __view_get( e__VW.WView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyMachine4\Alarm_0.gml
+Converted description /// @description  Sho
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyMachine4\Step_0.gml
+Converted builtin - line 37: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 37: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 19: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 26: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 29: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 29: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 31: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 55: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 37: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 19: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 26: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 29: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 29: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 31: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 55: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyMachine4\Other_25.gml
+Converted description /// @description  onDeat
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyCapsule1\Alarm_3.gml
+Converted description /// @description  Disappea
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyCapsule1\Alarm_2.gml
+Converted builtin - line 7: view_xview -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 11: view_xview -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_yview -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 12: view_yview -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 7: view_wview -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 11: view_wview -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 8: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 12: view_hview -> __view_get( e__VW.HView, 0 )
+Converted description /// @description  Attac
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyCapsule1\Alarm_1.gml
+Converted builtin - line 3: background_color[0] = c_black -> __background_set_colour( c_black )
+Converted description /// @description  Hid
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyCapsule1\Alarm_0.gml
+Converted builtin - line 5: background_color[0] = c_white -> __background_set_colour( c_white )
+Converted description /// @description  Sho
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objDrWily\Step_0.gml
+Converted builtin - line 14: background_visible[1] = true -> __background_set( e__BG.Visible, 1, true )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objShake\Alarm_0.gml
+Converted builtin - line 1: view_xview[0] -= total_shake_x -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) - (total_shake_x) )
+Converted builtin - line 2: view_yview[0] -= total_shake_y -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) - (total_shake_y) )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objShake\Step_0.gml
+Converted builtin - line 11: view_xview[0] += shake_x -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (shake_x) )
+Converted builtin - line 12: view_yview[0] += shake_y -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (shake_y) )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTeleport\Alarm_9.gml
+Converted description /// @description Verify if boss is already defeated on boss rus
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTeleport\Alarm_1.gml
+Converted description /// @description  Final teleport ani
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTeleport\Alarm_0.gml
+Converted description /// @description  Go to destinatio
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMovingPlatformTest\Step_0.gml
+String not found: ConversionLog_ConvertedString 3 'D' "D"
+String not found: ConversionLog_ConvertedString 3 'A' "A"
+String not found: ConversionLog_ConvertedString 5 'A' "A"
+String not found: ConversionLog_ConvertedString 5 'D' "D"
+String not found: ConversionLog_ConvertedString 10 'S' "S"
+String not found: ConversionLog_ConvertedString 10 'W' "W"
+String not found: ConversionLog_ConvertedString 12 'W' "W"
+String not found: ConversionLog_ConvertedString 12 'S' "S"
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAutoScroll\Step_0.gml
+Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 10: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 10: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objDmgText\Alarm_0.gml
+Converted description /// @description  Finish the effec
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFlash\Alarm_0.gml
+Converted description /// @description  Finish the effec
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPauseMenu\Other_10.gml
+Converted description /// @description  Cursor Movemen
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPauseMenu\Draw_0.gml
+Converted builtin - line 18: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 24: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 34: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 41: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 57: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 64: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 68: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 79: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 83: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 94: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 98: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 110: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 121: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 136: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 141: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 146: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 157: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 157: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 18: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 35: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 42: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 57: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 64: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 68: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 79: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 83: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 94: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 98: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 110: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 121: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 136: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 141: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 146: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 157: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 157: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 157: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 157: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPassMenu\Alarm_0.gml
+Converted description /// @description  Enables cursor and plays music
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWeaponGet\Create_0.gml
+Converted builtin - line 2: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 3: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 2: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 3: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWeaponGet\Step_0.gml
+Converted builtin - line 42: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 43: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 12: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 13: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 42: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 43: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 12: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 13: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWeaponGet\Draw_0.gml
+Converted builtin - line 22: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 23: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 22: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 23: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objStageSelect\Draw_0.gml
+Converted builtin - line 76: view_wview[0] -> __view_get( e__VW.WView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objIntroduction\Alarm_0.gml
+Converted description /// @description  Go to leve
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTitleScreen\Alarm_0.gml
+Converted description /// @description  Go back to the game openin
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objShop\Create_0.gml
+Converted builtin - line 16: background_index[0] = bg -> __background_set( e__BG.Index, 0, bg )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPlayerSelect\Draw_0.gml
+Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 11: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 12: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 14: view_wview[0] -> __view_get( e__VW.WView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievements\Draw_0.gml
+Converted builtin - line 16: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 12: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objSectionSwitcher\Step_0.gml
+Converted builtin - line 23: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 74: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 10: view_xview[0] += screenSpeedHor -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (screenSpeedHor) )
+Converted builtin - line 25: view_xview[0] = prtPlayer.sectionLeft -> __view_set( e__VW.XView, 0, prtPlayer.sectionLeft )
+Converted builtin - line 61: view_xview[0] -= screenSpeedHor -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) - (screenSpeedHor) )
+Converted builtin - line 76: view_xview[0] = prtPlayer.sectionRight-view_wview[0] -> __view_set( e__VW.XView, 0, prtPlayer.sectionRight-view_wview[0] )
+Converted builtin - line 125: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 179: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 112: view_yview[0] += screenSpeedVert -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (screenSpeedVert) )
+Converted builtin - line 127: view_yview[0] = prtPlayer.sectionTop -> __view_set( e__VW.YView, 0, prtPlayer.sectionTop )
+Converted builtin - line 166: view_yview[0] -= screenSpeedVert -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) - (screenSpeedVert) )
+Converted builtin - line 181: view_yview[0] = prtPlayer.sectionBottom - view_hview[0] -> __view_set( e__VW.YView, 0, prtPlayer.sectionBottom - view_hview[0] )
+Converted builtin - line 74: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 179: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 76: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 181: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Create_0.gml
+Converted description /// @description Initialize equipment variable
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Step_0.gml
+Converted description /// @description Execute at every. To be inherite
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Other_15.gml
+Converted description /// @description OnChangePlaye
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Other_14.gml
+Converted description /// @description onAdd: to be inherite
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Other_13.gml
+Converted description /// @description  onUnPrime: to be inherite
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Other_11.gml
+Converted description /// @description  OnBuy: to be inherite
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Other_10.gml
+Converted description /// @description  onActivate: to be inherite
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objLifeEquip\Other_15.gml
+Converted description /// @description onChangePlaye
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objETankEquip\Other_15.gml
+Converted description /// @description onChangePlaye
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWTankEquip\Other_15.gml
+Converted description /// @description onChangePlaye
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objMTankEquip\Other_15.gml
+Converted description /// @description onChangePlaye
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objEddieEquip\Other_10.gml
+Converted builtin - line 14: view_yview[0] -> __view_get( e__VW.YView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objEnergyBalancerEquip\Other_15.gml
+Converted description /// @description onChangePlaye
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPowerGeneratorEquip\Other_11.gml
+Converted description /// @description  onBu
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objHiSpeedChargeEquip\Other_11.gml
+Converted description /// @description  onBu
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlateEquip\Other_14.gml
+Converted description /// @description onAd
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objText\Draw_0.gml
+Converted builtin - line 6: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 3: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 6: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtCutscene\Step_0.gml
+Converted builtin - line 4: background_visible[other.current_scene] = false -> __background_set( e__BG.Visible, other.current_scene, false )
+Converted builtin - line 5: background_visible[other.next_scene] = true -> __background_set( e__BG.Visible, other.next_scene, true )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objOpening\Step_0.gml
+Converted builtin - line 11: background_blend[1] = make_colour_rgb(intensity,intensity,blue) -> __background_set( e__BG.Blend, 1, make_colour_rgb(intensity,intensity,blue) )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_11.gml
+Converted description /// @description  Create Path
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_6.gml
+Converted description /// @description  Go to leve
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_5.gml
+Converted description /// @description  Draw Ma
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_4.gml
+Converted builtin - line 3: background_blend[0] = c_blue -> __background_set( e__BG.Blend, 0, c_blue )
+Converted description /// @description  Tint Backgroun
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_3.gml
+Converted description /// @description  Interval before tin
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_2.gml
+Converted description /// @description  Second Flas
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_1.gml
+Converted description /// @description  Interval before second flas
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Alarm_0.gml
+Converted description /// @description  First Flas
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Step_0.gml
+Converted builtin - line 2: background_colour = c_white -> __background_set_colour( c_white )
+Converted builtin - line 5: background_colour = c_black -> __background_set_colour( c_black )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFortress\Draw_72.gml
+Converted builtin - line 2: background_visible[0] = false -> __background_set( e__BG.Visible, 0, false )
+Converted builtin - line 8: background_visible[0] = true -> __background_set( e__BG.Visible, 0, true )
+Converted builtin - line 1: background_blend[0] -> __background_get( e__BG.Blend, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objEddie\Step_0.gml
+Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievementBox\Create_0.gml
+Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 7: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievementBox\Step_0.gml
+Converted builtin - line 18: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 18: view_hview[0] -> __view_get( e__VW.HView, 0 )
+
+Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievementBox\Draw_73.gml
+Converted builtin - line 2: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 2: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 4: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 5: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 9: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 12: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 16: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 17: view_xview[0] -> __view_get( e__VW.XView, 0 )
+String not found: ConversionLog_ConvertedString 16 ' "' " \""
+String not found: ConversionLog_ConvertedString 16 '"' "\""
+
+Missing audiogroup for sound: 'sfxLand' - setting to default audio group
+Missing audiogroup for sound: 'sfxHit' - setting to default audio group
+Missing audiogroup for sound: 'sfxCharging' - setting to default audio group
+Missing audiogroup for sound: 'sfxCharged' - setting to default audio group
+Missing audiogroup for sound: 'sfxDeath' - setting to default audio group
+Missing audiogroup for sound: 'sfxTeleportIn' - setting to default audio group
+Missing audiogroup for sound: 'sfxTeleportOut' - setting to default audio group
+Missing audiogroup for sound: 'sfxImportantItem' - setting to default audio group
+Missing audiogroup for sound: 'sfxEnergyRestore' - setting to default audio group
+Missing audiogroup for sound: 'sfxSplash' - setting to default audio group
+Missing audiogroup for sound: 'sfxWeaponSwitch' - setting to default audio group
+Missing audiogroup for sound: 'sfxBoltCollect' - setting to default audio group
+Missing audiogroup for sound: 'sfxWhistle' - setting to default audio group
+Missing audiogroup for sound: 'sfxBuster' - setting to default audio group
+Missing audiogroup for sound: 'sfxBusterHalfCharged' - setting to default audio group
+Missing audiogroup for sound: 'sfxBusterCharged' - setting to default audio group
+Missing audiogroup for sound: 'sfxMetalBlade' - setting to default audio group
+Missing audiogroup for sound: 'sfxPharaohShot' - setting to default audio group
+Missing audiogroup for sound: 'sfxPharaohShotCharged' - setting to default audio group
+Missing audiogroup for sound: 'sfxReflect' - setting to default audio group
+Missing audiogroup for sound: 'sfxCentaurFlash' - setting to default audio group
+Missing audiogroup for sound: 'sfxDrillBomb' - setting to default audio group
+Missing audiogroup for sound: 'sfxHornetChaser' - setting to default audio group
+Missing audiogroup for sound: 'sfxEnemyHit' - setting to default audio group
+Missing audiogroup for sound: 'sfxEnemyShoot' - setting to default audio group
+Missing audiogroup for sound: 'sfxEnemyShootClassic' - setting to default audio group
+Missing audiogroup for sound: 'sfxColtonShoot' - setting to default audio group
+Missing audiogroup for sound: 'sfxBigEye' - setting to default audio group
+Missing audiogroup for sound: 'sfxTaban' - setting to default audio group
+Missing audiogroup for sound: 'sfxError' - setting to default audio group
+Missing audiogroup for sound: 'sfxMenuMove' - setting to default audio group
+Missing audiogroup for sound: 'sfxMenuSelect' - setting to default audio group
+Missing audiogroup for sound: 'sfxMenuSelect3' - setting to default audio group
+Missing audiogroup for sound: 'sfxPause' - setting to default audio group
+Missing audiogroup for sound: 'sfxThunder' - setting to default audio group
+Missing audiogroup for sound: 'sfxDoor' - setting to default audio group
+Missing audiogroup for sound: 'sfxAbsorb' - setting to default audio group
+Missing audiogroup for sound: 'sfxYokuBlock' - setting to default audio group
+Missing audiogroup for sound: 'sfxWilyUFO' - setting to default audio group
+Missing audiogroup for sound: 'sfxExplosion4' - setting to default audio group
+Missing audiogroup for sound: 'sfxAchievement' - setting to default audio group
+Missing audiogroup for sound: 'bgmIntroduction' - setting to default audio group
+Missing audiogroup for sound: 'bgmTestMusic' - setting to default audio group
+Missing audiogroup for sound: 'bgmTitleScreen' - setting to default audio group
+Missing audiogroup for sound: 'bgmStageSelect' - setting to default audio group
+Missing audiogroup for sound: 'bgmBoss' - setting to default audio group
+Missing audiogroup for sound: 'bgmGameOver' - setting to default audio group
+Missing audiogroup for sound: 'bgmPassScreen' - setting to default audio group
+Missing audiogroup for sound: 'bgmVictory' - setting to default audio group
+Missing audiogroup for sound: 'bgmWeaponGet' - setting to default audio group
+Missing audiogroup for sound: 'bgmShop' - setting to default audio group
+Missing audiogroup for sound: 'bgmIntro' - setting to default audio group
+Missing audiogroup for sound: 'bgmBossMMPU8bit' - setting to default audio group
+Missing audiogroup for sound: 'bgmFortress' - setting to default audio group
+Missing audiogroup for sound: 'bgmOpening' - setting to default audio group
+Missing audiogroup for sound: 'bgmOpening2' - setting to default audio group
+Missing audiogroup for sound: 'bgmCredits' - setting to default audio group
+Missing audiogroup for sound: 'bgmBossRush' - setting to default audio group
+Missing audiogroup for sound: 'bgmWilyBoss3' - setting to default audio group
+Missing audiogroup for sound: 'bgmWilyFinalBoss4' - setting to default audio group
+Missing audiogroup for sound: 'bgmWilyBoss1' - setting to default audio group
+Missing audiogroup for sound: 'bgmWilyCastle1' - setting to default audio group
+Missing audiogroup for sound: 'bgmMainMenu' - setting to default audio group
+Missing audiogroup for sound: 'bgmBeatFinalBoss' - setting to default audio group
+Missing audiogroup for sound: 'bgmPlayerSelect' - setting to default audio group
+Missing audiogroup for sound: 'bgmProtomanShop' - setting to default audio group
+Game speed set to 60
+Added compatibility script 'background\draw_background.gml'
+Added compatibility script 'background\__background_get.gml'
+Added compatibility script 'background\__background_get_element.gml'
+Added compatibility script 'background\__background_get_internal.gml'
+Added compatibility script 'background\__background_set.gml'
+Added compatibility script 'background\__background_set_colour.gml'
+Added compatibility script 'background\__background_set_element.gml'
+Added compatibility script 'background\__background_set_internal.gml'
+Added compatibility script 'instance\instance_create.gml'
+Added compatibility script 'object\object_get_depth.gml'
+Added compatibility script 'sound\sound_loop.gml'
+Added compatibility script 'sound\sound_play.gml'
+Added compatibility script 'sound\sound_stop.gml'
+Added compatibility script 'sound\sound_stop_all.gml'
+Added compatibility script 'tile\tile_add.gml'
+Added compatibility script 'tile\tile_get_background.gml'
+Added compatibility script 'tile\tile_get_depth.gml'
+Added compatibility script 'tile\tile_get_height.gml'
+Added compatibility script 'tile\tile_get_ids.gml'
+Added compatibility script 'tile\tile_get_left.gml'
+Added compatibility script 'tile\tile_get_top.gml'
+Added compatibility script 'tile\tile_get_width.gml'
+Added compatibility script 'tile\tile_get_x.gml'
+Added compatibility script 'tile\tile_get_y.gml'
+Added compatibility script 'tile\tile_layer_find.gml'
+Added compatibility script 'tile\tile_layer_hide.gml'
+Added compatibility script 'tile\tile_layer_show.gml'
+Added compatibility script 'view\__view_get.gml'
+Added compatibility script 'view\__view_set.gml'
+Added compatibility script 'view\__view_set_internal.gml'
+Added compatibility script 'background\__init_background.gml'
+Added compatibility script 'view\__init_view.gml'
+Added compatibility script '__init_global.gml'
+Added compatibility script 'background\__background_get_colour_element.gml'
+Added compatibility script '__global_object_depths.gml'

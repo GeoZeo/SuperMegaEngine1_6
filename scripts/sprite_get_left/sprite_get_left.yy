@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"sprite_get_left",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sprite_get_left",
+  "parent":{
+    "name":"Drawing",
+    "path":"folders/Scripts/Drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

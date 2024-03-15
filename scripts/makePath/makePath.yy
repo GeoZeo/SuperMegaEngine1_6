@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"makePath",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"makePath",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

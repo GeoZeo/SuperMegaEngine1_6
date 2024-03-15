@@ -1,0 +1,2 @@
+add_achievement(objDevilSlayerAchievement);
+

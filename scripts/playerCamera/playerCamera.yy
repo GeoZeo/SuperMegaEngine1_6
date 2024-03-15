@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"playerCamera",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"playerCamera",
+  "parent":{
+    "name":"Player",
+    "path":"folders/Scripts/Player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

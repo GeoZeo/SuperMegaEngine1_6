@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"sprite_get_top",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sprite_get_top",
+  "parent":{
+    "name":"Drawing",
+    "path":"folders/Scripts/Drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

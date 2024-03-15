@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"password_checksum",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"password_checksum",
+  "parent":{
+    "name":"Saving",
+    "path":"folders/Scripts/Saving.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

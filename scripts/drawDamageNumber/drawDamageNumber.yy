@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"drawDamageNumber",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"drawDamageNumber",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

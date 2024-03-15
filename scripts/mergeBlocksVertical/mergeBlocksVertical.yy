@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"mergeBlocksVertical",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"mergeBlocksVertical",
+  "parent":{
+    "name":"Gravity",
+    "path":"folders/Scripts/Collision/Gravity.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgmWilyFinalBoss4",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":32,
+  "compression":2,
+  "conversionMode":0,
+  "duration":0.0,
+  "name":"bgmWilyFinalBoss4",
+  "parent":{
+    "name":"Music",
+    "path":"folders/Sounds/Music.yy",
+  },
+  "preload":true,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":22050,
+  "soundFile":"bgmWilyFinalBoss4",
+  "type":0,
+  "volume":1.0,
+}

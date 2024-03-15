@@ -1,0 +1,5 @@
+if !global.frozen {
+    x += xspeed * update_rate;
+    y += yspeed * update_rate;
+}
+

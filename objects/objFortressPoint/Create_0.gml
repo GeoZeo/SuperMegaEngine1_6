@@ -1,0 +1,3 @@
+dir = "right";
+hidden = false;
+

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sfxWhistle",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":32,
+  "compression":2,
+  "conversionMode":0,
+  "duration":3.030204,
+  "name":"sfxWhistle",
+  "parent":{
+    "name":"Player",
+    "path":"folders/Sounds/Player.yy",
+  },
+  "preload":true,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":32000,
+  "soundFile":"sfxWhistle",
+  "type":0,
+  "volume":1.0,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"dec_to_bin",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dec_to_bin",
+  "parent":{
+    "name":"Numbers",
+    "path":"folders/Scripts/Numbers.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

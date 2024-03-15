@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"instance_distance",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"instance_distance",
+  "parent":{
+    "name":"Instances",
+    "path":"folders/Scripts/Instances.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

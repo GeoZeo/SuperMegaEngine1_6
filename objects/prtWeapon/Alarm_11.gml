@@ -1,0 +1,2 @@
+with prtPlayer canShoot = true;
+

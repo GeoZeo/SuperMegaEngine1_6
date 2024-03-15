@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"playMusicVolumeLoopPoint",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"playMusicVolumeLoopPoint",
+  "parent":{
+    "name":"Sound",
+    "path":"folders/Scripts/Sound.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

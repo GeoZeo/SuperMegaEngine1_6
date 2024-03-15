@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"placeTileObjects",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"placeTileObjects",
+  "parent":{
+    "name":"Tiles",
+    "path":"folders/Scripts/Tiles.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"split",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"split",
+  "parent":{
+    "name":"Strings",
+    "path":"folders/Scripts/Strings.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

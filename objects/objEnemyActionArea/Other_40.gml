@@ -1,0 +1,2 @@
+_inView = false;
+

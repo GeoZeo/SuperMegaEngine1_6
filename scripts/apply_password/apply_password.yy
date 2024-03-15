@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"apply_password",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"apply_password",
+  "parent":{
+    "name":"Saving",
+    "path":"folders/Scripts/Saving.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

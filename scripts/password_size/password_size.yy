@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"password_size",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"password_size",
+  "parent":{
+    "name":"Saving",
+    "path":"folders/Scripts/Saving.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

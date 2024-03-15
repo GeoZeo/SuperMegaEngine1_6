@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"block_base_convert",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"block_base_convert",
+  "parent":{
+    "name":"Saving",
+    "path":"folders/Scripts/Saving.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

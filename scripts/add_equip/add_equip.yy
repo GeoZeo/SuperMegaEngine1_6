@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"add_equip",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"add_equip",
+  "parent":{
+    "name":"Equip",
+    "path":"folders/Scripts/Equip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

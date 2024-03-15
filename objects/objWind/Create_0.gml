@@ -1,0 +1,10 @@
+event_inherited();
+
+xspeed = -1;
+yspeed = 0;
+affectEnemies = false;
+affectPlayer = true;
+affectProjectiles = false;
+affectBosses = false;
+affectItems = false;
+

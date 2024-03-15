@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"drawSelf",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"drawSelf",
+  "parent":{
+    "name":"Drawing",
+    "path":"folders/Scripts/Drawing.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

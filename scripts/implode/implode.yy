@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"implode",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"implode",
+  "parent":{
+    "name":"Arrays",
+    "path":"folders/Scripts/Arrays.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

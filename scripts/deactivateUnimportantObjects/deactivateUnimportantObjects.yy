@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"deactivateUnimportantObjects",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"deactivateUnimportantObjects",
+  "parent":{
+    "name":"Views",
+    "path":"folders/Scripts/Views.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

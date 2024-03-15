@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"load_achievements",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_achievements",
+  "parent":{
+    "name":"Achievements",
+    "path":"folders/Scripts/Achievements.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

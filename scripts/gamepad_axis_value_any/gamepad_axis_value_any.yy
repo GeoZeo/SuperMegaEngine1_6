@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"gamepad_axis_value_any",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"gamepad_axis_value_any",
+  "parent":{
+    "name":"Gamepad",
+    "path":"folders/Scripts/Gamepad.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

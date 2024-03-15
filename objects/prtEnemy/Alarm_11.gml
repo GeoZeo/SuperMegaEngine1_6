@@ -1,0 +1,4 @@
+if !dead {
+    visible = true;
+}
+

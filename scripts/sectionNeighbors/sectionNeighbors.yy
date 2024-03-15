@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"sectionNeighbors",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sectionNeighbors",
+  "parent":{
+    "name":"Sections",
+    "path":"folders/Scripts/Sections.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

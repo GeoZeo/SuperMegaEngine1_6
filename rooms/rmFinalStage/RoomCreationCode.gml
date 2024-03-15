@@ -1,0 +1,1 @@
+playMusicVolume(bgmBossRush, 0.9);

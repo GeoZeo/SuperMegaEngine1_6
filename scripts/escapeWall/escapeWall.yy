@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"escapeWall",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"escapeWall",
+  "parent":{
+    "name":"Gravity",
+    "path":"folders/Scripts/Collision/Gravity.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"sectionRect",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sectionRect",
+  "parent":{
+    "name":"Sections",
+    "path":"folders/Scripts/Sections.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

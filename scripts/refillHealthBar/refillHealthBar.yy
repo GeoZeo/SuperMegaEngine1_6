@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"refillHealthBar",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"refillHealthBar",
+  "parent":{
+    "name":"Enemies",
+    "path":"folders/Scripts/Enemies.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

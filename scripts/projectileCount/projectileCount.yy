@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"projectileCount",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"projectileCount",
+  "parent":{
+    "name":"Player",
+    "path":"folders/Scripts/Player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

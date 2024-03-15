@@ -1,0 +1,1 @@
+checkFullSprite = true;

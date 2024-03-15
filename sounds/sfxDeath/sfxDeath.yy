@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sfxDeath",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":32,
+  "compression":2,
+  "conversionMode":0,
+  "duration":1.507846,
+  "name":"sfxDeath",
+  "parent":{
+    "name":"Player",
+    "path":"folders/Sounds/Player.yy",
+  },
+  "preload":true,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":22050,
+  "soundFile":"sfxDeath",
+  "type":1,
+  "volume":1.0,
+}

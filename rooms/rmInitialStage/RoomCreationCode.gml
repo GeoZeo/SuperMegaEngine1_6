@@ -1,0 +1,1 @@
+playMusicVolume(bgmIntro, 0.9);

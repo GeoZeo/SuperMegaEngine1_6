@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"platesCollectedCount",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"platesCollectedCount",
+  "parent":{
+    "name":"Equip",
+    "path":"folders/Scripts/Equip.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

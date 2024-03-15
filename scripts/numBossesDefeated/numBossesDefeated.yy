@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"numBossesDefeated",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"numBossesDefeated",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Scripts/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

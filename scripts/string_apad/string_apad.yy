@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"string_apad",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"string_apad",
+  "parent":{
+    "name":"Strings",
+    "path":"folders/Scripts/Strings.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

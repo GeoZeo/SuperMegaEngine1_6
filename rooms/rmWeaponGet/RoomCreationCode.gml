@@ -1,0 +1,1 @@
+playMusicVolume("WeaponGet.ogg", 1);

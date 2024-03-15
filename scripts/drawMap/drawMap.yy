@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"drawMap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"drawMap",
+  "parent":{
+    "name":"Rooms",
+    "path":"folders/Scripts/Rooms.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
