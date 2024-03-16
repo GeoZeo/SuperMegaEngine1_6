@@ -1,4 +1,4 @@
-if on && sprite_index != prtPlayer.spriteTeleport && collision_point(x + 8, y + 8, other, false, false) {
+if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collision_point(x + 8, y + 8, other, false, false) {
     x = other.x;
     y = other.y;
     visible = true;
@@ -11,6 +11,7 @@ if on && sprite_index != prtPlayer.spriteTeleport && collision_point(x + 8, y + 
     }
     //instance_deactivate_object(objMegaman);
     playerLockMovement();
+	stopSFX(sfxLand);
     playSFX(sfxTeleportIn);
     instance_activate_object(objSectionBorderLeft);
     instance_activate_object(objSectionBorderRight);

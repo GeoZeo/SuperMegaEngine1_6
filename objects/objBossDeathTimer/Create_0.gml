@@ -1,7 +1,9 @@
 //Handles the boss's death
 //Also transforms into the Mega Man that automatically moves to the center of the screen
 
-bossID = instance_nearest(x, y, prtBoss).bossID;
+myBoss = instance_nearest(x, y, prtBoss);
+bossID = myBoss.bossID;
+endLevel = myBoss;
 noBoss = false;
 
 //If there is a teleporter in the room (boss rush), just destroy the death timer
@@ -22,6 +24,11 @@ with objTeleport {
         }
         exit;
     }
+}
+
+//Same goes for if the level still doesn't end here otherwise
+if !endLevel {
+	
 }
 
 //Otherwise, normal behavior (weapon absorb, etc...)

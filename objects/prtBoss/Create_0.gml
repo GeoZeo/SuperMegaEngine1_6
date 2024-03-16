@@ -11,9 +11,8 @@ poseImgSpeed = 3/60;
 weaponID = -1;
 bossID = -1;
 
-
-respawn = true;
-
+//Do we always have to fight this boss even if it's already been beaten once?
+bPersistent = true;
 
 //Initialization variables, don't change
 global.weaponID = weaponID;

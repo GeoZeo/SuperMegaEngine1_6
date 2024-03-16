@@ -30,12 +30,8 @@ endLevel = true;
 
 myBoss = instance_nearest(x, y, prtBoss);
 bossID = -1;
-bossRespawn = false;
-if myBoss > -1
-{
-	bossID = myBoss.bossID;
-	bossRespawn = myBoss.respawn;
-}
+bossPersistent = false;
+
 global.bossHealth = 0;
 
 

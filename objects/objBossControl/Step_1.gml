@@ -2,7 +2,7 @@
 if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XView, 0 ) && x <= __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )-1
 && y >= __view_get( e__VW.YView, 0 ) && y <= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )-1
 {
-	if (myBoss > -1 and !global.bossDefeated[bossID]) || (myBoss > -1 and bossRespawn)
+	if (myBoss > -1 and (bossID > -1 and bossID < array_length(global.bossDefeated) and !global.bossDefeated[bossID])) || (myBoss > -1 and bossPersistent)
 	{
 		if bossTimer < bossTime && prtPlayer.ground //Comment out " && prtPlayer.ground" if you want the timer to tick regardless of whether or not MM is on the ground.
 		{
@@ -94,17 +94,35 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 		{
 			/*if prtPlayer.ground*/ canInitDeactivation = false; //Again, get rid of the prtPlayer.ground "if" statements if you don't want this to be affected by whether or not MM is on the ground.
 			
-			if !prtPlayer.locked
+			if endLevel
 			{
-				playerLockMovement();
+				if !prtPlayer.locked
+				{
+					playerLockMovement();
 				
-				if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
-					playerLockMovement(true);
-			}
+					if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
+						playerLockMovement(true);
+				}
 			
-			stopSFX(global.bgm);
+				stopSFX(global.bgm);
 				
-			/*if prtPlayer.ground*/ alarm[0] = 240;
+				/*if prtPlayer.ground*/ alarm[1] = 240;
+			}
+			else
+			{
+				 instance_activate_object(objBossDoor);
+				 with objBossDoor
+				 {
+					if insideView()
+						canOpen = true;
+				 }
+				 instance_activate_object(objBossDoorH);
+				 with objBossDoorH
+				 {
+					if insideView()
+						canOpen = true;
+				 }
+			}
 		}
 	}
 }

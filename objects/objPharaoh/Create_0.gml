@@ -11,7 +11,7 @@ weaponID = objPharaohShotWeapon;
 bossID = 7; //The ID on the stage select screen. The top-left has an ID of 0, then it goes clockwise (so the left panel's ID is 7)
             //The middle panel's ID is 8
 			
-//respawn = false;
+bPersistent = false;
 
 contactDamage = 4;
 
