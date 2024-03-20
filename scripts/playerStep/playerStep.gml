@@ -957,7 +957,7 @@ function playerStep() {
 	        invincibilityTimer = invincibilityTime;
 	    }
 	    else {
-	        if hitTimer mod 4 == 0 || hitTimer mod 4 == 1  //mod: modulo, %. Gives the remainder
+	        if (global._health > 0 or killTime <= 0) && (hitTimer mod 4 == 0 or hitTimer mod 4 == 1)  //mod: modulo, %. Gives the remainder
 	            drawHitspark = true;
 	        else
 	            drawHitspark = false;

@@ -6,7 +6,7 @@ if global._health < global._maxHealth
     with objHealthWeaponBar
     {
         increaseHealth = true;
-        increaseHealthAmount = other.amount;
+        increaseHealthAmount = other.itemAmount;
     }
     
     stopSFX(sfxEnergyRestore);

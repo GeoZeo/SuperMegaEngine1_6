@@ -26,21 +26,62 @@ if !global.frozen {
         else if sprite_get_bottom() < __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 64 or yspeed == 0 {
             yspeed = spd;
         }
-        if sprite_index == sprWilyMachine4b and ((yspeed < 0 and sprite_get_bottom() <= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45) or (yspeed > 0 and sprite_get_bottom() >= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45)) {
-            yspeed = 0;
-            y = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45 - sprite_height;
-        }
+        //if sprite_index == sprWilyMachine4b and ((yspeed < 0 and sprite_get_bottom() <= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45) or (yspeed > 0 and sprite_get_bottom() >= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45)) {
+        //    yspeed = 0;
+        //    y = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45 - sprite_height;
+        //}
         if sprite_index == sprWilyMachine4b {
-            if xspeed == 0 and !control.canFillHealthBar and !control.fillingHealthBar {
-                xspeed = -spd;
-            }
-            else if random(1000) <= 1 or x < __view_get( e__VW.XView, 0 ) + 64 or x > __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - sprite_width {
-                xspeed *= -1;
-            }
-            if (control.fillingHealthBar or control.canFillHealthBar) and instance_number(objExplosion4) < 4 and random(5) <= 1 {
-                var explosion = instance_create(x + random(64), y + random(64), objExplosion4);
-                explosion.depth = depth - 1;
-            }
+			
+			var yCoord_phase2 = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45 - sprite_height;
+			
+			if y == yCoord_phase2 {
+				yspeed = 0;
+				if xspeed == 0 and !control.canFillHealthBar and !control.fillingHealthBar {
+					if global.bossHealth > 0
+						xspeed = -spd;
+	            }
+	            else if random(1000) <= 1 or x < __view_get( e__VW.XView, 0 ) + 64 or x > __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - sprite_width {
+	                xspeed *= -1;
+	            }
+			}
+			else
+			{
+				if y < yCoord_phase2 {
+					yspeed = spd;
+					if y + yspeed > yCoord_phase2 {
+						yspeed = 0;
+						y = yCoord_phase2;
+					}
+				}
+				else if y > yCoord_phase2 {
+					yspeed = -spd;
+					if y + yspeed < yCoord_phase2 {
+						yspeed = 0;
+						y = yCoord_phase2;
+					}
+				}
+			}
+            if (explosionCounter < explosionMax || y != yCoord_phase2) && global.bossHealth <= 0 && !dead {
+				if explosionTimer <= 0 {
+					var explosion = instance_create(x + random(64), y + random(64), objExplosion4);
+					explosion.depth = depth - 1;
+					alarm[0] = -1;
+					explosionCounter++;
+					if explosionCounter >= explosionMax {
+						explosionCounter = explosionMax;
+						if y == yCoord_phase2 && global.bossHealth > 0 && !dead
+							nullifyDeath(true);
+					}
+				}
+				explosionTimer++;
+				if explosionTimer >= explosionTime && (explosionCounter < explosionMax or y != yCoord_phase2)
+					explosionTimer = 0
+			}
+			else if global.bossHealth <= 0 && !dead && (!control.canFillHealthBar and !control.fillingHealthBar) {
+				nullifyDeath(true);
+			}
+			if control.canFillHealthBar or control.fillingHealthBar
+				alarm[0] = -1;
         }
         with objWilyMachine4Smoke {
             if image_index > 4 {

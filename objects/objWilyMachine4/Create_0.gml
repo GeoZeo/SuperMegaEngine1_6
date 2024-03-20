@@ -7,6 +7,11 @@ image_speed = 5 / room_speed;
     
 control = instance_nearest(x, y, objBossControl);
 
+explosionTime = 18;
+explosionTimer = 0;
+explosionMax = 4;
+explosionCounter = 0;
+
 useHitBox = true;
 hitbox_left = 8;
 hitbox_right = 32;

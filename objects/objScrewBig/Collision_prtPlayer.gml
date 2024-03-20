@@ -2,7 +2,7 @@ event_inherited();
 
 if global.screws < global.maxScrews {
     
-    global.screws += amount;
+    global.screws += itemAmount;
     
     if global.screws > global.maxScrews {
         global.screws = global.maxScrews;

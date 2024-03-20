@@ -512,7 +512,7 @@
     {"name":"dec_to_bin","order":1,"path":"scripts/dec_to_bin/dec_to_bin.yy",},
     {"name":"implode_real","order":1,"path":"scripts/implode_real/implode_real.yy",},
     {"name":"instance_number_alive","order":1,"path":"scripts/instance_number_alive/instance_number_alive.yy",},
-    {"name":"refillHealthBar","order":2,"path":"scripts/refillHealthBar/refillHealthBar.yy",},
+    {"name":"nullifyDeath","order":2,"path":"scripts/nullifyDeath/nullifyDeath.yy",},
     {"name":"makeLine","order":1,"path":"scripts/makeLine/makeLine.yy",},
     {"name":"sprEnemySpawnArea","order":7,"path":"sprites/sprEnemySpawnArea/sprEnemySpawnArea.yy",},
     {"name":"makePath","order":2,"path":"scripts/makePath/makePath.yy",},

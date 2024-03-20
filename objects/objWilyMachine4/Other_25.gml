@@ -13,7 +13,7 @@ if sprite_index == sprWilyMachine4a {
     damage[objPharaohShotCharged] = 0;
     damage[objWindStorm] = 7;
     alarm[0] = -1;
-    refillHealthBar();
+    nullifyDeath(false);
 }
 else {
     add_achievement(objLudditeAchievement);

@@ -1,4 +1,4 @@
 event_inherited();
 
-amount = 2;
+itemAmount = 2;
 

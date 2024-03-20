@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"refillHealthBar",
+  "%Name":"nullifyDeath",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"refillHealthBar",
+  "name":"nullifyDeath",
   "parent":{
     "name":"Enemies",
     "path":"folders/Scripts/Enemies.yy",

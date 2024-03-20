@@ -1,6 +1,6 @@
 event_inherited();
 
-amount = 20;
+itemAmount = 20;
 
 if !global.enableScrews {
     instance_destroy();

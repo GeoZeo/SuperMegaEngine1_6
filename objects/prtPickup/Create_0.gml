@@ -1,7 +1,7 @@
 pickupID = -15;
 
 image_speed = 1/6;
-amount = 0;
+itemAmount = 0;
 flash = false;
 flashTimer = 0;
 xspeed = 0;

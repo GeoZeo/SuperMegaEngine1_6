@@ -15,7 +15,7 @@ if objEnergyBalancerEquip.count > 0 && (global.currentWeapon == global.character
         with objHealthWeaponBar {
             increaseAmmoOffscreen = true;
             weaponToIncreaseIndex = lowestIndex;
-            increaseAmmoAmount = other.amount;
+            increaseAmmoAmount = other.itemAmount;
         }
         
         stopSFX(sfxEnergyRestore);
@@ -26,7 +26,7 @@ else if global.weapons[global.currentWeapon].ammo < global.maxAmmo {
     global.frozen = true;
     with objHealthWeaponBar {
         increaseAmmo = true;
-        increaseAmmoAmount = other.amount;
+        increaseAmmoAmount = other.itemAmount;
     }
     
     stopSFX(sfxEnergyRestore);

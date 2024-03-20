@@ -616,7 +616,7 @@
     {"id":{"name":"iif","path":"scripts/iif/iif.yy",},},
     {"id":{"name":"check_enemy_death","path":"scripts/check_enemy_death/check_enemy_death.yy",},},
     {"id":{"name":"instance_number_alive","path":"scripts/instance_number_alive/instance_number_alive.yy",},},
-    {"id":{"name":"refillHealthBar","path":"scripts/refillHealthBar/refillHealthBar.yy",},},
+    {"id":{"name":"nullifyDeath","path":"scripts/nullifyDeath/nullifyDeath.yy",},},
     {"id":{"name":"drawDamageNumber","path":"scripts/drawDamageNumber/drawDamageNumber.yy",},},
     {"id":{"name":"makeLine","path":"scripts/makeLine/makeLine.yy",},},
     {"id":{"name":"sprEnemySpawnArea","path":"sprites/sprEnemySpawnArea/sprEnemySpawnArea.yy",},},
