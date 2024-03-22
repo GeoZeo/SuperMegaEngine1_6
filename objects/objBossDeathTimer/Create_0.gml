@@ -3,7 +3,7 @@
 
 myBoss = instance_nearest(x, y, prtBoss);
 bossID = myBoss.bossID;
-endLevel = myBoss;
+endLevel = myBoss.endLevel;
 noBoss = false;
 
 //If there is a teleporter in the room (boss rush), just destroy the death timer
@@ -28,7 +28,27 @@ with objTeleport {
 
 //Same goes for if the level still doesn't end here otherwise
 if !endLevel {
-	
+	var inst = instance_create(x, y, objLifeEnergyBig);
+	inst.alarm[0] = room_speed * 9999;
+	instance_activate_object(objBossDoor);
+	with objBossDoor
+	{
+		if insideView()
+			canOpen = true;
+	}
+	instance_activate_object(objBossDoorH);
+	with objBossDoorH
+	{
+		if insideView()
+			canOpen = true;
+	}
+	instance_activate_object(objTeleport);
+	with objTeleport
+	{
+		if insideView()
+			on = true;
+	}
+	exit;
 }
 
 //Otherwise, normal behavior (weapon absorb, etc...)

@@ -32,7 +32,7 @@ if !global.frozen {
         //}
         if sprite_index == sprWilyMachine4b {
 			
-			var yCoord_phase2 = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45 - sprite_height;
+			var yCoord_phase2 = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 43.4765625 - sprite_height;
 			
 			if y == yCoord_phase2 {
 				yspeed = 0;

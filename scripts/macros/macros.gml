@@ -1,5 +1,5 @@
 function macros() {
-#macro initialRoom rmBeta
+#macro initialRoom rmBossRush
 #macro cfgEnableSlideKey false
 #macro cfgEnableDamageNumbers false
 #macro cfgEnableCharge true
@@ -8,7 +8,7 @@ function macros() {
 #macro cfgMaxNumberOfBusterShots 3
 #macro cfgMaxHealth 28
 #macro cfgMaxAmmo 28
-#macro cfgDebug true
+#macro cfgDebug false
 #macro cfgEnableDebugKeys true
 #macro cfgWeaponPreview true
 #macro cfgSwitchWeaponsWhileLocked true

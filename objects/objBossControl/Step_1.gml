@@ -106,7 +106,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			
 				stopSFX(global.bgm);
 				
-				/*if prtPlayer.ground*/ alarm[1] = 240;
+				/*if prtPlayer.ground*/ alarm[0] = 240;
 			}
 			else
 			{

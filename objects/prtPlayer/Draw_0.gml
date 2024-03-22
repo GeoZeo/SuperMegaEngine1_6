@@ -1,8 +1,7 @@
 if teleporting == false && showReady == false
 {
     //Draws the player. Whitemasks will be used
-	if !dead || killTimer mod 2 == 1
-		drawPlayer();
+	drawPlayer();
     
     //Hitspark
     if drawHitspark == true
@@ -38,9 +37,6 @@ else if teleporting == true
             image_index = 2;
         else if teleportTimer = 9
         {
-			global.screws += 500;
-			if global.screws >= 999
-				global.screws = 999;
             teleporting = false;
             teleportTimer = 0;
             canSpriteChange = true;
