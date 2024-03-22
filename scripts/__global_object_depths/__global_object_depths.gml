@@ -5,472 +5,488 @@ function __global_object_depths() {
 	gml_pragma( "global", "__global_object_depths()");
 
 	// insert the generated arrays here
-	global.__objectDepths[0] = 0; // objSolid
-	global.__objectDepths[1] = 0; // objIce
-	global.__objectDepths[2] = 0; // objTopSolid
-	global.__objectDepths[3] = 0; // objLadder
-	global.__objectDepths[4] = 0; // objSpike
-	global.__objectDepths[5] = 0; // objWater
-	global.__objectDepths[6] = 0; // prtCollision
-	global.__objectDepths[7] = -1000; // objGlobalControl
-	global.__objectDepths[8] = -1000; // objGlobalInit
-	global.__objectDepths[9] = -2; // prtPlayer
-	global.__objectDepths[10] = -2; // objMegaman
-	global.__objectDepths[11] = -2; // objProtoman
-	global.__objectDepths[12] = 0; // prtWeapon
-	global.__objectDepths[13] = 0; // prtPlayerProjectile
-	global.__objectDepths[14] = 0; // prtShieldWeapon
-	global.__objectDepths[15] = -1; // objReflectedProjectile
-	global.__objectDepths[16] = -1; // objBusterShot
-	global.__objectDepths[17] = -1; // objBusterShotHalfCharged
-	global.__objectDepths[18] = -1; // objBusterShotCharged
-	global.__objectDepths[19] = 0; // objMegaBusterWeapon
-	global.__objectDepths[20] = -1; // objProtoBusterShotHalfCharged
-	global.__objectDepths[21] = -1; // objProtoBusterShotCharged
-	global.__objectDepths[22] = 0; // objProtoBusterWeapon
-	global.__objectDepths[23] = -1; // objMetalBlade
-	global.__objectDepths[24] = 0; // objMetalBladeWeapon
-	global.__objectDepths[25] = 0; // objNeedleCannon
-	global.__objectDepths[26] = 0; // objNeedleCannonWeapon
-	global.__objectDepths[27] = -2; // objPharaohShotCharging
-	global.__objectDepths[28] = -1; // objPharaohShot
-	global.__objectDepths[29] = -1; // objPharaohShotCharged
-	global.__objectDepths[30] = 0; // objPharaohShotWeapon
-	global.__objectDepths[31] = 0; // objDrillBombWeapon
-	global.__objectDepths[32] = 0; // objDrillBomb
-	global.__objectDepths[33] = 0; // objDrillBombExplosion
-	global.__objectDepths[34] = -3; // objStarCrash
-	global.__objectDepths[35] = 0; // objStarCrashWeapon
-	global.__objectDepths[36] = -1; // objChargeKick
-	global.__objectDepths[37] = 0; // objChargeKickWeapon
-	global.__objectDepths[38] = -1; // objSilverTomahawk
-	global.__objectDepths[39] = 0; // objSilverTomahawkWeapon
-	global.__objectDepths[40] = -1; // objWindStorm
-	global.__objectDepths[41] = 0; // objWindStormWeapon
-	global.__objectDepths[42] = 0; // objCentaurFlash
-	global.__objectDepths[43] = 0; // objCentaurFlashWeapon
-	global.__objectDepths[44] = 0; // objHornetChaserWeapon
-	global.__objectDepths[45] = 0; // objHornetChaser
-	global.__objectDepths[46] = 0; // prtRush
-	global.__objectDepths[47] = 0; // objRushCoil
-	global.__objectDepths[48] = 0; // objRushCoilWeapon
-	global.__objectDepths[49] = -3; // objRushJet
-	global.__objectDepths[50] = 0; // objRushJetWeapon
-	global.__objectDepths[51] = 0; // objTimeSlowWeapon
-	global.__objectDepths[52] = 0; // objTimeSlow
-	global.__objectDepths[53] = 0; // objMegamanSweat
-	global.__objectDepths[54] = 0; // objMegamanExplosion
-	global.__objectDepths[55] = -100; // objHealthWeaponBar
-	global.__objectDepths[56] = 0; // objMegamanDeathTimer
-	global.__objectDepths[57] = -10000; // objFadeIn
-	global.__objectDepths[58] = -10000; // objFadeout
-	global.__objectDepths[59] = 0; // objMM1Met
-	global.__objectDepths[60] = 0; // objSuzi
-	global.__objectDepths[61] = 0; // objBeak
-	global.__objectDepths[62] = 0; // objPicketMan
-	global.__objectDepths[63] = 0; // objScrewBomber
-	global.__objectDepths[64] = 0; // objBigEye
-	global.__objectDepths[65] = 0; // objGabyoall
-	global.__objectDepths[66] = 0; // objMM1MetBullet
-	global.__objectDepths[67] = 0; // objBeakBullet
-	global.__objectDepths[68] = 0; // objPicket
-	global.__objectDepths[69] = 0; // objMM2Baton
-	global.__objectDepths[70] = 0; // objTelly
-	global.__objectDepths[71] = 0; // objFanFiend
-	global.__objectDepths[72] = 0; // objSniperJoe
-	global.__objectDepths[73] = 0; // objMM2Bullet
-	global.__objectDepths[74] = 0; // objPoleEgg
-	global.__objectDepths[75] = 0; // objPole
-	global.__objectDepths[76] = 0; // objDestructibleWall
-	global.__objectDepths[77] = 0; // objBBitter
-	global.__objectDepths[78] = 0; // objOctoper
-	global.__objectDepths[79] = 0; // objOctoShot
-	global.__objectDepths[80] = 0; // objColton
-	global.__objectDepths[81] = 0; // objColtonBullet
-	global.__objectDepths[82] = 0; // prtEnemy
-	global.__objectDepths[83] = 0; // prtEnemyProjectile
-	global.__objectDepths[84] = 0; // objEnemyWindStorm
-	global.__objectDepths[85] = 0; // prtMiniBoss
-	global.__objectDepths[86] = -100; // objBossControl
-	global.__objectDepths[87] = 10; // objBossDoor
-	global.__objectDepths[88] = 10; // objBossDoorH
-	global.__objectDepths[89] = 0; // objPharaoh
-	global.__objectDepths[90] = 0; // objPharaohManShot
-	global.__objectDepths[91] = 0; // objPharaohManShotBig
-	global.__objectDepths[92] = 0; // prtBoss
-	global.__objectDepths[93] = 0; // objBossDeathTimer
-	global.__objectDepths[94] = 0; // objAbsorbEffect
-	global.__objectDepths[95] = 0; // prtFortressBoss
-	global.__objectDepths[96] = 0; // objBossShadow
-	global.__objectDepths[97] = 0; // objYellowDevil
-	global.__objectDepths[98] = 0; // objYellowDevilBlock
-	global.__objectDepths[99] = 0; // objYellowDevilBullet
-	global.__objectDepths[100] = 0; // objWilyMachine4
-	global.__objectDepths[101] = 0; // objWilyMachine4Shot
-	global.__objectDepths[102] = 0; // objWilyMachine4Smoke
-	global.__objectDepths[103] = 0; // objWilyPod4
-	global.__objectDepths[104] = 0; // objWilyCapsule1
-	global.__objectDepths[105] = 0; // objWilyCapsuleEnergy
-	global.__objectDepths[106] = 0; // objWilyCapsuleShot
-	global.__objectDepths[107] = 0; // objDrWily
-	global.__objectDepths[108] = 0; // objBigEyeBoss
-	global.__objectDepths[109] = 0; // prtPickup
-	global.__objectDepths[110] = 0; // objLifeEnergySmall
-	global.__objectDepths[111] = 0; // objLifeEnergyBig
-	global.__objectDepths[112] = 0; // objWeaponEnergySmall
-	global.__objectDepths[113] = 0; // objWeaponEnergyBig
-	global.__objectDepths[114] = 0; // objETank
-	global.__objectDepths[115] = 0; // objWTank
-	global.__objectDepths[116] = 0; // objMTank
-	global.__objectDepths[117] = 0; // objSTank
-	global.__objectDepths[118] = 0; // objLife
-	global.__objectDepths[119] = 0; // objScrewSmall
-	global.__objectDepths[120] = 0; // objScrewBig
-	global.__objectDepths[121] = 0; // objEnergyBalancer
-	global.__objectDepths[122] = 0; // objYashichi
-	global.__objectDepths[123] = 0; // objPlateT
-	global.__objectDepths[124] = 0; // objPlateI
-	global.__objectDepths[125] = 0; // objPlateM
-	global.__objectDepths[126] = 0; // objPlateE
-	global.__objectDepths[127] = 0; // prtGimmick
-	global.__objectDepths[128] = 0; // prtSolidGimmick
-	global.__objectDepths[129] = 0; // prtMovingPlatformJumpthrough
-	global.__objectDepths[130] = 0; // prtMovingPlatformSolid
-	global.__objectDepths[131] = 1; // objYokuBlock
-	global.__objectDepths[132] = 0; // objSpawner
-	global.__objectDepths[133] = 0; // objShake
-	global.__objectDepths[134] = 0; // objTeleport
-	global.__objectDepths[135] = 0; // objTellySpawner
-	global.__objectDepths[136] = 0; // objMM2Conveyor
-	global.__objectDepths[137] = 0; // objWind
-	global.__objectDepths[138] = 0; // objSparkmanPlatform
-	global.__objectDepths[139] = 0; // objSparkmanPlatformStop
-	global.__objectDepths[140] = 0; // objDropPlatform
-	global.__objectDepths[141] = 0; // objJunkBlockSpawner
-	global.__objectDepths[142] = 0; // objMovingPlatformTest
-	global.__objectDepths[143] = -100; // objCheckpoint
-	global.__objectDepths[144] = 0; // objJunkBlock
-	global.__objectDepths[145] = 0; // prtDestructibleBlock
-	global.__objectDepths[146] = 0; // objDustBlock
-	global.__objectDepths[147] = 0; // objAutoScroll
-	global.__objectDepths[148] = 0; // prtEffect
-	global.__objectDepths[149] = 0; // objExplosion
-	global.__objectDepths[150] = 0; // objItemExplosion
-	global.__objectDepths[151] = 0; // objSlideDust
-	global.__objectDepths[152] = 0; // objSplash
-	global.__objectDepths[153] = 0; // objAirBubble
-	global.__objectDepths[154] = -900; // objDmgText
-	global.__objectDepths[155] = 0; // objFlash
-	global.__objectDepths[156] = 0; // objExplosion4
-	global.__objectDepths[157] = -1000; // objPauseMenu
-	global.__objectDepths[158] = -1000; // objPassMenu
-	global.__objectDepths[159] = -1000; // objPassInput
-	global.__objectDepths[160] = 0; // objWeaponGet
-	global.__objectDepths[161] = 0; // objStageSelect
-	global.__objectDepths[162] = 0; // objIntroduction
-	global.__objectDepths[163] = 0; // objDisclaimer
-	global.__objectDepths[164] = 0; // objTitleScreen
-	global.__objectDepths[165] = 0; // objShop
-	global.__objectDepths[166] = 0; // objMainMenu
-	global.__objectDepths[167] = 0; // objKeyConfig
-	global.__objectDepths[168] = 0; // objJoyConfig
-	global.__objectDepths[169] = 0; // objLoadGame
-	global.__objectDepths[170] = 0; // objSaveGame
-	global.__objectDepths[171] = 0; // objPlayerSelect
-	global.__objectDepths[172] = 0; // objAchievements
-	global.__objectDepths[173] = -100; // objSectionBorderLeftScreen
-	global.__objectDepths[174] = -100; // objSectionBorderRightScreen
-	global.__objectDepths[175] = -100; // objSectionBorderVertical
-	global.__objectDepths[176] = -100; // objSectionScrollRight
-	global.__objectDepths[177] = -100; // objSectionBorderTopScreen
-	global.__objectDepths[178] = -100; // objSectionBorderBottomScreen
-	global.__objectDepths[179] = -100; // objSectionBorderLeft
-	global.__objectDepths[180] = -100; // objSectionBorderRight
-	global.__objectDepths[181] = -100; // objSectionBorderTop
-	global.__objectDepths[182] = -100; // objSectionBorderBottom
-	global.__objectDepths[183] = -100; // objSectionArrowLeft
-	global.__objectDepths[184] = -100; // objSectionArrowRight
-	global.__objectDepths[185] = -100; // objSectionArrowUp
-	global.__objectDepths[186] = -100; // objSectionArrowDown
-	global.__objectDepths[187] = 0; // objSectionSwitcher
-	global.__objectDepths[188] = 0; // prtEquip
-	global.__objectDepths[189] = 0; // objLifeEquip
-	global.__objectDepths[190] = 0; // objETankEquip
-	global.__objectDepths[191] = 0; // objWTankEquip
-	global.__objectDepths[192] = 0; // objSTankEquip
-	global.__objectDepths[193] = 0; // objMTankEquip
-	global.__objectDepths[194] = 0; // objEddieEquip
-	global.__objectDepths[195] = 0; // objGuardPowerUpEquip
-	global.__objectDepths[196] = 0; // objExitEquip
-	global.__objectDepths[197] = 0; // objShockGuardEquip
-	global.__objectDepths[198] = 0; // objBeatEquip
-	global.__objectDepths[199] = 0; // objEnergyBalancerEquip
-	global.__objectDepths[200] = 0; // objPowerGeneratorEquip
-	global.__objectDepths[201] = 0; // objHiSpeedChargeEquip
-	global.__objectDepths[202] = 0; // prtPlateEquip
-	global.__objectDepths[203] = 0; // objPlateTEquip
-	global.__objectDepths[204] = 0; // objPlateIEquip
-	global.__objectDepths[205] = 0; // objPlateMEquip
-	global.__objectDepths[206] = 0; // objPlateEEquip
-	global.__objectDepths[207] = 0; // objText
-	global.__objectDepths[208] = 0; // prtCutscene
-	global.__objectDepths[209] = 0; // objOpening
-	global.__objectDepths[210] = 0; // objWilyUFO
-	global.__objectDepths[211] = 0; // objCredits
-	global.__objectDepths[212] = 0; // objFortress
-	global.__objectDepths[213] = 0; // objFortressPoint
-	global.__objectDepths[214] = 0; // objFortressTurnPoint
-	global.__objectDepths[215] = 0; // objFortressPointStart
-	global.__objectDepths[216] = 0; // objFortressUp
-	global.__objectDepths[217] = 0; // objFortressDown
-	global.__objectDepths[218] = 0; // objFortressRight
-	global.__objectDepths[219] = 0; // objFortressLeft
-	global.__objectDepths[220] = 0; // objFortressSpot
-	global.__objectDepths[221] = 0; // objMapDrawer
-	global.__objectDepths[222] = 0; // objEddie
-	global.__objectDepths[223] = 0; // objAchievementBox
-	global.__objectDepths[224] = 0; // prtAchievement
-	global.__objectDepths[225] = 0; // objTimeLordAchievement
-	global.__objectDepths[226] = 0; // objPentawerAchievement
-	global.__objectDepths[227] = 0; // objEnergyBalancerAchievement
-	global.__objectDepths[228] = 0; // objPowerGeneratorAchievement
-	global.__objectDepths[229] = 0; // objDevilSlayerAchievement
-	global.__objectDepths[230] = 0; // objLudditeAchievement
-	global.__objectDepths[231] = 0; // objJusticeAchievement
+	global.__objectDepths = [];
+	array_push(global.__objectDepths, 0); // objSolid
+	array_push(global.__objectDepths, 0); // objIce
+	array_push(global.__objectDepths, 0); // objTopSolid
+	array_push(global.__objectDepths, 0); // objLadder
+	array_push(global.__objectDepths, 0); // objSpike
+	array_push(global.__objectDepths, 0); // objWater
+	array_push(global.__objectDepths, 0); // prtCollision
+	array_push(global.__objectDepths, -1000); // objGlobalControl
+	array_push(global.__objectDepths, -1000); // objGlobalInit
+	array_push(global.__objectDepths, -2); // prtPlayer
+	array_push(global.__objectDepths, -2); // objMegaman
+	array_push(global.__objectDepths, -2); // objProtoman
+	array_push(global.__objectDepths, 0); // prtWeapon
+	array_push(global.__objectDepths, 0); // prtPlayerProjectile
+	array_push(global.__objectDepths, 0); // prtShieldWeapon
+	array_push(global.__objectDepths, -1); // objReflectedProjectile
+	array_push(global.__objectDepths, -1); // objBusterShot
+	array_push(global.__objectDepths, -1); // objBusterShotHalfCharged
+	array_push(global.__objectDepths, -1); // objBusterShotCharged
+	array_push(global.__objectDepths, 0); // objMegaBusterWeapon
+	array_push(global.__objectDepths, -1); // objProtoBusterShotHalfCharged
+	array_push(global.__objectDepths, -1); // objProtoBusterShotCharged
+	array_push(global.__objectDepths, 0); // objProtoBusterWeapon
+	array_push(global.__objectDepths, -1); // objMetalBlade
+	array_push(global.__objectDepths, 0); // objMetalBladeWeapon
+	array_push(global.__objectDepths, 0); // objNeedleCannon
+	array_push(global.__objectDepths, 0); // objNeedleCannonWeapon
+	array_push(global.__objectDepths, -2); // objPharaohShotCharging
+	array_push(global.__objectDepths, -1); // objPharaohShot
+	array_push(global.__objectDepths, -1); // objPharaohShotCharged
+	array_push(global.__objectDepths, 0); // objPharaohShotWeapon
+	array_push(global.__objectDepths, 0); // objDrillBombWeapon
+	array_push(global.__objectDepths, 0); // objDrillBomb
+	array_push(global.__objectDepths, 0); // objDrillBombExplosion
+	array_push(global.__objectDepths, -3); // objStarCrash
+	array_push(global.__objectDepths, 0); // objStarCrashWeapon
+	array_push(global.__objectDepths, -1); // objChargeKick
+	array_push(global.__objectDepths, 0); // objChargeKickWeapon
+	array_push(global.__objectDepths, -1); // objSilverTomahawk
+	array_push(global.__objectDepths, 0); // objSilverTomahawkWeapon
+	array_push(global.__objectDepths, -1); // objWindStorm
+	array_push(global.__objectDepths, 0); // objWindStormWeapon
+	array_push(global.__objectDepths, 0); // objCentaurFlash
+	array_push(global.__objectDepths, 0); // objCentaurFlashWeapon
+	array_push(global.__objectDepths, 0); // objHornetChaserWeapon
+	array_push(global.__objectDepths, 0); // objHornetChaser
+	array_push(global.__objectDepths, 0); // prtRush
+	array_push(global.__objectDepths, 0); // objRushCoil
+	array_push(global.__objectDepths, 0); // objRushCoilWeapon
+	array_push(global.__objectDepths, -3); // objRushJet
+	array_push(global.__objectDepths, 0); // objRushJetWeapon
+	array_push(global.__objectDepths, 0); // objTimeSlowWeapon
+	array_push(global.__objectDepths, 0); // objTimeSlow
+	array_push(global.__objectDepths, 0); // objMegamanSweat
+	array_push(global.__objectDepths, 0); // objMegamanExplosion
+	array_push(global.__objectDepths, -100); // objHealthWeaponBar
+	array_push(global.__objectDepths, 0); // objMegamanDeathTimer
+	array_push(global.__objectDepths, -10000); // objFadeIn
+	array_push(global.__objectDepths, -10000); // objFadeout
+	array_push(global.__objectDepths, 0); // objMM1Met
+	array_push(global.__objectDepths, 0); // objSuzi
+	array_push(global.__objectDepths, 0); // objBeak
+	array_push(global.__objectDepths, 0); // objPicketMan
+	array_push(global.__objectDepths, 0); // objScrewBomber
+	array_push(global.__objectDepths, 0); // objBigEye
+	array_push(global.__objectDepths, 0); // objGabyoall
+	array_push(global.__objectDepths, 0); // objMM1MetBullet
+	array_push(global.__objectDepths, 0); // objBeakBullet
+	array_push(global.__objectDepths, 0); // objPicket
+	array_push(global.__objectDepths, 0); // objMM2Baton
+	array_push(global.__objectDepths, 0); // objTelly
+	array_push(global.__objectDepths, 0); // objFanFiend
+	array_push(global.__objectDepths, 0); // objSniperJoe
+	array_push(global.__objectDepths, 0); // objMM2Bullet
+	array_push(global.__objectDepths, 0); // objPoleEgg
+	array_push(global.__objectDepths, 0); // objPole
+	array_push(global.__objectDepths, 0); // objDestructibleWall
+	array_push(global.__objectDepths, 0); // objBBitter
+	array_push(global.__objectDepths, 0); // objOctoper
+	array_push(global.__objectDepths, 0); // objOctoShot
+	array_push(global.__objectDepths, 0); // objColton
+	array_push(global.__objectDepths, 0); // objColtonBullet
+	array_push(global.__objectDepths, 0); // prtEnemy
+	array_push(global.__objectDepths, 0); // prtEnemyProjectile
+	array_push(global.__objectDepths, -100); // objEnemyActionArea
+	array_push(global.__objectDepths, -100); // objEnemyActionArea
+	array_push(global.__objectDepths, 0); // objEnemyWindStorm
+	array_push(global.__objectDepths, 0); // prtMiniBoss
+	array_push(global.__objectDepths, -100); // objBossControl
+	array_push(global.__objectDepths, 10); // objBossDoor
+	array_push(global.__objectDepths, 10); // objBossDoorH
+	array_push(global.__objectDepths, 0); // objPharaoh
+	array_push(global.__objectDepths, 0); // objPharaohManShot
+	array_push(global.__objectDepths, 0); // objPharaohManShotBig
+	array_push(global.__objectDepths, 0); // prtBoss
+	array_push(global.__objectDepths, 0); // objBossDeathTimer
+	array_push(global.__objectDepths, 0); // objAbsorbEffect
+	array_push(global.__objectDepths, 0); // prtFortressBoss
+	array_push(global.__objectDepths, 0); // objBossShadow
+	array_push(global.__objectDepths, 0); // objYellowDevil
+	array_push(global.__objectDepths, 0); // objYellowDevilBlock
+	array_push(global.__objectDepths, 0); // objYellowDevilBullet
+	array_push(global.__objectDepths, 0); // objWilyMachine4
+	array_push(global.__objectDepths, 0); // objWilyMachine4Shot
+	array_push(global.__objectDepths, 0); // objWilyMachine4Smoke
+	array_push(global.__objectDepths, 0); // objWilyPod4
+	array_push(global.__objectDepths, 0); // objWilyCapsule1
+	array_push(global.__objectDepths, 0); // objWilyCapsuleEnergy
+	array_push(global.__objectDepths, 0); // objWilyCapsuleShot
+	array_push(global.__objectDepths, 0); // objDrWily
+	array_push(global.__objectDepths, 0); // objBigEyeBoss
+	array_push(global.__objectDepths, 0); // prtPickup
+	array_push(global.__objectDepths, 0); // objLifeEnergySmall
+	array_push(global.__objectDepths, 0); // objLifeEnergyBig
+	array_push(global.__objectDepths, 0); // objWeaponEnergySmall
+	array_push(global.__objectDepths, 0); // objWeaponEnergyBig
+	array_push(global.__objectDepths, 0); // objETank
+	array_push(global.__objectDepths, 0); // objWTank
+	array_push(global.__objectDepths, 0); // objMTank
+	array_push(global.__objectDepths, 0); // objSTank
+	array_push(global.__objectDepths, 0); // objLife
+	array_push(global.__objectDepths, 0); // objScrewSmall
+	array_push(global.__objectDepths, 0); // objScrewBig
+	array_push(global.__objectDepths, 0); // objEnergyBalancer
+	array_push(global.__objectDepths, 0); // objYashichi
+	array_push(global.__objectDepths, 0); // objPlateT
+	array_push(global.__objectDepths, 0); // objPlateI
+	array_push(global.__objectDepths, 0); // objPlateM
+	array_push(global.__objectDepths, 0); // objPlateE
+	array_push(global.__objectDepths, 0); // prtGimmick
+	array_push(global.__objectDepths, 0); // prtSolidGimmick
+	array_push(global.__objectDepths, 0); // prtMovingPlatformJumpthrough
+	array_push(global.__objectDepths, 0); // prtMovingPlatformSolid
+	array_push(global.__objectDepths, 1); // objYokuBlock
+	array_push(global.__objectDepths, 0); // objSpawner
+	array_push(global.__objectDepths, 0); // objShake
+	array_push(global.__objectDepths, 0); // objTeleport
+	array_push(global.__objectDepths, 0); // objTellySpawner
+	array_push(global.__objectDepths, 0); // objMM2Conveyor
+	array_push(global.__objectDepths, 0); // objWind
+	array_push(global.__objectDepths, 0); // objSparkmanPlatform
+	array_push(global.__objectDepths, 0); // objSparkmanPlatformStop
+	array_push(global.__objectDepths, 0); // objDropPlatform
+	array_push(global.__objectDepths, 0); // objJunkBlockSpawner
+	array_push(global.__objectDepths, 0); // objMovingPlatformTest
+	array_push(global.__objectDepths, 0); // objMovingPlatformJumpthroughTest
+	array_push(global.__objectDepths, -100); // objCheckpoint
+	array_push(global.__objectDepths, 0); // objJunkBlock
+	array_push(global.__objectDepths, 0); // prtDestructibleBlock
+	array_push(global.__objectDepths, 0); // objDustBlock
+	array_push(global.__objectDepths, 0); // objAutoScroll
+	array_push(global.__objectDepths, 0); // prtEffect
+	array_push(global.__objectDepths, 0); // objExplosion
+	array_push(global.__objectDepths, 0); // objItemExplosion
+	array_push(global.__objectDepths, 0); // objSlideDust
+	array_push(global.__objectDepths, 0); // objSplash
+	array_push(global.__objectDepths, 0); // objAirBubble
+	array_push(global.__objectDepths, -900); // objDmgText
+	array_push(global.__objectDepths, 0); // objFlash
+	array_push(global.__objectDepths, 0); // objExplosion4
+	array_push(global.__objectDepths, -1000); // objPauseMenu
+	array_push(global.__objectDepths, -1000); // objPassMenu
+	array_push(global.__objectDepths, -1000); // objPassInput
+	array_push(global.__objectDepths, 0); // objWeaponGet
+	array_push(global.__objectDepths, 0); // objStageSelect
+	array_push(global.__objectDepths, 0); // objIntroduction
+	array_push(global.__objectDepths, 0); // objDisclaimer
+	array_push(global.__objectDepths, 0); // objTitleScreen
+	array_push(global.__objectDepths, 0); // objShop
+	array_push(global.__objectDepths, 0); // objMainMenu
+	array_push(global.__objectDepths, 0); // objKeyConfig
+	array_push(global.__objectDepths, 0); // objJoyConfig
+	array_push(global.__objectDepths, 0); // objLoadGame
+	array_push(global.__objectDepths, 0); // objSaveGame
+	array_push(global.__objectDepths, 0); // objPlayerSelect
+	array_push(global.__objectDepths, 0); // objAchievements
+	array_push(global.__objectDepths, -100); // objSectionBorderLeftScreen
+	array_push(global.__objectDepths, -100); // objSectionBorderRightScreen
+	array_push(global.__objectDepths, -100); // objSectionBorderVertical
+	array_push(global.__objectDepths, -100); // objSectionScrollLeft
+	array_push(global.__objectDepths, -100); // objSectionScrollRight
+	array_push(global.__objectDepths, -100); // objSectionBorderTopScreen
+	array_push(global.__objectDepths, -100); // objSectionBorderBottomScreen
+	array_push(global.__objectDepths, -100); // objSectionBorderHorizontal
+	array_push(global.__objectDepths, -100); // objSectionScrollUp
+	array_push(global.__objectDepths, -100); // objSectionScrollDown
+	array_push(global.__objectDepths, -100); // objSectionBorderLeft
+	array_push(global.__objectDepths, -100); // objSectionBorderRight
+	array_push(global.__objectDepths, -100); // objSectionBorderTop
+	array_push(global.__objectDepths, -100); // objSectionBorderBottom
+	array_push(global.__objectDepths, -100); // objSectionArrowLeft
+	array_push(global.__objectDepths, -100); // objSectionArrowRight
+	array_push(global.__objectDepths, -100); // objSectionArrowUp
+	array_push(global.__objectDepths, -100); // objSectionArrowDown
+	array_push(global.__objectDepths, 0); // objSectionSwitcher
+	array_push(global.__objectDepths, 0); // prtEquip
+	array_push(global.__objectDepths, 0); // objLifeEquip
+	array_push(global.__objectDepths, 0); // objETankEquip
+	array_push(global.__objectDepths, 0); // objWTankEquip
+	array_push(global.__objectDepths, 0); // objSTankEquip
+	array_push(global.__objectDepths, 0); // objMTankEquip
+	array_push(global.__objectDepths, 0); // objEddieEquip
+	array_push(global.__objectDepths, 0); // objGuardPowerUpEquip
+	array_push(global.__objectDepths, 0); // objExitEquip
+	array_push(global.__objectDepths, 0); // objShockGuardEquip
+	array_push(global.__objectDepths, 0); // objBeatEquip
+	array_push(global.__objectDepths, 0); // objEnergyBalancerEquip
+	array_push(global.__objectDepths, 0); // objPowerGeneratorEquip
+	array_push(global.__objectDepths, 0); // objHiSpeedChargeEquip
+	array_push(global.__objectDepths, 0); // prtPlateEquip
+	array_push(global.__objectDepths, 0); // objPlateTEquip
+	array_push(global.__objectDepths, 0); // objPlateIEquip
+	array_push(global.__objectDepths, 0); // objPlateMEquip
+	array_push(global.__objectDepths, 0); // objPlateEEquip
+	array_push(global.__objectDepths, 0); // objText
+	array_push(global.__objectDepths, 0); // prtCutscene
+	array_push(global.__objectDepths, 0); // objOpening
+	array_push(global.__objectDepths, 0); // objWilyUFO
+	array_push(global.__objectDepths, 0); // objCredits
+	array_push(global.__objectDepths, 0); // objFortress
+	array_push(global.__objectDepths, 0); // objFortressPoint
+	array_push(global.__objectDepths, 0); // objFortressTurnPoint
+	array_push(global.__objectDepths, 0); // objFortressPointStart
+	array_push(global.__objectDepths, 0); // objFortressUp
+	array_push(global.__objectDepths, 0); // objFortressDown
+	array_push(global.__objectDepths, 0); // objFortressRight
+	array_push(global.__objectDepths, 0); // objFortressLeft
+	array_push(global.__objectDepths, 0); // objFortressSpot
+	array_push(global.__objectDepths, 0); // objMapDrawer
+	array_push(global.__objectDepths, 0); // objEddie
+	array_push(global.__objectDepths, 0); // objAchievementBox
+	array_push(global.__objectDepths, 0); // prtAchievement
+	array_push(global.__objectDepths, 0); // objTimeLordAchievement
+	array_push(global.__objectDepths, 0); // objPentawerAchievement
+	array_push(global.__objectDepths, 0); // objEnergyBalancerAchievement
+	array_push(global.__objectDepths, 0); // objPowerGeneratorAchievement
+	array_push(global.__objectDepths, 0); // objDevilSlayerAchievement
+	array_push(global.__objectDepths, 0); // objLudditeAchievement
+	array_push(global.__objectDepths, 0); // objJusticeAchievement
 
 
-	global.__objectNames[0] = "objSolid";
-	global.__objectNames[1] = "objIce";
-	global.__objectNames[2] = "objTopSolid";
-	global.__objectNames[3] = "objLadder";
-	global.__objectNames[4] = "objSpike";
-	global.__objectNames[5] = "objWater";
-	global.__objectNames[6] = "prtCollision";
-	global.__objectNames[7] = "objGlobalControl";
-	global.__objectNames[8] = "objGlobalInit";
-	global.__objectNames[9] = "prtPlayer";
-	global.__objectNames[10] = "objMegaman";
-	global.__objectNames[11] = "objProtoman";
-	global.__objectNames[12] = "prtWeapon";
-	global.__objectNames[13] = "prtPlayerProjectile";
-	global.__objectNames[14] = "prtShieldWeapon";
-	global.__objectNames[15] = "objReflectedProjectile";
-	global.__objectNames[16] = "objBusterShot";
-	global.__objectNames[17] = "objBusterShotHalfCharged";
-	global.__objectNames[18] = "objBusterShotCharged";
-	global.__objectNames[19] = "objMegaBusterWeapon";
-	global.__objectNames[20] = "objProtoBusterShotHalfCharged";
-	global.__objectNames[21] = "objProtoBusterShotCharged";
-	global.__objectNames[22] = "objProtoBusterWeapon";
-	global.__objectNames[23] = "objMetalBlade";
-	global.__objectNames[24] = "objMetalBladeWeapon";
-	global.__objectNames[25] = "objNeedleCannon";
-	global.__objectNames[26] = "objNeedleCannonWeapon";
-	global.__objectNames[27] = "objPharaohShotCharging";
-	global.__objectNames[28] = "objPharaohShot";
-	global.__objectNames[29] = "objPharaohShotCharged";
-	global.__objectNames[30] = "objPharaohShotWeapon";
-	global.__objectNames[31] = "objDrillBombWeapon";
-	global.__objectNames[32] = "objDrillBomb";
-	global.__objectNames[33] = "objDrillBombExplosion";
-	global.__objectNames[34] = "objStarCrash";
-	global.__objectNames[35] = "objStarCrashWeapon";
-	global.__objectNames[36] = "objChargeKick";
-	global.__objectNames[37] = "objChargeKickWeapon";
-	global.__objectNames[38] = "objSilverTomahawk";
-	global.__objectNames[39] = "objSilverTomahawkWeapon";
-	global.__objectNames[40] = "objWindStorm";
-	global.__objectNames[41] = "objWindStormWeapon";
-	global.__objectNames[42] = "objCentaurFlash";
-	global.__objectNames[43] = "objCentaurFlashWeapon";
-	global.__objectNames[44] = "objHornetChaserWeapon";
-	global.__objectNames[45] = "objHornetChaser";
-	global.__objectNames[46] = "prtRush";
-	global.__objectNames[47] = "objRushCoil";
-	global.__objectNames[48] = "objRushCoilWeapon";
-	global.__objectNames[49] = "objRushJet";
-	global.__objectNames[50] = "objRushJetWeapon";
-	global.__objectNames[51] = "objTimeSlowWeapon";
-	global.__objectNames[52] = "objTimeSlow";
-	global.__objectNames[53] = "objMegamanSweat";
-	global.__objectNames[54] = "objMegamanExplosion";
-	global.__objectNames[55] = "objHealthWeaponBar";
-	global.__objectNames[56] = "objMegamanDeathTimer";
-	global.__objectNames[57] = "objFadeIn";
-	global.__objectNames[58] = "objFadeout";
-	global.__objectNames[59] = "objMM1Met";
-	global.__objectNames[60] = "objSuzi";
-	global.__objectNames[61] = "objBeak";
-	global.__objectNames[62] = "objPicketMan";
-	global.__objectNames[63] = "objScrewBomber";
-	global.__objectNames[64] = "objBigEye";
-	global.__objectNames[65] = "objGabyoall";
-	global.__objectNames[66] = "objMM1MetBullet";
-	global.__objectNames[67] = "objBeakBullet";
-	global.__objectNames[68] = "objPicket";
-	global.__objectNames[69] = "objMM2Baton";
-	global.__objectNames[70] = "objTelly";
-	global.__objectNames[71] = "objFanFiend";
-	global.__objectNames[72] = "objSniperJoe";
-	global.__objectNames[73] = "objMM2Bullet";
-	global.__objectNames[74] = "objPoleEgg";
-	global.__objectNames[75] = "objPole";
-	global.__objectNames[76] = "objDestructibleWall";
-	global.__objectNames[77] = "objBBitter";
-	global.__objectNames[78] = "objOctoper";
-	global.__objectNames[79] = "objOctoShot";
-	global.__objectNames[80] = "objColton";
-	global.__objectNames[81] = "objColtonBullet";
-	global.__objectNames[82] = "prtEnemy";
-	global.__objectNames[83] = "prtEnemyProjectile";
-	global.__objectNames[84] = "objEnemyWindStorm";
-	global.__objectNames[85] = "prtMiniBoss";
-	global.__objectNames[86] = "objBossControl";
-	global.__objectNames[87] = "objBossDoor";
-	global.__objectNames[88] = "objBossDoorH";
-	global.__objectNames[89] = "objPharaoh";
-	global.__objectNames[90] = "objPharaohManShot";
-	global.__objectNames[91] = "objPharaohManShotBig";
-	global.__objectNames[92] = "prtBoss";
-	global.__objectNames[93] = "objBossDeathTimer";
-	global.__objectNames[94] = "objAbsorbEffect";
-	global.__objectNames[95] = "prtFortressBoss";
-	global.__objectNames[96] = "objBossShadow";
-	global.__objectNames[97] = "objYellowDevil";
-	global.__objectNames[98] = "objYellowDevilBlock";
-	global.__objectNames[99] = "objYellowDevilBullet";
-	global.__objectNames[100] = "objWilyMachine4";
-	global.__objectNames[101] = "objWilyMachine4Shot";
-	global.__objectNames[102] = "objWilyMachine4Smoke";
-	global.__objectNames[103] = "objWilyPod4";
-	global.__objectNames[104] = "objWilyCapsule1";
-	global.__objectNames[105] = "objWilyCapsuleEnergy";
-	global.__objectNames[106] = "objWilyCapsuleShot";
-	global.__objectNames[107] = "objDrWily";
-	global.__objectNames[108] = "objBigEyeBoss";
-	global.__objectNames[109] = "prtPickup";
-	global.__objectNames[110] = "objLifeEnergySmall";
-	global.__objectNames[111] = "objLifeEnergyBig";
-	global.__objectNames[112] = "objWeaponEnergySmall";
-	global.__objectNames[113] = "objWeaponEnergyBig";
-	global.__objectNames[114] = "objETank";
-	global.__objectNames[115] = "objWTank";
-	global.__objectNames[116] = "objMTank";
-	global.__objectNames[117] = "objSTank";
-	global.__objectNames[118] = "objLife";
-	global.__objectNames[119] = "objScrewSmall";
-	global.__objectNames[120] = "objScrewBig";
-	global.__objectNames[121] = "objEnergyBalancer";
-	global.__objectNames[122] = "objYashichi";
-	global.__objectNames[123] = "objPlateT";
-	global.__objectNames[124] = "objPlateI";
-	global.__objectNames[125] = "objPlateM";
-	global.__objectNames[126] = "objPlateE";
-	global.__objectNames[127] = "prtGimmick";
-	global.__objectNames[128] = "prtSolidGimmick";
-	global.__objectNames[129] = "prtMovingPlatformJumpthrough";
-	global.__objectNames[130] = "prtMovingPlatformSolid";
-	global.__objectNames[131] = "objYokuBlock";
-	global.__objectNames[132] = "objSpawner";
-	global.__objectNames[133] = "objShake";
-	global.__objectNames[134] = "objTeleport";
-	global.__objectNames[135] = "objTellySpawner";
-	global.__objectNames[136] = "objMM2Conveyor";
-	global.__objectNames[137] = "objWind";
-	global.__objectNames[138] = "objSparkmanPlatform";
-	global.__objectNames[139] = "objSparkmanPlatformStop";
-	global.__objectNames[140] = "objDropPlatform";
-	global.__objectNames[141] = "objJunkBlockSpawner";
-	global.__objectNames[142] = "objMovingPlatformTest";
-	global.__objectNames[143] = "objCheckpoint";
-	global.__objectNames[144] = "objJunkBlock";
-	global.__objectNames[145] = "prtDestructibleBlock";
-	global.__objectNames[146] = "objDustBlock";
-	global.__objectNames[147] = "objAutoScroll";
-	global.__objectNames[148] = "prtEffect";
-	global.__objectNames[149] = "objExplosion";
-	global.__objectNames[150] = "objItemExplosion";
-	global.__objectNames[151] = "objSlideDust";
-	global.__objectNames[152] = "objSplash";
-	global.__objectNames[153] = "objAirBubble";
-	global.__objectNames[154] = "objDmgText";
-	global.__objectNames[155] = "objFlash";
-	global.__objectNames[156] = "objExplosion4";
-	global.__objectNames[157] = "objPauseMenu";
-	global.__objectNames[158] = "objPassMenu";
-	global.__objectNames[159] = "objPassInput";
-	global.__objectNames[160] = "objWeaponGet";
-	global.__objectNames[161] = "objStageSelect";
-	global.__objectNames[162] = "objIntroduction";
-	global.__objectNames[163] = "objDisclaimer";
-	global.__objectNames[164] = "objTitleScreen";
-	global.__objectNames[165] = "objShop";
-	global.__objectNames[166] = "objMainMenu";
-	global.__objectNames[167] = "objKeyConfig";
-	global.__objectNames[168] = "objJoyConfig";
-	global.__objectNames[169] = "objLoadGame";
-	global.__objectNames[170] = "objSaveGame";
-	global.__objectNames[171] = "objPlayerSelect";
-	global.__objectNames[172] = "objAchievements";
-	global.__objectNames[173] = "objSectionBorderLeftScreen";
-	global.__objectNames[174] = "objSectionBorderRightScreen";
-	global.__objectNames[175] = "objSectionBorderVertical";
-	global.__objectNames[176] = "objSectionScrollRight";
-	global.__objectNames[177] = "objSectionBorderTopScreen";
-	global.__objectNames[178] = "objSectionBorderBottomScreen";
-	global.__objectNames[179] = "objSectionBorderLeft";
-	global.__objectNames[180] = "objSectionBorderRight";
-	global.__objectNames[181] = "objSectionBorderTop";
-	global.__objectNames[182] = "objSectionBorderBottom";
-	global.__objectNames[183] = "objSectionArrowLeft";
-	global.__objectNames[184] = "objSectionArrowRight";
-	global.__objectNames[185] = "objSectionArrowUp";
-	global.__objectNames[186] = "objSectionArrowDown";
-	global.__objectNames[187] = "objSectionSwitcher";
-	global.__objectNames[188] = "prtEquip";
-	global.__objectNames[189] = "objLifeEquip";
-	global.__objectNames[190] = "objETankEquip";
-	global.__objectNames[191] = "objWTankEquip";
-	global.__objectNames[192] = "objSTankEquip";
-	global.__objectNames[193] = "objMTankEquip";
-	global.__objectNames[194] = "objEddieEquip";
-	global.__objectNames[195] = "objGuardPowerUpEquip";
-	global.__objectNames[196] = "objExitEquip";
-	global.__objectNames[197] = "objShockGuardEquip";
-	global.__objectNames[198] = "objBeatEquip";
-	global.__objectNames[199] = "objEnergyBalancerEquip";
-	global.__objectNames[200] = "objPowerGeneratorEquip";
-	global.__objectNames[201] = "objHiSpeedChargeEquip";
-	global.__objectNames[202] = "prtPlateEquip";
-	global.__objectNames[203] = "objPlateTEquip";
-	global.__objectNames[204] = "objPlateIEquip";
-	global.__objectNames[205] = "objPlateMEquip";
-	global.__objectNames[206] = "objPlateEEquip";
-	global.__objectNames[207] = "objText";
-	global.__objectNames[208] = "prtCutscene";
-	global.__objectNames[209] = "objOpening";
-	global.__objectNames[210] = "objWilyUFO";
-	global.__objectNames[211] = "objCredits";
-	global.__objectNames[212] = "objFortress";
-	global.__objectNames[213] = "objFortressPoint";
-	global.__objectNames[214] = "objFortressTurnPoint";
-	global.__objectNames[215] = "objFortressPointStart";
-	global.__objectNames[216] = "objFortressUp";
-	global.__objectNames[217] = "objFortressDown";
-	global.__objectNames[218] = "objFortressRight";
-	global.__objectNames[219] = "objFortressLeft";
-	global.__objectNames[220] = "objFortressSpot";
-	global.__objectNames[221] = "objMapDrawer";
-	global.__objectNames[222] = "objEddie";
-	global.__objectNames[223] = "objAchievementBox";
-	global.__objectNames[224] = "prtAchievement";
-	global.__objectNames[225] = "objTimeLordAchievement";
-	global.__objectNames[226] = "objPentawerAchievement";
-	global.__objectNames[227] = "objEnergyBalancerAchievement";
-	global.__objectNames[228] = "objPowerGeneratorAchievement";
-	global.__objectNames[229] = "objDevilSlayerAchievement";
-	global.__objectNames[230] = "objLudditeAchievement";
-	global.__objectNames[231] = "objJusticeAchievement";
+	global.__objectNames = [];
+	array_push(global.__objectNames, "objSolid");
+	array_push(global.__objectNames, "objIce");
+	array_push(global.__objectNames, "objTopSolid");
+	array_push(global.__objectNames, "objLadder");
+	array_push(global.__objectNames, "objSpike");
+	array_push(global.__objectNames, "objWater");
+	array_push(global.__objectNames, "prtCollision");
+	array_push(global.__objectNames, "objGlobalControl");
+	array_push(global.__objectNames, "objGlobalInit");
+	array_push(global.__objectNames, "prtPlayer");
+	array_push(global.__objectNames, "objMegaman");
+	array_push(global.__objectNames, "objProtoman");
+	array_push(global.__objectNames, "prtWeapon");
+	array_push(global.__objectNames, "prtPlayerProjectile");
+	array_push(global.__objectNames, "prtShieldWeapon");
+	array_push(global.__objectNames, "objReflectedProjectile");
+	array_push(global.__objectNames, "objBusterShot");
+	array_push(global.__objectNames, "objBusterShotHalfCharged");
+	array_push(global.__objectNames, "objBusterShotCharged");
+	array_push(global.__objectNames, "objMegaBusterWeapon");
+	array_push(global.__objectNames, "objProtoBusterShotHalfCharged");
+	array_push(global.__objectNames, "objProtoBusterShotCharged");
+	array_push(global.__objectNames, "objProtoBusterWeapon");
+	array_push(global.__objectNames, "objMetalBlade");
+	array_push(global.__objectNames, "objMetalBladeWeapon");
+	array_push(global.__objectNames, "objNeedleCannon");
+	array_push(global.__objectNames, "objNeedleCannonWeapon");
+	array_push(global.__objectNames, "objPharaohShotCharging");
+	array_push(global.__objectNames, "objPharaohShot");
+	array_push(global.__objectNames, "objPharaohShotCharged");
+	array_push(global.__objectNames, "objPharaohShotWeapon");
+	array_push(global.__objectNames, "objDrillBombWeapon");
+	array_push(global.__objectNames, "objDrillBomb");
+	array_push(global.__objectNames, "objDrillBombExplosion");
+	array_push(global.__objectNames, "objStarCrash");
+	array_push(global.__objectNames, "objStarCrashWeapon");
+	array_push(global.__objectNames, "objChargeKick");
+	array_push(global.__objectNames, "objChargeKickWeapon");
+	array_push(global.__objectNames, "objSilverTomahawk");
+	array_push(global.__objectNames, "objSilverTomahawkWeapon");
+	array_push(global.__objectNames, "objWindStorm");
+	array_push(global.__objectNames, "objWindStormWeapon");
+	array_push(global.__objectNames, "objCentaurFlash");
+	array_push(global.__objectNames, "objCentaurFlashWeapon");
+	array_push(global.__objectNames, "objHornetChaserWeapon");
+	array_push(global.__objectNames, "objHornetChaser");
+	array_push(global.__objectNames, "prtRush");
+	array_push(global.__objectNames, "objRushCoil");
+	array_push(global.__objectNames, "objRushCoilWeapon");
+	array_push(global.__objectNames, "objRushJet");
+	array_push(global.__objectNames, "objRushJetWeapon");
+	array_push(global.__objectNames, "objTimeSlowWeapon");
+	array_push(global.__objectNames, "objTimeSlow");
+	array_push(global.__objectNames, "objMegamanSweat");
+	array_push(global.__objectNames, "objMegamanExplosion");
+	array_push(global.__objectNames, "objHealthWeaponBar");
+	array_push(global.__objectNames, "objMegamanDeathTimer");
+	array_push(global.__objectNames, "objFadeIn");
+	array_push(global.__objectNames, "objFadeout");
+	array_push(global.__objectNames, "objMM1Met");
+	array_push(global.__objectNames, "objSuzi");
+	array_push(global.__objectNames, "objBeak");
+	array_push(global.__objectNames, "objPicketMan");
+	array_push(global.__objectNames, "objScrewBomber");
+	array_push(global.__objectNames, "objBigEye");
+	array_push(global.__objectNames, "objGabyoall");
+	array_push(global.__objectNames, "objMM1MetBullet");
+	array_push(global.__objectNames, "objBeakBullet");
+	array_push(global.__objectNames, "objPicket");
+	array_push(global.__objectNames, "objMM2Baton");
+	array_push(global.__objectNames, "objTelly");
+	array_push(global.__objectNames, "objFanFiend");
+	array_push(global.__objectNames, "objSniperJoe");
+	array_push(global.__objectNames, "objMM2Bullet");
+	array_push(global.__objectNames, "objPoleEgg");
+	array_push(global.__objectNames, "objPole");
+	array_push(global.__objectNames, "objDestructibleWall");
+	array_push(global.__objectNames, "objBBitter");
+	array_push(global.__objectNames, "objOctoper");
+	array_push(global.__objectNames, "objOctoShot");
+	array_push(global.__objectNames, "objColton");
+	array_push(global.__objectNames, "objColtonBullet");
+	array_push(global.__objectNames, "prtEnemy");
+	array_push(global.__objectNames, "prtEnemyProjectile");
+	array_push(global.__objectNames, "objEnemyActionArea");
+	array_push(global.__objectNames, "objEnemySpawnArea");
+	array_push(global.__objectNames, "objEnemyWindStorm");
+	array_push(global.__objectNames, "prtMiniBoss");
+	array_push(global.__objectNames, "objBossControl");
+	array_push(global.__objectNames, "objBossDoor");
+	array_push(global.__objectNames, "objBossDoorH");
+	array_push(global.__objectNames, "objPharaoh");
+	array_push(global.__objectNames, "objPharaohManShot");
+	array_push(global.__objectNames, "objPharaohManShotBig");
+	array_push(global.__objectNames, "prtBoss");
+	array_push(global.__objectNames, "objBossDeathTimer");
+	array_push(global.__objectNames, "objAbsorbEffect");
+	array_push(global.__objectNames, "prtFortressBoss");
+	array_push(global.__objectNames, "objBossShadow");
+	array_push(global.__objectNames, "objYellowDevil");
+	array_push(global.__objectNames, "objYellowDevilBlock");
+	array_push(global.__objectNames, "objYellowDevilBullet");
+	array_push(global.__objectNames, "objWilyMachine4");
+	array_push(global.__objectNames, "objWilyMachine4Shot");
+	array_push(global.__objectNames, "objWilyMachine4Smoke");
+	array_push(global.__objectNames, "objWilyPod4");
+	array_push(global.__objectNames, "objWilyCapsule1");
+	array_push(global.__objectNames, "objWilyCapsuleEnergy");
+	array_push(global.__objectNames, "objWilyCapsuleShot");
+	array_push(global.__objectNames, "objDrWily");
+	array_push(global.__objectNames, "objBigEyeBoss");
+	array_push(global.__objectNames, "prtPickup");
+	array_push(global.__objectNames, "objLifeEnergySmall");
+	array_push(global.__objectNames, "objLifeEnergyBig");
+	array_push(global.__objectNames, "objWeaponEnergySmall");
+	array_push(global.__objectNames, "objWeaponEnergyBig");
+	array_push(global.__objectNames, "objETank");
+	array_push(global.__objectNames, "objWTank");
+	array_push(global.__objectNames, "objMTank");
+	array_push(global.__objectNames, "objSTank");
+	array_push(global.__objectNames, "objLife");
+	array_push(global.__objectNames, "objScrewSmall");
+	array_push(global.__objectNames, "objScrewBig");
+	array_push(global.__objectNames, "objEnergyBalancer");
+	array_push(global.__objectNames, "objYashichi");
+	array_push(global.__objectNames, "objPlateT");
+	array_push(global.__objectNames, "objPlateI");
+	array_push(global.__objectNames, "objPlateM");
+	array_push(global.__objectNames, "objPlateE");
+	array_push(global.__objectNames, "prtGimmick");
+	array_push(global.__objectNames, "prtSolidGimmick");
+	array_push(global.__objectNames, "prtMovingPlatformJumpthrough");
+	array_push(global.__objectNames, "prtMovingPlatformSolid");
+	array_push(global.__objectNames, "objYokuBlock");
+	array_push(global.__objectNames, "objSpawner");
+	array_push(global.__objectNames, "objShake");
+	array_push(global.__objectNames, "objTeleport");
+	array_push(global.__objectNames, "objTellySpawner");
+	array_push(global.__objectNames, "objMM2Conveyor");
+	array_push(global.__objectNames, "objWind");
+	array_push(global.__objectNames, "objSparkmanPlatform");
+	array_push(global.__objectNames, "objSparkmanPlatformStop");
+	array_push(global.__objectNames, "objDropPlatform");
+	array_push(global.__objectNames, "objJunkBlockSpawner");
+	array_push(global.__objectNames, "objMovingPlatformTest");
+	array_push(global.__objectNames, "objMovingPlatformJumpthroughTest");
+	array_push(global.__objectNames, "objCheckpoint");
+	array_push(global.__objectNames, "objJunkBlock");
+	array_push(global.__objectNames, "prtDestructibleBlock");
+	array_push(global.__objectNames, "objDustBlock");
+	array_push(global.__objectNames, "objAutoScroll");
+	array_push(global.__objectNames, "prtEffect");
+	array_push(global.__objectNames, "objExplosion");
+	array_push(global.__objectNames, "objItemExplosion");
+	array_push(global.__objectNames, "objSlideDust");
+	array_push(global.__objectNames, "objSplash");
+	array_push(global.__objectNames, "objAirBubble");
+	array_push(global.__objectNames, "objDmgText");
+	array_push(global.__objectNames, "objFlash");
+	array_push(global.__objectNames, "objExplosion4");
+	array_push(global.__objectNames, "objPauseMenu");
+	array_push(global.__objectNames, "objPassMenu");
+	array_push(global.__objectNames, "objPassInput");
+	array_push(global.__objectNames, "objWeaponGet");
+	array_push(global.__objectNames, "objStageSelect");
+	array_push(global.__objectNames, "objIntroduction");
+	array_push(global.__objectNames, "objDisclaimer");
+	array_push(global.__objectNames, "objTitleScreen");
+	array_push(global.__objectNames, "objShop");
+	array_push(global.__objectNames, "objMainMenu");
+	array_push(global.__objectNames, "objKeyConfig");
+	array_push(global.__objectNames, "objJoyConfig");
+	array_push(global.__objectNames, "objLoadGame");
+	array_push(global.__objectNames, "objSaveGame");
+	array_push(global.__objectNames, "objPlayerSelect");
+	array_push(global.__objectNames, "objAchievements");
+	array_push(global.__objectNames, "objSectionBorderLeftScreen");
+	array_push(global.__objectNames, "objSectionBorderRightScreen");
+	array_push(global.__objectNames, "objSectionBorderVertical");
+	array_push(global.__objectNames, "objSectionScrollLeft");
+	array_push(global.__objectNames, "objSectionScrollRight");
+	array_push(global.__objectNames, "objSectionBorderTopScreen");
+	array_push(global.__objectNames, "objSectionBorderBottomScreen");
+	array_push(global.__objectNames, "objSectionBorderHorizontal");
+	array_push(global.__objectNames, "objSectionScrollUp");
+	array_push(global.__objectNames, "objSectionScrollDown");
+	array_push(global.__objectNames, "objSectionBorderLeft");
+	array_push(global.__objectNames, "objSectionBorderRight");
+	array_push(global.__objectNames, "objSectionBorderTop");
+	array_push(global.__objectNames, "objSectionBorderBottom");
+	array_push(global.__objectNames, "objSectionArrowLeft");
+	array_push(global.__objectNames, "objSectionArrowRight");
+	array_push(global.__objectNames, "objSectionArrowUp");
+	array_push(global.__objectNames, "objSectionArrowDown");
+	array_push(global.__objectNames, "objSectionSwitcher");
+	array_push(global.__objectNames, "prtEquip");
+	array_push(global.__objectNames, "objLifeEquip");
+	array_push(global.__objectNames, "objETankEquip");
+	array_push(global.__objectNames, "objWTankEquip");
+	array_push(global.__objectNames, "objSTankEquip");
+	array_push(global.__objectNames, "objMTankEquip");
+	array_push(global.__objectNames, "objEddieEquip");
+	array_push(global.__objectNames, "objGuardPowerUpEquip");
+	array_push(global.__objectNames, "objExitEquip");
+	array_push(global.__objectNames, "objShockGuardEquip");
+	array_push(global.__objectNames, "objBeatEquip");
+	array_push(global.__objectNames, "objEnergyBalancerEquip");
+	array_push(global.__objectNames, "objPowerGeneratorEquip");
+	array_push(global.__objectNames, "objHiSpeedChargeEquip");
+	array_push(global.__objectNames, "prtPlateEquip");
+	array_push(global.__objectNames, "objPlateTEquip");
+	array_push(global.__objectNames, "objPlateIEquip");
+	array_push(global.__objectNames, "objPlateMEquip");
+	array_push(global.__objectNames, "objPlateEEquip");
+	array_push(global.__objectNames, "objText");
+	array_push(global.__objectNames, "prtCutscene");
+	array_push(global.__objectNames, "objOpening");
+	array_push(global.__objectNames, "objWilyUFO");
+	array_push(global.__objectNames, "objCredits");
+	array_push(global.__objectNames, "objFortress");
+	array_push(global.__objectNames, "objFortressPoint");
+	array_push(global.__objectNames, "objFortressTurnPoint");
+	array_push(global.__objectNames, "objFortressPointStart");
+	array_push(global.__objectNames, "objFortressUp");
+	array_push(global.__objectNames, "objFortressDown");
+	array_push(global.__objectNames, "objFortressRight");
+	array_push(global.__objectNames, "objFortressLeft");
+	array_push(global.__objectNames, "objFortressSpot");
+	array_push(global.__objectNames, "objMapDrawer");
+	array_push(global.__objectNames, "objEddie");
+	array_push(global.__objectNames, "objAchievementBox");
+	array_push(global.__objectNames, "prtAchievement");
+	array_push(global.__objectNames, "objTimeLordAchievement");
+	array_push(global.__objectNames, "objPentawerAchievement");
+	array_push(global.__objectNames, "objEnergyBalancerAchievement");
+	array_push(global.__objectNames, "objPowerGeneratorAchievement");
+	array_push(global.__objectNames, "objDevilSlayerAchievement");
+	array_push(global.__objectNames, "objLudditeAchievement");
+	array_push(global.__objectNames, "objJusticeAchievement");
 
 
 	// create another array that has the correct entries

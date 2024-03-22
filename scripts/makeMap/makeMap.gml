@@ -6,8 +6,8 @@ function makeMap(argument0) {
 	    room_goto(roomid);
 	}
 
-	start_screen[0] = floor(objMegaman.x / __view_get( e__VW.WView, 0 ));
-	start_screen[1] = floor(objMegaman.y / __view_get( e__VW.HView, 0 ));
+	start_screen[0] = floor(prtPlayer.x / __view_get( e__VW.WView, 0 ));
+	start_screen[1] = floor(prtPlayer.y / __view_get( e__VW.HView, 0 ));
 	start_screen[2] = 0;    //Depth
 
 	max_x = floor((room_width-1)/__view_get( e__VW.WView, 0 ));

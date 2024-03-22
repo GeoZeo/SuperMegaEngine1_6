@@ -36,10 +36,11 @@ function playerGetHit(argument0) {
 	        canSpriteChange = false;
 	        isSlide = false;
 	        mask_index = mskMegaman;
-	        global.xspeed = image_xscale * -knockbackAmount;
-	        global.yspeed = 0;
+			
+			if global._health > 0 {
+		        global.xspeed = image_xscale * -knockbackAmount;
+		        global.yspeed = 0;
         
-	        if global._health > 0 {
 	            sprite_index = spriteHit;
 				image_speed = speedHit;
             

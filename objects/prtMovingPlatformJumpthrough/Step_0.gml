@@ -22,7 +22,7 @@ if global.frozen == false && dead == false
 	with prtPlayer
 		other.placeFree = place_free(x, y - (abs(other.yspeed) + abs(global.yspeed)))
 	
-    if place_meeting(x, y, prtPlayer) && prtPlayer.bbox_bottom <= bbox_top + abs(yspeed) + abs(global.yspeed) && yspeed < 0
+    if place_meeting(x, y, prtPlayer) && prtPlayer.bbox_bottom <= bbox_top + abs(yspeed) + abs(global.yspeed) && yspeed < 0 && insideView_Spr()
     {
 		// Carry the player upwards off of another platform
 		if placeFree
@@ -73,7 +73,7 @@ if global.frozen == false && dead == false
     else
         checkYspeed = 0;
         
-    if place_meeting(x, y - checkYspeed - 1, prtPlayer)
+    if place_meeting(x, y - checkYspeed - 1, prtPlayer) && (insideView_Spr() or yspeed >= 0)
     {
         var useYspeed;
         useYspeed = yspeed;

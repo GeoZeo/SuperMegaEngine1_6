@@ -120,3 +120,7 @@ if keyboard_check_pressed(vk_f9) {
     show_debug_message("Current shader: " +  string(global.current_screen_shader));
 }
 
+if keyboard_check_pressed(vk_f10) {
+	var myEnemy = instance_create(prtPlayer.x, prtPlayer.y-112, objScrewBomber);
+	myEnemy.col = 1;
+}

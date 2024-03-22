@@ -1,3 +1,5 @@
+canDamage = true;
+
 if !global.frozen {   
     if pose > -1 && isIntro {
         if y < ystart {
@@ -69,7 +71,11 @@ if !global.frozen {
 				if cfgDestroyBossProjectilesOnBossDeath
 					with prtEnemyProjectile instance_destroy();
 	
-                instance_create(x, y, objBossDeathTimer);
+				if endLevel
+					instance_create(x, y, objBossDeathTimer);
+				else
+					instance_create(x, y, objBossDeathTimer);
+					
                 instance_destroy();
             }
             

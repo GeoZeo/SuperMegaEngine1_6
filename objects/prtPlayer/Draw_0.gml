@@ -1,7 +1,8 @@
 if teleporting == false && showReady == false
 {
     //Draws the player. Whitemasks will be used
-    drawPlayer();
+	if !dead || killTimer mod 2 == 1
+		drawPlayer();
     
     //Hitspark
     if drawHitspark == true

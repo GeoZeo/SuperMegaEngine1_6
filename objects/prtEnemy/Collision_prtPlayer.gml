@@ -1,6 +1,8 @@
 if !dead {
-    if other.canHit {  
-        with other playerGetHit(other.contactDamage);
-    }
+	with other {
+		if canHit {  
+	        playerGetHit(other.contactDamage);
+	    }
+	}
 }
 

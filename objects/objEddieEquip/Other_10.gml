@@ -9,9 +9,9 @@ with objEddie {
     }
 }
 
-if instance_exists(objMegaman) {
+if instance_exists(prtPlayer) {
     show_debug_message("Calling Eddie.");
-    var eddie = instance_create(objMegaman.x + objMegaman.image_xscale * 32, __view_get( e__VW.YView, 0 ), objEddie);
+    var eddie = instance_create(prtPlayer.x + prtPlayer.image_xscale * 32, __view_get( e__VW.YView, 0 ), objEddie);
     eddie.called = true;
     playSFX(sfxMenuSelect);
     

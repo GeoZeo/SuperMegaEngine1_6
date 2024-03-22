@@ -40,7 +40,7 @@ function generalCollision() {
 	var tpsld, totalTSs;
 	tpsld = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom+yspeed, objTopSolid, false, true)
 	totalTSs = 0;
-	while place_meeting(x, y+global.yspeed, objTopSolid)
+	while place_meeting(x, y+yspeed, objTopSolid)
 	&& tpsld >= 0 && yspeed > 0
 	{
 	    if !place_meeting(x, y, tpsld)

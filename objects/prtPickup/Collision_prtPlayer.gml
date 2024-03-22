@@ -5,7 +5,9 @@ if pickupID != -15
     global.pickupCollected[pickupID] = true;
 }
 
-if createTeleport
-{
-	var myTeleport = instance_create(x, y, objTeleport);
+if teleport {
+	var myTeleport = instance_create(other.x, other.y, objTeleport);
+	myTeleport.toX = toX;
+	myTeleport.toY = toY;
+	myTeleport.returnBGM = teleportBGM;
 }

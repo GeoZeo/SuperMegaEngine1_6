@@ -18,7 +18,7 @@ if global.frozen == false && dead == false
     y += yspeed * update_rate;
     
     // Push the player in the direction we're moving
-    if place_meeting(x, y, prtPlayer)
+    if place_meeting(x, y, prtPlayer) && insideView_Spr()
     {
         if prtPlayer.teleporting == false && prtPlayer.showReady == false
         {
@@ -108,7 +108,7 @@ if global.frozen == false && dead == false
     else
         checkYspeed = 0;
         
-    if place_meeting(x, y - checkYspeed - 1, prtPlayer)
+    if place_meeting(x, y - checkYspeed - 1, prtPlayer) && (insideView_Spr() or yspeed >= 0)
     {
         if prtPlayer.ground == true && prtPlayer.bbox_bottom <= bbox_top + abs(yspeed) + abs(global.yspeed) + 2
         && prtPlayer.movedByPlatform == false && prtPlayer.teleporting == false

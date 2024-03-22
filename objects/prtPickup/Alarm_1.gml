@@ -2,11 +2,14 @@ if (!restartTimer)
 {
 	instance_destroy();
 	
-	if createTeleport
+	if teleport
 	{
 		if (instance_exists(prtPlayer))
 		{
 			var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+			myTeleport.toX = toX;
+			myTeleport.toY = toY;
+			myTeleport.returnBGM = teleportBGM;
 		}
 	}
 }

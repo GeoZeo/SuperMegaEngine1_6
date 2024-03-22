@@ -11,11 +11,11 @@ targetable = true;  //For Hornet Chaser or other weapon grabbing weapons
 grabbedBy = -1;
 restartTimer = false;
 
-//If a boss drops a health pickup that triggers a teleport upon collection/despawn
-createTeleport = false;
+//If a boss drops a pickup that triggers a teleport upon collection/despawn
+teleport = false;
 toX = 0;
 toY = 0;
-returnBGM = noone;
+teleportBGM = -1;
 
 update_rate = 1;
 

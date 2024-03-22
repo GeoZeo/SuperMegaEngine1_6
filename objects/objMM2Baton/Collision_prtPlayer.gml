@@ -1,9 +1,11 @@
 if !dead {
-    if other.canHit {  
-        with other playerGetHit(other.contactDamage);
-        moveTimer = 0;
-        retreating = true;
-        yspeed = -3;
-    }
+	with other {
+		if canHit {  
+	        playerGetHit(other.contactDamage);
+	        other.moveTimer = 0;
+	        other.retreating = true;
+	        other.yspeed = -3;
+	    }
+	}
 }
 

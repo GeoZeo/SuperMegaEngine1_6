@@ -122,6 +122,12 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 					if insideView()
 						canOpen = true;
 				 }
+				 instance_activate_object(objTeleport);
+				 with objTeleport
+				 {
+					if insideView()
+						on = true;
+				 }
 			}
 		}
 	}

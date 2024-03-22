@@ -7,9 +7,9 @@ function drawMap(argument0, argument1, argument2, argument3) {
 	    room_goto(roomid);
 	}
 
-	if instance_exists(objMegaman) {
-	    var startX = objMegaman.x;
-	    var startY = objMegaman.y;
+	if instance_exists(prtPlayer) {
+	    var startX = prtPlayer.x;
+	    var startY = prtPlayer.y;
 	}
 	else {
 	    var startX = argument2;
