@@ -659,6 +659,7 @@
     {"id":{"name":"load_achievements","path":"scripts/load_achievements/load_achievements.yy",},},
     {"id":{"name":"add_achievement","path":"scripts/add_achievement/add_achievement.yy",},},
     {"id":{"name":"save_achievements","path":"scripts/save_achievements/save_achievements.yy",},},
+    {"id":{"name":"reset_achievements","path":"scripts/reset_achievements/reset_achievements.yy",},},
     {"id":{"name":"draw_background","path":"scripts/draw_background/draw_background.yy",},},
     {"id":{"name":"__background_get","path":"scripts/__background_get/__background_get.yy",},},
     {"id":{"name":"__background_get_element","path":"scripts/__background_get_element/__background_get_element.yy",},},

@@ -123,3 +123,7 @@ if keyboard_check_pressed(vk_f9) {
 if keyboard_check_pressed(vk_f10) {
 	var myEnemy = instance_create(prtPlayer.x, prtPlayer.y-112, objTelly);
 }
+
+if keyboard_check_pressed(vk_f11) {
+	reset_achievements();
+}

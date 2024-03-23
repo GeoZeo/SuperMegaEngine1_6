@@ -6,7 +6,6 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_E9C01F4D","path":"rooms/rmBossRush/rmBossRush.yy",},
     {"name":"inst_B26A3F27","path":"rooms/rmBossRush/rmBossRush.yy",},
     {"name":"inst_792EECE9","path":"rooms/rmBossRush/rmBossRush.yy",},
     {"name":"inst_05A0D460","path":"rooms/rmBossRush/rmBossRush.yy",},
@@ -81,6 +80,7 @@
     {"name":"inst_4E3BCB98","path":"rooms/rmBossRush/rmBossRush.yy",},
     {"name":"inst_5D05592F","path":"rooms/rmBossRush/rmBossRush.yy",},
     {"name":"inst_5BE2A1F3","path":"rooms/rmBossRush/rmBossRush.yy",},
+    {"name":"inst_E9C01F4D","path":"rooms/rmBossRush/rmBossRush.yy",},
   ],
   "isDnd":false,
   "layers":[

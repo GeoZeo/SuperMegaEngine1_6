@@ -43,13 +43,11 @@ hitbox_bottom = bbox_bottom - y;
 
 //Default damage
 var oldFrozen = global.frozen;
-var oldCanHit;
-if instance_exists(prtPlayer)
-	oldCanHit = prtPlayer.canHit;
 	
 for (var i = 0; object_exists(i); i++) {
     if object_is_ancestor(i, prtPlayerProjectile) and i != prtShieldWeapon {
-        global.frozen = true;
+        instance_deactivate_object(prtPlayer);
+		global.frozen = true;
         var proj = instance_create(0, 0, i);
         //print(i, proj, object_get_name(i), proj.defaultDamage, proj.defaultBossDamage, global.frozen);
         damage[i] = proj.defaultDamage;
@@ -58,6 +56,5 @@ for (var i = 0; object_exists(i); i++) {
     }
 }
 global.frozen = oldFrozen;
-if instance_exists(prtPlayer)
-	prtPlayer.canHit = oldCanHit; //This fixes a glitch where the create event triggering while the player is colliding with an enemy/projectile/hazard/etc. causes the player to be hit even when they're supposed to be in the middle of i-frames.
+instance_activate_object(prtPlayer); //This fixes a glitch where the create event triggering while the player is colliding with an enemy/projectile/hazard/etc. causes the player to be hit even when they're supposed to be in the middle of i-frames.
 

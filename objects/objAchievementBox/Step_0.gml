@@ -12,9 +12,6 @@ if timer % 3 == 0 {
         height -= 2;
         if height <= 0 {
             global.frozen = oldFrozen;
-			if instance_exists(prtPlayer)
-				prtPlayer.canHit = oldPlayerCanHit; //This fixes a glitch where the create event triggering while the player is colliding with an enemy/projectile/hazard/etc. causes the player to be hit even when they're supposed to be in the middle of i-frames.
-				
             instance_destroy();
         }
     }
