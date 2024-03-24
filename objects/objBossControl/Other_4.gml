@@ -3,6 +3,6 @@ if myBoss > -1
 {
 	bossID = myBoss.bossID;
 	bossPersistent = myBoss.bPersistent;
-	myBoss.endLevel = endLevel;
+	myBoss.control = self;
 }
 

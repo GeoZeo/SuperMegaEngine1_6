@@ -14,7 +14,7 @@ bossID = -1;
 //Do we always have to fight this boss even if it's already been beaten once?
 bPersistent = true;
 
-endLevel = true;
+control = noone;
 
 //Initialization variables, don't change
 global.weaponID = weaponID;

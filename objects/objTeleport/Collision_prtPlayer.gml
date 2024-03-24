@@ -7,7 +7,8 @@ if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collisi
     with other {
         visible = false;
         global.xspeed = 0;
-        global.yspeed = 0;        
+        global.yspeed = 0;
+		canHit = false;
     }
     //instance_deactivate_object(objMegaman);
     playerLockMovement();
@@ -20,4 +21,6 @@ if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collisi
     show_debug_message("Teleport start! Going to ("+string(toX)+","+string(toY)+")");
 
 }
+else {
 
+}

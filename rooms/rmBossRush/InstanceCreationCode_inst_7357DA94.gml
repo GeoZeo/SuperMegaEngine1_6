@@ -1,4 +1,4 @@
-toX = 127;
-toY = 528;
+toX = 32;
+toY = 576;
 on = false;
 returnBGM = bgmBossRush;

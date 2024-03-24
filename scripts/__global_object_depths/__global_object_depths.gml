@@ -150,6 +150,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objSparkmanPlatformStop
 	array_push(global.__objectDepths, 0); // objDropPlatform
 	array_push(global.__objectDepths, 0); // objJunkBlockSpawner
+	array_push(global.__objectDepths, -3); // objMM3Teleporter
 	array_push(global.__objectDepths, 0); // objMovingPlatformTest
 	array_push(global.__objectDepths, 0); // objMovingPlatformJumpthroughTest
 	array_push(global.__objectDepths, -100); // objCheckpoint
@@ -392,6 +393,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objSparkmanPlatformStop");
 	array_push(global.__objectNames, "objDropPlatform");
 	array_push(global.__objectNames, "objJunkBlockSpawner");
+	array_push(global.__objectNames, "objMM3Teleporter");
 	array_push(global.__objectNames, "objMovingPlatformTest");
 	array_push(global.__objectNames, "objMovingPlatformJumpthroughTest");
 	array_push(global.__objectNames, "objCheckpoint");

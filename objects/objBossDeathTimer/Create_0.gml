@@ -3,15 +3,20 @@
 
 myBoss = instance_nearest(x, y, prtBoss);
 bossID = myBoss.bossID;
-endLevel = myBoss.endLevel;
+control = myBoss.bossControl;
 noBoss = false;
+
+bossRush = false;
 
 //If there is a teleporter in the room (boss rush), just destroy the death timer
 instance_activate_object(objTeleport);
 with objTeleport {
+	if boss > -1
+		bossRush = true;
+	
     if insideView() {
         on = true;
-        var inst = instance_create(other.x, other.y, objLifeEnergyBig);
+        var inst = instance_create(other.x - 8, other.y - 8, objLifeEnergyBig);
         inst.alarm[0] = room_speed * 9999;
         global.bossRushDefeated[other.bossID] = true;
         if numRushBossesDefeated() == 8 {
@@ -26,28 +31,64 @@ with objTeleport {
     }
 }
 
+if bossRush {
+	if !control.timerWarp {
+		var inst = instance_create(other.x - 8, other.y - 8, objLifeEnergyBig);
+        inst.alarm[0] = 105 * 2;
+		inst.teleport = true;
+		inst.toX = control.toX;
+		inst.toY = control.toY;
+		inst.returnBGM = control.returnBGM;
+	}
+	else {
+		alarm[3] = 240;
+		var inst = instance_create(control.itemX, control.itemY, objLifeEnergyBig);
+        inst.alarm[0] = room_speed * 9999;
+	}
+	global.bossRushDefeated[other.bossID] = true;
+    if numRushBossesDefeated() == 8 {
+        instance_activate_object(objBossDoor);
+        objBossDoor.canOpen = true;
+    }
+    with other instance_destroy();
+    with objBossControl {
+        drawHealthBar = false;
+    }
+    exit;
+}
+
 //Same goes for if the level still doesn't end here otherwise
 if !endLevel {
-	var inst = instance_create(x, y, objLifeEnergyBig);
-	inst.alarm[0] = room_speed * 9999;
+	var warp = true;
 	instance_activate_object(objBossDoor);
 	with objBossDoor
 	{
 		if insideView()
 			canOpen = true;
+			warp = false;
 	}
 	instance_activate_object(objBossDoorH);
 	with objBossDoorH
 	{
 		if insideView()
 			canOpen = true;
+			warp = false;
 	}
 	instance_activate_object(objTeleport);
 	with objTeleport
 	{
 		if insideView()
 			on = true;
+			warp = false;
 	}
+	
+	var inst = instance_create(x - 8, y - 8, objLifeEnergyBig);
+	inst.alarm[0] = room_speed * 9999;
+	
+	with other instance_destroy();
+    with objBossControl {
+        drawHealthBar = false;
+    }
 	exit;
 }
 

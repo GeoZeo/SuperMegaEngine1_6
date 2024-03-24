@@ -9,6 +9,7 @@
 //healthBarPrimaryCol = [col] (the color of the left/right of the boss's health bar)
 //healthBarSecondaryCol = [col] (the color of the middle of the boss's health bar)
 //bossTime = 0-[time (in frames)] (the amount of time by which to delay the boss spawn)
+//timerWarp = true/false (whether we spawn a health pickup that warps the player out of a boss rush arena, or we set a timer for the warp (only applicable if there is no teleporter already in room))
     
 healthBarPrimaryCol = make_color_rgb(255, 160, 68); //Orange
     
@@ -27,6 +28,18 @@ canInitDeactivation = true;
 
 //Will defeating the boss end the level if we aren't in a boss rush room?
 endLevel = true;
+
+timerWarp = false;
+
+//For warping the player elsewhere at the end of the fight if necessary
+toX = -1;
+toY = -1;
+returnBGM = -1;
+
+//Do we spawn an item in the teleporter room if we're doing a timer warp? If so, where?
+spawnItem = true;
+itemX = 0;
+itemY = 0;
 
 myBoss = instance_nearest(x, y, prtBoss);
 bossID = -1;

@@ -18,11 +18,16 @@ if (instance_exists(prtPlayer)) {
 	        }
 	        else {
 	            //instance_activate_object(objMegaman);
-	            with instance_nearest(toX, toY, objBossControl) {
-	                if !insideView() {
-	                    playerFreeMovement()
-	                }
-	            }
+				if instance_exists(objBossControl) {
+					with instance_nearest(toX, toY, objBossControl) {
+		                if !insideView() {
+		                    playerFreeMovement();
+		                }
+		            }
+				}
+				else {
+					playerFreeMovement();
+				}
 	            prtPlayer.x = toX;
 	            prtPlayer.y = toY;
 	            prtPlayer.visible = true;
@@ -33,6 +38,24 @@ if (instance_exists(prtPlayer)) {
 	            sprite_index = sprCollisionOther;
 	            out = false;
 	            instance_activate_object(objSolid);
+				instance_activate_object(objTopSolid);
+				instance_activate_object(prtMovingPlatformSolid);
+				instance_activate_object(prtMovingPlatformJumpthrough);
+				
+				with prtPlayer {
+					
+					if !canHit
+						canHit = true;
+					
+					if instance_place(x, y+1, objSolid) || instance_place(x, y+1, objTopSolid) || instance_place(x, y+1, prtMovingPlatformSolid) || instance_place(x, y+1, prtMovingPlatformJumpthrough) {
+						global.yspeed = 0;
+						ground = true;
+						stopSFX(sfxLand);
+						sprite_index = spriteStand;
+						image_speed = speedStand;
+					}
+				}
+				
 	            if returnBGM > -1 {
 	                playMusicVolume(returnBGM, 0.9);
 	            }
