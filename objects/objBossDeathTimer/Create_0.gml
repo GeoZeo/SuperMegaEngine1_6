@@ -2,8 +2,8 @@
 //Also transforms into the Mega Man that automatically moves to the center of the screen
 
 myBoss = instance_nearest(x, y, prtBoss);
+control = instance_nearest(x, y, objBossControl);
 bossID = myBoss.bossID;
-control = myBoss.bossControl;
 noBoss = false;
 
 bossRush = false;
@@ -58,7 +58,7 @@ if bossRush {
 }
 
 //Same goes for if the level still doesn't end here otherwise
-if !endLevel {
+if !control.endLevel {
 	var warp = true;
 	instance_activate_object(objBossDoor);
 	with objBossDoor

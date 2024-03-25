@@ -68,7 +68,12 @@ function placeTileAnimations() {
 								var tile_id = string(tbg) + "," + string(ti);
 								var tiles_ = ds_map_find_value(global.anims, tile_id);
 								if(tiles_ > -1) {
-									var key = ds_map_find_first(tiles_);
+									var key;
+									if sign(layer_get_depth(_layer)) >= 1
+										key = ds_map_find_first(tiles_);
+									else
+										key = ds_map_find_last(tiles_);
+										
 									while (!is_undefined(key)) {
 										var tile = ds_map_find_value(tiles_, key);
 										var tmx = tilemap_get_x(_tilemap);
@@ -76,7 +81,7 @@ function placeTileAnimations() {
 									
 										var _layerToUse = -1;
 										var _tilemapToUse = -1;
-										var _layersAtDepth = layer_get_id_at_depth(key);
+										var _layersAtDepth = layer_get_id_at_depth(key * sign(layer_get_depth(_layer)));
 										var _numLayersAtDepth = array_length(_layersAtDepth);
 									
 										for(var l = 0; l < _numLayersAtDepth; l++){
@@ -97,7 +102,7 @@ function placeTileAnimations() {
 										}
 									
 										if (_layerToUse == -1) {
-											_layerToUse = layer_create(key);
+											_layerToUse = layer_create(key * sign(layer_get_depth(_layer)));
 										}
 										if (_tilemapToUse == -1) {
 											_tilemapToUse = layer_tilemap_create(_layerToUse, tmx, tmy, _tileset, _width, _height);
@@ -108,7 +113,10 @@ function placeTileAnimations() {
 							            var tid_ = real(ds_queue_dequeue(parts));
 										tilemap_set(_tilemapToUse, tid_, j, k);
 										//show_debug_message(key);
-										key = ds_map_find_next(tiles_, key);
+										if sign(layer_get_depth(_layer)) >= 1
+											key = ds_map_find_next(tiles_, key);
+										else
+											key = ds_map_find_previous(tiles_, key);
 									}
 								}
 							}

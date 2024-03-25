@@ -61,9 +61,9 @@ if room == rmInit {
 }
 
 //Hide tiles/tile animation frames at start
-curr_layer = global.ini_layer;
-validLayers = array_create(0);
-for (var l = global.ini_layer; l >= global.end_layer; l--) {
+curr_backLayer = global.ini_backLayer;
+validBackLayers = array_create(0);
+for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
     
 	var _layers = layer_get_id_at_depth(l);
 	var _numLayers = array_length(_layers);
@@ -73,7 +73,30 @@ for (var l = global.ini_layer; l >= global.end_layer; l--) {
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 			
-			array_push(validLayers, _layer);
+			array_push(validBackLayers, _layer);
+			
+			var _tilemap = layer_tilemap_get_id(_layer);
+		
+			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap)
+				layer_set_visible(_layer, false);
+		}
+	}
+	tile_layer_hide(l);
+}
+
+curr_frontLayer = global.ini_frontLayer;
+validFrontLayers = array_create(0);
+for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
+    
+	var _layers = layer_get_id_at_depth(l);
+	var _numLayers = array_length(_layers);
+
+	for(var i = 0; i < _numLayers; i++) {
+		var _layer = _layers[i];
+		
+		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+			
+			array_push(validFrontLayers, _layer);
 			
 			var _tilemap = layer_tilemap_get_id(_layer);
 		

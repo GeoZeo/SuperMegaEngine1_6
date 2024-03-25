@@ -12,17 +12,17 @@ if global.loopEnd > -1 && global.loopStart > -1 && global.bgm > -1 {    //Loop p
     }
 }
 
-tile_layer_show(curr_layer);
-//curr_layer--;
-
 //Tile animations
-var _layers = layer_get_id_at_depth(curr_layer);
-var _numLayers = array_length(_layers);
+tile_layer_show(curr_backLayer);
+//curr_backLayer--;
 
-for(var i = 0; i < _numLayers; i++) {
-	var _layer = _layers[i];
+var _frontLayers = layer_get_id_at_depth(curr_backLayer);
+var _numFrontLayers = array_length(_frontLayers);
+
+for(var i = 0; i < _numFrontLayers; i++) {
+	var _layer = _frontLayers[i];
 	
-	if array_contains(validLayers, _layer) {
+	if array_contains(validBackLayers, _layer) {
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 		
@@ -34,18 +34,18 @@ for(var i = 0; i < _numLayers; i++) {
 		}
 	}
 }
-curr_layer--;
-if curr_layer < global.end_layer {
-    curr_layer = global.ini_layer;
-    for (var l = global.ini_layer; l >= global.end_layer; l--) {
+curr_backLayer--;
+if curr_backLayer < global.end_backLayer {
+    curr_backLayer = global.ini_backLayer;
+    for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
 		
-		_layers = layer_get_id_at_depth(l);
-		_numLayers = array_length(_layers);
+		_frontLayers = layer_get_id_at_depth(l);
+		_numFrontLayers = array_length(_frontLayers);
 
-		for(var j = 0; j < _numLayers; j++) {
-			var _layer = _layers[j];
+		for(var j = 0; j < _numFrontLayers; j++) {
+			var _layer = _frontLayers[j];
 			
-			if array_contains(validLayers, _layer) {
+			if array_contains(validBackLayers, _layer) {
 				
 				if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 				
@@ -60,9 +60,63 @@ if curr_layer < global.end_layer {
         tile_layer_hide(l);
     }
 }
-if curr_layer < global.end_layer {
-    curr_layer = global.ini_layer;
-    for (var l = global.ini_layer; l >= global.end_layer; l--) {
+if curr_backLayer < global.end_backLayer {
+    curr_backLayer = global.ini_backLayer;
+    for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
+        tile_layer_hide(l);
+    }
+}
+
+tile_layer_show(curr_frontLayer);
+//curr_backLayer--;
+
+var _backLayers = layer_get_id_at_depth(curr_frontLayer);
+var _numBackLayers = array_length(_backLayers);
+
+for(var i = 0; i < _numBackLayers; i++) {
+	var _layer = _backLayers[i];
+	
+	if array_contains(validFrontLayers, _layer) {
+		
+		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+		
+			var _tilemap = layer_tilemap_get_id(_layer);
+		
+			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
+				layer_set_visible(_layer, true);
+			}
+		}
+	}
+}
+curr_frontLayer--;
+if curr_frontLayer < global.end_frontLayer {
+    curr_frontLayer = global.ini_frontLayer;
+    for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
+		
+		_backLayers = layer_get_id_at_depth(l);
+		_numBackLayers = array_length(_backLayers);
+
+		for(var j = 0; j < _numBackLayers; j++) {
+			var _layer = _backLayers[j];
+			
+			if array_contains(validFrontLayers, _layer) {
+				
+				if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+				
+					var _tilemap = layer_tilemap_get_id(_layer);
+		
+					if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
+						layer_set_visible(_layer, false);
+					}
+				}
+			}
+		}
+        tile_layer_hide(l);
+    }
+}
+if curr_frontLayer < global.end_frontLayer {
+    curr_frontLayer = global.ini_frontLayer;
+    for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
         tile_layer_hide(l);
     }
 }

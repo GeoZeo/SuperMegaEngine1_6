@@ -3,6 +3,5 @@ if myBoss > -1
 {
 	bossID = myBoss.bossID;
 	bossPersistent = myBoss.bPersistent;
-	myBoss.control = self;
 }
 

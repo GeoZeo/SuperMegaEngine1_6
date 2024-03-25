@@ -1,7 +1,7 @@
 /// @description  placeTileObjects()
 function placeTileObjects() {
 
-	var _layers = layer_get_id_at_depth(1000000);
+	var _layers = array_concat(layer_get_id_at_depth(-1000000), layer_get_id_at_depth(1000000));
 	var _numLayers = array_length(_layers);
 	for(var i = 0; i < _numLayers; i++) {
 		

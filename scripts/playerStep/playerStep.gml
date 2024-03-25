@@ -988,6 +988,7 @@ function playerStep() {
 	//Dying
 	if global._health <= 0 {
 		dead = true;
+		with prtPlayerProjectile instance_destroy();
 		
 		if killTime <= 0 {
 			if !deathByPit {
