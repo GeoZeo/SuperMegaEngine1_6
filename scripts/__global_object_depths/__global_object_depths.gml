@@ -13,8 +13,8 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objSpike
 	array_push(global.__objectDepths, 0); // objWater
 	array_push(global.__objectDepths, 0); // prtCollision
-	array_push(global.__objectDepths, -1001000); // objGlobalControl
-	array_push(global.__objectDepths, -1001000); // objGlobalInit
+	array_push(global.__objectDepths, -1010000); // objGlobalControl
+	array_push(global.__objectDepths, -1010000); // objGlobalInit
 	array_push(global.__objectDepths, -2); // prtPlayer
 	array_push(global.__objectDepths, -2); // objMegaman
 	array_push(global.__objectDepths, -2); // objProtoman
@@ -61,10 +61,10 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objTimeSlow
 	array_push(global.__objectDepths, 0); // objMegamanSweat
 	array_push(global.__objectDepths, 0); // objMegamanExplosion
-	array_push(global.__objectDepths, -1000100); // objHealthWeaponBar
+	array_push(global.__objectDepths, -1001000); // objHealthWeaponBar
 	array_push(global.__objectDepths, 0); // objMegamanDeathTimer
-	array_push(global.__objectDepths, -1010000); // objFadeIn
-	array_push(global.__objectDepths, -1010000); // objFadeout
+	array_push(global.__objectDepths, -1100000); // objFadeIn
+	array_push(global.__objectDepths, -1100000); // objFadeout
 	array_push(global.__objectDepths, 0); // objMM1Met
 	array_push(global.__objectDepths, 0); // objSuzi
 	array_push(global.__objectDepths, 0); // objBeak
@@ -90,11 +90,11 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objColtonBullet
 	array_push(global.__objectDepths, 0); // prtEnemy
 	array_push(global.__objectDepths, 0); // prtEnemyProjectile
-	array_push(global.__objectDepths, -1000100); // objEnemyActionArea
-	array_push(global.__objectDepths, -1000100); // objEnemyActionArea
+	array_push(global.__objectDepths, -1001000); // objEnemyActionArea
+	array_push(global.__objectDepths, -1001000); // objEnemyActionArea
 	array_push(global.__objectDepths, 0); // objEnemyWindStorm
 	array_push(global.__objectDepths, 0); // prtMiniBoss
-	array_push(global.__objectDepths, -1000100); // objBossControl
+	array_push(global.__objectDepths, -1001000); // objBossControl
 	array_push(global.__objectDepths, 10); // objBossDoor
 	array_push(global.__objectDepths, 10); // objBossDoorH
 	array_push(global.__objectDepths, 0); // objPharaoh
@@ -153,7 +153,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, -3); // objMM3Teleporter
 	array_push(global.__objectDepths, 0); // objMovingPlatformTest
 	array_push(global.__objectDepths, 0); // objMovingPlatformJumpthroughTest
-	array_push(global.__objectDepths, -1000100); // objCheckpoint
+	array_push(global.__objectDepths, -1001000); // objCheckpoint
 	array_push(global.__objectDepths, 0); // objJunkBlock
 	array_push(global.__objectDepths, 0); // prtDestructibleBlock
 	array_push(global.__objectDepths, 0); // objDustBlock
@@ -167,9 +167,9 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, -900); // objDmgText
 	array_push(global.__objectDepths, 0); // objFlash
 	array_push(global.__objectDepths, 0); // objExplosion4
-	array_push(global.__objectDepths, -1001000); // objPauseMenu
-	array_push(global.__objectDepths, -1001000); // objPassMenu
-	array_push(global.__objectDepths, -1001000); // objPassInput
+	array_push(global.__objectDepths, -1010000); // objPauseMenu
+	array_push(global.__objectDepths, -1010000); // objPassMenu
+	array_push(global.__objectDepths, -1010000); // objPassInput
 	array_push(global.__objectDepths, 0); // objWeaponGet
 	array_push(global.__objectDepths, 0); // objStageSelect
 	array_push(global.__objectDepths, 0); // objIntroduction
@@ -183,24 +183,24 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objSaveGame
 	array_push(global.__objectDepths, 0); // objPlayerSelect
 	array_push(global.__objectDepths, 0); // objAchievements
-	array_push(global.__objectDepths, -1000100); // objSectionBorderLeftScreen
-	array_push(global.__objectDepths, -1000100); // objSectionBorderRightScreen
-	array_push(global.__objectDepths, -1000100); // objSectionBorderVertical
-	array_push(global.__objectDepths, -1000100); // objSectionScrollLeft
-	array_push(global.__objectDepths, -1000100); // objSectionScrollRight
-	array_push(global.__objectDepths, -1000100); // objSectionBorderTopScreen
-	array_push(global.__objectDepths, -1000100); // objSectionBorderBottomScreen
-	array_push(global.__objectDepths, -1000100); // objSectionBorderHorizontal
-	array_push(global.__objectDepths, -1000100); // objSectionScrollUp
-	array_push(global.__objectDepths, -1000100); // objSectionScrollDown
-	array_push(global.__objectDepths, -1000100); // objSectionBorderLeft
-	array_push(global.__objectDepths, -1000100); // objSectionBorderRight
-	array_push(global.__objectDepths, -1000100); // objSectionBorderTop
-	array_push(global.__objectDepths, -1000100); // objSectionBorderBottom
-	array_push(global.__objectDepths, -1000100); // objSectionArrowLeft
-	array_push(global.__objectDepths, -1000100); // objSectionArrowRight
-	array_push(global.__objectDepths, -1000100); // objSectionArrowUp
-	array_push(global.__objectDepths, -1000100); // objSectionArrowDown
+	array_push(global.__objectDepths, -1001000); // objSectionBorderLeftScreen
+	array_push(global.__objectDepths, -1001000); // objSectionBorderRightScreen
+	array_push(global.__objectDepths, -1001000); // objSectionBorderVertical
+	array_push(global.__objectDepths, -1001000); // objSectionScrollLeft
+	array_push(global.__objectDepths, -1001000); // objSectionScrollRight
+	array_push(global.__objectDepths, -1001000); // objSectionBorderTopScreen
+	array_push(global.__objectDepths, -1001000); // objSectionBorderBottomScreen
+	array_push(global.__objectDepths, -1001000); // objSectionBorderHorizontal
+	array_push(global.__objectDepths, -1001000); // objSectionScrollUp
+	array_push(global.__objectDepths, -1001000); // objSectionScrollDown
+	array_push(global.__objectDepths, -1001000); // objSectionBorderLeft
+	array_push(global.__objectDepths, -1001000); // objSectionBorderRight
+	array_push(global.__objectDepths, -1001000); // objSectionBorderTop
+	array_push(global.__objectDepths, -1001000); // objSectionBorderBottom
+	array_push(global.__objectDepths, -1001000); // objSectionArrowLeft
+	array_push(global.__objectDepths, -1001000); // objSectionArrowRight
+	array_push(global.__objectDepths, -1001000); // objSectionArrowUp
+	array_push(global.__objectDepths, -1001000); // objSectionArrowDown
 	array_push(global.__objectDepths, 0); // objSectionSwitcher
 	array_push(global.__objectDepths, 0); // prtEquip
 	array_push(global.__objectDepths, 0); // objLifeEquip

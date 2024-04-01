@@ -60,10 +60,10 @@ if room == rmInit {
     application_surface_draw_enable(true);
 }
 
-//Hide tiles/tile animation frames at start
-curr_backLayer = global.ini_backLayer;
-validBackLayers = array_create(0);
-for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
+//Hide midground tiles/tile animation frames at start
+curr_back_layer = global.ini_back_layer;
+validLayers_back = array_create(0);
+for (var l = global.ini_back_layer; l >= global.end_back_layer; l--) {
     
 	var _layers = layer_get_id_at_depth(l);
 	var _numLayers = array_length(_layers);
@@ -73,20 +73,22 @@ for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 			
-			array_push(validBackLayers, _layer);
+			array_push(validLayers_back, _layer);
 			
 			var _tilemap = layer_tilemap_get_id(_layer);
 		
-			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap)
+			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
 				layer_set_visible(_layer, false);
+			}
 		}
 	}
 	tile_layer_hide(l);
 }
 
-curr_frontLayer = global.ini_frontLayer;
-validFrontLayers = array_create(0);
-for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
+//Hide foreground tiles/tile animation frames at start
+curr_front_layer = global.ini_front_layer;
+validLayers_front = array_create(0);
+for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
     
 	var _layers = layer_get_id_at_depth(l);
 	var _numLayers = array_length(_layers);
@@ -96,12 +98,13 @@ for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 			
-			array_push(validFrontLayers, _layer);
+			array_push(validLayers_front, _layer);
 			
 			var _tilemap = layer_tilemap_get_id(_layer);
 		
-			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap)
+			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
 				layer_set_visible(_layer, false);
+			}
 		}
 	}
 	tile_layer_hide(l);

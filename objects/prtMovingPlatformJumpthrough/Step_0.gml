@@ -39,7 +39,7 @@ if global.frozen == false && dead == false
 	                attempts += 1;
 	            }
   
-				prtPlayer.pltSpeedY = yspeed;
+				prtPlayer.pltSpeedY = yspeed * update_rate;
 	            prtPlayer.y -= upDist;
 			}
 		}

@@ -137,13 +137,15 @@ reset_controls();
 
 load_configs();
 
-//Initial and final layer for foreground tile animations (decreasing)
-global.ini_frontLayer = -999920;
-global.end_frontLayer = -999999;
 
 //Initial and final layer for midground tile animations (decreasing)
-global.ini_backLayer = 999999;
-global.end_backLayer = 999920;
+global.ini_back_layer = 999999;
+global.end_back_layer = 999920;
+
+
+//Initial and final layer for foreground tile animations (decreasing)
+global.ini_front_layer = -1000001;
+global.end_front_layer = -1000080;
 
 
 if cfgDebug || debug_mode {

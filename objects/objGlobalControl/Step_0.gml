@@ -12,17 +12,17 @@ if global.loopEnd > -1 && global.loopStart > -1 && global.bgm > -1 {    //Loop p
     }
 }
 
-//Tile animations
-tile_layer_show(curr_backLayer);
-//curr_backLayer--;
+//Tile animations (midground)
+tile_layer_show(curr_back_layer);
+//curr_layer--;
 
-var _frontLayers = layer_get_id_at_depth(curr_backLayer);
-var _numFrontLayers = array_length(_frontLayers);
+var _layers_back = layer_get_id_at_depth(curr_back_layer);
+var _numLayers_back = array_length(_layers_back);
 
-for(var i = 0; i < _numFrontLayers; i++) {
-	var _layer = _frontLayers[i];
+for(var i = 0; i < _numLayers_back; i++) {
+	var _layer = _layers_back[i];
 	
-	if array_contains(validBackLayers, _layer) {
+	if array_contains(validLayers_back, _layer) {
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 		
@@ -34,18 +34,18 @@ for(var i = 0; i < _numFrontLayers; i++) {
 		}
 	}
 }
-curr_backLayer--;
-if curr_backLayer < global.end_backLayer {
-    curr_backLayer = global.ini_backLayer;
-    for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
+curr_back_layer--;
+if curr_back_layer < global.end_back_layer {
+    curr_back_layer = global.ini_back_layer;
+    for (var l = global.ini_back_layer; l >= global.end_back_layer; l--) {
 		
-		_frontLayers = layer_get_id_at_depth(l);
-		_numFrontLayers = array_length(_frontLayers);
+		_layers_back = layer_get_id_at_depth(l);
+		_numLayers_back = array_length(_layers_back);
 
-		for(var j = 0; j < _numFrontLayers; j++) {
-			var _layer = _frontLayers[j];
+		for(var j = 0; j < _numLayers_back; j++) {
+			var _layer = _layers_back[j];
 			
-			if array_contains(validBackLayers, _layer) {
+			if array_contains(validLayers_back, _layer) {
 				
 				if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 				
@@ -60,23 +60,24 @@ if curr_backLayer < global.end_backLayer {
         tile_layer_hide(l);
     }
 }
-if curr_backLayer < global.end_backLayer {
-    curr_backLayer = global.ini_backLayer;
-    for (var l = global.ini_backLayer; l >= global.end_backLayer; l--) {
-        tile_layer_hide(l);
-    }
-}
+//if curr_layer < global.end_back_layer {
+//    curr_layer = global.ini_back_layer;
+//    for (var l = global.ini_back_layer; l >= global.end_back_layer; l--) {
+//        tile_layer_hide(l);
+//    }
+//}
 
-tile_layer_show(curr_frontLayer);
-//curr_backLayer--;
+//Tile animations (foreground)
+tile_layer_show(curr_front_layer);
+//curr_layer--;
 
-var _backLayers = layer_get_id_at_depth(curr_frontLayer);
-var _numBackLayers = array_length(_backLayers);
+var _layers_front = layer_get_id_at_depth(curr_front_layer);
+var _numLayers_front = array_length(_layers_front);
 
-for(var i = 0; i < _numBackLayers; i++) {
-	var _layer = _backLayers[i];
+for(var i = 0; i < _numLayers_front; i++) {
+	var _layer = _layers_front[i];
 	
-	if array_contains(validFrontLayers, _layer) {
+	if array_contains(validLayers_front, _layer) {
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 		
@@ -88,18 +89,18 @@ for(var i = 0; i < _numBackLayers; i++) {
 		}
 	}
 }
-curr_frontLayer--;
-if curr_frontLayer < global.end_frontLayer {
-    curr_frontLayer = global.ini_frontLayer;
-    for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
+curr_front_layer--;
+if curr_front_layer < global.end_front_layer {
+    curr_front_layer = global.ini_front_layer;
+    for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
 		
-		_backLayers = layer_get_id_at_depth(l);
-		_numBackLayers = array_length(_backLayers);
+		_layers_front = layer_get_id_at_depth(l);
+		_numLayers_front = array_length(_layers_front);
 
-		for(var j = 0; j < _numBackLayers; j++) {
-			var _layer = _backLayers[j];
+		for(var j = 0; j < _numLayers_front; j++) {
+			var _layer = _layers_front[j];
 			
-			if array_contains(validFrontLayers, _layer) {
+			if array_contains(validLayers_front, _layer) {
 				
 				if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 				
@@ -114,12 +115,12 @@ if curr_frontLayer < global.end_frontLayer {
         tile_layer_hide(l);
     }
 }
-if curr_frontLayer < global.end_frontLayer {
-    curr_frontLayer = global.ini_frontLayer;
-    for (var l = global.ini_frontLayer; l >= global.end_frontLayer; l--) {
-        tile_layer_hide(l);
-    }
-}
+//if curr_layer_front < global.end_front_layer {
+//    curr_layer_front = global.ini_front_layer;
+//    for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
+//        tile_layer_hide(l);
+//    }
+//}
 
 if instance_exists(prtPlayer) {
 	if !prtPlayer.climbing

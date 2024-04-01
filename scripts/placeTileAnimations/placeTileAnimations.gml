@@ -38,6 +38,7 @@ function placeTileAnimations() {
 	for(var i = 0; i < _numLayers; i++) {
 		
 		var _layer = _layers[i];
+		var _ld = layer_get_depth(_layer);
 		
 		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 			
@@ -68,20 +69,19 @@ function placeTileAnimations() {
 								var tile_id = string(tbg) + "," + string(ti);
 								var tiles_ = ds_map_find_value(global.anims, tile_id);
 								if(tiles_ > -1) {
-									var key;
-									if sign(layer_get_depth(_layer)) >= 1
-										key = ds_map_find_first(tiles_);
-									else
-										key = ds_map_find_last(tiles_);
-										
+									var key = ds_map_find_first(tiles_);
 									while (!is_undefined(key)) {
 										var tile = ds_map_find_value(tiles_, key);
 										var tmx = tilemap_get_x(_tilemap);
 										var tmy = tilemap_get_y(_tilemap);
+										
+										var oldKey = key;
+										if _ld <= -1
+											key = _ld + (_ld + key);
 									
 										var _layerToUse = -1;
 										var _tilemapToUse = -1;
-										var _layersAtDepth = layer_get_id_at_depth(key * sign(layer_get_depth(_layer)));
+										var _layersAtDepth = layer_get_id_at_depth(key);
 										var _numLayersAtDepth = array_length(_layersAtDepth);
 									
 										for(var l = 0; l < _numLayersAtDepth; l++){
@@ -102,7 +102,7 @@ function placeTileAnimations() {
 										}
 									
 										if (_layerToUse == -1) {
-											_layerToUse = layer_create(key * sign(layer_get_depth(_layer)));
+											_layerToUse = layer_create(key);
 										}
 										if (_tilemapToUse == -1) {
 											_tilemapToUse = layer_tilemap_create(_layerToUse, tmx, tmy, _tileset, _width, _height);
@@ -110,13 +110,10 @@ function placeTileAnimations() {
 									
 										var parts = split(tile, ",");
 							            ds_queue_dequeue(parts);
-							            var tid_ = real(ds_queue_dequeue(parts));
+							            var tid_ = real(ds_queue_dequeue(parts));										
 										tilemap_set(_tilemapToUse, tid_, j, k);
-										//show_debug_message(key);
-										if sign(layer_get_depth(_layer)) >= 1
-											key = ds_map_find_next(tiles_, key);
-										else
-											key = ds_map_find_previous(tiles_, key);
+										show_debug_message(key);
+										key = ds_map_find_next(tiles_, oldKey);
 									}
 								}
 							}

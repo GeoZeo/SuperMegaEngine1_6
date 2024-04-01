@@ -130,7 +130,7 @@ function readTileAnimations() {
 															}
 															ds_map_add(anim, td, tile_id);
 															ds_map_add(global.anims, tile_id_, anim);
-															//show_debug_message("Layer J: {0}", td_);
+															show_debug_message("Layer: {0}", td);
 														}
 													}
 												}
