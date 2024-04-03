@@ -55,28 +55,32 @@ if global.frozen == false && dead == false
                 downDist += 1;
                 attempts += 1;
             }
-                
+			
             var minDist;
             minDist = min(leftDist, rightDist, upDist, downDist);
             if minDist == upDist || (yspeed < 0 && abs(minDist - upDist) <= 3)
 			{
 				prtPlayer.pltSpeedY = yspeed * update_rate;
-                prtPlayer.y -= upDist;
+				prtPlayer.y -= upDist;
+				print("Don't Crush - Up");
 			}
             else if minDist == leftDist || (xspeed < 0 && abs(minDist - leftDist) <= 3)
 			{
 				prtPlayer.pltSpeedX = xspeed * update_rate;
                 prtPlayer.x -= leftDist;
+				print("Don't Crush - Left");
 			}
 			else if minDist == rightDist || (xspeed > 0 && abs(minDist - rightDist) <= 3)
 			{
 				prtPlayer.pltSpeedX = xspeed * update_rate;
                 prtPlayer.x += rightDist;
+				print("Don't Crush - Right");
 			}
 			else if minDist == downDist || (yspeed > 0 && abs(minDist - downDist) <= 3)
 			{
 				prtPlayer.pltSpeedY = yspeed * update_rate;
-                prtPlayer.y += downDist;
+				prtPlayer.y += downDist;
+				print("Don't Crush - Down");
 			}
                 
             // Crush the player if necessary
@@ -84,7 +88,7 @@ if global.frozen == false && dead == false
             {
                 instance_deactivate_object(other.id);
                 var movingPltfm, meetingPlatform;
-                movingPltfm = collision_rectangle((bbox_left+2), bbox_top+2 - (isSlide * 2), (bbox_right-2), bbox_bottom-2 + (isSlide * 2), prtMovingPlatformSolid, false, false);
+                movingPltfm = collision_rectangle(bbox_left+2, bbox_top+2 - (isSlide * 2), bbox_right-2, bbox_bottom-2 + (isSlide * 2), prtMovingPlatformSolid, false, false);
                 
                 meetingPlatform = false;
                 if movingPltfm >= 0
@@ -93,7 +97,7 @@ if global.frozen == false && dead == false
                         meetingPlatform = true;
                 }
                 
-                if collision_rectangle((bbox_left+2), bbox_top+2 - (isSlide * 2), (bbox_right-2), bbox_bottom + (isSlide * 2), objSolid, false, false)
+                if collision_rectangle(bbox_left+2, bbox_top+2 - (isSlide * 2), bbox_right-2, bbox_bottom + (isSlide * 2), objSolid, false, false)
                 || meetingPlatform == true
                     global._health = 0;
                 instance_activate_object(other.id);

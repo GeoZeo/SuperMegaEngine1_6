@@ -347,6 +347,7 @@
     {"name":"sprBorderBlock","order":6,"path":"sprites/sprBorderBlock/sprBorderBlock.yy",},
     {"name":"sfxProtoBusterCharging","order":13,"path":"sounds/sfxProtoBusterCharging/sfxProtoBusterCharging.yy",},
     {"name":"sprCrown","order":7,"path":"sprites/sprCrown/sprCrown.yy",},
+    {"name":"sprNESPalette","order":8,"path":"sprites/sprNESPalette/sprNESPalette.yy",},
     {"name":"tstMM1","order":1,"path":"sprites/tstMM1/tstMM1.yy",},
     {"name":"tstMM2_V2","order":9,"path":"sprites/tstMM2_V2/tstMM2_V2.yy",},
     {"name":"tstMM2","order":2,"path":"sprites/tstMM2/tstMM2.yy",},

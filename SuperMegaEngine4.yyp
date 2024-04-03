@@ -428,6 +428,7 @@
     {"id":{"name":"sprBorderBlock","path":"sprites/sprBorderBlock/sprBorderBlock.yy",},},
     {"id":{"name":"sfxProtoBusterCharging","path":"sounds/sfxProtoBusterCharging/sfxProtoBusterCharging.yy",},},
     {"id":{"name":"sprCrown","path":"sprites/sprCrown/sprCrown.yy",},},
+    {"id":{"name":"sprNESPalette","path":"sprites/sprNESPalette/sprNESPalette.yy",},},
     {"id":{"name":"bgBeta","path":"sprites/bgBeta/bgBeta.yy",},},
     {"id":{"name":"tstBeta","path":"sprites/tstBeta/tstBeta.yy",},},
     {"id":{"name":"tstMM1","path":"sprites/tstMM1/tstMM1.yy",},},

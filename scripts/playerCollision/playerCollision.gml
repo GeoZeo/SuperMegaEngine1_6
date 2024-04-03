@@ -44,7 +44,7 @@ function playerCollision() {
 
 	//Wall
 	mySolid = instance_place(x+global.xspeed, y, objSolid);
-	if mySolid >= 0 && global.xspeed != 0
+	if mySolid >= 0 && global.xspeed != 0 && (pltSpeedY == 0 or place_free(x, y+pltSpeedY)) 
 	{
 	    if global.xspeed < 0
 	    {

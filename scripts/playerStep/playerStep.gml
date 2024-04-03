@@ -1053,8 +1053,8 @@ function playerStep() {
 	prevXScale = image_xscale;
 
 
-	if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0
-		escapeWall(true, true, true, true);
+	//if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0
+	//	escapeWall(true, true, true, true);
 
 	if place_free(x, y)
 	{

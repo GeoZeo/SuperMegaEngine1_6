@@ -9,3 +9,5 @@ neverDespawn = true;
 keepOnSwitch = false;
 transitionSideways = false;
 
+placeFree = false;
+

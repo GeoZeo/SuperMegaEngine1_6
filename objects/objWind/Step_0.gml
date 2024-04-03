@@ -60,13 +60,13 @@ if !global.frozen && insideView() {
                 x += other.xspeed * other.update_rate;
                 y += other.yspeed * other.update_rate;
                 //playerStep();
-                global.xspeed += other.xspeed;
-                global.yspeed += other.yspeed;
+                global.xspeed += other.xspeed * other.update_rate;
+                global.yspeed += other.yspeed * other.update_rate;
                 playerCollision();
                 playerMovingPlatform();
                 playerCamera();
-                global.xspeed -= other.xspeed;
-                global.yspeed -= other.yspeed;
+                global.xspeed -= other.xspeed * other.update_rate;
+                global.yspeed -= other.yspeed * other.update_rate;
                 
                 //playerSwitchSections();
             }
