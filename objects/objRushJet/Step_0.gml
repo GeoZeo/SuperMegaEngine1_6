@@ -7,7 +7,7 @@ if global.frozen == false
         if canJet == true //Waiting for Megaman
         {
         
-            if collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top-1, prtPlayer, false, false) && collision_rectangle(prtPlayer.bbox_left, prtPlayer.bbox_bottom-1, prtPlayer.bbox_right, prtPlayer.bbox_bottom + 1, self, false, false)
+            if collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top-1, prtPlayer, false, false) >= 0
             {
                 canJet = false;
                 alarm[0] = -1;
