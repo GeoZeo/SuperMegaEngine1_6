@@ -62,25 +62,53 @@ if global.frozen == false && dead == false
 			{
 				prtPlayer.pltSpeedY = yspeed * update_rate;
 				prtPlayer.y -= upDist;
-				print("Don't Crush - Up");
+				//print("Don't Crush - Up");
 			}
             else if minDist == leftDist || (xspeed < 0 && abs(minDist - leftDist) <= 3)
 			{
 				prtPlayer.pltSpeedX = xspeed * update_rate;
                 prtPlayer.x -= leftDist;
-				print("Don't Crush - Left");
+				//print("Don't Crush - Left");
 			}
 			else if minDist == rightDist || (xspeed > 0 && abs(minDist - rightDist) <= 3)
 			{
 				prtPlayer.pltSpeedX = xspeed * update_rate;
                 prtPlayer.x += rightDist;
-				print("Don't Crush - Right");
+				//print("Don't Crush - Right");
 			}
 			else if minDist == downDist || (yspeed > 0 && abs(minDist - downDist) <= 3)
 			{
+				//Cancel slide if necessary
+				if prtPlayer.movedPlatformID != 20 && prtPlayer.isSlide
+				{
+					prtPlayer.isSlide = false;
+		            prtPlayer.canMove = true;
+					prtPlayer.canWalk = true;
+		            prtPlayer.canSpriteChange = true;
+		            prtPlayer.mask_index = mskMegaman;
+		            prtPlayer.slideTimer = 0;
+				}
+				
 				prtPlayer.pltSpeedY = yspeed * update_rate;
 				prtPlayer.y += downDist;
-				print("Don't Crush - Down");
+				//print("Don't Crush - Down");
+				
+				//Just in case we're pushed down onto another moving solid
+				with prtPlayer
+				{
+					if place_meeting(x, y+1, prtMovingPlatformSolid)
+					{
+						var myPlt = instance_place(x, y+1, prtMovingPlatformSolid)
+						{
+							if myPlt >= 0 && !myPlt.dead
+							{
+								ground = true;
+								global.yspeed = 0;
+							}
+						}
+					}
+				}
+				print("Solid");
 			}
                 
             // Crush the player if necessary
@@ -197,18 +225,24 @@ if global.frozen == false && dead == false
 					else if place_meeting(x + xsp, y + ysp, objSolid) 
 					|| place_meeting(x + xsp, y + ysp, prtMovingPlatformSolid)
 					{
-						proceed = false;
 						if place_meeting(x + xsp, y + ysp, objSolid)
 						{
 							var mySolid = instance_place(x + xsp, y + ysp, objSolid)
 							if ysp > 0 && !place_meeting(x, y, mySolid)
 								y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+								
+							proceed = false;
 						}
 						else if place_meeting(x + xsp, y + ysp, prtMovingPlatformSolid)
 						{
 							var mySolid = instance_place(x + xsp, y + ysp, prtMovingPlatformSolid)
-							if mySolid.yspeed > 0
-								y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+							if !mySolid.dead
+							{
+								if mySolid.yspeed > 0 && bbox_bottom < sprite_get_ycenter_object(mySolid)
+									y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+									
+								proceed = false;
+							}
 						}
 					}
 				}

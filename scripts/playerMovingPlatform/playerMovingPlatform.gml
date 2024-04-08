@@ -60,20 +60,20 @@ function playerMovingPlatform() {
 	maxID = -1;
 	var pltfm;
 	pltfm = collision_rectangle(bbox_left+global.xspeed, bbox_top, bbox_right+global.xspeed, bbox_bottom-4, prtMovingPlatformSolid, false, false);
-	while pltfm >= 0 && global.xspeed != 0
+	while pltfm >= 0 && global.xspeed != 0 && (pltSpeedY == 0 or place_free(x, y+pltSpeedY)) 
 	&& !collision_rectangle(bbox_left+4, bbox_bottom, bbox_right-4, bbox_bottom+3, pltfm, false, false)
 	{
 	    maxID += 1;
 	    ID[maxID] = pltfm;
 	    if ID[maxID].dead == false
 	    {
-	        if global.xspeed < 0 && ID[maxID].xspeed >= 0
+	        if global.xspeed < 0 && ID[maxID].xspeed >= 0 && !(ID[maxID].yspeed > 0 and bbox_left+2 < ID[maxID].bbox_right)
 	        {
 	            x = ID[maxID].bbox_right + sprite_get_xoffset(mask_index) - sprite_get_bbox_left(mask_index) + 1;
 	            while place_meeting(x, y, ID[maxID])
 	                x += 1;
 	        }
-	        else if global.xspeed > 0 && ID[maxID].xspeed <= 0
+	        else if global.xspeed > 0 && ID[maxID].xspeed <= 0 && !(ID[maxID].yspeed > 0 and bbox_right-2 > ID[maxID].bbox_left)
 	        {
 	            x = ID[maxID].bbox_left - (sprite_get_width(mask_index) - sprite_get_xoffset(mask_index)) + (sprite_get_width(mask_index) - sprite_get_bbox_right(mask_index)) - 1;
 	            while place_meeting(x, y, ID[maxID])
@@ -85,6 +85,8 @@ function playerMovingPlatform() {
     
 	    instance_deactivate_object(ID[maxID]);
 	    pltfm = collision_rectangle(bbox_left+global.xspeed, bbox_top, bbox_right+global.xspeed, bbox_bottom-4, prtMovingPlatformSolid, false, false);
+		
+		print("Don't Crush");
 	}
 
 	for(i = 0; i <= maxID; i += 1)

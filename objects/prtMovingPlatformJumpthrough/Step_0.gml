@@ -48,8 +48,19 @@ if global.frozen == false && dead == false
 		{
 			with prtPlayer
 			{
-				if prtPlayer.teleporting == false && prtPlayer.showReady == false
+				if teleporting == false && showReady == false
 		        {
+					//Cancel slide if necessary
+					if prtPlayer.isSlide
+					{
+						prtPlayer.isSlide = false;
+			            prtPlayer.canMove = true;
+						prtPlayer.canWalk = true;
+			            prtPlayer.canSpriteChange = true;
+			            prtPlayer.mask_index = mskMegaman;
+			            prtPlayer.slideTimer = 0;
+					}
+					
 		            var downDist, attempts;
 		            downDist = 0;
             
@@ -60,7 +71,26 @@ if global.frozen == false && dead == false
 		                attempts += 1;
 		            }
   
-		            prtPlayer.y += downDist;
+		            y += downDist;
+					print("Jumpthrough");
+					
+					if place_meeting(x, y+1, prtMovingPlatformSolid)
+					{
+						var myPlt = instance_place(x, y+1, prtMovingPlatformSolid)
+						{
+							if myPlt >= 0 && !myPlt.dead
+							{
+								ground = true;
+								global.yspeed = 0;
+								
+								//Crush the player if necessary
+								if place_free(x, y - (abs(other.yspeed) + abs(global.yspeed)))
+									y = myPlt.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+								else
+									global._health = 0;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -99,23 +129,34 @@ if global.frozen == false && dead == false
                 
                 if place_meeting(x + xsp, y + ysp, objSolid) || place_meeting(x + xsp, y + ysp, prtMovingPlatformSolid)
 				{
-					if onRushJet == true
-					{
-						onRushJet = false;
-						canWalk = true;
-					}
-					proceed = false;
 					if place_meeting(x + xsp, y + ysp, objSolid)
 					{
 						var mySolid = instance_place(x + xsp, y + ysp, objSolid)
 						if ysp > 0 && !place_meeting(x, y, mySolid)
 							y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+							
+						if onRushJet == true
+						{
+							onRushJet = false;
+							canWalk = true;
+						}
+						proceed = false;
 					}
 					else if place_meeting(x + xsp, y + ysp, prtMovingPlatformSolid)
 					{
 						var mySolid = instance_place(x + xsp, y + ysp, prtMovingPlatformSolid)
-						if mySolid.yspeed > 0
-							y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+						if !mySolid.dead
+						{
+							if mySolid.yspeed > 0 && bbox_bottom < sprite_get_ycenter_object(mySolid)
+								y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+								
+							if onRushJet == true
+							{
+								onRushJet = false;
+								canWalk = true;
+							}
+							proceed = false;
+						}
 					}
 				}
 					

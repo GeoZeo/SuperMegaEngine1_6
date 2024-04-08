@@ -50,7 +50,8 @@ if !global.frozen && !dead {
     }
     else if phase == 2 { //Moving down
         yspeed = decendSpeed;
-        y = round(y);
+		if is_int64(update_rate) || is_int32(update_rate)
+			y = round(y);
         
         if y >= ystart {
             y = ystart;

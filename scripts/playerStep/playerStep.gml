@@ -1053,8 +1053,30 @@ function playerStep() {
 	prevXScale = image_xscale;
 
 
-	//if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0
-	//	escapeWall(true, true, true, true);
+	if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0
+	{
+		var myPlt = instance_place(x, y, prtMovingPlatformSolid)
+		if myPlt >= 0 && !myPlt.dead && insideViewObj_Spr(myPlt)
+		{
+			instance_deactivate_object(myPlt.id);
+            var movingPltfm, meetingPlatform;
+            movingPltfm = collision_rectangle(bbox_left, bbox_top - (isSlide * 2), bbox_right, bbox_bottom + (isSlide * 2), prtMovingPlatformSolid, false, false);
+                
+            meetingPlatform = false;
+            if movingPltfm >= 0
+            {
+                if movingPltfm.dead == false
+                    meetingPlatform = true;
+            }
+                
+            if !meetingPlatform
+				escapeWall(true, true, true, true);
+				
+			instance_activate_object(myPlt.id);
+		}
+		else
+			escapeWall(true, true, true, true);
+	}
 
 	if place_free(x, y)
 	{
