@@ -49,11 +49,15 @@ if global.frozen == false
                     {
                         if instance_place(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid).dead == true
                             yspeed = -ySpd;
+						else
+							yspeed = 0;
                     }
                     else {
                         var plt = instance_place(x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid);
                         if plt < 0 || plt.dead
                             yspeed = -ySpd;
+						else
+							yspeed = 0;
                     }
                 }
                 else if global.keyDown && !place_meeting(x, y+abs(yspeed)+1, objSolid)// && !place_meeting(x, y+abs(yspeed)+1, objTopSolid)
@@ -64,6 +68,8 @@ if global.frozen == false
                     {
                         if instance_place(x, y+abs(yspeed)+1, prtMovingPlatformSolid).dead == true
                             yspeed = ySpd;
+						else
+							yspeed = 0;
                     }
                 }
                 else
