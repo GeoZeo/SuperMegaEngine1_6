@@ -43,7 +43,8 @@ else if teleporting == true
     {
         //Teleporting downwards
         draw_sprite_ext(sprite_index, image_index, round(x), round(__view_get( e__VW.YView, 0 )-32+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
-        if !prtPlayer.ground && !place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, objSolid) {
+        if !prtPlayer.ground && !place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, objSolid)
+		&& (!place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid) or instance_place(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid).dead){
             y = sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed;
 			
 			//This pushes us out of ceiling/ground solids we may be jumping into if needs be.
