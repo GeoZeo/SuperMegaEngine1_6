@@ -47,13 +47,27 @@ else if teleporting == true
             y = sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed;
 			
 			//This pushes us out of ceiling/ground solids we may be jumping into if needs be.
-			mySolid = instance_place(x, y, objSolid)
-			if mySolid >= 0
+			if place_meeting(x, y, objSolid)
 			{
-				if y <= mySolid.y
-					y += mySolid.bbox_top - bbox_bottom;
-				else
-					y += mySolid.bbox_bottom - bbox_top;
+				var mySolid = instance_place(x, y, objSolid)
+				if mySolid >= 0
+				{
+					if y <= mySolid.y
+						y += mySolid.bbox_top - bbox_bottom;
+					else
+						y += mySolid.bbox_bottom - bbox_top;
+				}
+			}
+			else if place_meeting(x, y, prtMovingPlatformSolid)
+			{
+				var mySolid = instance_place(x, y, prtMovingPlatformSolid)
+				if mySolid >= 0 && !mySolid.dead
+				{
+					if y <= mySolid.y
+						y += mySolid.bbox_top - bbox_bottom;
+					else
+						y += mySolid.bbox_bottom - bbox_top;
+				}
 			}
         }
         else {

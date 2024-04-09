@@ -196,6 +196,7 @@
     {"id":{"name":"sprSpike","path":"sprites/sprSpike/sprSpike.yy",},},
     {"id":{"name":"sprWater","path":"sprites/sprWater/sprWater.yy",},},
     {"id":{"name":"sprCollisionOther","path":"sprites/sprCollisionOther/sprCollisionOther.yy",},},
+    {"id":{"name":"sprNothing","path":"sprites/sprNothing/sprNothing.yy",},},
     {"id":{"name":"sfxProtoBusterCharged","path":"sounds/sfxProtoBusterCharged/sfxProtoBusterCharged.yy",},},
     {"id":{"name":"mskMegaman","path":"sprites/mskMegaman/mskMegaman.yy",},},
     {"id":{"name":"mskMegamanSlide","path":"sprites/mskMegamanSlide/mskMegamanSlide.yy",},},

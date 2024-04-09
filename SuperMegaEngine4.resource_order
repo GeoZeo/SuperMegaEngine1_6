@@ -159,6 +159,7 @@
     {"name":"sprSpike","order":4,"path":"sprites/sprSpike/sprSpike.yy",},
     {"name":"sprWater","order":5,"path":"sprites/sprWater/sprWater.yy",},
     {"name":"sprCollisionOther","order":6,"path":"sprites/sprCollisionOther/sprCollisionOther.yy",},
+    {"name":"sprNothing","order":9,"path":"sprites/sprNothing/sprNothing.yy",},
     {"name":"sfxProtoBusterCharged","order":10,"path":"sounds/sfxProtoBusterCharged/sfxProtoBusterCharged.yy",},
     {"name":"mskMegamanSlide","order":1,"path":"sprites/mskMegamanSlide/mskMegamanSlide.yy",},
     {"name":"sprMegamanStep","order":1,"path":"sprites/sprMegamanStep/sprMegamanStep.yy",},

@@ -7,10 +7,16 @@ if global.frozen == false
         if canJet == true //Waiting for Megaman
         {
         
-            if collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top-1, prtPlayer, false, false) >= 0
+            if !dead && collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top-1, prtPlayer, false, false) >= 0
             {
-                canJet = false;
-                alarm[0] = -1;
+                if instance_exists(prtPlayer)
+                {
+                    if prtPlayer.ground == true && prtPlayer.bbox_bottom <= bbox_top && global.yspeed >= 0
+                    {
+                        canJet = false;
+                        alarm[0] = -1;
+                    }
+                }
             }
         }
         else //Flying
@@ -27,53 +33,59 @@ if global.frozen == false
                 }
             }
             
-            if !dead && collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top-1, prtPlayer, false, false) && prtPlayer.ground && global.yspeed >= 0
-            {   
-				decreaseAmmoTimerIncrement = 1;
-                xspeed = spd * image_xscale;
+            if !dead && collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top-1, prtPlayer, false, false) >= 0
+            {
+				if instance_exists(prtPlayer)
+                {
+                    if prtPlayer.ground == true && prtPlayer.bbox_bottom <= bbox_top && global.yspeed >= 0
+                    {
+						decreaseAmmoTimerIncrement = 1;
+		                xspeed = spd * image_xscale;
 				
-				//Set player properties
-                prtPlayer.canWalk = false;
-                global.xspeed = 0;
-				global.yspeed = 0;
-                prtPlayer.onRushJet = true;
+						//Set player properties
+		                prtPlayer.canWalk = false;
+		                global.xspeed = 0;
+						global.yspeed = 0;
+		                prtPlayer.onRushJet = true;
                 
-                //Move vertically
-                if global.keyUp && !place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, objSolid)
-                && !place_meeting(x, y-abs(yspeed)-1, objSolid)
-                {
-                    if !place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid)
-                    && !place_meeting(x, y-abs(yspeed)-1, prtMovingPlatformSolid)
-                        yspeed = -ySpd;
-                    else if place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid)
-                    {
-                        if instance_place(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid).dead == true
-                            yspeed = -ySpd;
-						else
-							yspeed = 0;
-                    }
-                    else {
-                        var plt = instance_place(x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid);
-                        if plt < 0 || plt.dead
-                            yspeed = -ySpd;
-						else
-							yspeed = 0;
-                    }
-                }
-                else if global.keyDown && !place_meeting(x, y+abs(yspeed)+1, objSolid)// && !place_meeting(x, y+abs(yspeed)+1, objTopSolid)
-                {
-                    if !place_meeting(x, y+abs(yspeed)+1, prtMovingPlatformSolid)// && !place_meeting(x, y+abs(yspeed)+1, prtMovingPlatformJumpthrough)
-                        yspeed = ySpd;
-                    else if place_meeting(x, y+abs(yspeed)+1, prtMovingPlatformSolid)
-                    {
-                        if instance_place(x, y+abs(yspeed)+1, prtMovingPlatformSolid).dead == true
-                            yspeed = ySpd;
-						else
-							yspeed = 0;
-                    }
-                }
-                else
-                    yspeed = 0;
+		                //Move vertically
+		                if global.keyUp && !place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, objSolid)
+		                && !place_meeting(x, y-abs(yspeed)-1, objSolid)
+		                {
+		                    if !place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid)
+		                    && !place_meeting(x, y-abs(yspeed)-1, prtMovingPlatformSolid)
+		                        yspeed = -ySpd;
+		                    else if place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid)
+		                    {
+		                        if instance_place(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid).dead == true
+		                            yspeed = -ySpd;
+								else
+									yspeed = 0;
+		                    }
+		                    else {
+		                        var plt = instance_place(x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid);
+		                        if plt < 0 || plt.dead
+		                            yspeed = -ySpd;
+								else
+									yspeed = 0;
+		                    }
+		                }
+		                else if global.keyDown && !place_meeting(x, y+abs(yspeed)+1, objSolid)// && !place_meeting(x, y+abs(yspeed)+1, objTopSolid)
+		                {
+		                    if !place_meeting(x, y+abs(yspeed)+1, prtMovingPlatformSolid)// && !place_meeting(x, y+abs(yspeed)+1, prtMovingPlatformJumpthrough)
+		                        yspeed = ySpd;
+		                    else if place_meeting(x, y+abs(yspeed)+1, prtMovingPlatformSolid)
+		                    {
+		                        if instance_place(x, y+abs(yspeed)+1, prtMovingPlatformSolid).dead == true
+		                            yspeed = ySpd;
+								else
+									yspeed = 0;
+		                    }
+		                }
+		                else
+		                    yspeed = 0;
+					}
+				}
             }
             else
             {
