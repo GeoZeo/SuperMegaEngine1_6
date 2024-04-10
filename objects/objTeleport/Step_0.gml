@@ -2,6 +2,12 @@ timerLED += 0.1;
 if timerLED >= 2 {
     timerLED = 0;
 }
+
+if on && createScenery {
+	instance_create(x-sceneryXOffset, y-32, objMM3Teleporter);	
+	createScenery = false;
+}
+
 if (instance_exists(prtPlayer)) {
 	if sprite_index == prtPlayer.spriteTeleport {
 	    if image_index >= 2 {

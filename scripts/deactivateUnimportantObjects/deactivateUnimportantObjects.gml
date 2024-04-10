@@ -11,6 +11,8 @@ function deactivateUnimportantObjects() {
 
 	instance_activate_object(objBossDoor);
 	instance_activate_object(objBossDoorH);
+	
+	instance_activate_object(prtScenery);
 
 
 	//Objects that should remain activated, but without animation (disabled animation code is in the object itself)

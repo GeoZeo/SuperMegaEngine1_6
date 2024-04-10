@@ -66,6 +66,9 @@ if !global.frozen {
                     if !insideView() and boss == other.bossID {
                         instance_destroy();
                     }
+					
+					if !insideView()
+						on = true;
                 }
     
 				if cfgDestroyBossProjectilesOnBossDeath

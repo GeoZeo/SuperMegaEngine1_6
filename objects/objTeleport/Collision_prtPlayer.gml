@@ -1,4 +1,4 @@
-if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collision_point(x + 8, y + 8, other, false, false) {
+if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collision_point(x + (8 - sceneryXOffset), y + 8, other, false, false) {
     x = other.x;
     y = other.y;
     visible = true;
