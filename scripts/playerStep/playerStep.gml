@@ -620,6 +620,33 @@ function playerStep() {
 	        if (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid)) && (ground == true || place_meeting(x-(slideSpeed-1), y+1, objSolid) || place_meeting(x-(slideSpeed-1), y+1, objTopSolid) || place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough) || place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid)
 	        || place_meeting(x+(slideSpeed-1), y, objSolid) || place_meeting(x+(slideSpeed-1), y, prtMovingPlatformSolid)) //Extra check because if Mega Man falls down while sliding and a wall is on the other side of him and a ceiling is on top of him, when turning around on the right frame he would zip through the solids
 	        {   
+				if place_meeting(x-(slideSpeed-1), y+1, objTopSolid)
+	            {
+					//This fixes a glitch where sliding under a solid ceiling with topsolids underneath allows us to infinitely fly under those ceilings.
+					var tpsld, totalTSs, endCheck;
+					tpsld = instance_place(x-(slideSpeed-1), y+1, objTopSolid);
+					totalTSs = 0;
+					endCheck = false;
+					
+					while tpsld >= 0 && !endCheck
+					{
+						if bbox_bottom <= tpsld.bbox_top+1
+						{
+							endCheck = true;
+						}
+						
+						pltID[totalTSs] = tpsld;
+						instance_deactivate_object(tpsld);
+						totalTSs += 1;
+						tpsld = instance_place(x-(slideSpeed-1), y+1, objTopSolid);
+					}
+					if !endCheck && !(ground == true || place_meeting(x-(slideSpeed-1), y+1, objSolid) || (place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid) and !instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformSolid).dead))
+						canProceed = false;
+    
+					var i;
+					for(i = 0; i < totalTSs; i += 1)
+						instance_activate_object(pltID[i]);
+	            }
 	            if place_meeting(x, y-7, prtMovingPlatformSolid)
 	            {
 	                if instance_place(x, y-7, prtMovingPlatformSolid).dead == true
@@ -628,7 +655,7 @@ function playerStep() {
 	            if place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid)
 	            {
 	                if instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformSolid).dead == true
-	                    canProceed = false;
+						canProceed = false;
 	            }
 	            if place_meeting(x+(slideSpeed-1), y, prtMovingPlatformSolid)
 	            {
@@ -637,8 +664,31 @@ function playerStep() {
 	            }
 	            if place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough)
 	            {
-	                if instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough).dead == true
-	                    canProceed = false;
+	                //This fixes a glitch where sliding under a solid ceiling with moving topsolids underneath allows us to infinitely fly under those ceilings.
+					var pltfm, totalPlatforms, endCheck;
+				    pltfm = instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough);
+				    totalPlatforms = 0;
+					endCheck = false;
+				    while pltfm >= 0 && !endCheck
+				    {
+						if pltfm.dead == false
+				        {
+				            if bbox_bottom <= pltfm.bbox_top+1
+				            {
+								endCheck = true;
+				            }
+						}
+        
+				        pltID[totalPlatforms] = pltfm;
+				        instance_deactivate_object(pltfm);
+				        totalPlatforms += 1;
+				        pltfm = instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough);
+				    }
+					if !endCheck && !(ground == true || place_meeting(x-(slideSpeed-1), y+1, objSolid) || (place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid) and !instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformSolid).dead))
+						canProceed = false;
+		
+				    for(var i = 0; i < totalPlatforms; i += 1)
+				        instance_activate_object(pltID[i]);
 	            }
             
 	            if canProceed {
@@ -654,7 +704,8 @@ function playerStep() {
 	                }
                 
 	                ground = true;  //For the bugfix as explained on the second line of the place_meeting checks
-	            }
+					print("Slide");
+				}
 	        }
 	        else
 	        {

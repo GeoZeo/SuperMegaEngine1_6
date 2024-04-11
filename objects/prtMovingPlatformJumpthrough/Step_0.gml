@@ -49,18 +49,7 @@ if global.frozen == false && dead == false
 			with prtPlayer
 			{
 				if teleporting == false && showReady == false
-		        {
-					//Cancel slide if necessary
-					if prtPlayer.isSlide
-					{
-						prtPlayer.isSlide = false;
-			            prtPlayer.canMove = true;
-						prtPlayer.canWalk = true;
-			            prtPlayer.canSpriteChange = true;
-			            prtPlayer.mask_index = mskMegaman;
-			            prtPlayer.slideTimer = 0;
-					}
-					
+		        {	
 		            var downDist, attempts;
 		            downDist = 0;
             

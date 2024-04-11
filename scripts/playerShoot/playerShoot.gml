@@ -103,7 +103,10 @@ function playerShoot() {
 			
 				if ground /*&& shootTimer == 0 */&& !climbing { //Only do this on the ground on the first frame
 			        canWalk = false;
-			        global.xspeed = 0;
+			        
+					if !place_meeting(x, y+1, objIce)
+						global.xspeed = 0;
+					
 			        canSpriteChange = false;
 			        playerHandleSprites(); //We need to call this script because between shooting and checking shooting, it isn't executed and the wrong sprite would display
 			        sprite_index = spriteStand;
@@ -156,7 +159,10 @@ function playerShoot() {
 			
 				if ground /*&& shootTimer == 0 */&& !climbing { //Only do this on the ground on the first frame
 			        canWalk = false;
-			        global.xspeed = 0;
+					
+					if !place_meeting(x, y+1, objIce)
+						global.xspeed = 0;
+					
 			        canSpriteChange = false;
 			        playerHandleSprites(); //We need to call this script because between throwing and checking throwing, it isn't executed and the wrong sprite would display
 			        sprite_index = spriteStand;

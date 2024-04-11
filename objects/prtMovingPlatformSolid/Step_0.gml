@@ -77,18 +77,7 @@ if global.frozen == false && dead == false
 				//print("Don't Crush - Right");
 			}
 			else if minDist == downDist || (yspeed > 0 && abs(minDist - downDist) <= 3)
-			{
-				//Cancel slide if necessary
-				if prtPlayer.movedPlatformID != 20 && prtPlayer.isSlide
-				{
-					prtPlayer.isSlide = false;
-		            prtPlayer.canMove = true;
-					prtPlayer.canWalk = true;
-		            prtPlayer.canSpriteChange = true;
-		            prtPlayer.mask_index = mskMegaman;
-		            prtPlayer.slideTimer = 0;
-				}
-				
+			{				
 				prtPlayer.pltSpeedY = yspeed * update_rate;
 				prtPlayer.y += downDist;
 				//print("Don't Crush - Down");
