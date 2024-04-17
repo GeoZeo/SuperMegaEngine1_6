@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Scenery",
-    "path":"folders/Sprites/LevelObjects/Scenery.yy",
+    "name":"MM3",
+    "path":"folders/Sprites/LevelObjects/Scenery/MM3.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

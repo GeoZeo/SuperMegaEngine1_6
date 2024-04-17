@@ -30,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprEnemyActionArea",
-    "path":"sprites/sprEnemyActionArea/sprEnemyActionArea.yy",
+    "name":"sprTeleport",
+    "path":"sprites/sprTeleport/sprTeleport.yy",
   },
   "spriteMaskId":null,
   "visible":false,

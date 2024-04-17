@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprCollisionOther",
-    "path":"sprites/sprCollisionOther/sprCollisionOther.yy",
+    "name":"sprTeleport",
+    "path":"sprites/sprTeleport/sprTeleport.yy",
   },
   "spriteMaskId":null,
   "visible":true,

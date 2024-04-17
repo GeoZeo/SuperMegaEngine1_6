@@ -1,5 +1,10 @@
-if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collision_point(x + (8 - sceneryXOffset), y + 8, other, false, false) {
-    x = other.x;
+if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !other.teleporting) &&
+(collision_point(x-8, y+8, other, false, false) && collision_point(x+8, y+8, other, false, false)
+or collision_point((x-8)+(abs(global.xspeed)), y+8, other, false, false) && collision_point((x+8)-(abs(global.xspeed)), y+8, other, false, false)
+or (round(other.x) == round(x)
+or (round(other.x)-prevPlayerX < 0 and prevPlayerX >= round(x) and round(x) >= round(other.x))
+or (round(other.x)-prevPlayerX > 0 and prevPlayerX <= round(x) and round(x) <= round(other.x)))) {
+    other.x = x;
     y = other.y;
     visible = true;
     sprite_index = prtPlayer.spriteTeleport;
@@ -21,6 +26,4 @@ if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && collisi
     show_debug_message("Teleport start! Going to ("+string(toX)+","+string(toY)+")");
 
 }
-else {
 
-}

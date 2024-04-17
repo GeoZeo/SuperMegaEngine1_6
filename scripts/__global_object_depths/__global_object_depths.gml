@@ -142,7 +142,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 1); // objYokuBlock
 	array_push(global.__objectDepths, 0); // objSpawner
 	array_push(global.__objectDepths, 0); // objShake
-	array_push(global.__objectDepths, 0); // objTeleport
+	array_push(global.__objectDepths, 10); // objTeleport
 	array_push(global.__objectDepths, 0); // objTellySpawner
 	array_push(global.__objectDepths, 0); // objMM2Conveyor
 	array_push(global.__objectDepths, 0); // objWind

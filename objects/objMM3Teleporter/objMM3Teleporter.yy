@@ -8,8 +8,8 @@
   "name":"objMM3Teleporter",
   "overriddenProperties":[],
   "parent":{
-    "name":"Scenery",
-    "path":"folders/Objects/LevelObjects/Scenery.yy",
+    "name":"MM3",
+    "path":"folders/Objects/LevelObjects/Scenery/MM3.yy",
   },
   "parentObjectId":{
     "name":"prtScenery",

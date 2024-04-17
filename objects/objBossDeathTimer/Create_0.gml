@@ -20,8 +20,15 @@ with objTeleport {
         inst.alarm[0] = room_speed * 9999;
         global.bossRushDefeated[other.bossID] = true;
         if numRushBossesDefeated() == 8 {
-            instance_activate_object(objBossDoor);
-            objBossDoor.canOpen = true;
+			instance_activate_object(objBossDoor);
+			with objBossDoor canOpen = true;
+			instance_activate_object(objBossDoorH);
+			with objBossDoorH canOpen = true;
+			
+			with objTeleport {
+				if rushExit
+					on = true;
+			}
         }
         with other instance_destroy();
         with objBossControl {
@@ -48,7 +55,9 @@ if bossRush {
 	global.bossRushDefeated[other.bossID] = true;
     if numRushBossesDefeated() == 8 {
         instance_activate_object(objBossDoor);
-        objBossDoor.canOpen = true;
+		with objBossDoor canOpen = true;
+		instance_activate_object(objBossDoorH);
+		with objBossDoorH canOpen = true;
     }
     with other instance_destroy();
     with objBossControl {

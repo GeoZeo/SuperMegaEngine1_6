@@ -11,6 +11,7 @@ function deactivateUnimportantObjects() {
 
 	instance_activate_object(objBossDoor);
 	instance_activate_object(objBossDoorH);
+	instance_activate_object(objTeleport);
 	
 	instance_activate_object(prtScenery);
 

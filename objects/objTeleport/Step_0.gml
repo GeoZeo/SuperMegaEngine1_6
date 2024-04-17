@@ -4,11 +4,11 @@ if timerLED >= 2 {
 }
 
 if on && createScenery {
-	instance_create(x-sceneryXOffset, y-32, objMM3Teleporter);	
+	instance_create(x-16, y-32, objMM3Teleporter);	
 	createScenery = false;
 }
 
-if (instance_exists(prtPlayer)) {
+if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporting)) {
 	if sprite_index == prtPlayer.spriteTeleport {
 	    if image_index >= 2 {
 	        if !out {
@@ -52,13 +52,19 @@ if (instance_exists(prtPlayer)) {
 					
 					if !canHit
 						canHit = true;
+						
+					global.yspeed = 0;
+					stopSFX(sfxLand);
 					
-					if instance_place(x, y+1, objSolid) || instance_place(x, y+1, objTopSolid) || instance_place(x, y+1, prtMovingPlatformSolid) || instance_place(x, y+1, prtMovingPlatformJumpthrough) {
-						global.yspeed = 0;
+					if place_meeting(x, y+1, objSolid)
+					|| (place_meeting(x, y+1, objTopSolid) && bbox_bottom <= instance_place(x, y+1, objTopSolid).bbox_top+1)
+					|| (place_meeting(x, y+1, prtMovingPlatformSolid) and !instance_place(x, y+1, prtMovingPlatformSolid).dead)
+					|| ((place_meeting(x, y+1, prtMovingPlatformJumpthrough) && bbox_bottom <= instance_place(x, y+1, prtMovingPlatformJumpthrough).bbox_top+1) and !instance_place(x, y+1, prtMovingPlatformJumpthrough).dead) {
+						
 						ground = true;
-						stopSFX(sfxLand);
 						sprite_index = spriteStand;
 						image_speed = speedStand;
+						
 					}
 				}
 				
@@ -68,5 +74,7 @@ if (instance_exists(prtPlayer)) {
 	        }
 	    }
 	}
+	
+	prevPlayerX = round(prtPlayer.x);
 }
 
