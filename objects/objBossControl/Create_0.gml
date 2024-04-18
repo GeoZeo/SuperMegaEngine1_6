@@ -41,7 +41,7 @@ spawnItem = true;
 itemX = 0;
 itemY = 0;
 
-myBoss = instance_nearest(x, y, prtBoss);
+myBoss = -1;
 bossID = -1;
 bossPersistent = false;
 

@@ -4,8 +4,6 @@ spd = 0.5;
 
 image_xscale = 1;
 image_speed = 5 / room_speed;
-    
-control = instance_nearest(x, y, objBossControl);
 
 explosionTime = 18;
 explosionTimer = 0;

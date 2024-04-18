@@ -91,7 +91,6 @@ climbing = false;
 climbSpriteTimer = 0;
 canStep = false; //We can actually perform the step event even if canStep = false; it's merely used to block certain events from happening at the first frame, as canStep becomes true after 1 frame
 alarm[0] = 1; //For canStep
-pharaohShotInitTimer = 0;
 teleporting = false;
 teleportY = 0;
 teleportTimer = 0;

@@ -14,7 +14,7 @@ bossID = -1;
 //Do we always have to fight this boss even if it's already been beaten once?
 bPersistent = true;
 
-control = instance_nearest(x, y, objBossControl);
+control = -1;
 
 //Initialization variables, don't change
 global.weaponID = weaponID;
