@@ -6,9 +6,10 @@ dir = -1;
 opening = false;
 closing = false;
 canOpen = true;
-openY = 0;
 openImgSpeed = 0.15;
 image_speed = 0;
+
+rushExit = false;
 
 alarm[0] = 1;
 

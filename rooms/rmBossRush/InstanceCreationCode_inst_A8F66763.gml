@@ -3,3 +3,4 @@ if numRushBossesDefeated() < 8 {
 }
 
 halfDoor = true;
+rushExit = true;

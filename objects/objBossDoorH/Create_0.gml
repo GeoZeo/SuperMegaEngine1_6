@@ -6,9 +6,16 @@ dir = -1;
 opening = false;
 closing = false;
 canOpen = true;
-openY = 0;
 openImgSpeed = 0.15;
 image_speed = 0;
 
+rushExit = false;
+
 alarm[0] = 1;
+
+halfDoor = false;   //Whether to use just half the door
+
+mySolid = -1;
+
+instance_create(floor(x / __view_get( e__VW.WView, 0 )) * __view_get( e__VW.WView, 0 ), y, objSectionBorderHorizontal);
 

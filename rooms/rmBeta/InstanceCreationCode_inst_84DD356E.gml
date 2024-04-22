@@ -1,0 +1,1 @@
+halfDoor = true;

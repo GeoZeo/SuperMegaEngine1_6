@@ -10,6 +10,9 @@ if (!restartTimer)
 			myTeleport.toX = toX;
 			myTeleport.toY = toY;
 			myTeleport.returnBGM = teleportBGM;
+			myTeleport.drawLED = false;
+			myTeleport.image_xscale = 1/16;
+			myTeleport.image_yscale = 1/16;
 		}
 	}
 }

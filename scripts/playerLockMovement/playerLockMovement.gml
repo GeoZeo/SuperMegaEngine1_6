@@ -49,7 +49,20 @@ function playerLockMovement() {
 	    global.xspeed = 0;
 		
 		if !instance_exists(objBossDeathTimer) {
-			global.yspeed = 0;
+			if !instance_exists(objTeleport) {
+				global.yspeed = 0;
+			}
+			else {
+				var _zero = true;
+				with objTeleport {
+					if on
+						_zero = false;
+					if (global.yspeed < 0 && (alarm[3] != -1 or !playerLocked)) || sprite_index == prtPlayer.spriteTeleport {
+						global.yspeed = 0;
+						break;
+					}
+				}
+			}
 		}
 		else if global.yspeed < 0
 			global.yspeed = 0;

@@ -7,6 +7,7 @@ function playerFreeMovement() {
 		canSwitch = true;
 	    canMove = true;
 		canWalk = true;
+		canGravity = true;
 	    canSpriteChange = true;
 	    canPause = true;
 	    mask_index = mskMegaman;

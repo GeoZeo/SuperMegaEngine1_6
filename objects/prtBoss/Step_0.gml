@@ -71,7 +71,7 @@ if !global.frozen {
 				if cfgDestroyBossProjectilesOnBossDeath
 					with prtEnemyProjectile instance_destroy();
 	
-				instance_create(x, y, objBossDeathTimer);	
+				instance_create(x, y, objBossDeathTimer);
                 instance_destroy();
             }
             

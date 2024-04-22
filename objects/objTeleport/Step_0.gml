@@ -66,7 +66,15 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 						image_speed = speedStand;
 						
 					}
+					
+					if other.water
+						inWater = true;
 				}
+				
+				if image_xscale != 1
+					image_xscale = 1;
+				if image_yscale != 1
+					image_yscale = 1;
 				
 	            if returnBGM > -1 {
 	                playMusicVolume(returnBGM, 0.9);
@@ -76,5 +84,18 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	}
 	
 	prevPlayerX = round(prtPlayer.x);
+	
+	if prtPlayer.ground && playerLocked {
+		if warpTime > 0 {
+			alarm[3] = warpTime;
+			playerLocked = false;
+		}
+		else {
+			playerLocked = false;
+			x = prtPlayer.x;
+			y = prtPlayer.y;
+			on = true;
+		}
+	}
 }
 

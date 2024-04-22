@@ -6,24 +6,35 @@ control = instance_nearest(x, y, objBossControl);
 bossID = myBoss.bossID;
 noBoss = false;
 
-bossRush = false;
+bossRush = control.bossRush;
 
 //If there is a teleporter in the room (boss rush), just destroy the death timer
 instance_activate_object(objTeleport);
 with objTeleport {
-	if boss > -1
-		bossRush = true;
 	
-    if insideView() {
+    if insideView() && other.bossRush {
         on = true;
-        var inst = instance_create(other.x - 8, other.y - 8, objLifeEnergyBig);
-        inst.alarm[0] = room_speed * 9999;
+		if other.control.itemToSpawn > -1 {
+			if other.control.bossSpawnItem {
+				var inst = instance_create(other.x - 8, other.y - 8, other.control.itemToSpawn);
+				inst.alarm[0] = room_speed * 9999;
+			}
+			else {
+				var inst = instance_create(other.control.itemX, other.control.itemY, other.control.itemToSpawn);
+			}
+		}
         global.bossRushDefeated[other.bossID] = true;
         if numRushBossesDefeated() == 8 {
 			instance_activate_object(objBossDoor);
-			with objBossDoor canOpen = true;
+			with objBossDoor {
+				if rushExit
+					canOpen = true;
+			}
 			instance_activate_object(objBossDoorH);
-			with objBossDoorH canOpen = true;
+			with objBossDoorH {
+				if rushExit
+					canOpen = true;
+			}
 			
 			with objTeleport {
 				if rushExit
@@ -39,27 +50,50 @@ with objTeleport {
 }
 
 if bossRush {
-	if !control.timerWarp {
-		var inst = instance_create(other.x - 8, other.y - 8, objLifeEnergyBig);
+	if control.bossSpawnItem && control.itemToSpawn > -1 {
+		var inst = instance_create(x - 8, y - 8, control.itemToSpawn);
         inst.alarm[0] = 105 * 2;
 		inst.teleport = true;
 		inst.toX = control.toX;
 		inst.toY = control.toY;
-		inst.returnBGM = control.returnBGM;
+		inst.teleportBGM = control.returnBGM;
 	}
 	else {
-		alarm[3] = 240;
-		var inst = instance_create(control.itemX, control.itemY, objLifeEnergyBig);
-        inst.alarm[0] = room_speed * 9999;
+		var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+		with myTeleport {
+			image_xscale = 1/16;
+			image_yscale = 1/16;
+			var _control = other.control;
+			toX = _control.toX;
+			toY = _control.toY;
+			returnBGM = _control.returnBGM;
+			drawLED = false;
+			on = false;
+			alarm[2] = 180;
+		}
+		
+		if control.itemToSpawn > -1
+			var inst = instance_create(control.itemX, control.itemY, control.itemToSpawn);
 	}
 	global.bossRushDefeated[other.bossID] = true;
     if numRushBossesDefeated() == 8 {
         instance_activate_object(objBossDoor);
-		with objBossDoor canOpen = true;
+		with objBossDoor {
+			if rushExit
+				canOpen = true;
+		}
 		instance_activate_object(objBossDoorH);
-		with objBossDoorH canOpen = true;
+		with objBossDoorH {
+			if rushExit
+				canOpen = true;
+		}
+			
+		with objTeleport {
+			if rushExit
+				on = true;
+		}
     }
-    with other instance_destroy();
+    instance_destroy();
     with objBossControl {
         drawHealthBar = false;
     }
@@ -72,29 +106,67 @@ if !control.endLevel {
 	instance_activate_object(objBossDoor);
 	with objBossDoor
 	{
-		if insideView()
+		if insideView() && ((dir == 1 && prtPlayer.x > x) or (dir == -1 && prtPlayer.x <= x)) {
 			canOpen = true;
 			warp = false;
+		}
 	}
 	instance_activate_object(objBossDoorH);
 	with objBossDoorH
 	{
-		if insideView()
+		if insideView() && ((dir == 1 && prtPlayer.y > y) or (dir == -1 && prtPlayer.y <= y)) {
 			canOpen = true;
 			warp = false;
+		}
 	}
 	instance_activate_object(objTeleport);
 	with objTeleport
 	{
-		if insideView()
+		if insideView() {
 			on = true;
 			warp = false;
+		}
 	}
 	
-	var inst = instance_create(x - 8, y - 8, objLifeEnergyBig);
-	inst.alarm[0] = room_speed * 9999;
+	var inst;
+	if warp {
+		if control.bossSpawnItem && control.itemToSpawn > -1 {
+			inst = instance_create(x - 8, y - 8, control.itemToSpawn);
+	        inst.alarm[0] = 105 * 2;
+			inst.teleport = true;
+			inst.toX = control.toX;
+			inst.toY = control.toY;
+			inst.teleportBGM = control.returnBGM;
+		}
+		else {
+			var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+			with myTeleport {
+				image_xscale = 1/16;
+				image_yscale = 1/16;
+				var _control = other.control;
+				toX = _control.toX;
+				toY = _control.toY;
+				returnBGM = _control.returnBGM;
+				drawLED = false;
+				on = false;
+				alarm[2] = 180;
+			}
+		
+			if control.itemToSpawn > -1
+				inst = instance_create(control.itemX, control.itemY, control.itemToSpawn);
+		}
+	}
+	else if control.itemToSpawn > -1 {
+		if control.bossSpawnItem {
+			inst = instance_create(x - 8, y - 8, control.itemToSpawn);
+			inst.alarm[0] = room_speed * 9999;
+		}
+		else {
+			inst = instance_create(other.control.itemX, other.control.itemY, other.control.itemToSpawn);
+		}
+	}
 	
-	with other instance_destroy();
+	instance_destroy();
     with objBossControl {
         drawHealthBar = false;
     }

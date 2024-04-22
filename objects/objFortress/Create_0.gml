@@ -14,7 +14,7 @@ global.levelStart = true;
 
 //Code to run the first time the fortress is loaded
 if !global.fortressStarted {
-    global.fortressLevels[0] = rmFortressStage;
+    global.fortressLevels[0] = rmBossRush;
     global.fortressLevels[1] = rmBossRush;
     global.fortressLevels[2] = rmFinalStage;
     

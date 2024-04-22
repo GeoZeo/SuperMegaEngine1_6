@@ -304,6 +304,7 @@
     {"id":{"name":"sprBossDoor","path":"sprites/sprBossDoor/sprBossDoor.yy",},},
     {"id":{"name":"sprBossHalfDoor","path":"sprites/sprBossHalfDoor/sprBossHalfDoor.yy",},},
     {"id":{"name":"sprBossDoorH","path":"sprites/sprBossDoorH/sprBossDoorH.yy",},},
+    {"id":{"name":"sprBossHalfDoorH","path":"sprites/sprBossHalfDoorH/sprBossHalfDoorH.yy",},},
     {"id":{"name":"sprPharaohmask","path":"sprites/sprPharaohmask/sprPharaohmask.yy",},},
     {"id":{"name":"sprPharaohPose","path":"sprites/sprPharaohPose/sprPharaohPose.yy",},},
     {"id":{"name":"sprPharaohStand","path":"sprites/sprPharaohStand/sprPharaohStand.yy",},},

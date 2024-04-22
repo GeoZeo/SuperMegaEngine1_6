@@ -2,9 +2,11 @@
 if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XView, 0 ) && x <= __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )-1
 && y >= __view_get( e__VW.YView, 0 ) && y <= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )-1
 {
-	if (myBoss > -1 and (bossID > -1 and bossID < array_length(global.bossDefeated) and !global.bossDefeated[bossID])) || (myBoss > -1 and bossPersistent)
+	var _groundChecked = prtPlayer.ground || !checkForGround;
+	
+	if (myBoss > -1 and (bossID > -1 and bossID < array_length(global.bossDefeated) and !global.bossDefeated[bossID])) || (myBoss > -1 and (bossPersistent or bossIsClone))
 	{
-		if bossTimer < bossTime && prtPlayer.ground //Comment out " && prtPlayer.ground" if you want the timer to tick regardless of whether or not MM is on the ground.
+		if bossTimer < bossTime && _groundChecked
 		{
 			bossTimer++;
 			if bossTimer >= bossTime
@@ -18,7 +20,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 	    //Also plays the boss music
 	    if canInitDeactivation == true
 	    {
-			if bossTimer >= bossTime// && prtPlayer.ground //Again, comment out " && prtPlayer.ground" if you don't want it.
+			if bossTimer >= bossTime && _groundChecked
 			{	
 				canInitDeactivation = false;
 			}
@@ -28,7 +30,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 				
 			stopSFX(global.bgm);
 			
-			if bossTimer >= bossTime// && prtPlayer.ground //Again, comment out " && prtPlayer.ground" if you don't want it.
+			if bossTimer >= bossTime && _groundChecked
 			{
 				myBoss.startIntro = true;
         
@@ -46,7 +48,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			}
 	    }
     
-	    if bossTimer >= bossTime// && prtPlayer.ground //Again, comment out " && prtPlayer.ground" if you don't want it.
+	    if bossTimer >= bossTime && _groundChecked
 		{
 			//Preparing to fill the health bar
 			if canFillHealthBar == true
@@ -92,7 +94,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 		//If there is no boss to fight, we don't activate the boss and instead just warp out.
 		if canInitDeactivation == true
 		{
-			/*if prtPlayer.ground*/ canInitDeactivation = false; //Again, get rid of the prtPlayer.ground "if" statements if you don't want this to be affected by whether or not MM is on the ground.
+			if _groundChecked canInitDeactivation = false;
 			
 			if endLevel
 			{
@@ -106,28 +108,60 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			
 				stopSFX(global.bgm);
 				
-				/*if prtPlayer.ground*/ alarm[0] = 240;
+				if _groundChecked alarm[0] = 240;
 			}
 			else
 			{
-				 instance_activate_object(objBossDoor);
-				 with objBossDoor
-				 {
-					if insideView()
+				var warp = true;
+				instance_activate_object(objBossDoor);
+				with objBossDoor
+				{
+					if insideView() && ((dir == 1 && prtPlayer.x > x) or (dir == -1 && prtPlayer.x <= x)) {
 						canOpen = true;
-				 }
-				 instance_activate_object(objBossDoorH);
-				 with objBossDoorH
-				 {
-					if insideView()
+						warp = false;
+					}
+				}
+				instance_activate_object(objBossDoorH);
+				with objBossDoorH
+				{
+					if insideView() && ((dir == 1 && prtPlayer.y > y) or (dir == -1 && prtPlayer.y <= y)) {
 						canOpen = true;
-				 }
-				 instance_activate_object(objTeleport);
-				 with objTeleport
-				 {
-					if insideView()
+						warp = false;
+					}
+				}
+				instance_activate_object(objTeleport);
+				with objTeleport
+				{
+					if insideView() {
 						on = true;
-				 }
+						warp = false;
+					}
+				}
+				 
+				if warp {
+					
+					if !prtPlayer.locked
+					{
+						playerLockMovement();
+				
+						if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
+							playerLockMovement(true);
+					}
+			
+					stopSFX(global.bgm);
+					
+					var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+					with myTeleport {
+						image_xscale = 1/16;
+						image_yscale = 1/16;
+						toX = other.toX;
+						toY = other.toY;
+						returnBGM = other.returnBGM;
+						drawLED = false;
+						on = false;
+						alarm[2] = 180;
+					}
+				}
 			}
 		}
 	}

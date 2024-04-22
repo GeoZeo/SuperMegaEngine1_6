@@ -31,15 +31,15 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objProtoBusterWeapon
 	array_push(global.__objectDepths, -1); // objMetalBlade
 	array_push(global.__objectDepths, 0); // objMetalBladeWeapon
-	array_push(global.__objectDepths, 0); // objNeedleCannon
+	array_push(global.__objectDepths, -1); // objNeedleCannon
 	array_push(global.__objectDepths, 0); // objNeedleCannonWeapon
 	array_push(global.__objectDepths, -2); // objPharaohShotCharging
 	array_push(global.__objectDepths, -1); // objPharaohShot
 	array_push(global.__objectDepths, -1); // objPharaohShotCharged
 	array_push(global.__objectDepths, 0); // objPharaohShotWeapon
 	array_push(global.__objectDepths, 0); // objDrillBombWeapon
-	array_push(global.__objectDepths, 0); // objDrillBomb
-	array_push(global.__objectDepths, 0); // objDrillBombExplosion
+	array_push(global.__objectDepths, -1); // objDrillBomb
+	array_push(global.__objectDepths, -1); // objDrillBombExplosion
 	array_push(global.__objectDepths, -3); // objStarCrash
 	array_push(global.__objectDepths, 0); // objStarCrashWeapon
 	array_push(global.__objectDepths, -1); // objChargeKick
@@ -51,7 +51,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objCentaurFlash
 	array_push(global.__objectDepths, 0); // objCentaurFlashWeapon
 	array_push(global.__objectDepths, 0); // objHornetChaserWeapon
-	array_push(global.__objectDepths, 0); // objHornetChaser
+	array_push(global.__objectDepths, 1); // objHornetChaser
 	array_push(global.__objectDepths, 0); // prtRush
 	array_push(global.__objectDepths, 0); // objRushCoil
 	array_push(global.__objectDepths, 0); // objRushCoilWeapon

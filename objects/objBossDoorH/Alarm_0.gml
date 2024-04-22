@@ -1,4 +1,4 @@
-if dir == -1 {
+if dir == -1 && canOpen && !halfDoor {
     mySolid = instance_create(x, y+16, objSolid);
     mySolid.image_xscale = 4;
 }

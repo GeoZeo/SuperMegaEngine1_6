@@ -26,7 +26,7 @@ function playerCollision() {
 		
 	//Floor
 	var mySolid = instance_place(x, y+global.yspeed, objSolid);
-	if mySolid >= 0 && global.yspeed > 0
+	if mySolid >= 0 && global.yspeed > 0 && !place_meeting(x, y-1, objBossDoorH)
 	{
 	    y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
 	    ground = true;

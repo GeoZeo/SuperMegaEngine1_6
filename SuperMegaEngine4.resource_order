@@ -247,6 +247,7 @@
     {"name":"sprColtonBullet","order":1,"path":"sprites/sprColtonBullet/sprColtonBullet.yy",},
     {"name":"sprBossHalfDoor","order":1,"path":"sprites/sprBossHalfDoor/sprBossHalfDoor.yy",},
     {"name":"sprBossDoorH","order":2,"path":"sprites/sprBossDoorH/sprBossDoorH.yy",},
+    {"name":"sprBossHalfDoorH","order":3,"path":"sprites/sprBossHalfDoorH/sprBossHalfDoorH.yy",},
     {"name":"sprPharaohPose","order":1,"path":"sprites/sprPharaohPose/sprPharaohPose.yy",},
     {"name":"sprPharaohStand","order":2,"path":"sprites/sprPharaohStand/sprPharaohStand.yy",},
     {"name":"sprPharaohJump","order":3,"path":"sprites/sprPharaohJump/sprPharaohJump.yy",},

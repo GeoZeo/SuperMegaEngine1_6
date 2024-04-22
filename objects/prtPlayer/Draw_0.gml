@@ -65,9 +65,7 @@ else if teleporting == true
     }
 }
 else if showReady == true
-{
-    instance_activate_object(objTeleport);
-	
+{	
 	//Draw the READY text
     readyTimer += 1;
     
