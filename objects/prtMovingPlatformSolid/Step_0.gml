@@ -97,7 +97,6 @@ if global.frozen == false && dead == false
 						}
 					}
 				}
-				print("Solid");
 			}
                 
             // Crush the player if necessary

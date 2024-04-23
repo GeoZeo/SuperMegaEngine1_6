@@ -85,8 +85,6 @@ function playerMovingPlatform() {
     
 	    instance_deactivate_object(ID[maxID]);
 	    pltfm = collision_rectangle(bbox_left+global.xspeed, bbox_top, bbox_right+global.xspeed, bbox_bottom-4, prtMovingPlatformSolid, false, false);
-		
-		print("Don't Crush");
 	}
 
 	for(i = 0; i <= maxID; i += 1)

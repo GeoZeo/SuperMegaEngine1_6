@@ -704,7 +704,6 @@ function playerStep() {
 	                }
                 
 	                ground = true;  //For the bugfix as explained on the second line of the place_meeting checks
-					print("Slide");
 				}
 	        }
 	        else

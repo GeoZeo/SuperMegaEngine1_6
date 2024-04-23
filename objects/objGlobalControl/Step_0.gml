@@ -123,36 +123,55 @@ if curr_front_layer < global.end_front_layer {
 //}
 
 if instance_exists(prtPlayer) {
-	if !prtPlayer.climbing
+	if !prtPlayer.climbing && (!prtPlayer.isSlide or prtPlayer.slideSpeed == 0)
 		cameraXOffset = prtPlayer.image_xscale;
 	else
 		cameraXOffset = 0;
 }
 
-///Debug keys
-if !cfgEnableDebugKeys {
-    exit;
-}
-
-if keyboard_check_pressed(vk_f2)
+//Non-debug QoL keys
+//Restart the game
+if keyboard_check_pressed(vk_f1)
 {
     application_surface_draw_enable(true);
     sound_stop_all();
     game_restart();
 }
 
-// Suicide.
-if keyboard_check_pressed(vk_f3)
-{
-    global._health = 0;
+//Reset window transform to default
+if keyboard_check_pressed(vk_f2) {
+	window_set_size(768, 672);
+	
+	if window_get_showborder()
+		window_set_position(576, 215);
+	else
+		window_set_position(576, 204);
+		
+	window_set_fullscreen(false);
 }
+
+//Toggle borderless window
+if keyboard_check_pressed(vk_f3)
+    window_set_showborder( !window_get_showborder() );
     
+//Toggle fullscreen
 if keyboard_check_pressed(vk_f4)
     window_set_fullscreen( !window_get_fullscreen() );
     
+//Close the game
 if keyboard_check_pressed(vk_escape)
     game_end();
-    
+
+///Debug keys
+if !cfgEnableDebugKeys {
+    exit;
+}
+
+// Suicide.
+if keyboard_check_pressed(vk_f5)
+{
+    global._health = 0;
+}
 
 if keyboard_check_pressed(vk_f6) debug_password();
 if keyboard_check_pressed(vk_f7) saveGame(0);

@@ -61,7 +61,6 @@ if global.frozen == false && dead == false
 		            }
   
 		            y += downDist;
-					print("Jumpthrough");
 					
 					if place_meeting(x, y+1, prtMovingPlatformSolid)
 					{
