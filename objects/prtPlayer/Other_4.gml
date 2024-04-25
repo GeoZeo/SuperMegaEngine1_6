@@ -12,6 +12,16 @@ if !instance_exists(objFadeIn)
 
 playerCameraInit();
 
+if global.checkpoint
+{
+	bgm = global.checkpointBGM;
+	bgmVolume = global.checkpointBGMVolume;
+	bgmLoopStart = global.checkpointBGMLoopStart;
+	bgmLoopEnd = global.checkpointBGMLoopEnd;
+}
+
+playMusic(bgm, bgmVolume, bgmLoopStart, bgmLoopEnd);
+
 bgm = global.bgmIndex;
 bgmLoopStart = global.loopStart;
 bgmLoopEnd = global.loopEnd;
@@ -20,3 +30,4 @@ bgmLength = global.length;
 
 if room == rmWeaponGet
 	jingle = noone;
+

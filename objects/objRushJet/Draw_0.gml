@@ -45,7 +45,7 @@ else if teleporting == true
         draw_sprite_ext(sprite_index, image_index, round(x), round(__view_get( e__VW.YView, 0 )-32+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
         if !prtPlayer.ground && !place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, objSolid)
 		&& (!place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid) or instance_place(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid).dead){
-            y = sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed;
+            y = round(sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed);
 			
 			//This pushes us out of ceiling/ground solids we may be jumping into if needs be.
 			if place_meeting(x, y, objSolid)
@@ -53,10 +53,10 @@ else if teleporting == true
 				var mySolid = instance_place(x, y, objSolid)
 				if mySolid >= 0
 				{
-					if y <= mySolid.y
-						y += mySolid.bbox_top - bbox_bottom;
+					if y <= round(mySolid.y)
+						y += round(mySolid.bbox_top - bbox_bottom);
 					else
-						y += mySolid.bbox_bottom - bbox_top;
+						y += round(mySolid.bbox_bottom - bbox_top);
 				}
 			}
 			else if place_meeting(x, y, prtMovingPlatformSolid)
@@ -64,15 +64,15 @@ else if teleporting == true
 				var mySolid = instance_place(x, y, prtMovingPlatformSolid)
 				if mySolid >= 0 && !mySolid.dead
 				{
-					if y <= mySolid.y
-						y += mySolid.bbox_top - bbox_bottom;
+					if y <= round(mySolid.y)
+						y += round(mySolid.bbox_top - bbox_bottom);
 					else
-						y += mySolid.bbox_bottom - bbox_top;
+						y += round(mySolid.bbox_bottom - bbox_top);
 				}
 			}
         }
         else {
-            y = sprite_get_ycenter_object(prtPlayer) - 8;
+            y = round(sprite_get_ycenter_object(prtPlayer) - 8);
         }
 		
         if global.frozen == false

@@ -1,6 +1,10 @@
-/// @description playMusic([bgm], [volume], [loopStart], [loopEnd])
+/// @description playMusic([filename], [volume], [loop start], [loop end])
 function playMusic() {
 	//Plays music
+	//Calling this script while passing a filename argument results in the BGM changing
+	//Example: playMusic("CutMan.ogg", 0.6, 0.4, 0.8)
+	//Otherwise, it plays the BGM that was originally supposed to play
+	//The script used to play it is determined by whether or not volume and loop points are valid
 	
 	var _new_bgm = argument[0];
 	var _new_volume = argument[1];
@@ -12,6 +16,7 @@ function playMusic() {
 		if _new_volume > -1 && _new_loop_start > -1 && _new_loop_end > -1 {
 				
 			playMusicVolumeLoopPoint(_new_bgm, _new_volume, _new_loop_start, _new_loop_end);
+			print("Music");
 		}
 		else if _new_volume > -1 {
 				
