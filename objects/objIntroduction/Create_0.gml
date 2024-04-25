@@ -1,6 +1,6 @@
 //The boss introduction screen object
 
-playMusicNoLoopVolume(bgmIntroduction, 0.7);
+playMusicVolume(bgmIntroduction, 0.7);
 
 totalLinesUp = 2;
 lineUpY[0] = round(room_height/4)-21;

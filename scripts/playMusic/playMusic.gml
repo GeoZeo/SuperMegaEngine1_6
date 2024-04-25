@@ -1,31 +1,67 @@
-/// @description playMusic(filename)
-function playMusic(argument0) {
+/// @description playMusic([bgm], [volume], [loopStart], [loopEnd])
+function playMusic() {
 	//Plays music
-	//Example: playMusic("CutMan.ogg")
-
-	stopSFX(global.bgm);
-	var snd = noone;
-	if is_string(argument0) {   //For retro compatibility
-	    var parts = split(argument0, ".");
-	    var name = ds_queue_dequeue(parts);
-	    var sound = asset_get_index("bgm" + name);
-	    if !audio_is_playing(sound) {
-	        snd = audio_play_sound(sound, 1, true);
-	    }
-		global.bgmIndex = sound;
-	}
-	else if !audio_is_playing(argument0) {
-	    snd = audio_play_sound(argument0, 1, true);
-		global.bgmIndex = argument0;
+	
+	var _new_bgm = argument[0];
+	var _new_volume = argument[1];
+	var _new_loop_start = argument[2];
+	var _new_loop_end = argument[3];
+	
+	if _new_bgm > -1 {
 		
+		if _new_volume > -1 && _new_loop_start > -1 && _new_loop_end > -1 {
+				
+			playMusicVolumeLoopPoint(_new_bgm, _new_volume, _new_loop_start, _new_loop_end);
+		}
+		else if _new_volume > -1 {
+				
+			playMusicVolume(_new_bgm, _new_volume);
+		}
+		else if _new_loop_start > -1 && _new_loop_end > -1 {
+			
+			playMusicLoopPoint(_new_bgm, _new_loop_start, _new_loop_end);
+		}
+		else {
+			
+			playMusicDefault(_new_bgm);
+		}
+		
+		exit;
 	}
-	if snd != noone {
-	    global.bgm = snd;
+	else if instance_exists(prtPlayer) {
+		
+		with prtPlayer {
+			
+			if bgm > -1 {
+			
+				if bgmVolume > -1 && bgmLoopStart > -1 && bgmLoopEnd > -1 && bgmLength > -1 {
+				
+					playMusicVolumeLoopPoint(bgm, bgmVolume, bgmLoopStart / bgmLength, bgmLoopEnd / bgmLength);
+				}
+				else if bgmVolume > -1 {
+				
+					playMusicVolume(bgm, bgmVolume);
+				}
+				else if bgmLoopStart > -1 && bgmLoopEnd > -1 && bgmLength > -1 {
+			
+					playMusicLoopPoint(bgm, bgmLoopStart / bgmLength, bgmLoopEnd / bgmLength);
+				}
+				else {
+			
+					playMusicDefault(bgm);
+				}
+			}
+			else {
+		
+				playNoMusic();
+			}
+		}
 	}
-	if instance_exists(prtPlayer) && prtPlayer.jingle > -1 && room != rmWeaponGet {
-		stopSFX(global.bgm);
+	else {
+		
+		playNoMusic();
 	}
-
-
-
+	
+	
+	
 }

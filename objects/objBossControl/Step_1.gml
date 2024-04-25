@@ -44,7 +44,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			    else if musicLoopPointStart != -1
 			        playMusicLoopPoint(music, musicLoopPointStart, musicLoopPointEnd);
 			    else
-			        playMusic(music);
+			        playMusicDefault(music);
 			}
 	    }
     

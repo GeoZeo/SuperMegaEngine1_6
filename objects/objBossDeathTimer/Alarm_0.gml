@@ -4,10 +4,10 @@ playerLockMovement(true);
 
 if global.fortressStarted && global.fortressLevels[global.currentFortressLevel] == room &&
 global.currentFortressLevel >= global.numFortressLevels - 1 {
-	playMusicNoLoop(bgmBeatFinalBoss);
+	playMusicDefault(bgmBeatFinalBoss);
 }
 else {
-	playMusicNoLoop(bgmVictory);
+	playMusicDefault(bgmVictory);
 }
 
 with prtPlayer event_user(0); //Resets the colors, so charging the buster won't affect the colors

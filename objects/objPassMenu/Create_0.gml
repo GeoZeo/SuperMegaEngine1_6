@@ -10,7 +10,7 @@ if global._lives < 0 {
     gameOver = true;
     canSelectOption = false;
     if !audio_is_playing(bgmGameOver) {
-        playMusicNoLoopVolume(bgmGameOver, 1);
+        playMusicVolume(bgmGameOver, 1);
     }
     alarm[0] = 240;
 }

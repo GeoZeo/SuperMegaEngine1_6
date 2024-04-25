@@ -7,7 +7,7 @@ time_to_map = 24;
 time_to_start = 60;
 
 alarm[0] = time_to_flash1;
-playMusicNoLoop(bgmFortress);
+playMusicDefault(bgmFortress);
 
 global.checkpoint = false;
 global.levelStart = true;

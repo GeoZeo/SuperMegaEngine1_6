@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"playMusicNoLoopVolume",
+  "%Name":"playMusicDefault",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"playMusicNoLoopVolume",
+  "name":"playMusicDefault",
   "parent":{
     "name":"Sound",
     "path":"folders/Scripts/Sound.yy",

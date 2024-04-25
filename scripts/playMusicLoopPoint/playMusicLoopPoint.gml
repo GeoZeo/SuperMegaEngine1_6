@@ -1,8 +1,8 @@
-/// @description playMusic(filename, loop start, loop end)
+/// @description playMusicLoopPoint(filename, loop start, loop end)
 function playMusicLoopPoint(argument0, argument1, argument2) {
 	//Plays music and loops from one point to another point
 	//loop start and loop end should be between 0 and 1 (0 being 0:00 and 1 being the end of the music)
-	//Example: playMusic("CutMan.ogg", 0.4, 0.8)
+	//Example: playMusicLoopPoint("CutMan.ogg", 0.4, 0.8)
 
 	stopSFX(global.bgm);
 	var snd = noone;

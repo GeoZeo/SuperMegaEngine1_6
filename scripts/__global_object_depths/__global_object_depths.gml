@@ -159,6 +159,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // prtDestructibleBlock
 	array_push(global.__objectDepths, 0); // objDustBlock
 	array_push(global.__objectDepths, 0); // objAutoScroll
+	array_push(global.__objectDepths, -1001000); // objMusicPlayer
 	array_push(global.__objectDepths, 0); // prtEffect
 	array_push(global.__objectDepths, 0); // objExplosion
 	array_push(global.__objectDepths, 0); // objItemExplosion
@@ -403,6 +404,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "prtDestructibleBlock");
 	array_push(global.__objectNames, "objDustBlock");
 	array_push(global.__objectNames, "objAutoScroll");
+	array_push(global.__objectNames, "objMusicPlayer");
 	array_push(global.__objectNames, "prtEffect");
 	array_push(global.__objectNames, "objExplosion");
 	array_push(global.__objectNames, "objItemExplosion");

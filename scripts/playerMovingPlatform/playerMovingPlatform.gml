@@ -260,7 +260,10 @@ function playerMovingPlatform() {
 
 	//Play the landing SFX. Now carried out at the end since new spike floor code causes part of the landing SFX to start playing before the death SFX.
 	if canPlayLandSound && (!global.frozen or !audio_is_playing(sfxEnergyRestore)) {
-		playSFX(sfxLand);
+		
+		if !isHit
+			playSFX(sfxLand);
+			
 		canPlayLandSound = false;
 	}
 	

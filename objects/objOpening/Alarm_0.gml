@@ -2,7 +2,7 @@ event_inherited();
 delay = 46;
 delay_frames = room_speed * delay;
 alarm[1] = delay_frames;
-playMusicNoLoop(bgmOpening);
+playMusicDefault(bgmOpening);
 
 txt = instance_create(24, 165, objText);
 txt.allow_fast_forward = false;

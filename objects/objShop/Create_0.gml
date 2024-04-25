@@ -18,5 +18,5 @@ __background_set( e__BG.Index, 0, bg );
 var bgm = asset_get_index("bgm" + global.sprName + "Shop");
 if (bgm == -1) bgm = bgmShop;
 stopAllSFX();
-playMusic(bgm);
+playMusicDefault(bgm);
 

@@ -90,7 +90,7 @@ else if showReady == true
 		jingle = noone;
 		
 		if !audio_is_playing(bgm)
-			playInitMusic();
+			playMusic();
     }
 }
 

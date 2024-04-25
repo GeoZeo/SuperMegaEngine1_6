@@ -123,10 +123,12 @@ if curr_front_layer < global.end_front_layer {
 //}
 
 if instance_exists(prtPlayer) {
-	if !prtPlayer.climbing && (!prtPlayer.isSlide or prtPlayer.slideSpeed == 0)
-		cameraXOffset = prtPlayer.image_xscale;
-	else
-		cameraXOffset = 0;
+	with prtPlayer {
+		if !climbing
+			cameraXOffset = image_xscale;
+		else if place_free(x, y)
+			cameraXOffset = 0;
+	}
 }
 
 //Non-debug QoL keys
@@ -157,6 +159,14 @@ if keyboard_check_pressed(vk_f3)
 //Toggle fullscreen
 if keyboard_check_pressed(vk_f4)
     window_set_fullscreen( !window_get_fullscreen() );
+	
+//Toggle cursor visibility
+if keyboard_check_pressed(vk_f5) {
+	if window_get_cursor() != cr_none
+		window_set_cursor(cr_none);
+	else
+		window_set_cursor(cr_default);
+}
     
 //Close the game
 if keyboard_check_pressed(vk_escape)
@@ -168,20 +178,20 @@ if !cfgEnableDebugKeys {
 }
 
 // Suicide.
-if keyboard_check_pressed(vk_f5)
+if keyboard_check_pressed(vk_f6)
 {
     global._health = 0;
 }
 
-if keyboard_check_pressed(vk_f6) debug_password();
-if keyboard_check_pressed(vk_f7) saveGame(0);
-if keyboard_check_pressed(vk_f8) loadGame(0);
+if keyboard_check_pressed(vk_f7) debug_password();
+if keyboard_check_pressed(vk_f8) saveGame(0);
+if keyboard_check_pressed(vk_f9) loadGame(0);
 //if keyboard_check_pressed(vk_f11) with prtPlayer grav *= -1;
 
 if keyboard_check(vk_add) global.screws = min(global.maxScrews, global.screws + 2);
 if keyboard_check(vk_subtract) global.screws = max(0, global.screws - 2);
 
-if keyboard_check_pressed(vk_f9) {
+if keyboard_check_pressed(vk_f10) {
     global.current_screen_shader++;
     if global.current_screen_shader >= global.num_screen_shaders {
         global.current_screen_shader = 0;
@@ -194,10 +204,10 @@ if keyboard_check_pressed(vk_f9) {
     show_debug_message("Current shader: " +  string(global.current_screen_shader));
 }
 
-if keyboard_check_pressed(vk_f10) {
-	var myEnemy = instance_create(prtPlayer.x, prtPlayer.y-112, objTelly);
+if keyboard_check_pressed(vk_f11) {
+	var myEnemy = instance_create(prtPlayer.x+80, prtPlayer.y-48, objFanFiend);
 }
 
-if keyboard_check_pressed(vk_f11) {
+if keyboard_check_pressed(vk_f12) {
 	reset_achievements();
 }
