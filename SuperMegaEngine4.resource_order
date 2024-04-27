@@ -491,6 +491,8 @@
     {"name":"playMusicVolume","order":4,"path":"scripts/playMusicVolume/playMusicVolume.yy",},
     {"name":"playMusicLoopPoint","order":3,"path":"scripts/playMusicLoopPoint/playMusicLoopPoint.yy",},
     {"name":"playMusicVolumeLoopPoint","order":5,"path":"scripts/playMusicVolumeLoopPoint/playMusicVolumeLoopPoint.yy",},
+    {"name":"playMusicNoLoop","order":6,"path":"scripts/playMusicNoLoop/playMusicNoLoop.yy",},
+    {"name":"playMusicNoLoopVolume","order":7,"path":"scripts/playMusicNoLoopVolume/playMusicNoLoopVolume.yy",},
     {"name":"stopSFX","order":7,"path":"scripts/stopSFX/stopSFX.yy",},
     {"name":"loopSFX","order":8,"path":"scripts/loopSFX/loopSFX.yy",},
     {"name":"stopAllSFX","order":9,"path":"scripts/stopAllSFX/stopAllSFX.yy",},

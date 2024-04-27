@@ -47,10 +47,6 @@ if room == rmInit {
     global.checkpoint = false;
     global.checkpointX = 0;
     global.checkpointY = 0;
-	global.checkpointBGM = -1;
-	global.checkpointBGMVolume = -1;
-	global.checkpointBGMLoopStart = -1;
-	global.checkpointBGMLoopEnd = -1;
     global.levelStart = false;
     
     global.primaryCol = c_white;

@@ -15,7 +15,6 @@ restartTimer = false;
 teleport = false;
 toX = 0;
 toY = 0;
-teleportBGM = -1;
 
 update_rate = 1;
 

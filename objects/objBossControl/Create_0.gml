@@ -41,7 +41,6 @@ itemToSpawn = objLifeEnergyBig;
 //For warping the player elsewhere at the end of the fight if necessary
 toX = -1;
 toY = -1;
-returnBGM = -1;
 
 //Do we spawn an item in the teleporter room if we're doing a timer warp? If so, where?
 spawnItem = true;

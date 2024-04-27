@@ -6,9 +6,3 @@ if myBoss > -1
 	bossPersistent = myBoss.bPersistent;
 }
 
-with objTeleport
-{
-	if boss > -1
-		other.bossRush = true;
-}
-

@@ -7,7 +7,7 @@ with objText {
     instance_destroy();
 }
 stopAllSFX();
-playMusicDefault(bgmOpening2);
+playMusicNoLoop(bgmOpening2);
 
 txt2 = instance_create(24, 165, objText);
 txt2.allow_fast_forward = false;

@@ -12,22 +12,48 @@ if !instance_exists(objFadeIn)
 
 playerCameraInit();
 
-if global.checkpoint
+if instance_exists(objMusicPlayer)
 {
-	bgm = global.checkpointBGM;
-	bgmVolume = global.checkpointBGMVolume;
-	bgmLoopStart = global.checkpointBGMLoopStart;
-	bgmLoopEnd = global.checkpointBGMLoopEnd;
+	with objMusicPlayer
+	{
+		playNoMusic();
+	}
+	with instance_nearest(x, y, objMusicPlayer)
+	{
+		if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+		{
+			if is_string(myBGM)
+			{   //For retro compatibility
+			    var parts = split(myBGM, ".");
+			    var name = ds_queue_dequeue(parts);
+			    var sound = asset_get_index("bgm" + name);
+			    if !audio_is_playing(sound)
+				{
+			        playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+			    }
+			}
+			else if !audio_is_playing(myBGM)
+			{
+			    playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+			}
+		}
+		else
+		{
+			playNoMusic();
+		}
+	
+		if destroyOnActivation
+			instance_destroy();
+	}
 }
-
-playMusic(bgm, bgmVolume, bgmLoopStart, bgmLoopEnd);
+else
+{
+	playNoMusic();
+}
 
 bgm = global.bgmIndex;
 bgmLoopStart = global.loopStart;
 bgmLoopEnd = global.loopEnd;
 bgmVolume = global.volume;
 bgmLength = global.length;
-
-if room == rmWeaponGet
-	jingle = noone;
 

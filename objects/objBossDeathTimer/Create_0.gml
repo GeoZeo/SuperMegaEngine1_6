@@ -56,7 +56,6 @@ if bossRush {
 		inst.teleport = true;
 		inst.toX = control.toX;
 		inst.toY = control.toY;
-		inst.teleportBGM = control.returnBGM;
 	}
 	else {
 		var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
@@ -66,7 +65,6 @@ if bossRush {
 			var _control = other.control;
 			toX = _control.toX;
 			toY = _control.toY;
-			returnBGM = _control.returnBGM;
 			drawLED = false;
 			on = false;
 			alarm[2] = 180;
@@ -136,7 +134,6 @@ if !control.endLevel {
 			inst.teleport = true;
 			inst.toX = control.toX;
 			inst.toY = control.toY;
-			inst.teleportBGM = control.returnBGM;
 		}
 		else {
 			var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
@@ -146,7 +143,6 @@ if !control.endLevel {
 				var _control = other.control;
 				toX = _control.toX;
 				toY = _control.toY;
-				returnBGM = _control.returnBGM;
 				drawLED = false;
 				on = false;
 				alarm[2] = 180;

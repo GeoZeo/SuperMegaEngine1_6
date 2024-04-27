@@ -1,4 +1,4 @@
-playMusicVolume(bgmTitleScreen, 0.55);
+playMusicNoLoopVolume(bgmTitleScreen, 0.55);
 
 drawText = false;
 drawTextTimer = 0;

@@ -1,5 +1,11 @@
-myBGM = -1;
+myBGM = noone;
 myVolume = -1;
 myLoopStart = -1;
 myLoopEnd = -1;
+
+destroyOnActivation = true;
+
+if cfgDebug || debug_mode {
+    visible = true;
+}
 

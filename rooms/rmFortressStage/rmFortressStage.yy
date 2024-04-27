@@ -1,7 +1,7 @@
 {
   "$GMRoom":"",
   "%Name":"rmFortressStage",
-  "creationCodeFile":"RoomCreationCode.gml",
+  "creationCodeFile":"rooms/rmFortressStage/RoomCreationCode.gml",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,

@@ -76,9 +76,6 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 				if image_yscale != 1
 					image_yscale = 1;
 				
-	            if returnBGM > -1 {
-	                playMusicVolume(returnBGM, 0.9);
-	            }
 	        }
 	    }
 	}

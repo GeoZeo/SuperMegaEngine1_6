@@ -10,9 +10,13 @@
     {"name":"inst_3DE5719A","path":"rooms/rmWeaponGet/rmWeaponGet.yy",},
     {"name":"inst_3D31169D","path":"rooms/rmWeaponGet/rmWeaponGet.yy",},
     {"name":"inst_5A30E7AD","path":"rooms/rmWeaponGet/rmWeaponGet.yy",},
+    {"name":"inst_EF1AE24","path":"rooms/rmWeaponGet/rmWeaponGet.yy",},
   ],
   "isDnd":false,
   "layers":[
+    {"$GMRInstanceLayer":"","%Name":"Compatibility_Instances_Depth_m1001000","depth":-1001000,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+        {"$GMRInstance":"","%Name":"inst_EF1AE24","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_EF1AE24","objectId":{"name":"objMusicPlayer","path":"objects/objMusicPlayer/objMusicPlayer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":48.0,"y":0.0,},
+      ],"layers":[],"name":"Compatibility_Instances_Depth_m1001000","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":true,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Compatibility_Instances_Depth_-10000","depth":-10000,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"","%Name":"inst_3D31169D","colour":4294967295,"frozen":false,"hasCreationCode":true,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3D31169D","objectId":{"name":"objFadeIn","path":"objects/objFadeIn/objFadeIn.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":16.0,"y":0.0,},
       ],"layers":[],"name":"Compatibility_Instances_Depth_-10000","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":true,"visible":true,},

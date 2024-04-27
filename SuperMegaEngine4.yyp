@@ -590,6 +590,8 @@
     {"id":{"name":"playMusicVolume","path":"scripts/playMusicVolume/playMusicVolume.yy",},},
     {"id":{"name":"playMusicLoopPoint","path":"scripts/playMusicLoopPoint/playMusicLoopPoint.yy",},},
     {"id":{"name":"playMusicVolumeLoopPoint","path":"scripts/playMusicVolumeLoopPoint/playMusicVolumeLoopPoint.yy",},},
+    {"id":{"name":"playMusicNoLoop","path":"scripts/playMusicNoLoop/playMusicNoLoop.yy",},},
+    {"id":{"name":"playMusicNoLoopVolume","path":"scripts/playMusicNoLoopVolume/playMusicNoLoopVolume.yy",},},
     {"id":{"name":"stopSFX","path":"scripts/stopSFX/stopSFX.yy",},},
     {"id":{"name":"loopSFX","path":"scripts/loopSFX/loopSFX.yy",},},
     {"id":{"name":"stopAllSFX","path":"scripts/stopAllSFX/stopAllSFX.yy",},},

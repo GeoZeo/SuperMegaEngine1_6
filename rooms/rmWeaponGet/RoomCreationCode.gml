@@ -1,1 +1,2 @@
-playMusicVolume("WeaponGet.ogg", 1);
+//playMusicVolume("WeaponGet.ogg", 1);
+with prtPlayer jingle = noone;

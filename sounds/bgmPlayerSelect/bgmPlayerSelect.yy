@@ -9,7 +9,7 @@
   "bitRate":32,
   "compression":2,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":34.246532,
   "name":"bgmPlayerSelect",
   "parent":{
     "name":"Music",

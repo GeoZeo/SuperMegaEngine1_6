@@ -156,7 +156,6 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 						image_yscale = 1/16;
 						toX = other.toX;
 						toY = other.toY;
-						returnBGM = other.returnBGM;
 						drawLED = false;
 						on = false;
 						alarm[2] = 180;

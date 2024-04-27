@@ -35,5 +35,5 @@
     "path":"sprites/sprMusicPlayer/sprMusicPlayer.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

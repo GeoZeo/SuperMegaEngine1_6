@@ -1,1 +1,1 @@
-playMusicVolume(bgmPlayerSelect, 1);
+playMusicVolumeLoopPoint(bgmPlayerSelect, 1, 3.82/34.25, 1);

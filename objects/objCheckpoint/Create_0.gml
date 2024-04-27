@@ -3,5 +3,3 @@
 //yy = <number> (the Y position Mega Man should spawn at when using the checkpoint)
 xx = x;
 yy = y;
-
-
