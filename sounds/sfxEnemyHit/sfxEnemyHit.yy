@@ -9,7 +9,7 @@
   "bitRate":32,
   "compression":2,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":1.393197,
   "name":"sfxEnemyHit",
   "parent":{
     "name":"Enemy",

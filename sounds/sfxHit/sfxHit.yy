@@ -9,7 +9,7 @@
   "bitRate":32,
   "compression":2,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.306621,
   "name":"sfxHit",
   "parent":{
     "name":"Player",

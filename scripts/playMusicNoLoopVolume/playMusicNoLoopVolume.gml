@@ -23,7 +23,9 @@ function playMusicNoLoopVolume(argument0, argument1) {
 	    global.bgm = snd;
 		global.volume = argument1;
 	}
-	if instance_exists(prtPlayer) && prtPlayer.jingle > -1 && room != rmWeaponGet {
+	if instance_exists(prtPlayer)
+	&& ((!is_string(prtPlayer.jingle) and prtPlayer.jingle > -1)
+	|| (is_string(prtPlayer.jingle) and prtPlayer.jingle != noone)) {
 		stopSFX(global.bgm);
 	}
 

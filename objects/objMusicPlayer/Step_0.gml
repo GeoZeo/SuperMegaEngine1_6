@@ -1,4 +1,8 @@
-if insideView_Spr() && !instance_exists(objSectionSwitcher) && (instance_exists(prtPlayer) and !prtPlayer.showReady and !prtPlayer.teleporting and !prtPlayer.dead)
+if !insideView_Spr()
+{
+	canPlay = true;
+}
+else if canPlay && insideView_Spr() && !instance_exists(objSectionSwitcher) && (instance_exists(prtPlayer) and !prtPlayer.showReady and !prtPlayer.teleporting and !prtPlayer.dead)
 {
 	if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
 	{
@@ -21,6 +25,8 @@ if insideView_Spr() && !instance_exists(objSectionSwitcher) && (instance_exists(
 	{
 		playNoMusic();
 	}
+	
+	canPlay = false;
 	
 	if destroyOnActivation
 		instance_destroy();

@@ -254,12 +254,16 @@ function playerMovingPlatform() {
 	
 	
 	//Can we actually jump now? This prevents us from being able to jump before collision behaviours are able to occur.
-	if (ground) { canJump = true; }
-	else { canJump = false; }
+	canJump = ground;
 	
 
 	//Play the landing SFX. Now carried out at the end since new spike floor code causes part of the landing SFX to start playing before the death SFX.
-	if canPlayLandSound && (!global.frozen or !audio_is_playing(sfxEnergyRestore)) {
+	if canPlayLandSound
+	&& (!(x > sectionRight-6 && place_meeting(x-global.xspeed+6, y, objSectionArrowRight) //Right
+		&& !collision_rectangle(sectionRight+1, bbox_top, sectionRight+2, bbox_bottom, objSolid, false, false))
+		and !(x < sectionLeft+6 && place_meeting(x-global.xspeed-6, y, objSectionArrowLeft) //Left
+		&& !collision_rectangle(sectionLeft-1, bbox_top, sectionLeft-2, bbox_bottom, objSolid, false, false)))
+	&& (!global.frozen or !audio_is_playing(sfxEnergyRestore)) {
 		
 		if !isHit
 			playSFX(sfxLand);

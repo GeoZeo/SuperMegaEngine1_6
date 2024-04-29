@@ -455,7 +455,7 @@ function playerStep() {
 
 
 	//Stop movement at section borders
-	if (canMove || isSlide) && visible {
+	if (canMove || isSlide || isHit) && visible {
 	    if x > sectionRight-6 && !place_meeting(x+6, y, objSectionArrowRight) && !place_meeting(x-global.xspeed, y, objSectionArrowRight) {
 	        x = sectionRight-6;
 	        global.xspeed = 0;

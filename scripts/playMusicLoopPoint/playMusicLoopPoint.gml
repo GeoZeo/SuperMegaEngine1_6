@@ -25,7 +25,9 @@ function playMusicLoopPoint(argument0, argument1, argument2) {
 	    global.loopEnd = argument2 * global.length;
 	    global.bgm = snd;
 	}
-	if instance_exists(prtPlayer) && prtPlayer.jingle > -1 && room != rmWeaponGet {
+	if instance_exists(prtPlayer)
+	&& ((!is_string(prtPlayer.jingle) and prtPlayer.jingle > -1)
+	|| (is_string(prtPlayer.jingle) and prtPlayer.jingle != noone)) {
 		stopSFX(global.bgm);
 	}
 

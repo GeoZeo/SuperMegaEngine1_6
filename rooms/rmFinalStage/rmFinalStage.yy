@@ -1,7 +1,7 @@
 {
   "$GMRoom":"",
   "%Name":"rmFinalStage",
-  "creationCodeFile":"RoomCreationCode.gml",
+  "creationCodeFile":"rooms/rmFinalStage/RoomCreationCode.gml",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,

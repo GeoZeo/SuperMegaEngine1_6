@@ -73,8 +73,21 @@ else if showReady == true
     readyIndicator = readyTimer mod 12;
     if readyIndicator >= 6 && readyIndicator <= 11 //For the last 7 frames of every 14 frames, show the READY text
         draw_sprite_ext(sprReady, 0, round(__view_get( e__VW.XView, 0 )+(__view_get( e__VW.WView, 0 )/2)), round(__view_get( e__VW.YView, 0 )+(__view_get( e__VW.HView, 0 )/2)), 1, 1, 0, c_white, 1);
-        
-    if (jingle <= -1 and readyTimer >= 72) || (jingle > -1 and !audio_is_playing(jingle) and readyIndicator < 6)
+    
+	var _jingle = noone;
+	if is_string(jingle)
+	{   //For retro compatibility
+		var parts = split(jingle, ".");
+		var name = ds_queue_dequeue(parts);
+		_jingle = asset_get_index("sfx" + name);
+	}
+	else
+	{
+		_jingle = jingle;
+	}
+	
+    if (((!is_string(_jingle) and _jingle <= -1) or (is_string(_jingle) and _jingle == noone)) and readyTimer >= 72)
+	|| (((!is_string(_jingle) and _jingle > -1) or (is_string(_jingle) and _jingle != noone)) and !audio_is_playing(_jingle) and readyIndicator < 6)
     {
         readyTimer = 0;
         showReady = false;
