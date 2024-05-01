@@ -61,3 +61,11 @@ musicLoopPointEnd = -1;
 music = bgmBoss;
 musicVolume = 0.7;
 
+endMusic = noone;
+endMusicVolume = -1;
+endMusicLoopPointStart = -1;
+endMusicLoopPointEnd = -1;
+endMusicDestroyOnActivate = true;
+
+triggerNearestMusicPlayer = false;
+

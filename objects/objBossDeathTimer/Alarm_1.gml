@@ -2,8 +2,8 @@
 
 x = prtPlayer.x;
 y = prtPlayer.y;
-sprite_index = prtPlayer.spriteWalk;
-image_speed = prtPlayer.speedWalk;
+sprite_index = prtPlayer.spriteStep;
+image_speed = prtPlayer.speedStep;
 isMM = true;
 
 with prtPlayer visible = false;

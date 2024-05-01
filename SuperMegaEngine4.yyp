@@ -842,6 +842,7 @@
     {"id":{"name":"objWilyCapsuleShot","path":"objects/objWilyCapsuleShot/objWilyCapsuleShot.yy",},},
     {"id":{"name":"objDrWily","path":"objects/objDrWily/objDrWily.yy",},},
     {"id":{"name":"objBigEyeBoss","path":"objects/objBigEyeBoss/objBigEyeBoss.yy",},},
+    {"id":{"name":"objArenaStartingPoint","path":"objects/objArenaStartingPoint/objArenaStartingPoint.yy",},},
     {"id":{"name":"prtPickup","path":"objects/prtPickup/prtPickup.yy",},},
     {"id":{"name":"objLifeEnergyBig","path":"objects/objLifeEnergyBig/objLifeEnergyBig.yy",},},
     {"id":{"name":"objLifeEnergySmall","path":"objects/objLifeEnergySmall/objLifeEnergySmall.yy",},},

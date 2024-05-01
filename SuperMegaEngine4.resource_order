@@ -693,6 +693,7 @@
     {"name":"objWilyCapsuleShot","order":2,"path":"objects/objWilyCapsuleShot/objWilyCapsuleShot.yy",},
     {"name":"objDrWily","order":3,"path":"objects/objDrWily/objDrWily.yy",},
     {"name":"objBigEyeBoss","order":8,"path":"objects/objBigEyeBoss/objBigEyeBoss.yy",},
+    {"name":"objArenaStartingPoint","order":9,"path":"objects/objArenaStartingPoint/objArenaStartingPoint.yy",},
     {"name":"objLifeEnergyBig","order":2,"path":"objects/objLifeEnergyBig/objLifeEnergyBig.yy",},
     {"name":"objLifeEnergySmall","order":1,"path":"objects/objLifeEnergySmall/objLifeEnergySmall.yy",},
     {"name":"objWeaponEnergyBig","order":4,"path":"objects/objWeaponEnergyBig/objWeaponEnergyBig.yy",},

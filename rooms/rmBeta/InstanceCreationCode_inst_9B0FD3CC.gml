@@ -8,3 +8,11 @@ musicVolume = 0.7;
 
 //endLevel = false;
 //bossSpawnItem = false;
+
+//endMusic = bgmTestMusic;
+//endMusicVolume = 0.9;
+//endMusicLoopPointStart = 6.038/59.369;
+//endMusicLoopPointEnd = 1;
+//endMusicDestroyOnActivate = true;
+
+//triggerNearestMusicPlayer = true;

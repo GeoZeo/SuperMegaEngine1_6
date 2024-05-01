@@ -161,6 +161,86 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 						alarm[2] = 180;
 					}
 				}
+				else {
+					
+					if (!is_string(endMusic) and endMusic > -1) || (is_string(endMusic) and endMusic != noone) {
+						
+						var myPlayer = instance_create(x, y, objMusicPlayer)
+						with myPlayer
+						{
+							myBGM = other.endMusic;
+							myVolume = other.endMusicVolume;
+							myLoopStart = other.endMusicLoopPointStart;
+							myLoopEnd = other.endMusicLoopPointEnd;
+							destroyOnActivation = other.endMusicDestroyOnActivate;
+							
+							if canPlay
+							{
+								if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+								{
+									if is_string(myBGM)
+									{   //For retro compatibility
+									    var parts = split(myBGM, ".");
+									    var name = ds_queue_dequeue(parts);
+									    var sound = asset_get_index("bgm" + name);
+									    if !audio_is_playing(sound)
+										{
+									        playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+									    }
+									}
+									else if !audio_is_playing(myBGM)
+									{
+									    playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+									}
+								}
+								else
+								{
+									playNoMusic();
+								}
+			
+								canPlay = false;
+			
+								if destroyOnActivation
+									instance_destroy();
+							}
+						}
+					}
+					else if triggerNearestMusicPlayer {
+						
+						with instance_nearest(x, y, objMusicPlayer)
+						{
+							if canPlay
+							{
+								if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+								{
+									if is_string(myBGM)
+									{   //For retro compatibility
+									    var parts = split(myBGM, ".");
+									    var name = ds_queue_dequeue(parts);
+									    var sound = asset_get_index("bgm" + name);
+									    if !audio_is_playing(sound)
+										{
+									        playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+									    }
+									}
+									else if !audio_is_playing(myBGM)
+									{
+									    playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+									}
+								}
+								else
+								{
+									playNoMusic();
+								}
+			
+								canPlay = false;
+			
+								if destroyOnActivation
+									instance_destroy();
+							}
+						}
+					}
+				}
 			}
 		}
 	}

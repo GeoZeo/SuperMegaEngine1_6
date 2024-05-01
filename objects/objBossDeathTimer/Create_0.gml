@@ -134,6 +134,84 @@ if !control.endLevel {
 			inst.teleport = true;
 			inst.toX = control.toX;
 			inst.toY = control.toY;
+			
+			if (!is_string(control.endMusic) and control.endMusic > -1) || (is_string(control.endMusic) and control.endMusic != noone) {
+						
+				var myPlayer = instance_create(x, y, objMusicPlayer)
+				with myPlayer
+				{
+					myBGM = other.control.endMusic;
+					myVolume = other.control.endMusicVolume;
+					myLoopStart = other.control.endMusicLoopPointStart;
+					myLoopEnd = other.control.endMusicLoopPointEnd;
+					destroyOnActivation = other.control.endMusicDestroyOnActivate;
+							
+					if canPlay
+					{
+						if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+						{
+							if is_string(myBGM)
+							{   //For retro compatibility
+								var parts = split(myBGM, ".");
+								var name = ds_queue_dequeue(parts);
+								var sound = asset_get_index("bgm" + name);
+								if !audio_is_playing(sound)
+								{
+									playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+								}
+							}
+							else if !audio_is_playing(myBGM)
+							{
+								playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+							}
+						}
+						else
+						{
+							playNoMusic();
+						}
+			
+						canPlay = false;
+			
+						if destroyOnActivation
+							instance_destroy();
+					}
+				}
+			}
+			else if control.triggerNearestMusicPlayer {
+						
+				with instance_nearest(x, y, objMusicPlayer)
+				{
+					if canPlay
+					{
+						if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+						{
+							if is_string(myBGM)
+							{   //For retro compatibility
+								var parts = split(myBGM, ".");
+								var name = ds_queue_dequeue(parts);
+								var sound = asset_get_index("bgm" + name);
+								if !audio_is_playing(sound)
+								{
+									playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+								}
+							}
+							else if !audio_is_playing(myBGM)
+							{
+								playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+							}
+						}
+						else
+						{
+							playNoMusic();
+						}
+			
+						canPlay = false;
+			
+						if destroyOnActivation
+							instance_destroy();
+					}
+				}
+			}
 		}
 		else {
 			var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
@@ -152,13 +230,94 @@ if !control.endLevel {
 				inst = instance_create(control.itemX, control.itemY, control.itemToSpawn);
 		}
 	}
-	else if control.itemToSpawn > -1 {
-		if control.bossSpawnItem {
-			inst = instance_create(x - 8, y - 8, control.itemToSpawn);
-			inst.alarm[0] = room_speed * 9999;
+	else {
+		
+		if control.itemToSpawn > -1 {
+			if control.bossSpawnItem {
+				inst = instance_create(x - 8, y - 8, control.itemToSpawn);
+				inst.alarm[0] = room_speed * 9999;
+			}
+			else {
+				inst = instance_create(other.control.itemX, other.control.itemY, other.control.itemToSpawn);
+			}
 		}
-		else {
-			inst = instance_create(other.control.itemX, other.control.itemY, other.control.itemToSpawn);
+		
+		if (!is_string(control.endMusic) and control.endMusic > -1) || (is_string(control.endMusic) and control.endMusic != noone) {
+						
+			var myPlayer = instance_create(x, y, objMusicPlayer)
+			with myPlayer
+			{
+				myBGM = other.control.endMusic;
+				myVolume = other.control.endMusicVolume;
+				myLoopStart = other.control.endMusicLoopPointStart;
+				myLoopEnd = other.control.endMusicLoopPointEnd;
+				destroyOnActivation = other.control.endMusicDestroyOnActivate;
+							
+				if canPlay
+				{
+					if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+					{
+						if is_string(myBGM)
+						{   //For retro compatibility
+							var parts = split(myBGM, ".");
+							var name = ds_queue_dequeue(parts);
+							var sound = asset_get_index("bgm" + name);
+							if !audio_is_playing(sound)
+							{
+								playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+							}
+						}
+						else if !audio_is_playing(myBGM)
+						{
+							playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+						}
+					}
+					else
+					{
+						playNoMusic();
+					}
+			
+					canPlay = false;
+			
+					if destroyOnActivation
+						instance_destroy();
+				}
+			}
+		}
+		else if control.triggerNearestMusicPlayer {
+						
+			with instance_nearest(x, y, objMusicPlayer)
+			{
+				if canPlay
+				{
+					if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
+					{
+						if is_string(myBGM)
+						{   //For retro compatibility
+							var parts = split(myBGM, ".");
+							var name = ds_queue_dequeue(parts);
+							var sound = asset_get_index("bgm" + name);
+							if !audio_is_playing(sound)
+							{
+								playMusic(sound, myVolume, myLoopStart, myLoopEnd);
+							}
+						}
+						else if !audio_is_playing(myBGM)
+						{
+							playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
+						}
+					}
+					else
+					{
+						playNoMusic();
+					}
+			
+					canPlay = false;
+			
+					if destroyOnActivation
+						instance_destroy();
+				}
+			}
 		}
 	}
 	
