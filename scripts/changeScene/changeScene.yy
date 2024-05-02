@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"changeScene",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"changeScene",
-  "parent":{
-    "name":"Cutscenes",
-    "path":"folders/Scripts/Cutscenes.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "changeScene",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Cutscenes",
+    "path": "folders/Scripts/Cutscenes.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"reset_achievements",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"reset_achievements",
-  "parent":{
-    "name":"Achievements",
-    "path":"folders/Scripts/Achievements.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "reset_achievements",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Achievements",
+    "path": "folders/Scripts/Achievements.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

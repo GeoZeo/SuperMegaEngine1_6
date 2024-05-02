@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"drawSpriteColorSwap",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"drawSpriteColorSwap",
-  "parent":{
-    "name":"Drawing",
-    "path":"folders/Scripts/Drawing.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "drawSpriteColorSwap",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Drawing",
+    "path": "folders/Scripts/Drawing.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

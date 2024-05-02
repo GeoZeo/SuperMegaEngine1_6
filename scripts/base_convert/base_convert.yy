@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"base_convert",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"base_convert",
-  "parent":{
-    "name":"Numbers",
-    "path":"folders/Scripts/Numbers.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "base_convert",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Numbers",
+    "path": "folders/Scripts/Numbers.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

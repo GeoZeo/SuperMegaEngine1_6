@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"loopSFX",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"loopSFX",
-  "parent":{
-    "name":"Sound",
-    "path":"folders/Scripts/Sound.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "loopSFX",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Sound",
+    "path": "folders/Scripts/Sound.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

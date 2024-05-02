@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"playMusicVolume",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"playMusicVolume",
-  "parent":{
-    "name":"Sound",
-    "path":"folders/Scripts/Sound.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "playMusicVolume",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Sound",
+    "path": "folders/Scripts/Sound.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

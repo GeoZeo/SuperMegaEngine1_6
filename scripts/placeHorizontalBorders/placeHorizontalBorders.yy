@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"placeHorizontalBorders",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"placeHorizontalBorders",
-  "parent":{
-    "name":"Sections",
-    "path":"folders/Scripts/Sections.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "placeHorizontalBorders",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Sections",
+    "path": "folders/Scripts/Sections.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

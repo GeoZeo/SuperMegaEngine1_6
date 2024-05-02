@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"tile_get_left",
-  "isCompatibility":true,
-  "isDnD":false,
-  "name":"tile_get_left",
-  "parent":{
-    "name":"tile",
-    "path":"folders/Scripts/compatibility/tile.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "tile_get_left",
+  "isCompatibility": true,
+  "isDnD": false,
+  "parent": {
+    "name": "tile",
+    "path": "folders/Scripts/compatibility/tile.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

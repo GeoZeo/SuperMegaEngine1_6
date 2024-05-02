@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"string_replace_at",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"string_replace_at",
-  "parent":{
-    "name":"Strings",
-    "path":"folders/Scripts/Strings.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "string_replace_at",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Strings",
+    "path": "folders/Scripts/Strings.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

@@ -10,6 +10,5 @@ if blackAlpha >= 1 && canAlarm == true
 {
     alarm[1] = 10;
     canAlarm = false;
-	with objMegamanExplosion instance_destroy();
 }
 

@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"getSections",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"getSections",
-  "parent":{
-    "name":"Sections",
-    "path":"folders/Scripts/Sections.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "getSections",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Sections",
+    "path": "folders/Scripts/Sections.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

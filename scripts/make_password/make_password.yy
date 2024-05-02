@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"make_password",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"make_password",
-  "parent":{
-    "name":"Saving",
-    "path":"folders/Scripts/Saving.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "make_password",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Saving",
+    "path": "folders/Scripts/Saving.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

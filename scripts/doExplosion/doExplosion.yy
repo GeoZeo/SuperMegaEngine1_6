@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"doExplosion",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"doExplosion",
-  "parent":{
-    "name":"Misc",
-    "path":"folders/Scripts/Misc.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "doExplosion",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Misc",
+    "path": "folders/Scripts/Misc.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

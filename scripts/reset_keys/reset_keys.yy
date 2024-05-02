@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"reset_keys",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"reset_keys",
-  "parent":{
-    "name":"Gamepad",
-    "path":"folders/Scripts/Gamepad.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "reset_keys",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Gamepad",
+    "path": "folders/Scripts/Gamepad.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

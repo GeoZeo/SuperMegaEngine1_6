@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"__background_get_internal",
-  "isCompatibility":true,
-  "isDnD":false,
-  "name":"__background_get_internal",
-  "parent":{
-    "name":"background",
-    "path":"folders/Scripts/compatibility/background.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "__background_get_internal",
+  "isCompatibility": true,
+  "isDnD": false,
+  "parent": {
+    "name": "background",
+    "path": "folders/Scripts/compatibility/background.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

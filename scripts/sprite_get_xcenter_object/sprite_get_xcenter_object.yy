@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"sprite_get_xcenter_object",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"sprite_get_xcenter_object",
-  "parent":{
-    "name":"Drawing",
-    "path":"folders/Scripts/Drawing.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "sprite_get_xcenter_object",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Drawing",
+    "path": "folders/Scripts/Drawing.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

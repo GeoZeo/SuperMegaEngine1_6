@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"readTileAnimations",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"readTileAnimations",
-  "parent":{
-    "name":"Tiles",
-    "path":"folders/Scripts/Tiles.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "readTileAnimations",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Tiles",
+    "path": "folders/Scripts/Tiles.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

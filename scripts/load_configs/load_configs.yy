@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"load_configs",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"load_configs",
-  "parent":{
-    "name":"Saving",
-    "path":"folders/Scripts/Saving.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "load_configs",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Saving",
+    "path": "folders/Scripts/Saving.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

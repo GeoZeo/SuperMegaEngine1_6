@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"insideViewObj_Spr",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"insideViewObj_Spr",
-  "parent":{
-    "name":"Views",
-    "path":"folders/Scripts/Views.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "insideViewObj_Spr",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Views",
+    "path": "folders/Scripts/Views.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

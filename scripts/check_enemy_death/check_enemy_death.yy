@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"check_enemy_death",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"check_enemy_death",
-  "parent":{
-    "name":"Enemies",
-    "path":"folders/Scripts/Enemies.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "check_enemy_death",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Enemies",
+    "path": "folders/Scripts/Enemies.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }

@@ -1,13 +1,11 @@
 {
-  "$GMScript":"",
-  "%Name":"playerPause",
-  "isCompatibility":false,
-  "isDnD":false,
-  "name":"playerPause",
-  "parent":{
-    "name":"Player",
-    "path":"folders/Scripts/Player.yy",
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "playerPause",
+  "isCompatibility": false,
+  "isDnD": false,
+  "parent": {
+    "name": "Player",
+    "path": "folders/Scripts/Player.yy",
   },
-  "resourceType":"GMScript",
-  "resourceVersion":"2.0",
 }
