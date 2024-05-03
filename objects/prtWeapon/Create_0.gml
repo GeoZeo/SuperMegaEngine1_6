@@ -7,10 +7,16 @@ chargeConsumption = 0;
 maxshots = cfgMaxNumberOfBusterShots;
 sfx = sfxBuster;
 chargeSFX = sfxCharging;
-chargedSFX = sfxCharged;
+chargedSFX = noone;
+
+if cfgFadeOutChargedSound //Apply a fade-out to the fully charged SFX if you want to prioritise not abusing people's eardrums
+	chargedSFX = sfxCharged;
+else //Don't apply it if you want to prioritise accuracy to the NES games
+	chargedSFX = sfxChargedLoop;
+	
 unlocked = false;
 bThrow = false;
-freeShot = true;//Determines whether or not we can run and use the weapon at the same time. Allows us to determine whether the throwing animation is purely cosmetic or not.
+freeShot = true; //Determines whether or not we can run and use the weapon at the same time. Allows us to determine whether the throwing animation is purely cosmetic or not.
 rapidFire = false;
 canShoot = true;
 yy = 0;

@@ -57,7 +57,12 @@ if !prtPlayer.isShoot || (instance_exists(objSectionSwitcher) and cfgChargeWhile
             if chargeTimer == ceil(chargeTime) {
                 stopSFX(chargeSFX);
 				if prtPlayer.playChargedSound {
-					playSFX(chargedSFX);
+					
+					if cfgFadeOutChargedSound
+						playSFX(chargedSFX);
+					else
+						loopSFX(chargedSFX);
+						
 					prtPlayer.playChargedSound = false;
 				}
             }

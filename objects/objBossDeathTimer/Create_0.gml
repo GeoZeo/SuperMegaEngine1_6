@@ -58,7 +58,7 @@ if bossRush {
 		inst.toY = control.toY;
 	}
 	else {
-		var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+		var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 		with myTeleport {
 			image_xscale = 1/16;
 			image_yscale = 1/16;
@@ -214,7 +214,7 @@ if !control.endLevel {
 			}
 		}
 		else {
-			var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+			var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 			with myTeleport {
 				image_xscale = 1/16;
 				image_yscale = 1/16;

@@ -5,12 +5,15 @@ function playerFreeMovement() {
 	with prtPlayer {
 		locked = false;
 		canSwitch = true;
-		canInitStep = true;
 	    canMove = true;
 		canWalk = true;
 		canGravity = true;
 	    canSpriteChange = true;
 	    canPause = true;
+		
+		if ground
+			canInitStep = true;
+			
 	    mask_index = mskMegaman;
 	}
 

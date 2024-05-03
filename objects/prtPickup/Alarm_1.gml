@@ -6,7 +6,7 @@ if (!restartTimer)
 	{
 		if (instance_exists(prtPlayer))
 		{
-			var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+			var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 			myTeleport.toX = toX;
 			myTeleport.toY = toY;
 			myTeleport.drawLED = false;

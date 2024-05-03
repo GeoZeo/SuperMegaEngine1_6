@@ -27,6 +27,7 @@ function macros() {
 #macro cfgContinueChargeMidSlide true
 #macro cfgChargeWhileLocked true
 #macro cfgContinueChargeAnimWhileLocked false
+#macro cfgFadeOutChargedSound false
 #macro cfgDestroyBossProjectilesOnBossDeath false
 #macro cfgRushTeleportSpeed 10
 #macro cfgGravity 0.25

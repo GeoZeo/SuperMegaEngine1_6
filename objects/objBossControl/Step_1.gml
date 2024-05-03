@@ -150,7 +150,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			
 					stopSFX(global.bgm);
 					
-					var myTeleport = instance_create(prtPlayer.x, prtPlayer.y, objTeleport);
+					var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 					with myTeleport {
 						image_xscale = 1/16;
 						image_yscale = 1/16;
