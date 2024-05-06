@@ -253,8 +253,11 @@ function playerStep() {
 	                }
                     
 	                image_xscale = 1;
-					if image_xscale != prevXScale {
-						x += -image_xscale;
+					if !canTurnaroundStep {
+						if image_xscale != prevXScale {
+							x += -image_xscale;
+							cancelStep = true;
+						}
 					}
                 
 	                if canSpriteChange == true
@@ -321,6 +324,9 @@ function playerStep() {
 	    {
 	        canInitStep = false;
 	        isStep = false;
+			stepTimer = 0;
+			cancelStep = false;
+			stepForce = 0;
         
 	        if canSpriteChange == true
 	            sprite_index = spriteJump;
@@ -422,10 +428,12 @@ function playerStep() {
 		
 		if !cancelStep {
 			if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid)
-				global.xspeed = stepSpeed * image_xscale;
+				//global.xspeed = stepSpeed * image_xscale;
+				stepForce += stepSpeed * image_xscale;
 			else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
 			    if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true //Still allow movement when the moving platform is despawned
-			        global.xspeed = stepSpeed * image_xscale;
+			        //global.xspeed = stepSpeed * image_xscale;
+					stepForce += stepSpeed * image_xscale;
 			}
 		}
     
@@ -438,6 +446,9 @@ function playerStep() {
 	        isStep = false;
 	        stepTimer = 0;
 			cancelStep = false;
+			
+			global.xspeed = stepForce;
+			stepForce = 0;
 	    }
 		
 		//while ground && !place_free(x, y)

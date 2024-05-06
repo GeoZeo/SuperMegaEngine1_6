@@ -1,9 +1,12 @@
 if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !other.teleporting) && !global.frozen &&
 (collision_point(x-(sprite_width/2), y+(sprite_height/2), other, false, false) && collision_point(x+(sprite_width/2), y+(sprite_height/2), other, false, false)
 or collision_point((x-(sprite_width/2))+(abs(global.xspeed)), y+(sprite_height/2), other, false, false) && collision_point((x+(sprite_width/2))-(abs(global.xspeed)), y+(sprite_height/2), other, false, false)
-or (round(other.x) == round(x)
-or (round(other.x)-prevPlayerX < 0 and prevPlayerX >= round(x) and round(x) >= round(other.x))
-or (round(other.x)-prevPlayerX > 0 and prevPlayerX <= round(x) and round(x) <= round(other.x)))) {
+or (((round(other.x) == x)
+or (other.x-prevPlayerX < 0 and prevPlayerX >= x and x >= other.x)
+or (other.x-prevPlayerX > 0 and prevPlayerX <= x and x <= other.x))
+or ((round(mask_get_xcenter_object(prtPlayer)) == x)
+or (mask_get_xcenter_object(prtPlayer)-prevMaskX < 0 and prevMaskX >= x and x >= mask_get_xcenter_object(prtPlayer))
+or (mask_get_xcenter_object(prtPlayer)-prevMaskX > 0 and prevMaskX <= x and x <= mask_get_xcenter_object(prtPlayer))))) {
     if image_xscale != other.image_xscale
 		image_xscale = other.image_xscale;
 	if image_yscale != other.image_yscale

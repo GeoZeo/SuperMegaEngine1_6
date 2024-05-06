@@ -26,7 +26,7 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	            //instance_activate_object(objMegaman);
 				if instance_exists(objBossControl) {
 					with instance_nearest(toX, toY, objBossControl) {
-		                if !insideView() {
+		                if !insideView() or global.bossRushDefeated[bossID] {
 		                    playerFreeMovement();
 		                }
 		            }
@@ -80,7 +80,8 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	    }
 	}
 	
-	prevPlayerX = round(prtPlayer.x);
+	prevPlayerX = prtPlayer.x;
+	prevMaskX = mask_get_xcenter_object(prtPlayer);
 	
 	if prtPlayer.ground && playerLocked {
 		if warpTime > 0 {

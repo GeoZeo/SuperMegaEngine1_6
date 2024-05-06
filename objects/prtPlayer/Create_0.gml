@@ -57,6 +57,7 @@ prevGround = false;
 prevXScale = image_xscale;
 isStep = false;
 stepTimer = 0;
+stepForce = 0;
 canInitStep = true; //Can we initialize sidestepping?
 cancelStep = false; //Whether or not to cancel a sidestep when trying to do so in the opposite direction.
 global.xspeed = 0;
