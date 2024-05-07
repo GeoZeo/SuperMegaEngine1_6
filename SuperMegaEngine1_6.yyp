@@ -620,6 +620,7 @@
     {"id":{"name":"block_base_convert","path":"scripts/block_base_convert/block_base_convert.yy",},},
     {"id":{"name":"save_configs","path":"scripts/save_configs/save_configs.yy",},},
     {"id":{"name":"load_configs","path":"scripts/load_configs/load_configs.yy",},},
+    {"id":{"name":"sprArenaStartingPoint","path":"sprites/sprArenaStartingPoint/sprArenaStartingPoint.yy",},},
     {"id":{"name":"base_convert","path":"scripts/base_convert/base_convert.yy",},},
     {"id":{"name":"dec_to_bin","path":"scripts/dec_to_bin/dec_to_bin.yy",},},
     {"id":{"name":"implode","path":"scripts/implode/implode.yy",},},
@@ -960,6 +961,7 @@
     {"id":{"name":"objFortressRight","path":"objects/objFortressRight/objFortressRight.yy",},},
     {"id":{"name":"objFortressLeft","path":"objects/objFortressLeft/objFortressLeft.yy",},},
     {"id":{"name":"objMapDrawer","path":"objects/objMapDrawer/objMapDrawer.yy",},},
+    {"id":{"name":"rmExampleRoom","path":"rooms/rmExampleRoom/rmExampleRoom.yy",},},
     {"id":{"name":"objEddie","path":"objects/objEddie/objEddie.yy",},},
     {"id":{"name":"objAchievementBox","path":"objects/objAchievementBox/objAchievementBox.yy",},},
     {"id":{"name":"prtAchievement","path":"objects/prtAchievement/prtAchievement.yy",},},
@@ -1024,6 +1026,7 @@
     {"roomId":{"name":"rmFortressStage","path":"rooms/rmFortressStage/rmFortressStage.yy",},},
     {"roomId":{"name":"rmBossRush","path":"rooms/rmBossRush/rmBossRush.yy",},},
     {"roomId":{"name":"rmFinalStage","path":"rooms/rmFinalStage/rmFinalStage.yy",},},
+    {"roomId":{"name":"rmExampleRoom","path":"rooms/rmExampleRoom/rmExampleRoom.yy",},},
   ],
   "templateType": null,
   "TextureGroups": [

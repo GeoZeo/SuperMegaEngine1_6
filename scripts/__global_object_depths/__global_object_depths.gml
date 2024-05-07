@@ -95,6 +95,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objEnemyWindStorm
 	array_push(global.__objectDepths, 0); // prtMiniBoss
 	array_push(global.__objectDepths, -1001000); // objBossControl
+	array_push(global.__objectDepths, -1001000); // objArenaStartingPoint
 	array_push(global.__objectDepths, 10); // objBossDoor
 	array_push(global.__objectDepths, 10); // objBossDoorH
 	array_push(global.__objectDepths, 0); // objPharaoh
@@ -340,6 +341,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objEnemyWindStorm");
 	array_push(global.__objectNames, "prtMiniBoss");
 	array_push(global.__objectNames, "objBossControl");
+	array_push(global.__objectNames, "objArenaStartingPoint");
 	array_push(global.__objectNames, "objBossDoor");
 	array_push(global.__objectNames, "objBossDoorH");
 	array_push(global.__objectNames, "objPharaoh");

@@ -36,7 +36,7 @@ function playerLockMovement() {
 		
 	    isStep = false;
 		stepTimer = 0;
-		stepForce = 0;
+		cancelStep = false;
 	    climbing = false;
 	    canGravity = true;
 		canSwitch = false;

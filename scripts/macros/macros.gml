@@ -38,7 +38,6 @@ function macros() {
 #macro cfgWalkSpeed 1.296875
 #macro cfgHitTime 20
 #macro cfgStepSpeed 1/7
-#macro cfgMaxStepForce 1
 #macro cfgStepFrames 7
 #macro cfgCanTurnaroundStep true
 #macro cfgIceAcc 0.025
