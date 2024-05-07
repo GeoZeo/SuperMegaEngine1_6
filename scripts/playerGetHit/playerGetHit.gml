@@ -12,6 +12,8 @@ function playerGetHit(argument0) {
 	    isHit = true;
 	    hitTimer = 0;
 	    isStep = false;
+		stepTimer = 0;
+		stepForce = 0;
 	    climbing = false;
 	    canGravity = true;
 	    isShoot = false;

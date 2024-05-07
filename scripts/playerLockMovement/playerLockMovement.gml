@@ -35,6 +35,8 @@ function playerLockMovement() {
 		}
 		
 	    isStep = false;
+		stepTimer = 0;
+		stepForce = 0;
 	    climbing = false;
 	    canGravity = true;
 		canSwitch = false;

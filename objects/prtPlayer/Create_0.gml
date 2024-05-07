@@ -35,6 +35,7 @@ jumpSpeedWater = cfgJumpSpeedWater;
 walkSpeed = cfgWalkSpeed;
 maxVspeed = cfgMaxFallingSpeed;
 stepSpeed = cfgStepSpeed;
+stepForceMax = cfgMaxStepForce;
 stepFrames = cfgStepFrames;
 canTurnaroundStep = cfgCanTurnaroundStep; //Whether sidestepping in the opposite direction to where we're facing actually moves us, or if it just flips us around without any movement (like in MM9 & 10).
 iceDec = cfgIceDec; //The deceleration on ice when not holding any buttons
