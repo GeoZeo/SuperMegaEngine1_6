@@ -42,7 +42,7 @@ function playerShoot() {
 					if canInitStep && !canTurnaroundStep {
 						if image_xscale != prevXScale {
 							if !global.weapons[global.currentWeapon].freeShot {
-								x += -image_xscale*2;
+								x = round(x) + -image_xscale*2;
 							}
 						}
 					}
@@ -53,7 +53,7 @@ function playerShoot() {
 					if canInitStep && !canTurnaroundStep {
 						if image_xscale != prevXScale {
 							if !global.weapons[global.currentWeapon].freeShot {
-								x += -image_xscale*2;
+								x = round(x) + -image_xscale*2;
 							}
 						}
 					}
@@ -86,7 +86,7 @@ function playerShoot() {
 						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
-								x += -image_xscale*2;
+								x = round(x) + -image_xscale*2;
 							}
 						}
 					}
@@ -95,7 +95,7 @@ function playerShoot() {
 						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
-								x += -image_xscale*2;
+								x = round(x) + -image_xscale*2;
 							}
 						}
 					}
@@ -142,7 +142,7 @@ function playerShoot() {
 						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
-								x += -image_xscale*2;
+								x = round(x) + -image_xscale*2;
 							}
 						}
 					}
@@ -151,7 +151,7 @@ function playerShoot() {
 						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
-								x += -image_xscale*2;
+								x = round(x) + -image_xscale*2;
 							}
 						}
 					}

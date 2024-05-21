@@ -124,14 +124,14 @@ function playerMovingPlatform() {
 	    //What this means is that when jumping on a solid and spike at the same time, you won't die, unlike in Mega Engine 1.5
 	    //Updated: Now uses the direction MM is facing, MM's delta x-position and MM's current x-speed to calculate wall offset instead of which walking key is pressed for more consistency.
 		var wallOffset = 0;
-	    if image_xscale > 0
-	        wallOffset = 1;
-	    else if image_xscale < 0
-	        wallOffset = -1;
+		if image_xscale > 0
+			wallOffset = 1;
+		else if image_xscale < 0
+			wallOffset = -1;
 		if (global.xspeed+pltSpeedX) > 0
-	        wallOffset = 1;
-	    else if (global.xspeed+pltSpeedX) < 0
-	        wallOffset = -1;
+			wallOffset = 1;
+		else if (global.xspeed+pltSpeedX) < 0
+			wallOffset = -1;
         
 	    var yDeduct;
 	    if isSlide == false {
@@ -263,7 +263,7 @@ function playerMovingPlatform() {
 		&& !collision_rectangle(sectionRight+1, bbox_top, sectionRight+2, bbox_bottom, objSolid, false, false))
 		and !(x < sectionLeft+6 && place_meeting(x-global.xspeed-6, y, objSectionArrowLeft) //Left
 		&& !collision_rectangle(sectionLeft-1, bbox_top, sectionLeft-2, bbox_bottom, objSolid, false, false)))
-	&& (!global.frozen or !audio_is_playing(sfxEnergyRestore)) {
+	&& !global.frozen && !audio_is_playing(sfxEnergyRestore) {
 		
 		if !isHit
 			playSFX(sfxLand);

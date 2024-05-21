@@ -11,7 +11,10 @@ if global.frozen == false
             {
                 if instance_exists(prtPlayer)
                 {
-                    if prtPlayer.ground == true && prtPlayer.bbox_bottom <= bbox_top && global.yspeed >= 0
+                    if prtPlayer.ground == true
+					&& prtPlayer.isHit == false
+					&& prtPlayer.bbox_bottom <= bbox_top
+					&& global.yspeed >= 0
                     {
                         canJet = false;
                         alarm[0] = -1;

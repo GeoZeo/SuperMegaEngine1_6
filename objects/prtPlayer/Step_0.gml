@@ -29,7 +29,7 @@ if global.frozen == false
 
 }
 else
-{
+{	
     image_speed = 0;
 	
 	//Death delay (if applicable)

@@ -215,8 +215,6 @@ canGravity = false;
 canPause = false;
 image_speed = 0;
 
-prevx = noone;
-
 global.charTotalWeapons = 0;
 var weapon_index = 0;
 for (var i = 0; object_exists(i); i++) {

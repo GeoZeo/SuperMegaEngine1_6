@@ -122,14 +122,14 @@ if curr_front_layer < global.end_front_layer {
 //    }
 //}
 
-if instance_exists(prtPlayer) {
-	with prtPlayer {
-		if !climbing
-			cameraXOffset = image_xscale;
-		else if place_free(x, y)
-			cameraXOffset = 0;
-	}
-}
+//if instance_exists(prtPlayer) {
+//	with prtPlayer {
+//		if !climbing && image_xscale < 0
+//			other.cameraXOffset = -1;
+//		else
+//			other.cameraXOffset = 0;
+//	}
+//}
 
 //Non-debug QoL keys
 //Restart the game
@@ -206,6 +206,7 @@ if keyboard_check_pressed(vk_f10) {
 
 if keyboard_check_pressed(vk_f11) {
 	var myEnemy = instance_create(prtPlayer.x+80, prtPlayer.y-48, objFanFiend);
+	myEnemy.dir = 0;
 }
 
 if keyboard_check_pressed(vk_f12) {

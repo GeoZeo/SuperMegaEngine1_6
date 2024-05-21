@@ -110,8 +110,8 @@ for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
 	tile_layer_hide(l);
 }
 
-cameraXOffset = 0;
-cameraYOffset = 0;
+//cameraXOffset = 0;
+//cameraYOffset = 0;
 
 //When the level starts, all pickups should spawn
 if global.levelStart {

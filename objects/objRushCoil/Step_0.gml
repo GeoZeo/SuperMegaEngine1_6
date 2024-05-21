@@ -17,7 +17,8 @@ if !global.frozen {
     && instance_exists(prtPlayer)
     && collision_rectangle(bbox_left, bbox_top, bbox_right, bbox_top+1, prtPlayer, false, false) 
     && global.yspeed > 1 
-    && !prtPlayer.climbing 
+    && !prtPlayer.climbing
+	&& !prtPlayer.isHit
     && prtPlayer.bbox_bottom <= bbox_bottom - 8 + global.yspeed {
         global.yspeed = -7;
         prtPlayer.canMinJump = false;

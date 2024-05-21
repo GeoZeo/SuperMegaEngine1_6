@@ -14,6 +14,7 @@ function playerPause() {
 	    global.frozen = true;
 	    instance_create(x, y, objPauseMenu);
 	    playSFX(sfxPause);
+		stopSFX(sfxLand);
 	}
 
 

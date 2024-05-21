@@ -20,6 +20,8 @@ if objEnergyBalancerEquip.count > 0 && (global.currentWeapon == global.character
         
         stopSFX(sfxEnergyRestore);
         loopSFX(sfxEnergyRestore);
+		
+		stopSFX(sfxLand);
     }
 }
 else if global.weapons[global.currentWeapon].ammo < global.maxAmmo {
@@ -31,5 +33,7 @@ else if global.weapons[global.currentWeapon].ammo < global.maxAmmo {
     
     stopSFX(sfxEnergyRestore);
     loopSFX(sfxEnergyRestore);
+	
+	stopSFX(sfxLand);
 }
 

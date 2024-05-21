@@ -11,5 +11,7 @@ if global._health < global._maxHealth
     
     stopSFX(sfxEnergyRestore);
     loopSFX(sfxEnergyRestore);
+	
+	stopSFX(sfxLand);
 }
 

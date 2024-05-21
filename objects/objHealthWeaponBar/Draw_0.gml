@@ -44,3 +44,12 @@ if cfgShowLives {
     draw_text(__view_get( e__VW.XView, 0 )+7+8+1+5, __view_get( e__VW.YView, 0 )+18+sprite_get_height(sprHealthbarBackground), string_hash_to_newline(string(max(0,global._lives))));
 }
 
+if (cfgDebug || debug_mode) {
+	draw_set_colour(c_white);
+	var _oldFont = draw_get_font();
+	draw_set_font(global.MM3font);
+    draw_text( __view_get( e__VW.XView, 0 )+7+8+8+1+5+16, __view_get( e__VW.YView, 0 )+17+16, "X: " + string(x));
+	draw_text( __view_get( e__VW.XView, 0 )+7+8+8+1+5+16, __view_get( e__VW.YView, 0 )+34+16, "Y: " + string(y));
+	draw_set_font(_oldFont);
+}
+
