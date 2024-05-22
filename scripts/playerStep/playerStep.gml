@@ -153,17 +153,6 @@ function playerStep() {
 	    playLandSound = true;
 	}
 	
-	
-	//if isStep
-	//	global.keyRight = false;
-	//	if !global.keyRightPressed
-	//		global.keyRightPressed = true;
-	//if isStep
-	//	if stepFrames mod 2 == 1
-	//		global.keyRight = false;
-	//		if !global.keyRightPressed
-	//			global.keyRightPressed = true;
-
 
 	//Movement (includes initializing sidestep while on the ground)
 	var _frictionApplied = false;
@@ -178,27 +167,6 @@ function playerStep() {
 	                canInitStep = false;
 	                isStep = true;
 	                image_xscale = -1;
-					
-					//if canTurnaroundStep || image_xscale == prevXScale {
-					//	if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-					//		global.xspeed = (stepSpeed * image_xscale) * stepFrames;
-					//		//stepForce += stepSpeed * image_xscale;
-					//		cancelStep = true;
-					//	}
-					//	else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-					//	    if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true { //Still allow movement when the moving platform is despawned
-					//	        global.xspeed = (stepSpeed * image_xscale) * stepFrames;
-					//			//stepForce += stepSpeed * image_xscale;
-					//			cancelStep = true;
-					//		}
-					//	}
-					//}
-					//if !canTurnaroundStep {
-					//	if image_xscale != prevXScale {
-					//		x += -image_xscale;
-					//		cancelStep = true;
-					//	}
-					//}
 	            }
 	            else if isStep == false
 	            {
@@ -226,12 +194,6 @@ function playerStep() {
 	                }
                     
 	                image_xscale = -1;
-					//if !canTurnaroundStep {
-					//	if image_xscale != prevXScale {
-					//		x += -image_xscale;
-					//		cancelStep = true;
-					//	}
-					//}
                             
 	                if canSpriteChange == true
 	                {
@@ -247,27 +209,6 @@ function playerStep() {
 	                canInitStep = false;
 	                isStep = true;
 	                image_xscale = 1;
-					
-					//if canTurnaroundStep || image_xscale == prevXScale {
-					//	if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-					//		global.xspeed = (stepSpeed * image_xscale) * stepFrames;
-					//		//stepForce += stepSpeed * image_xscale;
-					//		cancelStep = true;
-					//	}
-					//	else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-					//	    if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true { //Still allow movement when the moving platform is despawned
-					//	        global.xspeed = (stepSpeed * image_xscale) * stepFrames;
-					//			//stepForce += stepSpeed * image_xscale;
-					//			cancelStep = true;
-					//		}
-					//	}
-					//}
-					//if !canTurnaroundStep {
-					//	if image_xscale != prevXScale {
-					//		x += -image_xscale;
-					//		cancelStep = true;
-					//	}
-					//}
 	            }
 	            else if isStep == false
 	            {
@@ -295,12 +236,6 @@ function playerStep() {
 	                }
                     
 	                image_xscale = 1;
-					//if !canTurnaroundStep {
-					//	if image_xscale != prevXScale {
-					//		x += -image_xscale;
-					//		cancelStep = true;
-					//	}
-					//}
                 
 	                if canSpriteChange == true
 	                {
@@ -329,27 +264,12 @@ function playerStep() {
 	                    global.xspeed = 0;
 						
 					_frictionApplied = true;
-					//print("Ice1");
 	            }
             
-	            if global.keyLeft && !global.keyRight && canWalk {
+	            if global.keyLeft && !global.keyRight && canWalk
 	                image_xscale = -1;
-					//if !canTurnaroundStep {
-					//	if image_xscale != prevXScale {
-					//		x += -image_xscale;
-					//		cancelStep = true;
-					//	}
-					//}
-				}
-	            else if global.keyRight && !global.keyLeft && canWalk {
+	            else if global.keyRight && !global.keyLeft && canWalk
 	                image_xscale = 1;
-					//if !canTurnaroundStep {
-					//	if image_xscale != prevXScale {
-					//		x += -image_xscale;
-					//		cancelStep = true;
-					//	}
-					//}
-				}
             
 	            if canSpriteChange {
 	                image_speed = 0;
@@ -479,32 +399,30 @@ function playerStep() {
 	
 		if !cancelStep {
 			
-			//if (x != floor(x) && x != ceil(x)) && x mod 0.5 == 0
-			//{
-			//	if image_xscale >= 0
-			//		x = ceil(x);
-			//	else
-			//		x = floor(x);
-			//}
+			var isTurnaround = image_xscale != prevXScale;
+			var stepComplete = false;
 				
-			if image_xscale == prevXScale {
-				if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-					x = round(x);
+			if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
+				x = round(x);
+				if (canTurnaroundStep || !isTurnaround) {
 					global.xspeed = (stepSpeed * image_xscale) * stepFrames;
-					//stepForce += stepSpeed * image_xscale;
-					//print("Step");
+					stepComplete = true;
 				}
-				else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-					if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true { //Still allow movement when the moving platform is despawned
-						x = round(x);
+			}
+			else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
+				if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true { //Still allow movement when the moving platform is despawned
+					x = round(x);
+					if (canTurnaroundStep || !isTurnaround) {
 						global.xspeed = (stepSpeed * image_xscale) * stepFrames;
-						//stepForce += stepSpeed * image_xscale;
-						//print("Step");
+						stepComplete = true;
 					}
 				}
 			}
-			else if !canTurnaroundStep {
-				x = round(x) - image_xscale;
+			if isTurnaround {
+				if stepComplete
+					x -= global.xspeed;
+				if !canTurnaroundStep
+					x = round(x) - image_xscale;
 			}
 			cancelStep = true;
 		}
@@ -528,7 +446,6 @@ function playerStep() {
                     
 	        if global.xspeed > -iceDec && global.xspeed < iceDec
 	            global.xspeed = 0;
-			//print("Ice2");
 	    }
 	
 	    if canSpriteChange {
@@ -541,8 +458,6 @@ function playerStep() {
 				sprite_index = spriteStep;
 				image_speed = speedStep;
 			}
-			//sprite_index = spriteStep;
-			//image_speed = speedStep;
 		}
     
 	    stepTimer++;
@@ -550,46 +465,11 @@ function playerStep() {
 	        isStep = false;
 	        stepTimer = 0;
 	    }
-		
-		//while ground && !place_free(x, y)
-		//	x -= sign(image_xscale);
 	}
 	
-	
-	//if isStep
-	//	print(sprite_index);
-	//print(global.xspeed);
-	
-	
-	////Update camera x-offset
-	//if !climbing
-	//{
-	//	if image_xscale < 0
-	//		with objGlobalControl cameraXOffset = -1;
-	//	else
-	//		with objGlobalControl cameraXOffset = 0;
-	//}	
-	//if isSlide
-	//{
-	//	with objGlobalControl cameraXOffset = 0;
-	//}
-	//else if isHit && hitTimer > 0 && global._health > 0
-	//{
-	//	if image_xscale < 0
-	//		with objGlobalControl cameraXOffset = -2;
-	//}
-
 
 	//Allow movement
 	move(global.xspeed, global.yspeed);
-	
-	
-	//print("X: " + string(x));
-	////Cancel step movement
-	//if cancelStep {
-	//	global.xspeed = 0;
-	//	cancelStep = false;
-	//}
 
 
 	//Avoids free movement on screen above
@@ -630,19 +510,6 @@ function playerStep() {
 	    global._health = 0;
 	    deathByPit = true;
 	}
-
-
-	//if ground
-	//{
-	//	if canJump
-	//		repeat 10 print("JUMP");
-	//	else
-	//		repeat 10 print("NOJUMP");
-	//	global.keyJumpPressed = true;
-	//	global.keyJump = true;
-	//}
-	//if global.yspeed < 0
-	//	global.keyJump = true;
 
 
 	//Jumping
