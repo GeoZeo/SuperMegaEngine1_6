@@ -12,6 +12,7 @@ if using {
                 global.weapons[i].ammo++;
                 if global.weapons[i].ammo > global.maxAmmo
                     global.weapons[i].ammo = global.maxAmmo;
+				timer = 0;
                 proceed = true;
             }
         }
@@ -21,6 +22,7 @@ if using {
             global._health++;
             if global._health > global._maxHealth
                 global._health = global._maxHealth;
+			timer = 0;
             proceed = true;
         }
         

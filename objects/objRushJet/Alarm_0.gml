@@ -1,7 +1,10 @@
 //Teleport away
 teleportingUp = true;
 sprite_index = sprRushTeleport;
-playSFX(sfxTeleportOut);
+
+if !instance_exists(objPauseMenu)
+	playSFX(sfxTeleportOut);
+	
 dead = true;
 xspeed = 0;
 yspeed = 0;

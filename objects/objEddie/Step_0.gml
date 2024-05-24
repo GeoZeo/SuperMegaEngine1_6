@@ -88,8 +88,12 @@ if !global.frozen {
             y += yspeed;
         }
     }
+	prev_img_index = image_index;
 }
 else {
+	if image_index != prev_img_index
+		image_index = prev_img_index;
+		
     if alarm[0] > 0 {
         alarm[0]++;
     }

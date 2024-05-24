@@ -1,6 +1,6 @@
 time_to_flash1 = room_speed * 7 + 12;
 flash1_duration = 12;
-time_to_flash2 = 12;
+time_to_flash2 = room_speed + 12;
 flash2_duration = 12;
 time_to_tint = 1;
 time_to_map = 24;

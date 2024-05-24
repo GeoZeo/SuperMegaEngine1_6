@@ -44,18 +44,26 @@ switch state {
         }
         if image_xscale >= 1.5 {
             state = states.LEAVING;
+			timer = 0;
+			timer2 = 0;
         }
     break;
     case states.LEAVING:
-        image_xscale -= 0.2;
-        image_yscale -= 0.2;
-        if image_xscale < 0.2 {
-            state = states.END;
-            visible = false;
-            var ID = instance_create(0, 0, objFadeout);
-            ID.type = "room";
-            ID.myRoom = rmFortress;              
-        }
+		timer++;
+		if timer >= 8 {
+			timer2++;
+			if timer2 % 4 == 0 {
+				image_xscale -= 0.2;
+				image_yscale -= 0.2;
+			} 
+	        if image_xscale < 0.2 {
+	            state = states.END;
+	            visible = false;
+	            var ID = instance_create(0, 0, objFadeout);
+	            ID.type = "room";
+	            ID.myRoom = rmFortress;              
+	        }
+		}
     break;             
 }
 

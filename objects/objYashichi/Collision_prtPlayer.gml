@@ -1,6 +1,7 @@
 event_inherited();
 
-playSFX(sfxImportantItem);
+stopSFX(sfxEnergyRestore);
+playSFX(sfxEnergyRestore);
 
 global._health = global._maxHealth;
 

@@ -15,3 +15,5 @@ if !prtPlayer.showReady && !prtPlayer.teleporting
 	show_debug_message("Teleport to (" + string(toX) + "," + string(toY) + ") now!");
 }
 
+with objMegamanExplosion instance_destroy();
+

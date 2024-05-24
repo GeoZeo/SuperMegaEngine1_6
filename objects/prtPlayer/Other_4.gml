@@ -18,38 +18,7 @@ if instance_exists(objMusicPlayer)
 	{
 		playNoMusic();
 	}
-	with instance_nearest(x, y, objMusicPlayer)
-	{
-		if canPlay
-		{
-			if (!is_string(myBGM) and myBGM > -1) || (is_string(myBGM) and myBGM != noone)
-			{
-				if is_string(myBGM)
-				{   //For retro compatibility
-				    var parts = split(myBGM, ".");
-				    var name = ds_queue_dequeue(parts);
-				    var sound = asset_get_index("bgm" + name);
-				    if !audio_is_playing(sound)
-					{
-				        playMusic(sound, myVolume, myLoopStart, myLoopEnd);
-				    }
-				}
-				else if !audio_is_playing(myBGM)
-				{
-				    playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
-				}
-			}
-			else
-			{
-				playNoMusic();
-			}
-			
-			canPlay = false;
-			
-			if destroyOnActivation
-				instance_destroy();
-		}
-	}
+	with instance_nearest(x, y, objMusicPlayer) event_user(0);
 }
 else
 {

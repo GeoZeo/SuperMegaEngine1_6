@@ -12,6 +12,9 @@ if objEnergyBalancerEquip.count > 0 && (global.currentWeapon == global.character
     
     if (global.weapons[lowestIndex].ammo < global.maxAmmo) {
         global.frozen = true;
+		with objPauseMenu instance_destroy();
+		with objFadeIn instance_destroy();
+		with objFadeout instance_destroy();
         with objHealthWeaponBar {
             increaseAmmoOffscreen = true;
             weaponToIncreaseIndex = lowestIndex;
@@ -22,10 +25,14 @@ if objEnergyBalancerEquip.count > 0 && (global.currentWeapon == global.character
         loopSFX(sfxEnergyRestore);
 		
 		stopSFX(sfxLand);
+		stopSFX(sfxPause);
     }
 }
 else if global.weapons[global.currentWeapon].ammo < global.maxAmmo {
     global.frozen = true;
+	with objPauseMenu instance_destroy();
+	with objFadeIn instance_destroy();
+	with objFadeout instance_destroy();
     with objHealthWeaponBar {
         increaseAmmo = true;
         increaseAmmoAmount = other.itemAmount;
@@ -35,5 +42,6 @@ else if global.weapons[global.currentWeapon].ammo < global.maxAmmo {
     loopSFX(sfxEnergyRestore);
 	
 	stopSFX(sfxLand);
+	stopSFX(sfxPause);
 }
 

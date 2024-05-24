@@ -26,6 +26,7 @@ if using {
                 global.weapons[useOnIndex].ammo++;
                 if global.weapons[useOnIndex].ammo > global.maxAmmo
                     global.weapons[useOnIndex].ammo = global.maxAmmo;
+				timer = 0;
                 proceed = true;
             }
             

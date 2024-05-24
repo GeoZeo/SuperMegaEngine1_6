@@ -1,5 +1,8 @@
 sprite_index = sprRushTeleport;
-playSFX(sfxTeleportOut);
+
+if !instance_exists(objPauseMenu)
+	playSFX(sfxTeleportOut);
+	
 image_index = 2.9;
 image_speed = -anim_spd * 2;
 leaving = true;
