@@ -26,7 +26,7 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	            //instance_activate_object(objMegaman);
 				if instance_exists(objBossControl) {
 					with instance_nearest(toX, toY, objBossControl) {
-		                if !insideView() or global.bossRushDefeated[bossID] {
+		                if !insideView() or (bossID > -1 and global.bossRushDefeated[bossID]) {
 		                    playerFreeMovement();
 		                }
 		            }
