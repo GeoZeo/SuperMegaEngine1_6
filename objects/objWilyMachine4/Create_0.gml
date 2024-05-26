@@ -5,10 +5,12 @@ spd = 0.5;
 image_xscale = 1;
 image_speed = 5 / room_speed;
 
-explosionTime = 18;
+explosionTime = 10;
 explosionTimer = 0;
-explosionMax = 4;
+explosionMax = 2;
 explosionCounter = 0;
+
+dying = false;
 
 useHitBox = true;
 hitbox_left = 8;

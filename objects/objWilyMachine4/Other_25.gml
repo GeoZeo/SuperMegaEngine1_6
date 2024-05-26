@@ -15,7 +15,21 @@ if sprite_index == sprWilyMachine4a {
     alarm[0] = -1;
     nullifyDeath(false);
 }
-else {
-    add_achievement(objLudditeAchievement);
+else if !dying {
+	add_achievement(objLudditeAchievement);
+	
+	//Death animation
+	hitbox_left = 0;
+	hitbox_top = 0;
+	hitbox_right = 0;
+	hitbox_bottom = 0;
+	contactDamage = 0;
+	alarm[0] = -1;
+	nullifyDeath(false);
+	dying = true;
+	xspeed = 0;
+	yspeed = 0.15;
+	if alarm[1] < 0
+		alarm[1] = 180;
 }
 
