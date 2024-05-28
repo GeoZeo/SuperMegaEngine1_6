@@ -59,3 +59,6 @@ canProgressDoor = false;
 canStep = false;
 plt = -1;
 
+if !(cfgContinueChargeAnimWhileLocked || cfgChargeWhileLocked) && !cfgFadeOutChargedSound
+	stopSFX(global.weapons[global.currentWeapon].chargedSFX);
+

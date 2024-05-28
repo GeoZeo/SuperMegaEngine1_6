@@ -1,6 +1,7 @@
 height = 2;
 maxHeight = 10;
 timer = 0;
+arrowTimer = 0;
 phase = 0;
 duration = 2;
 txt = "";

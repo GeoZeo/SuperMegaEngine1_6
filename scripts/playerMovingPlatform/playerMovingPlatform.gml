@@ -263,7 +263,7 @@ function playerMovingPlatform() {
 		&& !collision_rectangle(sectionRight+1, bbox_top, sectionRight+2, bbox_bottom, objSolid, false, false))
 		and !(x < sectionLeft+6 && place_meeting(x-global.xspeed-6, y, objSectionArrowLeft) //Left
 		&& !collision_rectangle(sectionLeft-1, bbox_top, sectionLeft-2, bbox_bottom, objSolid, false, false)))
-	&& !global.frozen && !audio_is_playing(sfxEnergyRestore) {
+	&& (!objBossDoor.opening or !instance_exists(objBossDoor)) && (!objBossDoorH.opening or !instance_exists(objBossDoorH)) && !global.frozen && !audio_is_playing(sfxEnergyRestore) {
 		
 		if !isHit
 			playSFX(sfxLand);

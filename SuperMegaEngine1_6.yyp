@@ -345,6 +345,7 @@
     {"id":{"name":"sprWireIcon","path":"sprites/sprWireIcon/sprWireIcon.yy",},},
     {"id":{"name":"sprYashichi","path":"sprites/sprYashichi/sprYashichi.yy",},},
     {"id":{"name":"sprPlateA","path":"sprites/sprPlateA/sprPlateA.yy",},},
+    {"id":{"name":"sprAchievementArrow","path":"sprites/sprAchievementArrow/sprAchievementArrow.yy",},},
     {"id":{"name":"sprPlate5","path":"sprites/sprPlate5/sprPlate5.yy",},},
     {"id":{"name":"sprPlate","path":"sprites/sprPlate/sprPlate.yy",},},
     {"id":{"name":"sprPlateC","path":"sprites/sprPlateC/sprPlateC.yy",},},

@@ -24,7 +24,10 @@ if timer % 3 == 0 {
     }
     y = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) / 2 - (height / 2) * 8;
 }
-if phase == 1 and timer > room_speed * duration {
-    phase = 2;
+if phase == 1 {
+	if !audio_is_playing(sfxAchievement)
+		arrowTimer++;
+	if (timer > room_speed * duration or (!audio_is_playing(sfxAchievement) and (global.keyJumpPressed or global.keyPausePressed)))
+		phase = 2;
 }
 

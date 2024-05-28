@@ -1,10 +1,10 @@
 xspeed = 0;
 yspeed = 0;
-currentGrav = prtPlayer.currentGrav;
+currentGrav = cfgGravity;
 stepTime = cfgStepFrames;
 stepTimer = 0;
 isMM = false;
-ground = true;
+ground = false;
 oldX = x;
 prevGround = ground;
 update_rate = 1;

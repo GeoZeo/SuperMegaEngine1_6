@@ -1,14 +1,14 @@
 if !global.frozen
 {	
-	if isMM
+	if isMM && instance_exists(prtPlayer)
 	{
 		checkGround();
 	    gravityCheckGroundExt(currentGrav);
 	    generalCollision();
 		
-	    if (x < xstart or x > xstart) || ((oldX < xstart and x >= xstart) or (oldX > xstart and x <= xstart))
+	    if x < xstart-2 || x > xstart+2 
 	    {
-			if stepTimer < stepTime && sprite_index != prtPlayer.spriteWalk
+			if stepTimer < stepTime && ground && (sprite_index == prtPlayer.spriteStand or sprite_index == prtPlayer.spriteStep) && abs(xspeed) <= cfgStepSpeed * cfgStepFrames
 			{
 				if x < xstart
 		        {
@@ -45,20 +45,21 @@ if !global.frozen
 		        }
 			}
             
-	        //if (place_meeting(x+xspeed*8, y, objSolid) || place_meeting(x+xspeed*8, y, prtMovingPlatformSolid))
-	        //&& ground == true
-	        //{
-	        //    if ((position_meeting(bbox_right+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_right+xspeed*8, bbox_top, prtMovingPlatformSolid))
-	        //    && image_xscale == 1)
-	        //    || ((position_meeting(bbox_left+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_left+xspeed*8, bbox_top, prtMovingPlatformSolid))
-	        //    && image_xscale == -1) //If we are blocked by a wall of at least 2 blocks high, perform a high jump
-	        //        yspeed = -5.25;
-	        //    else //Else, perform a short, 1-block-high jump
-	        //        yspeed = -3.5;
-	        //}
+	        if (place_meeting(x+xspeed*8, y, objSolid) || place_meeting(x+xspeed*8, y, prtMovingPlatformSolid))
+	        && ground == true
+	        {
+	            if ((position_meeting(bbox_right+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_right+xspeed*8, bbox_top, prtMovingPlatformSolid))
+	            && image_xscale == 1)
+	            || ((position_meeting(bbox_left+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_left+xspeed*8, bbox_top, prtMovingPlatformSolid))
+	            && image_xscale == -1) //If we are blocked by a wall of at least 2 blocks high, perform a high jump
+	                yspeed = -5.25;
+	            else //Else, perform a short, 1-block-high jump
+	                yspeed = -3.5;
+	        }
             
 	        if ground == true
-				if stepTimer < stepTime && sprite_index != prtPlayer.spriteWalk
+			{
+				if stepTimer < stepTime && (sprite_index == prtPlayer.spriteStand or sprite_index == prtPlayer.spriteStep) && abs(xspeed) <= cfgStepSpeed * cfgStepFrames
 				{
 					sprite_index = prtPlayer.spriteStep;
 					image_speed = prtPlayer.speedStep;
@@ -68,7 +69,8 @@ if !global.frozen
 					sprite_index = prtPlayer.spriteWalk;
 					image_speed = prtPlayer.speedWalk;
 				}
-	        else
+			}
+			else
 			{
 				sprite_index = prtPlayer.spriteJump;
 				image_speed = prtPlayer.speedJump;

@@ -75,25 +75,6 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 					image_xscale = 1;
 				if image_yscale != 1
 					image_yscale = 1;
-					
-				with objArenaStartingPoint
-				{
-					if insideView_Spr()
-					{
-						if !isMM
-						{
-							x = prtPlayer.x;
-							y = prtPlayer.y;
-							sprite_index = prtPlayer.sprite_index;
-							image_speed = prtPlayer.image_speed;
-							isMM = true;
-							playerLockMovement();
-							with prtPlayer visible = false;
-							visible = true;
-						}
-					}	
-				}
-				
 	        }
 	    }
 	}

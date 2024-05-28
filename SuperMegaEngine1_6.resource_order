@@ -282,6 +282,7 @@
     {"name":"sprEnergyBalancer","order":12,"path":"sprites/sprEnergyBalancer/sprEnergyBalancer.yy",},
     {"name":"sprWireIcon","order":13,"path":"sprites/sprWireIcon/sprWireIcon.yy",},
     {"name":"sprYashichi","order":14,"path":"sprites/sprYashichi/sprYashichi.yy",},
+    {"name":"sprAchievementArrow","order":9,"path":"sprites/sprAchievementArrow/sprAchievementArrow.yy",},
     {"name":"sprPlate5","order":1,"path":"sprites/sprPlate5/sprPlate5.yy",},
     {"name":"sprPlate","order":2,"path":"sprites/sprPlate/sprPlate.yy",},
     {"name":"sprPlateC","order":3,"path":"sprites/sprPlateC/sprPlateC.yy",},

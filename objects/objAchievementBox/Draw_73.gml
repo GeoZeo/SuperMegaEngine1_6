@@ -10,6 +10,7 @@ for (var i = 1; i < height - 1; i++) {
 }
 if phase == 1 {
     draw_sprite(sprCrown, (timer div 8) % 2, __view_get( e__VW.XView, 0 ) + 40, y + 32);   //Crown
+	if !audio_is_playing(sfxAchievement) draw_sprite(sprAchievementArrow, (arrowTimer % 30 < 15), __view_get( e__VW.XView, 0 ) + 128, y + 64); //Arrow
     draw_set_colour(c_white);
     draw_set_font(global.MM3font);
     draw_set_halign(fa_left);
