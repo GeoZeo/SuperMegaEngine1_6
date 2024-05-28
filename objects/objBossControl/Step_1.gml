@@ -1,6 +1,6 @@
 //Changed to a Begin Step event to fix an issue where MM would fire a charge shot/needle the moment the boss door closes.
 if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XView, 0 ) && x <= __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )-1
-&& y >= __view_get( e__VW.YView, 0 ) && y <= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )-1
+&& y >= __view_get( e__VW.YView, 0 ) && y <= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )-1 && !insideViewAny_Spr(objArenaStartingPoint)
 {
 	var _groundChecked = prtPlayer.ground || !checkForGround;
 	

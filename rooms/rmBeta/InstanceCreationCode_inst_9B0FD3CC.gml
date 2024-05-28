@@ -1,5 +1,6 @@
 music = "Boss.ogg";
 musicVolume = 0.7;
+//centreExit = true;
 
 //toX = 3182;
 //toY = 607;

@@ -48,7 +48,7 @@ for (var i = 0; object_exists(i); i++) {
     }
 }
 
-//objPharaohShotWeapon.unlocked = false;  //Leave it locked for testing weapon get
+objPharaohShotWeapon.unlocked = false;  //Leave it locked for testing weapon get
 objTimeSlowWeapon.unlocked = false;  //Leave it locked for testing plates
 
 global.totalWeapons = array_length_1d(global.weapons);
@@ -78,8 +78,8 @@ for(i = 0; i < 8; i++) {
     global.bossDefeated[i] = true;  //All bosses are defeated
     global.bossRushDefeated[i] = true;  //All bosses are defeated
 }
-//global.bossDefeated[7] = false; //We have only Pharaoh Man
-//global.bossRushDefeated[7] = false; //We have only Pharaoh Man
+global.bossDefeated[7] = false; //We have only Pharaoh Man
+global.bossRushDefeated[7] = false; //We have only Pharaoh Man
 
 //Items
 //Add all usable items before non-usable ones for correct placement in the pause menu

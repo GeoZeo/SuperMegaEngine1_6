@@ -10,6 +10,7 @@
 //healthBarSecondaryCol = [col] (the color of the middle of the boss's health bar)
 //bossTime = 0-[time (in frames)] (the amount of time by which to delay the boss spawn)
 //bossSpawnItem = true/false (whether we spawn a health pickup that warps the player out of a boss rush arena, or we set a timer for the warp (only applicable if there is no teleporter already in room) and/or spawn an item in the teleporter room)
+//centreExit = true/false (whether or not MM runs to the centre of the arena in order to teleport)
     
 healthBarPrimaryCol = make_color_rgb(255, 160, 68); //Orange
     
@@ -37,6 +38,8 @@ checkForGround = false;
 
 bossSpawnItem = true;
 itemToSpawn = objLifeEnergyBig;
+
+centreExit = false;
 
 //For warping the player elsewhere at the end of the fight if necessary
 toX = -1;

@@ -6,12 +6,19 @@ if timer % 3 == 0 {
         if height >= maxHeight {
             phase = 1;
             timer = 0;
+			if audio_system() == audio_new_system {
+			    audio_pause_all();
+			}
+			playSFX(sfxAchievement);
         }
     }
     if phase == 2 {
         height -= 2;
         if height <= 0 {
             global.frozen = oldFrozen;
+			if audio_system() == audio_new_system {
+			    audio_resume_all();
+			}
             instance_destroy();
         }
     }
