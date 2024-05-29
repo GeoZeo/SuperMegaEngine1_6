@@ -2,7 +2,7 @@ if !global.frozen {
 	if isMM {
 	    with prtPlayerProjectile instance_destroy();
 	}
-	if isMM == true && teleporting == false
+	if isMM == true && teleporting == false && instance_exists(prtPlayer)
 	{
 	    if absorbing == false
 	    {
@@ -66,6 +66,36 @@ if !global.frozen {
 	                else //Else, perform a short, 1-block-high jump
 	                    yspeed = -3.5;
 	            }
+				
+				//Jumping over pits in the arena (comment this out if you wish to troll people somehow)
+				var _jump = ground;
+				for (var i = 0; bbox_bottom+1+i < prtPlayer.sectionBottom; i += 8)
+				{
+					if place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objSolid)
+					|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objTopSolid)
+					|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformSolid)
+					|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformJumpthrough)
+					{
+						_jump = false;
+						break;
+					}
+				}
+				if _jump == true
+				{
+					if (!((place_meeting(x+xspeed+16, y+1, objSolid) || place_meeting(x+xspeed+32, y+1, objSolid)) 
+					|| (place_meeting(x+xspeed+16, y+1, objTopSolid) || place_meeting(x+xspeed+32, y+1, objTopSolid))
+					|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformSolid) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformSolid))
+					|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformJumpthrough) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformJumpthrough)))
+					&& image_xscale == 1)
+					|| (!((place_meeting((x+xspeed)-16, y+1, objSolid) || place_meeting((x+xspeed)-32, y+1, objSolid)) 
+					|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
+					|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
+					|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
+					&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
+						yspeed = -5.25
+					else //Else, perform a short, 1-block-high jump
+						yspeed = -3.5;
+				}
             
 	            if ground == true
 					if stepTimer < stepTime
@@ -92,6 +122,13 @@ if !global.frozen {
 	        }
 	        else
 	        {
+				xspeed = 0;
+				
+				if bbox_top > prtPlayer.sectionBottom || bbox_top > room_height {
+			        global._health = 0;
+					prtPlayer.deathByPit = true;
+			    }
+				
 	            if canInitJump == true && ground == true
 	            {
 	                if global.weaponID > -1 && !global.weaponID.unlocked //Only absorb the power if it's not already been unlocked
@@ -103,7 +140,6 @@ if !global.frozen {
 						image_speed = prtPlayer.speedJump;
 						currentGrav = cfgGravityWater;
 	                    yspeed = -4.85;
-	                    xspeed = 0;
 	                }
 	                else
 	                {
@@ -122,8 +158,12 @@ if !global.frozen {
 	                y = __view_get( e__VW.YView, 0 )+112;
 	                absorbing = true;
 	            }
+				
+				if prevGround == false && ground == true
+	                playSFX(sfxLand);
+                
+	            prevGround = ground;
 	        }
-        
         
 	        x += xspeed;
 	        y += yspeed;

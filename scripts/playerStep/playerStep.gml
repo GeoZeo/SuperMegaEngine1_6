@@ -1054,7 +1054,6 @@ function playerStep() {
 	//Dying
 	if global._health <= 0 {
 		dead = true;
-		with prtPlayerProjectile instance_destroy();
 		
 		if killTime <= 0 {
 			if !deathByPit {
@@ -1079,8 +1078,9 @@ function playerStep() {
 		        }
 		    }
     
+			with objBossDeathTimer instance_destroy();
 		    instance_create(x, y, objMegamanDeathTimer); //Because the Mega Man object is destoyed upon death, we need to make a different object execute the room restarting code
-		    instance_destroy();
+			instance_destroy();
     
 		    stopAllSFX();
 		    playSFX(sfxDeath);
@@ -1089,6 +1089,7 @@ function playerStep() {
 			if !deathByPit
 				global.frozen = true;
 			else {
+				with objBossDeathTimer instance_destroy();
 				instance_create(x, y, objMegamanDeathTimer); //Because the Mega Man object is destroyed upon death, we need to make a different object execute the room restarting code
 				instance_destroy();
 			}

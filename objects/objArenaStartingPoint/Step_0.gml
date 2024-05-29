@@ -56,6 +56,36 @@ if !global.frozen
 	            else //Else, perform a short, 1-block-high jump
 	                yspeed = -3.5;
 	        }
+			
+			//Jumping over pits in the arena (comment this out if you wish to troll people somehow)
+			var _jump = ground;
+			for (var i = 0; bbox_bottom+1+i < prtPlayer.sectionBottom; i += 8)
+			{
+				if place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objSolid)
+				|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objTopSolid)
+				|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformSolid)
+				|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformJumpthrough)
+				{
+					_jump = false;
+					break;
+				}
+			}
+			if _jump == true
+			{
+				if (!((place_meeting(x+xspeed+16, y+1, objSolid) || place_meeting(x+xspeed+32, y+1, objSolid)) 
+				|| (place_meeting(x+xspeed+16, y+1, objTopSolid) || place_meeting(x+xspeed+32, y+1, objTopSolid))
+				|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformSolid) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformSolid))
+				|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformJumpthrough) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformJumpthrough)))
+				&& image_xscale == 1)
+				|| (!((place_meeting((x+xspeed)-16, y+1, objSolid) || place_meeting((x+xspeed)-32, y+1, objSolid)) 
+				|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
+				|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
+				|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
+				&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
+					yspeed = -5.25
+				else //Else, perform a short, 1-block-high jump
+					yspeed = -3.5;
+			}
             
 	        if ground == true
 			{
@@ -77,7 +107,7 @@ if !global.frozen
 			}
                 
                 
-	        if prevGround == false && ground == true
+	        if prevGround == false && ground == true && !audio_is_playing(sfxLand)
 	            playSFX(sfxLand);
                 
 	        prevGround = ground;
@@ -100,9 +130,9 @@ if !global.frozen
                 instance_destroy();
 	        }
 	    }
-        
-		oldX = x;
 		
+		global.xspeed = xspeed;
+		global.yspeed = yspeed;
 	    x += xspeed;
 	    y += yspeed;
 	}

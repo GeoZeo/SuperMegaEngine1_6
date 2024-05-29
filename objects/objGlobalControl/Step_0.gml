@@ -206,7 +206,7 @@ if keyboard_check_pressed(vk_f10) {
 
 if keyboard_check_pressed(vk_f11) {
 	var myEnemy = instance_create(prtPlayer.x+80, prtPlayer.y-48, objFanFiend);
-	myEnemy.dir = 0;
+	myEnemy.dir = 1;
 }
 
 if keyboard_check_pressed(vk_f12) {
