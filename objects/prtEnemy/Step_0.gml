@@ -74,14 +74,5 @@ if dead {
 if !global.frozen and !dead {
     x += xspeed * update_rate;
     y += yspeed * update_rate;
-	
-	////Player collision code moved to step event since having it in a collision event caused physics issues and zipping.
-	//if instance_exists(prtPlayer) {
-	//	if prtPlayer.canHit {  
-	//		if place_meeting(x, y, prtPlayer) {
-	//			event_user(1);
-	//		}
-	//	}
-	//}
 }
 

@@ -1,6 +1,7 @@
 event_inherited();
 
 if !global.frozen {
+	image_speed = 10/60;
     if image_index >= 7 and xspeed == 0 {
         if instance_exists(prtPlayer) and instance_exists(objWilyMachine4) and objWilyMachine4.sprite_index == sprWilyMachine4b {
             xspeed = min(-2, sprite_get_xcenter_object(prtPlayer) - x);
@@ -21,5 +22,8 @@ if !global.frozen {
         x = objWilyMachine4.x + 20;
         y = objWilyMachine4.y + objWilyMachine4.sprite_height / 2 + 16;
     }
+}
+else {
+	image_speed = 0;
 }
 

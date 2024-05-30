@@ -1013,7 +1013,7 @@ function playerStep() {
         
 	        //When sliding and there's a solid above us, we should not experience knockback
 	        //If we did, we would clip inside the ceiling above us
-	        if !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+	        if !locked && !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
 	            canMove = true;
 				canWalk = true;
 	            canSpriteChange = true;

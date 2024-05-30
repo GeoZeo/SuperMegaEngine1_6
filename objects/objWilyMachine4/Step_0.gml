@@ -68,7 +68,11 @@ if !global.frozen {
 						if !dying
 							explosion = instance_create(x + random(64), y + random(64), objExplosion4);
 						else
+						{
 							explosion = instance_create(x+32 + random(sprite_width - 32), y+32 + random(sprite_height - 32), objExplosion4);
+							var explosion2 = instance_create(x+32 + random(sprite_width - 32), y+32 + random(sprite_height - 32), objExplosion4);
+							explosion2.depth = depth - 1;
+						}
 						explosion.depth = depth - 1;
 						explosionCounter++;
 					}

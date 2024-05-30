@@ -27,7 +27,9 @@ if timer % 3 == 0 {
 if phase == 1 {
 	if !audio_is_playing(sfxAchievement)
 		arrowTimer++;
-	if (timer > room_speed * duration or (!audio_is_playing(sfxAchievement) and (global.keyJumpPressed or global.keyPausePressed)))
+	if (//timer > room_speed * duration or //Comment either one or neither of these lines out depending on how you see fit for making the box disappear.
+	(!audio_is_playing(sfxAchievement) and (global.keyJumpPressed or global.keyPausePressed))
+	)
 		phase = 2;
 }
 
