@@ -19,7 +19,8 @@ if !global.frozen and !dead {
         if floor(shootTimer) == 1 {
             shootTimer = 2;
             var shootID = instance_create(x+image_xscale*16, y+8, objBeakBullet);
-            shootID.image_index = col;
+            shootID.col = col;
+			shootID.image_index = shootID.col;
             shootID.dir = 45;
             shootID.xscale = dir;
                 
@@ -28,7 +29,8 @@ if !global.frozen and !dead {
         else if floor(shootTimer) == 31 {
             shootTimer = 32;
             var shootID = instance_create(x+image_xscale*16, y+8, objBeakBullet);
-            shootID.image_index = col;
+            shootID.col = col;
+			shootID.image_index = shootID.col;
             shootID.dir = 15;
             shootID.xscale = dir;
                 
@@ -37,7 +39,8 @@ if !global.frozen and !dead {
         else if floor(shootTimer) == 61 {
             shootTimer = 62;
             var shootID = instance_create(x+image_xscale*16, y+8, objBeakBullet);
-            shootID.image_index = col;
+            shootID.col = col;
+			shootID.image_index = shootID.col;
             shootID.dir = -15;
             shootID.xscale = dir;
                 
@@ -46,7 +49,8 @@ if !global.frozen and !dead {
         else if floor(shootTimer) == 91 {
             shootTimer = 92;
             var shootID = instance_create(x+image_xscale*16, y+8, objBeakBullet);
-            shootID.image_index = col;
+            shootID.col = col;
+			shootID.image_index = shootID.col;
             shootID.dir = -45;
             shootID.xscale = dir;
                 

@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "WilyMachine4",
-    "path": "folders/Objects/Boss/WilyMachine4.yy",
+    "name": "Projectiles",
+    "path": "folders/Objects/Boss/WilyMachine4/Projectiles.yy",
   },
   "parentObjectId": {
     "name": "prtEnemyProjectile",

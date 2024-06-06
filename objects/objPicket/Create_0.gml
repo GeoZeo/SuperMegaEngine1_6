@@ -1,6 +1,7 @@
 event_inherited();
 
 contactDamage = 2;
+
 image_speed = 1/6;
 
 yspeed = -6;

@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Pharaoh",
-    "path": "folders/Objects/Boss/Pharaoh.yy",
+    "name": "Projectiles",
+    "path": "folders/Objects/Boss/Pharaoh/Projectiles.yy",
   },
   "parentObjectId": {
     "name": "prtEnemyProjectile",

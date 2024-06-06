@@ -133,7 +133,11 @@ update_rate = 1;
 reflectProjectiles = false;
 reflectProjectilesRight = false; //Only reflect projectiles that come from the right
 reflectProjectilesLeft = false; //Only reflect projectiles that come from the left
-
+reflector_x = 0; //Reflector hitbox transform
+reflector_y = 0;
+reflector_width = 0;
+reflector_height = 0;
+reflector_left_offset = false; //Offset by 1 when facing left?
 
 shoot_height = 4;
 shoot_shift = 6;

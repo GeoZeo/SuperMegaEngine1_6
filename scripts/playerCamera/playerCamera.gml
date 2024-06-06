@@ -4,7 +4,7 @@ function playerCamera() {
 	//Call it in prtPlayer
 	
 	//Follow the player
-	__view_set( e__VW.XView, 0, round(x - __view_get( e__VW.WView, 0 ) / 2) + round(image_xscale) );
+	__view_set( e__VW.XView, 0, round(x - __view_get( e__VW.WView, 0 ) / 2) + (round(image_xscale)*!climbing) );
 	__view_set( e__VW.YView, 0, round(y - __view_get( e__VW.HView, 0 ) / 2) + round(image_yscale) );
 
 	//Stop at section borders

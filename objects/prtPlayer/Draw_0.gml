@@ -1,8 +1,7 @@
 if teleporting == false && showReady == false
 {
-    //Draws the player. Whitemasks will be used
-	if !prtPlayer.dead || prtPlayer.killTimer mod 2 == 1
-		drawPlayer();
+    //Draws the player. Whitemasks will not be used
+	drawPlayer();
     
     //Hitspark
     if drawHitspark == true
@@ -110,6 +109,10 @@ else if showReady == true
 if debug_mode || cfgDebug {
     draw_set_color(c_white);
     draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,1);
+	if reflectProjectilesRight
+		draw_rectangle(round(bbox_left+reflector_x), round(bbox_top+reflector_y), round(bbox_left+reflector_x+reflector_width), round(bbox_top+reflector_y+reflector_height),1);
+	if reflectProjectilesLeft
+		draw_rectangle(round(bbox_right-reflector_x), round(bbox_top+reflector_y), round(bbox_right-(reflector_x+reflector_left_offset)-(reflector_width+reflector_left_offset)), round(bbox_top+reflector_y+reflector_height),1);
     draw_arrow(sprite_get_xcenter(), sprite_get_ycenter(), sprite_get_xcenter() + global.xspeed * 10, sprite_get_ycenter() + global.yspeed * 10, 10);
 
 	//Draw sprite anchor

@@ -26,6 +26,12 @@ speedSlide = 1/6;
 blinkTimerMax = 6;
 blinkDuration = 6;
 
+reflector_x = 14; 
+reflector_y = 2;
+reflector_width = 6;
+reflector_height = 19;
+reflector_left_offset = true;
+
 shoot_height = 7;
 shoot_shift = 0;
 jump_shoot_height = 6;

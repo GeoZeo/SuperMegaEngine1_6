@@ -12,4 +12,5 @@ if !global.frozen {
 }
 defaultDamage = 4;
 defaultBossDamage = 0;
+reflectible = false;
 

@@ -4,6 +4,8 @@ spd = 2;
 
 contactDamage = 3;
 
+destroyOnReflect = true;
+
 if instance_exists(prtPlayer) {
 
     xspeed = prtPlayer.x - x;

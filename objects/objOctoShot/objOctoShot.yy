@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "MM5",
-    "path": "folders/Objects/Enemies/MM5.yy",
+    "name": "Projectiles",
+    "path": "folders/Objects/Enemies/MM5/Projectiles.yy",
   },
   "parentObjectId": {
     "name": "prtEnemyProjectile",

@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "WilyCapsule1",
-    "path": "folders/Objects/Boss/WilyCapsule1.yy",
+    "name": "Projectiles",
+    "path": "folders/Objects/Boss/WilyCapsule1/Projectiles.yy",
   },
   "parentObjectId": null,
   "persistent": false,

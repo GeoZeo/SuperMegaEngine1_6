@@ -31,8 +31,18 @@ if !prtPlayer.isShoot || (instance_exists(objSectionSwitcher) and cfgChargeWhile
 			prtPlayer.playChargeSound = false;
 		}
         
-        if chargeTimer < chargeTime {                
-            if round(chargeAnimTimer / 2) mod 2 == 0 && chargeAnimTimer != 0
+        if chargeTimer < chargeTime {
+			var chargeTimeDiv, chargeInterval;
+			chargeTimeDiv = round(chargeAnimTime / 3);
+			
+			if chargeAnimTimer < chargeTimeDiv
+                chargeInterval = 4;
+            else if chargeAnimTimer < chargeTimeDiv * 2
+                chargeInterval = 3;
+            else
+                chargeInterval = 2;
+			
+            if round(chargeAnimTimer / chargeInterval) mod 2 == 0 && chargeAnimTimer != 0
                 global.outlineCol = outlineChargeCol1;
             else
                 global.outlineCol = c_black;

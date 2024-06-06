@@ -1,7 +1,7 @@
 event_inherited();
 
 if !global.frozen and !dead {
-    if !instance_exists(bulletID) {
+    if !instance_exists(bulletID) && enemyProjectileCount(objColtonBullet) < 1 {
         if instance_exists(prtPlayer) {
             if x >= prtPlayer.x
                 image_xscale = -1;

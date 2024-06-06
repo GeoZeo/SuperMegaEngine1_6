@@ -30,7 +30,7 @@ switch phase {
             if option < global.totalWeapons {   //Selected a weapon             
                 global.currentWeapon = option;
                 with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
-                with objReflectedProjectile instance_destroy();
+                with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
                 with prtRush instance_destroy();
                 with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
                 with prtPlayer {

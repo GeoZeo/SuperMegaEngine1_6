@@ -152,7 +152,7 @@ if cfgDebug || debug_mode {
     show_debug_overlay(true);
 }
 
-setPlayer(global.characters[0]);
+setPlayer(global.characters[1]);
 
 instance_create(0, 0, objGlobalControl);
 instance_destroy();

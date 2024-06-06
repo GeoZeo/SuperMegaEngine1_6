@@ -2,6 +2,8 @@ event_inherited();
 
 contactDamage = 2;
 
+destroyOnReflect = true;
+
 var spd;
 spd = 5;
 if instance_exists(prtPlayer)

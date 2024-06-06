@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "YellowDevil",
-    "path": "folders/Objects/Boss/YellowDevil.yy",
+    "name": "Projectiles",
+    "path": "folders/Objects/Boss/YellowDevil/Projectiles.yy",
   },
   "parentObjectId": {
     "name": "prtEnemyProjectile",

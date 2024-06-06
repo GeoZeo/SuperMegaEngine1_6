@@ -33,7 +33,7 @@ function playerSwitchWeapons() {
 		    event_user(0); //Colors
     
 		    with prtPlayerProjectile if destroyOnSwitch instance_destroy();
-		    with objReflectedProjectile instance_destroy();
+		    with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 		    with prtRush instance_destroy();
 		    with objRushJet instance_destroy();
 		    shootTimer = 20;
@@ -73,7 +73,7 @@ function playerSwitchWeapons() {
 		    event_user(0); //Colors
     
 		    with prtPlayerProjectile if destroyOnSwitch instance_destroy();
-		    with objReflectedProjectile instance_destroy();
+		    with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 		    with prtRush instance_destroy();
 		    with objRushJet instance_destroy();
 		    shootTimer = 20;
@@ -110,7 +110,7 @@ function playerSwitchWeapons() {
 		    event_user(0); //Colors
     
 		    with prtPlayerProjectile if destroyOnSwitch instance_destroy();
-		    with objReflectedProjectile instance_destroy();
+		    with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 		    with prtRush instance_destroy();
 		    with objRushJet instance_destroy();
 		    shootTimer = 20;

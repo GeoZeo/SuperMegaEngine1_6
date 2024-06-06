@@ -403,7 +403,8 @@ function playerStep() {
 			var stepComplete = false;
 				
 			if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-				x = round(x);
+				if (stepSpeed * stepFrames) mod 1 == 0
+					x = round(x);
 				if (canTurnaroundStep || !isTurnaround) {
 					global.xspeed = (stepSpeed * image_xscale) * stepFrames;
 					stepComplete = true;
@@ -411,7 +412,8 @@ function playerStep() {
 			}
 			else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
 				if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true { //Still allow movement when the moving platform is despawned
-					x = round(x);
+					if (stepSpeed * stepFrames) mod 1 == 0
+						x = round(x);
 					if (canTurnaroundStep || !isTurnaround) {
 						global.xspeed = (stepSpeed * image_xscale) * stepFrames;
 						stepComplete = true;
@@ -421,8 +423,12 @@ function playerStep() {
 			if isTurnaround {
 				if stepComplete
 					x -= global.xspeed;
-				if !canTurnaroundStep
-					x = round(x) - image_xscale;
+				if !canTurnaroundStep {
+					if (stepSpeed * stepFrames) mod 1 == 0
+						x = round(x) - image_xscale;
+					else
+						x -= image_xscale;
+				}
 			}
 			cancelStep = true;
 		}
@@ -1086,18 +1092,8 @@ function playerStep() {
 		    playSFX(sfxDeath);
 		}
 		else {
-			if !deathByPit
-				global.frozen = true;
-			else {
-				with objBossDeathTimer instance_destroy();
-				instance_create(x, y, objMegamanDeathTimer); //Because the Mega Man object is destroyed upon death, we need to make a different object execute the room restarting code
-				instance_destroy();
-			}
-				
+			global.frozen = true;
 			stopAllSFX();
-			
-			if deathByPit
-				playSFX(sfxDeath);
 		}
 	}
 

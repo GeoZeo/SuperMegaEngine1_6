@@ -2,6 +2,7 @@ event_inherited()
 
 spd = 6;
 contactDamage = 4;
+destroyOnReflect = true;
 
 image_xscale = 0.5;
 image_yscale = 0.5;

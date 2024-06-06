@@ -35,27 +35,32 @@ if !global.frozen and !dead {
                 else if floor(shootTimer) == 30 {
                     if shootAmount != 2 {
                         var shootID = instance_create(x+8, y+3, objBeakBullet);
-                        shootID.image_index = col;
+                        shootID.col = col;
+						shootID.image_index = shootID.col;
                         shootID.dir = 0;
                         shootID.xscale = 1;
                         
                         shootID = instance_create(x+4, y+2, objBeakBullet);
-                        shootID.image_index = col;
+                        shootID.col = col;
+						shootID.image_index = shootID.col;
                         shootID.dir = 45;
                         shootID.xscale = 1;
                             
                         shootID = instance_create(x, y, objBeakBullet);
-                        shootID.image_index = col;
+                        shootID.col = col;
+						shootID.image_index = shootID.col;
                         shootID.dir = 90;
                         shootID.xscale = 1;
                             
                         shootID = instance_create(x-4, y+2, objBeakBullet);
-                        shootID.image_index = col;
+                        shootID.col = col;
+						shootID.image_index = shootID.col;
                         shootID.dir = 135;
                         shootID.xscale = 1;
                             
                         shootID = instance_create(x-8, y+3, objBeakBullet);
-                        shootID.image_index = col;
+                        shootID.col = col;
+						shootID.image_index = shootID.col;
                         shootID.dir = 180;
                         shootID.xscale = 1;
                             
