@@ -38,7 +38,6 @@ function playerShoot() {
 			if global.keyShootPressed || (global.keyShoot && global.weapons[global.currentWeapon].rapidFire) {
 				if global.keyRight && !global.keyLeft {
 				    image_xscale = 1;
-					show_debug_message(prevXScale);
 					if canInitStep && !canTurnaroundStep {
 						if image_xscale != prevXScale {
 							if !global.weapons[global.currentWeapon].freeShot {
@@ -49,7 +48,6 @@ function playerShoot() {
 				}
 				else if global.keyLeft && !global.keyRight {
 				    image_xscale = -1;
-					show_debug_message(prevXScale);
 					if canInitStep && !canTurnaroundStep {
 						if image_xscale != prevXScale {
 							if !global.weapons[global.currentWeapon].freeShot {
@@ -83,7 +81,6 @@ function playerShoot() {
 			    if global.keyShoot && global.weapons[global.currentWeapon].rapidFire {
 			        if global.keyRight && !global.keyLeft {
 			            image_xscale = 1;
-						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
@@ -92,7 +89,6 @@ function playerShoot() {
 					}
 			        else if global.keyLeft && !global.keyRight {
 			            image_xscale = -1;
-						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
@@ -139,7 +135,6 @@ function playerShoot() {
 			    if global.keyShoot && global.weapons[global.currentWeapon].rapidFire {
 			        if global.keyRight && !global.keyLeft {
 			            image_xscale = 1;
-						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
@@ -148,7 +143,6 @@ function playerShoot() {
 					}
 			        else if global.keyLeft && !global.keyRight {
 			            image_xscale = -1;
-						show_debug_message(prevXScale);
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;

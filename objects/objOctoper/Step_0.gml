@@ -1,6 +1,8 @@
 event_inherited();
 
-if !global.frozen && !dead {
+if !global.frozen && !dead && healthpoints > 0 {
+
+	alive = true;
 
     if xspeed == 0 && yspeed == 0 {
         xspeed = image_xscale * 0.5;
@@ -25,5 +27,41 @@ if !global.frozen && !dead {
         yspeed *= -1;
     }
     
+}
+if !global.frozen && dying {
+	
+	if explosionCounter < explosionMax {
+		
+		if explosionTimer <= 0 {
+			if explosionCounter < explosionMax {
+				var explosion = instance_create((bbox_left+48) + random(abs(sprite_width)-48), (bbox_top+48) + random(abs(sprite_height)-48), objExplosion4);
+				explosion.depth = (depth-10000000) - 1;
+				explosionCounter++;
+			}
+			if explosionCounter >= explosionMax {
+				explosionCounter = explosionMax;
+				canInitDeath = true;
+				
+				if healthpoints <= 0 {
+				    event_user(15);
+				    if canInitDeath {
+				        beenOutsideView = false;
+						outsideSection = true;
+				        visible = false;
+				        dead = true;
+				        x = xstart;
+				        y = ystart;
+				        canInitDeath = false;
+				        xspeed = 0;
+				        yspeed = 0;
+				    }   
+				}
+			}
+		}
+		explosionTimer++;
+		if explosionTimer >= explosionTime && (explosionCounter < explosionMax)
+			explosionTimer = 0
+	}
+
 }
 

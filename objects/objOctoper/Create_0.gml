@@ -18,3 +18,12 @@ hitbox_bottom = 1;
 
 damage[objWindStorm] = 2;
 
+explosionTime = 10;
+explosionTimer = 0;
+explosionMax = 5;
+explosionCounter = 0;
+
+hitWhite = true;
+
+alive = false;
+

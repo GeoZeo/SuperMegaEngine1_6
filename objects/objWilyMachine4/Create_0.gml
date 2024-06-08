@@ -10,8 +10,6 @@ explosionTimer = 0;
 explosionMax = 2;
 explosionCounter = 0;
 
-dying = false;
-
 useHitBox = true;
 hitbox_left = 8;
 hitbox_right = 32;

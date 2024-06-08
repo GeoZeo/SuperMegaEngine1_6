@@ -1,10 +1,12 @@
 dead = false;
+deathChecked = false;
 canInitDeath = true;
 beenOutsideView = false;
 outsideSection = false; //Has this enemy just moved outside of a section?
 checkFullSprite = false; //Should we check whether the whole sprite is in view instead of just the center to see if this enemy is on-screen or not?
 canSpawnItem = true;
 canHit = true;
+dying = false; //In the middle of a death animation?
 xspeed = 0;
 yspeed = 0;
 
@@ -13,6 +15,8 @@ update_rate = 1;
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 1;
+
+hitWhite = false;
 
 //Reflection
 reflectProjectiles = false;

@@ -14,7 +14,7 @@ if dead && insideView() {
     instance_activate_object(objSectionArrowDown);
 }
 
-if insideView() {
+if insideView() && blackenBackground {
     __background_set( e__BG.Blend, 0, c_black );
 }
 else {

@@ -41,6 +41,7 @@ if respawn {
         healthpoints = healthpointsStart;
         canInitDeath = true;
         beenOutsideView = false;
+		deathChecked = false;
     }
 }
 else if dead {
