@@ -1,4 +1,4 @@
-if !dead && canPlayerInteract {
+if !dead && canPlayerInteract && other.id_of_origin != prtPlayer {
     playSFX(sfxEnemyHit);
     healthpoints -= other.defaultDamage;
     if !hitWhite || healthpoints <= 0 visible = false; isHit = true;

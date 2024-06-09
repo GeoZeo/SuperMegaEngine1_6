@@ -1,7 +1,7 @@
 event_inherited();
 
 if !global.frozen && !dead && healthpoints > 0 {
-
+	
 	alive = true;
 
     if xspeed == 0 && yspeed == 0 {

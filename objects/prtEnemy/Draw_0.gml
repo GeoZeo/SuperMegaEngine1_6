@@ -1,4 +1,22 @@
+useShader = false;
+if hitWhite && object_get_parent(object_index) == prtEnemy
+{
+	if alarm[11] > -1 && healthpoints > 0 //Health check optional; comment it out if you don't want it
+	{
+	    shader_set(shBossHit);
+	    useShader = true;
+	}
+}
+
 drawSelf();
+
+if hitWhite && object_get_parent(object_index) == prtEnemy
+{
+	if useShader 
+	{
+	    shader_reset();
+	}
+}
 
 if cfgDebug || debug_mode {
     if useHitBox {

@@ -1,5 +1,6 @@
 if !dead {
     visible = true;
+	isHit = false;
 
 }
 

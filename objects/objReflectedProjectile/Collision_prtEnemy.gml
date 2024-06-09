@@ -9,7 +9,7 @@ if id_of_origin != prtPlayer {
 	            if canHit {
 	                drawDamageNumber(x, y, other.contactDamage);
 	                healthpoints -= other.contactDamage;
-	                if !hitWhite visible = false;
+	                if !hitWhite || healthpoints <= 0 visible = false;
 	                event_user(14);
 	            }
             

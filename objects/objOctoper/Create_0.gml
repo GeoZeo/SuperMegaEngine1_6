@@ -25,5 +25,3 @@ explosionCounter = 0;
 
 hitWhite = true;
 
-alive = false;
-

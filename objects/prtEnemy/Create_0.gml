@@ -16,7 +16,7 @@ healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 1;
 
-hitWhite = false;
+hitWhite = true;
 
 //Reflection
 reflectProjectiles = false;

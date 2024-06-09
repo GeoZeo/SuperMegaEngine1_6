@@ -5,6 +5,7 @@ toY = y;
 itemX = 0;
 itemY = 0;
 toDir = 1;
+exitStage = false;
 out = false;
 on = true;
 water = false;

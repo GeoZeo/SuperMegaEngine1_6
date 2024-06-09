@@ -14,13 +14,42 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	        if !out {
 	            visible = false;
 	            sprite_index = -1;
-	            var fadeoutin = instance_create(x, y, objFadeIn);
-	            fadeoutin.blackAlpha = 0;
-	            fadeoutin.blackAlphaDecrease = -0.2;
-	            fadeoutin.reverse = true;
-	            fadeoutin.deactivate = false;
-	            alarm[0] = 15;
-	            alarm[1] = 30;
+				if !exitStage {
+					var fadeoutin = instance_create(x, y, objFadeIn);
+		            fadeoutin.blackAlpha = 0;
+		            fadeoutin.blackAlphaDecrease = -0.2;
+		            fadeoutin.reverse = true;
+		            fadeoutin.deactivate = false;
+					alarm[0] = 15;
+					alarm[1] = 30;
+				}
+				else {
+					with objMusicPlayer instance_destroy();
+					var ID = instance_create(x, y, objFadeout);
+					ID.type = "room";
+    
+					if global.weaponID > -1 && !global.weaponID.unlocked {
+					    ID.myRoom = rmWeaponGet;
+					    global.passPlayVictory = false;
+					}
+					else if !global.fortressStarted {
+					    ID.myRoom = rmPass;
+					    global.passPlayVictory = true;
+					}
+					else if global.fortressLevels[global.currentFortressLevel] == room {
+					    global.fortressLevelDone[global.currentFortressLevel] = true;
+					    global.currentFortressLevel++;
+					    if global.currentFortressLevel >= global.numFortressLevels {
+					        //Ending
+					        ID.myRoom = rmCredits;
+					    }
+					    else {
+					        ID.myRoom = rmFortress;
+					    }
+					}
+
+					global.passContinueRoom = room;
+				}
 	        }
 	        else {
 	            //instance_activate_object(objMegaman);

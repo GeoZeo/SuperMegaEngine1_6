@@ -24,6 +24,7 @@ else if !dying {
 	hitbox_right = 0;
 	hitbox_bottom = 0;
 	contactDamage = 0;
+	explosionTimer = 0;
 	alarm[0] = -1;
 	nullifyDeath(false);
 	dying = true;

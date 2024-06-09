@@ -8,7 +8,7 @@ with other {
             if canHit {
                 drawDamageNumber(x, y, damage[other.object_index]);
                 healthpoints -= damage[other.object_index];
-                if !hitWhite visible = false;
+                if !hitWhite || healthpoints <= 0 visible = false;
                 event_user(14);
             }
             

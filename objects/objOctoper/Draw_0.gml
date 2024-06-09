@@ -1,5 +1,5 @@
 useShader = false;
-if hitWhite && alarm[11] > -1 {
+if hitWhite && alarm[11] > -1 && healthpoints > 0 {
     shader_set(shBossHit);
     useShader = true;
 }
