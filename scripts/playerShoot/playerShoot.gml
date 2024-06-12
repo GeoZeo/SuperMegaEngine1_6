@@ -22,7 +22,7 @@ function playerShoot() {
 
 
 		//Shooting
-		if global.keyShootPressed && canShoot && (canMove || climbing || (isThrow and room != rmWeaponGet) || onRushJet)
+		if global.keyShootPressed && canShoot && (canMove || climbing || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet))
 		&& instance_number(objBusterShotCharged) < 1 && global.ammo[global.currentWeapon] > 0
 		{   
 		    if climbing {

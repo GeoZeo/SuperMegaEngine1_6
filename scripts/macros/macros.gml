@@ -1,5 +1,5 @@
 function macros() {
-#macro initialRoom rmBossRush
+#macro initialRoom rmBeta
 #macro cfgEnableSlideKey false
 #macro cfgEnableDamageNumbers false
 #macro cfgEnableCharge true

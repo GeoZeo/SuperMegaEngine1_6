@@ -519,7 +519,7 @@ function playerStep() {
 
 
 	//Jumping
-	if (canMove || (isThrow and room != rmWeaponGet) || onRushJet) && ground && canJump && place_free(x, y-2) && global.keyJumpPressed && (!global.keyDown || onRushJet)
+	if (canMove || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet)) && ground && canJump && place_free(x, y-2) && global.keyJumpPressed && (!global.keyDown || onRushJet)
 	{
 	    if ((isThrow or isShoot) and !global.weapons[global.currentWeapon].freeShot) {  //We can jump-cancel the throwing animation (after throwing a Metal Blade, Pharaoh Shot etc)
 	        canMove = true;
@@ -558,7 +558,7 @@ function playerStep() {
 	if enableSlide {
 	    if ground && !isSlide && ((global.keyJumpPressed && global.keyDown) || (global.enableSlideKey && global.keySlidePressed)) 
 	        && (canMove || (isThrow and room != rmWeaponGet)) && !position_meeting(box+image_xscale*5, bbox_bottom-8, objSolid)
-			&& !onRushJet
+			&& !onRushJet && room != rmWeaponGet
 	    {
 	        var canSld = false;
         

@@ -7,6 +7,7 @@ megaImg = 0;
 
 text1Alpha = 0;
 text2Alpha = 0;
+text3Alpha = 0;
 
 global.checkpoint = false;
 
@@ -19,10 +20,27 @@ if global.bossID > -1 {
     global.bossDefeated[global.bossID] = true; //For the stage select screen
 }
 
-phase = 0; //0 = preparing for moving up; 1 = moving up; 2 = de-teleporting; 3 = waiting; 4 = moving right; 5 = waiting for text;
-           //6 = show "You got"; 7 = show weapon name; 8 = flicker between normal and weapon colors; 9 = weapon colors and timer for leaving
+///Insert code for unlocking weapons upon defeating a certain number of RMs here
 
-if cfgWeaponPreview and global.weaponID > -1 {
+//Example (also used for testing):
+//if numBossesDefeated() >= 8 {
+//	if !objRushJetWeapon.unlocked global.utilityID = objRushJetWeapon; 
+//	//if !objRushJetWeapon.unlocked && global.weaponID < 0 global.weaponID = objRushJetWeapon; //Set the utility as the main weapon ID instead of the utility ID if you just want to unlock the utility on its own instead of alongside a RM weapon
+//}
+
+///--------------------------------------------------------------------------///
+
+if global.utilityID > -1 {
+    //global.weapons[global.weaponID].unlocked = true; //Unlocks the utility you get for defeating the RM
+    global.utilityID.unlocked = true; //Unlocks the utility you get for defeating the RM
+}
+
+phase = 0; //0 = preparing for moving up; 1 = moving up; 2 = de-teleporting; 3 = waiting; 4 = moving right; 5 = waiting for text;
+           //6 = show "You got"; 7 = show weapon name/"and [utility name]"; 8 = flicker between normal and weapon colors; 9 = weapon colors and timer for leaving
+
+doAgain = false; //Repeat phases 7-9? For if we unlock a utility/Rush ability for defeating a RM
+
+if cfgWeaponPreview and (global.weaponID > -1 or global.utilityID > -1) {
     instance_create(16, 160, global.character);
     
     prtPlayer.readyTimer = 0;
@@ -41,11 +59,21 @@ if cfgWeaponPreview and global.weaponID > -1 {
     
     with objHealthWeaponBar instance_destroy();
     
-    with global.weaponID {
-        shots = 0;
-        timer = 0;
-        maxTimer = room_speed;
-        event_user(5);
-    }
+	if global.weaponID > -1 {
+		with global.weaponID {
+	        shots = 0;
+	        timer = 0;
+	        maxTimer = room_speed;
+	        event_user(5);
+	    }
+	}
+	
+	if global.utilityID > -1 {
+		with global.utilityID {
+	        shots = 0;
+	        timer = 0;
+	        maxTimer = room_speed;
+	    }
+	}
 }           
 

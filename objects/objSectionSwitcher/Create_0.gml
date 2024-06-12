@@ -23,7 +23,7 @@ with prtEnemyProjectile instance_destroy();
 deactivateUnimportantObjects();
 
 if instance_exists(prtPlayer)
-{
+{	
     //Basically copy the player's appearance, so that the object can return to its original behaviour when done switching sections
     with prtPlayer visible = false;
     sprite_index = prtPlayer.sprite_index;

@@ -9,6 +9,7 @@ standSprite = noone;
 pose = -1;
 poseImgSpeed = 3/60;
 weaponID = -1;
+utilityID = -1;
 bossID = -1;
 
 //Do we always have to fight this boss even if it's already been beaten once?
@@ -18,6 +19,7 @@ control = -1;
 
 //Initialization variables, don't change
 global.weaponID = weaponID;
+global.utilityID = utilityID;
 global.bossID = bossID;
 
 startIntro = false;

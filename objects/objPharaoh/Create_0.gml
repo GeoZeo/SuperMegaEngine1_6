@@ -8,6 +8,8 @@ standSprite = sprPharaohStand;
 pose = sprPharaohPose;
 poseImgSpeed = 3/60;
 weaponID = objPharaohShotWeapon;
+utilityID = -1;
+//utilityID = objRushJetWeapon; Uncomment this line (and remove the line above, optionally) for testing weapon get with utilities
 bossID = 7; //The ID on the stage select screen. The top-left has an ID of 0, then it goes clockwise (so the left panel's ID is 7)
             //The middle panel's ID is 8
 			
@@ -16,6 +18,7 @@ bossID = 7; //The ID on the stage select screen. The top-left has an ID of 0, th
 contactDamage = 4;
 
 global.weaponID = weaponID;
+global.utilityID = utilityID;
 global.bossID = bossID;
 
 ground = false;

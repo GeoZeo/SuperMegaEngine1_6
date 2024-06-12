@@ -76,6 +76,14 @@ switch phase {
             
         if text2Alpha > 1
             text2Alpha = 1;
+			
+		if doAgain {
+			if timer mod 3 == 0 && text3Alpha < 1
+	            text3Alpha += 1/3;
+            
+	        if text3Alpha > 1
+	            text3Alpha = 1;
+		}
         
         if timer >= 25 {
             timer = 0;
@@ -83,12 +91,13 @@ switch phase {
         }
     break;
     
-    case 8: //Flicker between normal and weapon color
+    case 8: //Flicker between weapon colors
         timer++;
         if timer >= 40 {
             timer = 0;
             phase = 9;
-            global.currentWeapon = 0;
+            if !doAgain global.currentWeapon = 0;
+			else global.currentWeapon = global.weaponID.newID; 
         }
     break;
     
@@ -96,14 +105,21 @@ switch phase {
         timer++;
         if timer >= 4.5 * 60 {
             timer = 0;
-            var ID = instance_create(x, y, objFadeout);
-            ID.type = "room";
-            ID.myRoom = rmPass;
+			if global.utilityID < 0 || doAgain {
+				var ID = instance_create(x, y, objFadeout);
+	            ID.type = "room";
+	            ID.myRoom = rmPass;
+			}
+			else {
+				doAgain = true;
+				phase = 7;
+				with global.utilityID event_user(5);
+			}
         }
     break;
 }
 
-if cfgWeaponPreview and global.weaponID > -1 {
+if cfgWeaponPreview and global.weaponID > -1 && !doAgain {
     
     if instance_exists(prtPlayer) and prtPlayer.canMove {
         playerLockMovement();
@@ -129,6 +145,38 @@ if cfgWeaponPreview and global.weaponID > -1 {
         }
         else {
             with global.weaponID event_user(6);
+        }
+    }
+}
+if cfgWeaponPreview and global.utilityID > -1 and doAgain {
+    
+    if instance_exists(prtPlayer) and prtPlayer.canMove {
+        playerLockMovement();
+    }
+    
+    with prtPlayer {
+        image_xscale = 1;
+        canHit = false;
+    }
+    
+    with objHealthWeaponBar instance_destroy();
+    
+    with prtPickup instance_destroy();
+    if phase == 8 {   //Flicker
+        if global.weapon = global.weaponID.newID
+			global.weapon = global.utilityID.newID;
+		else if global.weapon = global.utilityID.newID
+			global.weapon = global.weaponID.newID;
+        with prtPlayer event_user(0); //Colors
+    }
+    else if phase == 9 {   //WEAPON DEMO
+        if global.currentWeapon == global.weaponID.newID  {
+            global.currentWeapon = global.utilityID.newID;
+            global.weapon = global.currentWeapon;
+            with prtPlayer event_user(0); //Colors
+        }
+        else {
+            with global.utilityID event_user(6);
         }
     }
 }

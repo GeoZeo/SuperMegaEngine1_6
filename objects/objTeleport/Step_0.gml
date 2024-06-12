@@ -24,11 +24,10 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 					alarm[1] = 30;
 				}
 				else {
-					with objMusicPlayer instance_destroy();
 					var ID = instance_create(x, y, objFadeout);
 					ID.type = "room";
     
-					if global.weaponID > -1 && !global.weaponID.unlocked {
+					if (global.weaponID > -1 and !global.weaponID.unlocked) || (global.utilityID > -1 and !global.utilityID.unlocked) {
 					    ID.myRoom = rmWeaponGet;
 					    global.passPlayVictory = false;
 					}

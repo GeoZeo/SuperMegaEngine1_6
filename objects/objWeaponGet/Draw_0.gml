@@ -29,19 +29,35 @@ if phase >= 6 {
     draw_set_alpha(1);
 }
 
+if global.weaponID > -1 && doAgain {
+    primaryCol = global.weaponID.primaryCol; //The primary color for the giant MM in the weapon get screen
+    primaryColDark = merge_color(primaryCol, c_black, 0.3); //The shading on the primary color
+    secondaryCol = global.weaponID.secondaryCol; //The secondary color for the giant MM in the weapon get screen
+}
+
 if phase >= 7 {
     //Draw the weapon name
     draw_set_alpha(text2Alpha);
     if global.weaponID > -1 {
         draw_text(textX, textY+25, string_hash_to_newline(global.weaponID.name));
     }
-    draw_set_alpha(1);
+	draw_set_alpha(text3Alpha);
+	if global.utilityID > -1 && doAgain {
+		draw_text(textX, textY+50, string_hash_to_newline("AND " + global.utilityID.name));
+	}
+	draw_set_alpha(1);
+	if doAgain drawSpriteColorSwap(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
 }
 
 if global.weaponID > -1 {
     primaryCol = global.weaponID.primaryCol; //The primary color for the giant MM in the weapon get screen
     primaryColDark = merge_color(primaryCol, c_black, 0.3); //The shading on the primary color
     secondaryCol = global.weaponID.secondaryCol; //The secondary color for the giant MM in the weapon get screen
+}
+if global.utilityID > -1 && doAgain {
+    primaryCol = global.utilityID.primaryCol; //The primary color for the giant MM in the weapon get screen
+    primaryColDark = merge_color(primaryCol, c_black, 0.3); //The shading on the primary color
+    secondaryCol = global.utilityID.secondaryCol; //The secondary color for the giant MM in the weapon get screen
 }
 
 if phase == 8 {
@@ -63,5 +79,8 @@ draw_set_valign(fa_top);
 
 if cfgWeaponPreview and global.weaponID > -1 {
     with global.weaponID event_user(7);
+}
+if cfgWeaponPreview and global.utilityID > -1 {
+    with global.utilityID event_user(7);
 }
 
