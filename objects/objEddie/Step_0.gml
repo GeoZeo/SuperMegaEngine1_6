@@ -4,14 +4,49 @@ if !global.frozen {
         exit;
     }
     if !leaving and sprite_index == sprRushTeleport {    //Teleporting in
-        if image_index == 0 {   //Falling
-            if yspeed == 0 and insideView() {
-                y = __view_get( e__VW.YView, 0 );
-                yspeed = cfgRushTeleportSpeed;
-				visible = true;
-            }
+        if teleportTimer == 0 {   //Falling
+			if insideView_Spr() {
+				if yspeed == 0 {
+					y = __view_get( e__VW.YView, 0 )-16;
+					visible = true;
+					if abs(cfgRushTeleportAcc) <= 0 {
+						yspeed = cfgRushTeleportSpeed;
+					}
+					else {
+						yspeed += cfgRushTeleportAcc;
+						if yspeed >= abs(cfgRushTeleportSpeed) {
+							yspeed = cfgRushTeleportSpeed;
+						}
+					}
+				}
+				else if abs(cfgRushTeleportAcc) > 0 && yspeed < abs(cfgRushTeleportSpeed) {
+					yspeed += cfgRushTeleportAcc;
+					if yspeed >= abs(cfgRushTeleportSpeed) {
+						yspeed = cfgRushTeleportSpeed;
+					}
+				}
+			}
+            //if yspeed == 0 and insideView() {
+            //    y = __view_get( e__VW.YView, 0 );
+				
+			//	if abs(cfgRushTeleportAcc) > 0 {
+			//		yspeed += cfgRushTeleportAcc;
+			//		if yspeed >= abs(cfgRushTeleportSpeed) {
+			//			yspeed = cfgRushTeleportSpeed;
+			//		}
+			//	}
+			//	else {
+			//		yspeed = cfgRushTeleportSpeed;
+			//	}
+				
+			//	visible = true;
+            //}
             if (!called or abs(prtPlayer.y - y) < 64) and place_meeting(x, y + yspeed, objSolid) and place_free(x, y) {
-                image_speed = anim_spd * 2;
+                
+				if teleportTimer == 0
+					playSFX(sfxTeleportIn);
+				
+				teleportTimer++;
                 while !place_meeting(x, y + 1, objSolid) {
                     y++;
                 }
@@ -20,8 +55,10 @@ if !global.frozen {
                 y += yspeed;
             }
         }
-        else if image_index >= 2 {  //Morphing
-            sprite_index = sprEddie;
+        else if teleportTimer == 9 {  //Morphing
+            teleportTimer = 0;
+			image_speed = anim_spd * 2;
+			sprite_index = sprEddie;
             image_index = 1;
             while !place_meeting(x, y + 1, objSolid) {
                 y++;
@@ -29,7 +66,16 @@ if !global.frozen {
             if prtPlayer.x < x {
                 image_xscale = -1;
             }
-        }        
+        }
+		else {
+			teleportTimer++;
+			if teleportTimer == 2
+	            image_index = 1;
+	        else if teleportTimer == 4
+	            image_index = 0;
+	        else if teleportTimer == 6
+	            image_index = 2;
+		}
     }
     else if !leaving {  //Ready to work
 		var mySolid = instance_place(x, y + 1, objSolid);
@@ -82,9 +128,28 @@ if !global.frozen {
         }
     }
     else {
-        if image_index < 1 {
+		if teleportTimer < 9 teleportTimer++;
+		if teleportTimer == 2
+	        image_index = 1;
+	    else if teleportTimer == 4
+	        image_index = 0;
+	    else if teleportTimer == 6
+	        image_index = 2;
+		
+        if teleportTimer == 9 {
+			image_index = 0;
             image_speed = 0;
-            yspeed = -cfgRushTeleportSpeed;
+			
+            if abs(cfgRushTeleportAcc) > 0 {
+				yspeed -= cfgRushTeleportAcc;
+				if yspeed <= -cfgRushTeleportSpeed {
+					yspeed = -cfgRushTeleportSpeed;
+				}
+			}
+			else {
+				yspeed = -cfgRushTeleportSpeed;
+			}
+				
             y += yspeed;
         }
     }

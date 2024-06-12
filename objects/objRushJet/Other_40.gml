@@ -1,3 +1,4 @@
+print("Destroy");
 instance_destroy();
 
 with prtPlayer

@@ -9,12 +9,12 @@ if canPlay
 			var parts = split(myBGM, ".");
 			var name = ds_queue_dequeue(parts);
 			var sound = asset_get_index("bgm" + name);
-			if !audio_is_playing(sound)
+			if !audio_is_playing(sound) || alwaysRestartMusic
 			{
 				playMusic(sound, myVolume, myLoopStart, myLoopEnd);
 			}
 		}
-		else if !audio_is_playing(myBGM)
+		else if !audio_is_playing(myBGM) || alwaysRestartMusic
 		{
 			playMusic(myBGM, myVolume, myLoopStart, myLoopEnd);
 		}

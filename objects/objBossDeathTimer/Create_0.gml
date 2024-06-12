@@ -227,6 +227,7 @@ startTeleportTimer = 0;
 teleporting = false;
 teleportTimer = 0;
 teleportY = 0;
+currentTeleportSpeed = 0;
 update_rate = 1;
 
 with prtPlayer canPause = false;

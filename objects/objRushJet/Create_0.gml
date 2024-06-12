@@ -6,6 +6,7 @@ teleporting = true;
 teleportTimer = 0;
 teleportY = 0;
 teleportingUp = false;
+currentTeleportSpeed = 0;
 sprite_index = sprRushTeleport;
 yspeed = 0;
 xspeed = 0;

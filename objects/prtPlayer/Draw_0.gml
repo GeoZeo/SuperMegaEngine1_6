@@ -20,7 +20,7 @@ if teleporting == false && showReady == false
 }
 else if teleporting == true
 {   
-    if round(__view_get( e__VW.YView, 0 )-32+teleportY) >= y
+    if round(__view_get( e__VW.YView, 0 )-16+teleportY) >= y
     {
         if teleportTimer == 0
             playSFX(sfxTeleportIn);
@@ -39,6 +39,7 @@ else if teleporting == true
         {
             teleporting = false;
             teleportTimer = 0;
+			currentTeleportSpeed = 0;
             canSpriteChange = true;
             canMove = true;
 			canWalk = true;
@@ -59,8 +60,18 @@ else if teleporting == true
     {
         //Teleporting downwards
         image_index = 0;
-        drawSpriteColorSwap(spriteTeleport, image_index, round(x), round(__view_get( e__VW.YView, 0 )-32+teleportY), primary_color, secondary_color, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
-        teleportY += 7;
+        drawSpriteColorSwap(spriteTeleport, image_index, round(x), round(__view_get( e__VW.YView, 0 )-16+teleportY), primary_color, secondary_color, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
+        if abs(teleportAcc) > 0 {
+			currentTeleportSpeed += abs(teleportAcc);
+			if currentTeleportSpeed >= abs(teleportSpeed) {
+				currentTeleportSpeed = abs(teleportSpeed);
+			}
+		}
+		else {
+			currentTeleportSpeed = abs(teleportSpeed);
+		}
+		
+		teleportY += currentTeleportSpeed;
     }
 }
 else if showReady == true

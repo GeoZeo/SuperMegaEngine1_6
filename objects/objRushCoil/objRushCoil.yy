@@ -43,8 +43,8 @@
     "path": "sprites/sprRush/sprRush.yy",
   },
   "spriteMaskId": {
-    "name": "sprRushMask",
-    "path": "sprites/sprRushMask/sprRushMask.yy",
+    "name": "sprRushTeleport",
+    "path": "sprites/sprRushTeleport/sprRushTeleport.yy",
   },
   "visible": true,
 }

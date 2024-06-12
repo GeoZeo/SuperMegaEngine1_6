@@ -170,7 +170,7 @@ function playerStep() {
 	            }
 	            else if isStep == false
 	            {
-	                if !(place_meeting(x, y+1, objIce) && global.xspeed > 0)
+	                if !place_meeting(x, y+1, objIce)
 	                {
 	                    //Normal physics
 	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
@@ -181,7 +181,7 @@ function playerStep() {
 	                            global.xspeed = -walkSpeed;
 	                    }
 	                }
-	                else
+	                else if global.xspeed > 0
 	                {
 	                    //Ice physics
 	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
@@ -192,6 +192,25 @@ function playerStep() {
 	                            global.xspeed -= iceDecWalk;
 	                    }
 	                }
+					else if global.xspeed > -walkSpeed
+					{
+						//Ice physics
+	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
+						{
+							global.xspeed -= iceAccWalk;
+							if global.xspeed <= -walkSpeed
+								global.xspeed = -walkSpeed;
+						}
+	                    else if place_meeting(x-1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    {
+	                        if instance_place(x-1, y, prtMovingPlatformSolid).dead == true
+	                        {
+								global.xspeed -= iceAccWalk;
+								if global.xspeed <= -walkSpeed
+									global.xspeed = -walkSpeed;
+							}
+	                    }
+					}
                     
 	                image_xscale = -1;
                             
@@ -212,7 +231,7 @@ function playerStep() {
 	            }
 	            else if isStep == false
 	            {
-	                if !(place_meeting(x, y+1, objIce) && global.xspeed < 0)
+	                if !place_meeting(x, y+1, objIce)
 	                {
 	                    //Normal physics
 	                    if !place_meeting(x+1, y, objSolid) && !place_meeting(x+1, y, prtMovingPlatformSolid)
@@ -223,7 +242,7 @@ function playerStep() {
 	                            global.xspeed = walkSpeed;
 	                    }
 	                }
-	                else
+	                else if global.xspeed < 0
 	                {
 	                    //Ice physics
 	                    if !place_meeting(x+1, y, objSolid) && !place_meeting(x+1, y, prtMovingPlatformSolid)
@@ -234,6 +253,25 @@ function playerStep() {
 	                            global.xspeed += iceDecWalk;
 	                    }
 	                }
+					else if global.xspeed < walkSpeed
+					{
+						//Ice physics
+	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
+						{
+							global.xspeed += iceAccWalk;
+							if global.xspeed >= walkSpeed
+								global.xspeed = walkSpeed;
+						}
+	                    else if place_meeting(x-1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    {
+	                        if instance_place(x-1, y, prtMovingPlatformSolid).dead == true
+	                        {
+								global.xspeed += iceAccWalk;
+								if global.xspeed >= walkSpeed
+									global.xspeed = walkSpeed;
+							}
+	                    }
+					}
                     
 	                image_xscale = 1;
                 
@@ -403,19 +441,25 @@ function playerStep() {
 			var stepComplete = false;
 				
 			if !place_meeting(x+image_xscale, y, objSolid) && !place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
-				if (stepSpeed * stepFrames) mod 1 == 0
+				if (stepSpeed * stepFrames) mod 1 == 0 && (!place_meeting(x, y+1, objIce) or abs(iceAccWalk) >= abs(walkSpeed))
 					x = round(x);
 				if (canTurnaroundStep || !isTurnaround) {
-					global.xspeed = (stepSpeed * image_xscale) * stepFrames;
+					if (!place_meeting(x, y+1, objIce) or abs(iceAccWalk) >= abs(walkSpeed))
+						global.xspeed = (stepSpeed * image_xscale) * stepFrames;
+					else
+						global.xspeed = ((stepSpeed * image_xscale) * stepFrames) / (abs(walkSpeed) / abs(iceAccWalk));
 					stepComplete = true;
 				}
 			}
 			else if place_meeting(x+image_xscale, y, prtMovingPlatformSolid) {
 				if instance_place(x+image_xscale, y, prtMovingPlatformSolid).dead == true { //Still allow movement when the moving platform is despawned
-					if (stepSpeed * stepFrames) mod 1 == 0
+					if (stepSpeed * stepFrames) mod 1 == 0 && (!place_meeting(x, y+1, objIce) or abs(iceAccWalk) >= abs(walkSpeed))
 						x = round(x);
 					if (canTurnaroundStep || !isTurnaround) {
-						global.xspeed = (stepSpeed * image_xscale) * stepFrames;
+						if (!place_meeting(x, y+1, objIce) or abs(iceAccWalk) >= abs(walkSpeed))
+							global.xspeed = (stepSpeed * image_xscale) * stepFrames;
+						else
+							global.xspeed = ((stepSpeed * image_xscale) * stepFrames) / (abs(walkSpeed) / abs(iceAccWalk));
 						stepComplete = true;
 					}
 				}
@@ -424,7 +468,7 @@ function playerStep() {
 				if stepComplete
 					x -= global.xspeed;
 				if !canTurnaroundStep {
-					if (stepSpeed * stepFrames) mod 1 == 0
+					if (stepSpeed * stepFrames) mod 1 == 0 && (!place_meeting(x, y+1, objIce) or abs(iceAccWalk) >= abs(walkSpeed))
 						x = round(x) - image_xscale;
 					else
 						x -= image_xscale;

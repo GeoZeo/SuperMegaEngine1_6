@@ -30,6 +30,7 @@ function macros() {
 #macro cfgFadeOutChargedSound false
 #macro cfgDestroyBossProjectilesOnBossDeath false
 #macro cfgRushTeleportSpeed 10
+#macro cfgRushTeleportAcc 0
 #macro cfgGravity 0.25
 #macro cfgGravityWater 0.095
 #macro cfgJumpSpeed 5.25
