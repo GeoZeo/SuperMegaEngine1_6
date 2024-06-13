@@ -748,6 +748,7 @@
     {"id":{"name":"prtPlayerProjectile","path":"objects/prtPlayerProjectile/prtPlayerProjectile.yy",},},
     {"id":{"name":"prtShieldWeapon","path":"objects/prtShieldWeapon/prtShieldWeapon.yy",},},
     {"id":{"name":"objReflectedProjectile","path":"objects/objReflectedProjectile/objReflectedProjectile.yy",},},
+    {"id":{"name":"randomDrop","path":"scripts/randomDrop/randomDrop.yy",},},
     {"id":{"name":"objBusterShot","path":"objects/objBusterShot/objBusterShot.yy",},},
     {"id":{"name":"objBusterShotHalfCharged","path":"objects/objBusterShotHalfCharged/objBusterShotHalfCharged.yy",},},
     {"id":{"name":"objBusterShotCharged","path":"objects/objBusterShotCharged/objBusterShotCharged.yy",},},

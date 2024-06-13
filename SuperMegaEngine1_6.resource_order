@@ -623,6 +623,7 @@
     {"name":"prtPlayerProjectile","order":1,"path":"objects/prtPlayerProjectile/prtPlayerProjectile.yy",},
     {"name":"prtShieldWeapon","order":2,"path":"objects/prtShieldWeapon/prtShieldWeapon.yy",},
     {"name":"objReflectedProjectile","order":3,"path":"objects/objReflectedProjectile/objReflectedProjectile.yy",},
+    {"name":"randomDrop","order":6,"path":"scripts/randomDrop/randomDrop.yy",},
     {"name":"objBusterShot","order":4,"path":"objects/objBusterShot/objBusterShot.yy",},
     {"name":"objBusterShotHalfCharged","order":5,"path":"objects/objBusterShotHalfCharged/objBusterShotHalfCharged.yy",},
     {"name":"objBusterShotCharged","order":6,"path":"objects/objBusterShotCharged/objBusterShotCharged.yy",},

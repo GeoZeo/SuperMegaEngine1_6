@@ -5,8 +5,15 @@ beenOutsideView = false;
 outsideSection = false; //Has this enemy just moved outside of a section?
 checkFullSprite = false; //Should we check whether the whole sprite is in view instead of just the center to see if this enemy is on-screen or not?
 canSpawnItem = true;
+instantItemSpawn = false; //Spawn item instantly upon death (like in MM2) instead of on a timer?
 canHit = true;
 dying = false; //In the middle of a death animation?
+checkWater = false;
+inWater = false; //Currently underwater? (check as true in instances when placing them underwater)
+canSplash = false;
+grav = cfgGravity;
+gravWater = cfgGravityWater;
+currentGrav = grav;
 xspeed = 0;
 yspeed = 0;
 

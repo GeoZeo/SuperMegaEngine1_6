@@ -5,6 +5,7 @@ maxObjs = 3;
 interval = 3 * room_speed;
 counter = 0;
 visible = false;
+inWater = false;
 dx = 0;
 dy = 0;
 

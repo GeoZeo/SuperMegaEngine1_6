@@ -4,6 +4,12 @@ image_speed = 1/6;
 itemAmount = 0;
 flash = false;
 flashTimer = 0;
+checkWater = false;
+inWater = false; //Currently underwater? (check as true in instances when placing them underwater)
+canSplash = false;
+grav = cfgGravity;
+gravWater = cfgGravityWater;
+currentGrav = grav;
 xspeed = 0;
 yspeed = 0;
 

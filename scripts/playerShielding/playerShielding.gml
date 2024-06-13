@@ -1,6 +1,16 @@
-/// @description playerShielding()
-function playerShielding() {
+/// @description playerShielding(argument0)
+/// @param condition: the condition to check to determine whether or not reflecting is active
+function playerShielding(argument0) {
 	//Reflects/deflects enemy projectiles if the character has a valid reflector hitbox
+	
+	if argument0 == true {
+	    reflectProjectilesLeft = image_xscale < 0;
+	    reflectProjectilesRight = image_xscale > 0;
+	}
+	else {
+	    reflectProjectilesLeft = false;
+	    reflectProjectilesRight = false;
+	}
 	
 	var _x = reflector_x;
 	var _y = reflector_y;
