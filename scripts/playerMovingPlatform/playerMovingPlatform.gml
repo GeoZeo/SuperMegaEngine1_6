@@ -247,7 +247,7 @@ function playerMovingPlatform() {
 		    }
 		    else {
 		        objShockGuardEquip.count--;
-		        playerGetHit(1);
+		        playerGetHit(0);
 		    }
 	    }
 	}

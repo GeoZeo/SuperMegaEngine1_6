@@ -135,6 +135,11 @@ if !global.frozen
 		global.yspeed = yspeed;
 	    x += xspeed;
 	    y += yspeed;
+		
+		if bbox_top > prtPlayer.sectionBottom || bbox_top > room_height {
+			global._health = 0;
+			prtPlayer.deathByPit = true;
+		}
 	}
 }
 

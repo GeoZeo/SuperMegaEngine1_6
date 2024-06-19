@@ -21,7 +21,7 @@ function playerStep() {
 		totalTSs = 0;
 		while tpsld >= 0 && endCheck == false
 		{
-			if bbox_bottom <= tpsld.bbox_top+1
+			if bbox_bottom <= tpsld.bbox_top
 			{
 				ground = true;
 				endCheck = true;
@@ -55,7 +55,7 @@ function playerStep() {
 	        {
 	            if pltfm.dead == false
 	            {
-	                if bbox_bottom <= pltfm.bbox_top+1
+	                if bbox_bottom <= pltfm.bbox_top
 	                {
 						if !prevGround && global.yspeed <= 0
 						{
@@ -480,7 +480,7 @@ function playerStep() {
 		//{
 		//	global.xspeed = 0;
 		//}
-		//Comment this out and uncomment the above if you want sidestepping to still function normally even when MM is on ice.
+		///---Comment this out and uncomment the above if you want sidestepping to still function normally even when MM is on ice.---///
 		else if !place_meeting(x, y+1, objIce)
 	    {
 	        //Normal physics
@@ -497,6 +497,7 @@ function playerStep() {
 	        if global.xspeed > -iceDec && global.xspeed < iceDec
 	            global.xspeed = 0;
 	    }
+		///--------------------------------------------------------------------------------------------------------------------------///
 	
 	    if canSpriteChange {
 			if sprite_index == spriteStep && _resetStep {
@@ -529,6 +530,7 @@ function playerStep() {
 
 
 	//Stop movement at section borders
+	var endBeatCheck = false;
 	if (canMove || isSlide || isHit) && visible {
 	    if x > sectionRight-6 && !place_meeting(x+6, y, objSectionArrowRight) && !place_meeting(x-global.xspeed, y, objSectionArrowRight) {
 	        x = sectionRight-6;
@@ -542,8 +544,35 @@ function playerStep() {
 	        y = sectionTop-32;
 	    }
 	    else if bbox_top > sectionBottom && !place_meeting(x, y, objSectionArrowDown) {
-	        global._health = 0;
-			deathByPit = true;
+			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
+				if objBeatEquip.count < 1 {
+					global._health = 0;
+					deathByPit = true;
+				}
+				else if global._health > 0 && !dead {
+					objBeatEquip.count--;
+					y = sectionBottom + sprite_yoffset;
+					if !instance_exists(objBeat)
+					{
+						var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
+						with myBeat target = other;
+						with myBeat event_user(0);
+					}
+					else
+					{
+						objBeat.transportTimer = 0;
+						with objBeat target = other;
+						with objBeat event_user(0);
+					}
+					endBeatCheck = true;
+				}
+			}
+			else if !objBeat.carrying {
+				y = sectionBottom + sprite_yoffset;
+				global.xspeed = 0;
+				global.yspeed = 0;
+				canMove = false;
+			}
 	    }
 	}   
     
@@ -557,8 +586,34 @@ function playerStep() {
 	    y = -32;
 	else if bbox_top > room_height
 	{
-	    global._health = 0;
-	    deathByPit = true;
+	    if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
+			if objBeatEquip.count < 1 {
+				global._health = 0;
+				deathByPit = true;
+			}
+			else if global._health > 0 && !dead && !endBeatCheck {
+				objBeatEquip.count--;
+				y = sectionBottom + sprite_yoffset;
+				if !instance_exists(objBeat)
+				{
+					var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
+					with myBeat target = other;
+					with myBeat event_user(0);
+				}
+				else
+				{
+					objBeat.transportTimer = 0;
+					with objBeat target = other;
+					with objBeat event_user(0);
+				}
+			}
+		}
+		else if !objBeat.carrying {
+			y = sectionBottom + sprite_yoffset;
+			global.xspeed = 0;
+			global.yspeed = 0;
+			canMove = false;
+		}
 	}
 
 
@@ -693,7 +748,7 @@ function playerStep() {
 					
 					while tpsld >= 0 && !endCheck
 					{
-						if bbox_bottom <= tpsld.bbox_top+1
+						if bbox_bottom <= tpsld.bbox_top
 						{
 							endCheck = true;
 						}
@@ -736,7 +791,7 @@ function playerStep() {
 				    {
 						if pltfm.dead == false
 				        {
-				            if bbox_bottom <= pltfm.bbox_top+1
+				            if bbox_bottom <= pltfm.bbox_top
 				            {
 								endCheck = true;
 				            }
@@ -853,14 +908,19 @@ function playerStep() {
 	ladder = collision_rectangle(sprite_get_xcenter()-3, bbox_top+4, sprite_get_xcenter()+3, bbox_bottom-1, objLadder, false, false);
 	ladderDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, objLadder, false, false);
 	var solidDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, objSolid, false, false);
+	var movingSolidDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, prtMovingPlatformSolid, false, false);
 	var solidAbove = false;
 	if (ladderDown >= 0) {
 	    with ladderDown {
-	        solidAbove = !place_free(x, y - 1);
+			for (var i = 1; i < 15; i++) {
+				if !place_free(x, y - i) {
+					solidAbove = true;
+				}
+			}
 	    }
 	}
 	if ((ladder >= 0 && global.keyUp && !global.keyDown)
-	|| (ladderDown >= 0 and solidDown < 0 and !solidAbove and ground and !isSlide and global.keyDown and !global.keyUp and !place_meeting(x, y, objLadder)))
+	|| (ladderDown >= 0 and solidDown < 0 and movingSolidDown < 0 and !solidAbove and ground and !isSlide and global.keyDown and !global.keyUp))
 	&& (canMove == true || isSlide == true) && sprite_get_bottom() > sectionTop {
 	    isSlide = false;
 	    mask_index = mskMegaman;
@@ -875,7 +935,7 @@ function playerStep() {
 	    global.xspeed = 0;
 	    global.yspeed = 0;
     
-	    if ladder >= 0
+	    if ladder >= 0 && global.keyUp && !global.keyDown
 	        x = ladder.x+8;
 	    else if ladderDown >= 0
 	    {
@@ -930,17 +990,12 @@ function playerStep() {
 	    }
     
 	    //Getup sprite
-	    if !position_meeting(x, bbox_top+7, objLadder) && position_meeting(x, bbox_bottom+1, objLadder) //The second check is to make sure the getup animation is not shown when on the BOTTOM of a ladder that's placed in the air
+	    if !position_meeting(x, bbox_top+11, objLadder) && position_meeting(x, bbox_bottom+1, objLadder) //The second check is to make sure the getup animation is not shown when on the BOTTOM of a ladder that's placed in the air
 	    {
 	        sprite_index = spriteGetup;
 			image_speed = speedGetup;
-	        if sprite_index == sprMegamanClimbGetup //not when shooting
+	        if sprite_index == spriteGetupDefault //not when shooting
 	            image_xscale = 1;
-	        if global.yspeed < 0 && !position_meeting(x, bbox_top+14, objLadder) {
-	            while place_meeting(x, y, objLadder) {
-	                y--;
-	            }
-	        }
 	    }
 	    else
 	    {
@@ -964,6 +1019,12 @@ function playerStep() {
 	        global.yspeed = 0;
         
 	        if position_meeting(x, bbox_bottom+15, objTopSolid) || ground == true {
+				
+				if position_meeting(x, bbox_bottom+15, objTopSolid) {
+					var myTopSolid = instance_position(x, bbox_bottom+15, objTopSolid);
+					y = myTopSolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+				}
+				
 	            ground = true;  //To avoid "falling" after climbing (shouldn't play the landing sfx)
 				canJump = true;
 	            if (global.keyRight && !global.keyLeft) || (global.keyLeft && !global.keyRight) {

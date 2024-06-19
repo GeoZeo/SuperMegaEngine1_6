@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "MM2",
-    "path": "folders/Sprites/Enemies/MM2.yy",
+    "name": "Projectiles",
+    "path": "folders/Sprites/Enemies/MM2/Projectiles.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

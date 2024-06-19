@@ -1,3 +1,4 @@
+/// @description onUnPrime
 event_inherited();
 if !ok return false; //Must be on the beginning of every child of prtEquip
 

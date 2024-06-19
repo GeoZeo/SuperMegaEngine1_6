@@ -33,8 +33,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "WilyMachine4",
-    "path": "folders/Sprites/Boss/WilyMachine4.yy",
+    "name": "Projectiles",
+    "path": "folders/Sprites/Boss/WilyMachine4/Projectiles.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

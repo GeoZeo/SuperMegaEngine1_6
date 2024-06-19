@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Pharaoh",
-    "path": "folders/Sprites/Boss/Pharaoh.yy",
+    "name": "Projectiles",
+    "path": "folders/Sprites/Boss/Pharaoh/Projectiles.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -124,11 +124,6 @@ if !global.frozen {
 	        {
 				xspeed = 0;
 				
-				if bbox_top > prtPlayer.sectionBottom || bbox_top > room_height {
-			        global._health = 0;
-					prtPlayer.deathByPit = true;
-			    }
-				
 	            if canInitJump == true && ground == true
 	            {
 	                if global.weaponID > -1 && !global.weaponID.unlocked //Only absorb the power if it's not already been unlocked
@@ -167,6 +162,11 @@ if !global.frozen {
         
 	        x += xspeed;
 	        y += yspeed;
+			
+			if bbox_top > prtPlayer.sectionBottom || bbox_top > room_height {
+			    global._health = 0;
+				prtPlayer.deathByPit = true;
+			}
 	    }
 	    else
 	    {

@@ -16,14 +16,14 @@ gravWater = cfgGravityWater;
 currentGrav = grav;
 xspeed = 0;
 yspeed = 0;
-
+ 
 update_rate = 1;
 
 healthpointsStart = 1;
 healthpoints = healthpointsStart;
 contactDamage = 1;
 
-hitWhite = true;
+hitWhite = false; //Flicker white instead of transparent upon being hit?
 
 //Reflection
 reflectProjectiles = false;

@@ -31,6 +31,8 @@ bgmLoopEnd = global.loopEnd;
 bgmVolume = global.volume;
 bgmLength = global.length;
 
+objBeatEquip.count = 3;
+
 //Play starting jingle
 if (!is_string(jingle) and jingle > -1) || (is_string(jingle) and jingle != noone)
 	playSFX(jingle);

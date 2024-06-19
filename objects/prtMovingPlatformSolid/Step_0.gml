@@ -157,7 +157,7 @@ if global.frozen == false && dead == false
 						endCheck = false;
 						while tpsld >= 0 && endCheck == false
 						{
-							if bbox_bottom <= tpsld.bbox_top+1
+							if bbox_bottom <= tpsld.bbox_top
 							{
 								proceed = false;
 								if ysp > 0 && !place_meeting(x, y, tpsld)
@@ -188,7 +188,7 @@ if global.frozen == false && dead == false
 					        {
 					            if pltfm.dead == false
 					            {
-					                if bbox_bottom <= pltfm.bbox_top+1
+					                if bbox_bottom <= pltfm.bbox_top
 					                {
 					                    proceed = false;
 										if pltfm.yspeed > 0

@@ -87,8 +87,11 @@ if closing {
                 mySolid = instance_create(x, y, objSolid);
                 mySolid.image_yscale = 4;
         }
+		
+		prtPlayer.x = (x+16)+(32*-dir);
             
         with objSectionSwitcher {
+			x = prtPlayer.x;
             global.frozen = false;
             prtPlayer.visible = true;
             instance_destroy();

@@ -189,7 +189,7 @@ if global.frozen == false && dead == false
 							_endCheck = false;
 							while tpsld >= 0 && _endCheck == false
 							{
-								if bbox_bottom <= tpsld.bbox_top+1
+								if bbox_bottom <= tpsld.bbox_top
 								{
 									if onRushJet == true
 									{
@@ -215,7 +215,7 @@ if global.frozen == false && dead == false
 						}
 						else if (myPltJumpthrough >= 0 and myPltJumpthrough.id != other.id) && ysp > 0 && (myPltJumpthrough.yspeed * update_rate) < ysp
 						{
-							if bbox_bottom <= myPltJumpthrough.bbox_top+1
+							if bbox_bottom <= myPltJumpthrough.bbox_top
 							{
 								if myPltJumpthrough.object_index != objRushJet
 								{

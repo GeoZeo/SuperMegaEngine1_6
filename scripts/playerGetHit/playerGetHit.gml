@@ -5,7 +5,7 @@ function playerGetHit(argument0) {
 	assert(argument0 >= 0, "playerGetHit: Damage must be non-negative");
 
 	if canHit {
-	    drawDamageNumber(prtPlayer.x, prtPlayer.y, ceil(argument0 * damageMultiplier * global.damageMultiplier));
+	    if argument0 != 0 drawDamageNumber(prtPlayer.x, prtPlayer.y, ceil(argument0 * damageMultiplier * global.damageMultiplier));
 	    global._health -= ceil(argument0 * damageMultiplier * global.damageMultiplier);
     
 	    canHit = false;

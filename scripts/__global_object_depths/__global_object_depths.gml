@@ -240,6 +240,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objFortressSpot
 	array_push(global.__objectDepths, 0); // objMapDrawer
 	array_push(global.__objectDepths, 0); // objEddie
+	array_push(global.__objectDepths, -3); // objBeat
 	array_push(global.__objectDepths, 0); // objAchievementBox
 	array_push(global.__objectDepths, 0); // prtAchievement
 	array_push(global.__objectDepths, 0); // objTimeLordAchievement
@@ -486,6 +487,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objFortressSpot");
 	array_push(global.__objectNames, "objMapDrawer");
 	array_push(global.__objectNames, "objEddie");
+	array_push(global.__objectNames, "objBeat");
 	array_push(global.__objectNames, "objAchievementBox");
 	array_push(global.__objectNames, "prtAchievement");
 	array_push(global.__objectNames, "objTimeLordAchievement");
