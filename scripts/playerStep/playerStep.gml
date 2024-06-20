@@ -915,6 +915,7 @@ function playerStep() {
 			for (var i = 1; i < 15; i++) {
 				if !place_free(x, y - i) {
 					solidAbove = true;
+					break;
 				}
 			}
 	    }
@@ -1020,9 +1021,21 @@ function playerStep() {
         
 	        if position_meeting(x, bbox_bottom+15, objTopSolid) || ground == true {
 				
-				if position_meeting(x, bbox_bottom+15, objTopSolid) {
-					var myTopSolid = instance_position(x, bbox_bottom+15, objTopSolid);
-					y = myTopSolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+				if position_meeting(x, bbox_bottom+climbSpeed, objSolid) {
+					var mySolid = instance_position(x, bbox_bottom+climbSpeed, objSolid);
+					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+				}
+				else if position_meeting(x, bbox_bottom+climbSpeed, objTopSolid) {
+					var mySolid = instance_position(x, bbox_bottom+climbSpeed, objTopSolid);
+					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+				}
+				else if position_meeting(x, bbox_bottom+climbSpeed, prtMovingPlatformSolid) {
+					var mySolid = instance_position(x, bbox_bottom+climbSpeed, prtMovingPlatformSolid);
+					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+				}
+				else if position_meeting(x, bbox_bottom+climbSpeed, prtMovingPlatformJumpthrough) {
+					var mySolid = instance_position(x, bbox_bottom+climbSpeed, prtMovingPlatformJumpthrough);
+					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
 				}
 				
 	            ground = true;  //To avoid "falling" after climbing (shouldn't play the landing sfx)
@@ -1243,7 +1256,9 @@ function playerStep() {
 			instance_activate_object(myPlt.id);
 		}
 		else
+		{
 			escapeWall(true, true, true, true);
+		}
 	}
 
 	if place_free(x, y)

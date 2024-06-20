@@ -67,6 +67,7 @@ function playerCollision() {
 	if mySolid >= 0 && global.yspeed < 0
 	{
 		y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index);
+		if climbing { y -= climbSpeed; y = floor(y); }
     
 	    //For some reason, the code above would work correctly half the time, but clip MM inside the ceiling the other half
 	    //This while-loop fixes the issue by forcing MM out of the ceiling

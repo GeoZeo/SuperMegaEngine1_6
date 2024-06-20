@@ -102,6 +102,7 @@ function playerMovingPlatform() {
 	    if ID[maxID].dead == false && global.yspeed <= ID[maxID].yspeed
 	    {
 	        y = ID[maxID].bbox_bottom + sprite_get_yoffset(mask_index);
+			if climbing { y -= climbSpeed; y = floor(y); }
 	        if ID[maxID].yspeed == 0
 	            global.yspeed = 0;
 	        else
