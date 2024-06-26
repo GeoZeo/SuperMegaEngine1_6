@@ -102,10 +102,10 @@ if !global.frozen and !dead {
 		if inWater == true
 		{
 		    var wtr;
-		    wtr = instance_place(x, y-global.yspeed, objWater);
+		    wtr = instance_place(x, y-yspeed, objWater);
 		    if wtr >= 0
 		    {
-		        if bbox_bottom < wtr.bbox_top
+		        if bbox_bottom <= wtr.bbox_top
 		        {
 		            if canSplash instance_create(x, wtr.bbox_top+1, objSplash);
 		            inWater = false;

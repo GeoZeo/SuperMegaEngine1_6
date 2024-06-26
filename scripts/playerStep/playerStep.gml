@@ -531,7 +531,7 @@ function playerStep() {
 
 	//Stop movement at section borders
 	var endBeatCheck = false;
-	if (canMove || isSlide || isHit) && visible {
+	if ((canMove or (instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime)) || isSlide || isHit) && visible {
 	    if x > sectionRight-6 && !place_meeting(x+6, y, objSectionArrowRight) && !place_meeting(x-global.xspeed, y, objSectionArrowRight) {
 	        x = sectionRight-6;
 	        global.xspeed = 0;
@@ -551,7 +551,19 @@ function playerStep() {
 				}
 				else if global._health > 0 && !dead {
 					objBeatEquip.count--;
-					y = sectionBottom + sprite_yoffset;
+					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
+					for (var i = 0; i < sprite_yoffset+15; i++)
+					{
+						if !place_free(x, y-i) 
+						{
+							x -= global.xspeed;
+							break;
+						}
+					}
+					global.xspeed = 0;
+					global.yspeed = 0;
+					canMove = false;
+					
 					if !instance_exists(objBeat)
 					{
 						var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
@@ -568,7 +580,7 @@ function playerStep() {
 				}
 			}
 			else if !objBeat.carrying {
-				y = sectionBottom + sprite_yoffset;
+				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 				global.xspeed = 0;
 				global.yspeed = 0;
 				canMove = false;
@@ -593,7 +605,19 @@ function playerStep() {
 			}
 			else if global._health > 0 && !dead && !endBeatCheck {
 				objBeatEquip.count--;
-				y = sectionBottom + sprite_yoffset;
+				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
+				for (var i = 0; i < sprite_yoffset+15; i++)
+				{
+					if !place_free(x, y-i) 
+					{
+						x -= global.xspeed;
+						break;
+					}
+				}
+				global.xspeed = 0;
+				global.yspeed = 0;
+				canMove = false;
+				
 				if !instance_exists(objBeat)
 				{
 					var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
@@ -609,7 +633,7 @@ function playerStep() {
 			}
 		}
 		else if !objBeat.carrying {
-			y = sectionBottom + sprite_yoffset;
+			y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 			global.xspeed = 0;
 			global.yspeed = 0;
 			canMove = false;
@@ -640,7 +664,7 @@ function playerStep() {
 
 
 	//Minjumping (lowering jump when the jump button is released)
-	if ground == false && global.yspeed < 0 && !global.keyJump && canMinJump == true
+	if ground == false && global.yspeed < 0 && !global.keyJump && canMinJump == true && !(instance_exists(objBeat) and objBeat.carrying and objBeat.transportTimer < objBeat.transportTime)
 	{
 	    canMinJump = false;
 	    global.yspeed = 0;
@@ -1117,15 +1141,16 @@ function playerStep() {
 	    wtr = instance_place(x, y-global.yspeed, objWater);
 	    if wtr >= 0
 	    {
-	        if bbox_bottom < wtr.bbox_top
+	        if bbox_bottom <= wtr.bbox_top
 	        {
+				print("Water");
 	            instance_create(x, wtr.bbox_top+1, objSplash);
 	            inWater = false;
 	            playSFX(sfxSplash);
 	        }
 	    }
 	}
-    
+
 
 	//While being hit
 	if isHit {

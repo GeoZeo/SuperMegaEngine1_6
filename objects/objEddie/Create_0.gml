@@ -9,6 +9,9 @@ prev_img_index = image_index;
 delivering = false;
 leaving = false;
 delivered = false;
+items = 1;
+itemsCalled = 5;
+itemsLeft = items;
 ground = false;
 called = false;
 

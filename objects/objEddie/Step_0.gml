@@ -57,6 +57,7 @@ if !global.frozen {
         }
         else if teleportTimer == 9 {  //Morphing
             teleportTimer = 0;
+			if called itemsLeft = itemsCalled;
 			image_speed = anim_spd * 2;
 			sprite_index = sprEddie;
             image_index = 1;
@@ -110,7 +111,10 @@ if !global.frozen {
             }
             else if image_index > 5 and !delivered {
                 delivered = true;
-                var item = choose(objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife, objLife, objETank);
+				itemsLeft--;
+				var item;
+				if called item = choose(objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife);
+                else item = choose(objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife, objLife, objETank);
                 var item_instance = instance_create(x + image_xscale * 8, y - 16, item);
 				with item_instance escapeWall(true, true, true, true);
                 item_instance.xspeed = image_xscale;
