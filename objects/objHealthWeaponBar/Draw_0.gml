@@ -39,6 +39,40 @@ if global.weapon != 0 {
     }
 }
 
+//Weapon icon (when using quick weapon switching)
+var myStartingPoint = instance_nearest(x, y, objArenaStartingPoint);
+var myTimer = instance_nearest(x, y, objBossDeathTimer);
+if !((myStartingPoint > -1 and myStartingPoint.isMM) or (myTimer > -1 and myTimer.isMM)) {
+	if instance_exists(prtPlayer) && !prtPlayer.teleporting && !prtPlayer.showReady && !prtPlayer.dead {
+		if prtPlayer.drawWeaponIcon {
+		    if !prtPlayer.climbing
+		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(prtPlayer.x-8) + prtPlayer.image_xscale, round(prtPlayer.y-30), 1, 1, 0, c_white, 1);
+		    else
+		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(prtPlayer.x-8), round(prtPlayer.y-30), 1, 1, 0, c_white, 1);
+		}
+	}
+}
+else if myStartingPoint > -1 && myStartingPoint.isMM {
+	if instance_exists(prtPlayer) && !prtPlayer.dead {
+		if prtPlayer.drawWeaponIcon {
+		    if !prtPlayer.climbing
+		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myStartingPoint.x-8) + myStartingPoint.image_xscale, round(myStartingPoint.y-30), 1, 1, 0, c_white, 1);
+		    else
+		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myStartingPoint.x-8), round(myStartingPoint.y-30), 1, 1, 0, c_white, 1);
+		}
+	}
+}
+else if myTimer > -1 && myTimer.isMM {
+	if instance_exists(prtPlayer) && !prtPlayer.dead && !myTimer.teleporting {
+		if prtPlayer.drawWeaponIcon {
+			if !prtPlayer.climbing
+			    draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myTimer.x-8) + myTimer.image_xscale, round(myTimer.y-30), 1, 1, 0, c_white, 1);
+			else
+			    draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myTimer.x-8), round(myTimer.y-30), 1, 1, 0, c_white, 1);
+		}
+	}
+}
+
 if cfgShowLives {
     draw_set_colour(c_white);
     draw_text(__view_get( e__VW.XView, 0 )+7+8+1+5, __view_get( e__VW.YView, 0 )+18+sprite_get_height(sprHealthbarBackground), string_hash_to_newline(string(max(0,global._lives))));

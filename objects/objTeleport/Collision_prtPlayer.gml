@@ -23,8 +23,6 @@ or (mask_get_xcenter_object(prtPlayer)-prevMaskX > 0 and prevMaskX <= x and x <=
         global.yspeed = 0;
 		canHit = false;
     }
-	if !water
-		other.inWater = false;
 		
     //instance_deactivate_object(objMegaman);
     playerLockMovement();

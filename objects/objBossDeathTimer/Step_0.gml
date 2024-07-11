@@ -13,8 +13,6 @@ if !global.frozen {
 				destX = x;
         
 	        checkGround();
-	        if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
-	        generalCollision();
 			
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime
 			{
@@ -69,35 +67,35 @@ if !global.frozen {
 		                    yspeed = -3.5;
 		            }
 				
-					//Jumping over pits in the arena (comment this out if you wish to troll people somehow)
-					var _jump = ground;
-					for (var i = 0; bbox_bottom+1+i < prtPlayer.sectionBottom; i += 8)
-					{
-						if place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objSolid)
-						|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objTopSolid)
-						|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformSolid)
-						|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformJumpthrough)
-						{
-							_jump = false;
-							break;
-						}
-					}
-					if _jump == true
-					{
-						if (!((place_meeting(x+xspeed+16, y+1, objSolid) || place_meeting(x+xspeed+32, y+1, objSolid)) 
-						|| (place_meeting(x+xspeed+16, y+1, objTopSolid) || place_meeting(x+xspeed+32, y+1, objTopSolid))
-						|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformSolid) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformSolid))
-						|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformJumpthrough) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformJumpthrough)))
-						&& image_xscale == 1)
-						|| (!((place_meeting((x+xspeed)-16, y+1, objSolid) || place_meeting((x+xspeed)-32, y+1, objSolid)) 
-						|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
-						|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
-						|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
-						&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
-							yspeed = -5.25
-						else //Else, perform a short, 1-block-high jump
-							yspeed = -3.5;
-					}
+					////Jumping over pits in the arena (comment this out if you wish to troll people somehow)
+					//var _jump = ground;
+					//for (var i = 0; bbox_bottom+1+i < prtPlayer.sectionBottom; i += 8)
+					//{
+					//	if place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objSolid)
+					//	|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objTopSolid)
+					//	|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformSolid)
+					//	|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformJumpthrough)
+					//	{
+					//		_jump = false;
+					//		break;
+					//	}
+					//}
+					//if _jump == true
+					//{
+					//	if (!((place_meeting(x+xspeed+16, y+1, objSolid) || place_meeting(x+xspeed+32, y+1, objSolid)) 
+					//	|| (place_meeting(x+xspeed+16, y+1, objTopSolid) || place_meeting(x+xspeed+32, y+1, objTopSolid))
+					//	|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformSolid) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformSolid))
+					//	|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformJumpthrough) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformJumpthrough)))
+					//	&& image_xscale == 1)
+					//	|| (!((place_meeting((x+xspeed)-16, y+1, objSolid) || place_meeting((x+xspeed)-32, y+1, objSolid)) 
+					//	|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
+					//	|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
+					//	|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
+					//	&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
+					//		yspeed = -5.25
+					//	else //Else, perform a short, 1-block-high jump
+					//		yspeed = -3.5;
+					//}
             
 		            if ground == true
 						if stepTimer < stepTime
@@ -118,6 +116,7 @@ if !global.frozen {
                 
                 
 		            if prevGround == false && ground == true
+					&& (!instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime)
 		                playSFX(sfxLand);
                 
 		            prevGround = ground;
@@ -157,12 +156,16 @@ if !global.frozen {
 		            }
 				
 					if prevGround == false && ground == true
+					&& (!instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime)
 		                playSFX(sfxLand);
                 
 		            prevGround = ground;
 		        }
 			}
-        
+			
+			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
+	        generalCollision();
+		
 	        x += xspeed;
 	        y += yspeed;
 			
@@ -190,6 +193,9 @@ if !global.frozen {
 					if objBeatEquip.count < 1 {
 						global._health = 0;
 						prtPlayer.deathByPit = true;
+						alarm[0] = -1;
+						alarm[1] = -1;
+						alarm[2] = -1;
 					}
 					else if global._health > 0 && !prtPlayer.dead {
 						objBeatEquip.count--;
@@ -218,6 +224,15 @@ if !global.frozen {
 							with objBeat target = other;
 							with objBeat event_user(0);
 						}
+					}
+					
+					with prtPlayer
+					{
+						event_user(0);
+						with weapons[global.currentWeapon] sound_stop(chargeSFX);
+						with weapons[global.currentWeapon] sound_stop(chargedSFX);
+						playChargeSound = true;
+						playChargedSound = true;
 					}
 				}
 				else if !objBeat.carrying {
@@ -255,8 +270,6 @@ if !global.frozen {
 	            else
 	            {
 	                checkGround();
-	                if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
-	                generalCollision();
                 
 	                if ground == true
 	                {
@@ -282,10 +295,25 @@ if !global.frozen {
 							image_speed = prtPlayer.speedTeleport;
 	                    }
 	                }
+					
+					if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
+	                generalCollision();
                 
 	                y += yspeed;
 	            }
 	        }
+	    }
+	}
+	if instance_exists(objBeat) && objBeat.transportTimer < objBeat.transportTime
+	{
+		if alarm[0] > 0 {
+	        alarm[0]++;
+	    }
+		if alarm[1] > 0 {
+	        alarm[1]++;
+	    }
+		if alarm[2] > 0 {
+	        alarm[2]++;
 	    }
 	}
 }

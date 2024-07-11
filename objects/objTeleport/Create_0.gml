@@ -8,7 +8,6 @@ toDir = 1;
 exitStage = false;
 out = false;
 on = true;
-water = false;
 boss = -1;
 rushExit = false;
 teleportSprite = -1;

@@ -544,6 +544,9 @@ function playerStep() {
 	        y = sectionTop-32;
 	    }
 	    else if bbox_top > sectionBottom && !place_meeting(x, y, objSectionArrowDown) {
+			
+			canHit = false;
+			
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
 				if objBeatEquip.count < 1 {
 					global._health = 0;
@@ -578,6 +581,12 @@ function playerStep() {
 					}
 					endBeatCheck = true;
 				}
+				
+				event_user(0);
+				with weapons[global.currentWeapon] sound_stop(chargeSFX);
+				with weapons[global.currentWeapon] sound_stop(chargedSFX);
+				playChargeSound = true;
+				playChargedSound = true;
 			}
 			else if !objBeat.carrying {
 				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
@@ -599,6 +608,9 @@ function playerStep() {
 	else if bbox_top > room_height
 	{
 	    if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
+			
+			canHit = false;
+			
 			if objBeatEquip.count < 1 {
 				global._health = 0;
 				deathByPit = true;
@@ -631,6 +643,12 @@ function playerStep() {
 					with objBeat event_user(0);
 				}
 			}
+			
+			event_user(0);
+			with weapons[global.currentWeapon] sound_stop(chargeSFX);
+			with weapons[global.currentWeapon] sound_stop(chargedSFX);
+			playChargeSound = true;
+			playChargedSound = true;
 		}
 		else if !objBeat.carrying {
 			y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
@@ -1106,11 +1124,34 @@ function playerStep() {
 	if place_meeting(x, y, objWater) && inWater == false
 	{
 	    inWater = true;
-	    playSFX(sfxSplash);
     
-	    var currentWater;
-	    currentWater = instance_place(x, y, objWater);
-	    instance_create(x, currentWater.bbox_top+1, objSplash);
+		var currentWater;
+		currentWater = instance_place(x, y, objWater);
+		if currentWater >= 0
+		{
+		    if bbox_bottom <= currentWater.bbox_top+global.yspeed+1
+		    {
+				instance_create(x, currentWater.bbox_top+1, objSplash);
+				playSFX(sfxSplash);
+		    }
+			else if bbox_top >= currentWater.bbox_bottom+global.yspeed-1
+			{
+				var splash = instance_create(x, currentWater.bbox_bottom-1, objSplash);
+				splash.image_yscale = -1;
+				playSFX(sfxSplash);
+			}
+			if bbox_right <= currentWater.bbox_left+global.xspeed+1
+		    {
+				instance_create(currentWater.bbox_left+1, y, objSplashH);
+				playSFX(sfxSplash);
+		    }
+			else if bbox_left >= currentWater.bbox_right+global.xspeed-1
+			{
+				var splash = instance_create(currentWater.bbox_right-1, y, objSplashH);
+				splash.image_xscale = -1;
+				playSFX(sfxSplash);
+			}
+		}
 	}
 
 	if inWater == true
@@ -1118,13 +1159,13 @@ function playerStep() {
 	    currentGrav = gravWater;
 	    currentJumpSpeed = jumpSpeedWater;
     
-	    bubbleTimer += 1;
-	    if bubbleTimer >= 10
-	    {
-	        bubbleTimer = 0;
-	        if !instance_exists(objAirBubble)
-	            instance_create(x, y, objAirBubble);
-	    }
+		bubbleTimer += 1;
+		if bubbleTimer >= 10
+		{
+		    bubbleTimer = 0;
+		    if !instance_exists(objAirBubble) && position_meeting(x, y-4, objWater)
+		        instance_create(x, y, objAirBubble);
+		}
 	}
 	else
 	{
@@ -1138,17 +1179,64 @@ function playerStep() {
 	if inWater == true
 	{
 	    var wtr;
-	    wtr = instance_place(x, y-global.yspeed, objWater);
-	    if wtr >= 0
+	    wtr = instance_place(x-global.xspeed, y-global.yspeed, objWater);
+	    if wtr >= 0 && !place_meeting(x+sign(global.xspeed), y+sign(global.yspeed), objWater)
 	    {
-	        if bbox_bottom <= wtr.bbox_top
+	        if bbox_bottom < wtr.bbox_top+1
 	        {
-				print("Water");
-	            instance_create(x, wtr.bbox_top+1, objSplash);
-	            inWater = false;
-	            playSFX(sfxSplash);
+				with wtr
+				{
+					if !collision_rectangle((other.x-8)+1, bbox_top-1, (other.x+8)-1, bbox_top, objWater, false, false)
+					{
+						other.inWater = false;
+						instance_create(other.x, bbox_top+1, objSplash);
+						playSFX(sfxSplash);
+					}
+				}
+	        }
+			else if bbox_top > wtr.bbox_bottom-1
+	        {
+				with wtr
+				{
+					if !collision_rectangle((other.x-8)+1, bbox_bottom, (other.x+8)-1, bbox_bottom+1, objWater, false, false)
+					{
+						other.inWater = false;
+						var splash = instance_create(other.x, bbox_bottom-1, objSplash);
+						splash.image_yscale = -1;
+				        playSFX(sfxSplash);
+					}
+				}
+	        }
+			if bbox_right < wtr.bbox_left+1
+	        {
+				with wtr
+				{
+					if !collision_rectangle(bbox_left-1, (other.y-8)+1, bbox_left, (other.y+8)-1, objWater, false, false)
+					{
+						other.inWater = false;
+						instance_create(bbox_left+1, other.y, objSplashH);
+				        playSFX(sfxSplash);
+					}
+				}
+	        }
+			else if bbox_left > wtr.bbox_right-1
+	        {
+				with wtr
+				{
+					if !collision_rectangle(bbox_right, (other.y-8)+1, bbox_right+1, (other.y+8)-1, objWater, false, false)
+					{
+						other.inWater = false;
+						var splash = instance_create(bbox_right-1, other.y, objSplashH);
+						splash.image_xscale = -1;
+				        playSFX(sfxSplash);
+					}
+				}
 	        }
 	    }
+		else if !place_meeting(x, y, objWater)
+		{
+			inWater = false;
+		}
 	}
 
 

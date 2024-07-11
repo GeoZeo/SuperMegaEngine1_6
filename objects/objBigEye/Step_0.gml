@@ -2,8 +2,6 @@ event_inherited();
 
 if !global.frozen and !dead {
     checkGround();
-    gravityCheckGround();
-    generalCollision();
     
     if ground {
         moveTimer += update_rate;
@@ -69,10 +67,19 @@ if !global.frozen and !dead {
             moveTimer = 0;
         }
     }
+	else {
+		if moveTimer <= 0 || floor(moveTimer) == 40 {
+			xspeed = image_xscale * 1;
+		}
+	}
+	
+	gravityCheckGround();
         
     prevGround = ground;
     
-    escapeWall(true, true, true, true);
+    //escapeWall(true, true, true, true);
+	
+	generalCollision();
 }
 else {
     if dead {

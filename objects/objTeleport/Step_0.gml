@@ -94,9 +94,6 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 						image_speed = speedStand;
 						
 					}
-					
-					if other.water
-						inWater = true;
 				}
 				
 				if image_xscale != 1

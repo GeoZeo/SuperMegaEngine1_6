@@ -9,6 +9,8 @@ event_inherited();
 
 image_xscale = -1;
 
+checkFullSprite = false;
+
 healthpointsStart = 20;
 healthpoints = healthpointsStart;
 contactDamage = 10;

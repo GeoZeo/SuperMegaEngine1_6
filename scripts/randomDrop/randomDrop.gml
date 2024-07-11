@@ -30,8 +30,6 @@ function randomDrop() {
 
 	if item >= 0 {
 	    nitem = instance_create(x - 8, y - 8, item);
-		nitem.inWater = inWater;
-		if nitem.checkWater && inWater nitem.currentGrav = nitem.gravWater;
 	    nitem.alarm[0] = 105 * 2;
 		//nitem.yspeed = -2.125; //For if you want the item to "jump" out of the enemy like in MM2. Remove if not.
 	}

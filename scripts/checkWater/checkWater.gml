@@ -1,0 +1,134 @@
+/// @description checkWater()
+function checkWater(){
+	//Allows a general object to be affected by water.
+	
+	if place_meeting(x, y, objWater) && inWater == false
+	{
+	    inWater = true;
+    
+		var currentWater;
+		currentWater = instance_place(x, y, objWater);
+		if currentWater >= 0
+		{
+		    if bbox_bottom <= currentWater.bbox_top+yspeed+1
+		    {
+				if canSplash
+				{
+					instance_create(x, currentWater.bbox_top+1, objSplash);
+					playSFX(sfxSplash);
+				}
+		    }
+			else if bbox_top >= currentWater.bbox_bottom+yspeed-1
+			{
+				if canSplash
+				{
+					var splash = instance_create(x, currentWater.bbox_bottom-1, objSplash);
+					splash.image_yscale = -1;
+					playSFX(sfxSplash);
+				}
+			}
+			if bbox_right <= currentWater.bbox_left+xspeed+1
+		    {
+				if canSplash
+				{
+					instance_create(currentWater.bbox_left+1, y, objSplashH);
+					playSFX(sfxSplash);
+				}
+		    }
+			else if bbox_left >= currentWater.bbox_right+xspeed-1
+			{
+				if canSplash
+				{
+					var splash = instance_create(currentWater.bbox_right-1, y, objSplashH);
+					splash.image_xscale = -1;
+					playSFX(sfxSplash);
+				}
+			}
+		}
+	}
+
+	if inWater == true
+	    currentGrav = gravWater;
+	else
+	    currentGrav = grav;
+
+
+	//Leaving the water
+	if inWater == true
+	{
+	    var wtr;
+	    wtr = instance_place(x-xspeed, y-yspeed, objWater);
+	    if wtr >= 0 && !place_meeting(x+sign(xspeed), y+sign(yspeed), objWater)
+	    {
+	        if bbox_bottom < wtr.bbox_top+1
+	        {
+				with wtr
+				{
+					if !collision_rectangle((other.x-8)+1, bbox_top-1, (other.x+8)-1, bbox_top, objWater, false, false)
+					{
+						other.inWater = false;
+						if other.canSplash
+						{
+							instance_create(other.x, bbox_top+1, objSplash);
+							playSFX(sfxSplash);
+						}
+					}
+				}
+	        }
+			else if bbox_top > wtr.bbox_bottom-1
+	        {
+				with wtr
+				{
+					if !collision_rectangle((other.x-8)+1, bbox_bottom, (other.x+8)-1, bbox_bottom+1, objWater, false, false)
+					{
+						other.inWater = false;
+						if other.canSplash
+						{
+							var splash = instance_create(other.x, bbox_bottom-1, objSplash);
+							splash.image_yscale = -1;
+					        playSFX(sfxSplash);
+						}
+					}
+				}
+	        }
+			if bbox_right < wtr.bbox_left+1
+	        {
+				with wtr
+				{
+					if !collision_rectangle(bbox_left-1, (other.y-8)+1, bbox_left, (other.y+8)-1, objWater, false, false)
+					{
+						other.inWater = false;
+						if other.canSplash
+						{
+							instance_create(bbox_left+1, other.y, objSplashH);
+					        playSFX(sfxSplash);
+						}
+					}
+				}
+	        }
+			else if bbox_left > wtr.bbox_right-1
+	        {
+				with wtr
+				{
+					if !collision_rectangle(bbox_right, (other.y-8)+1, bbox_right+1, (other.y+8)-1, objWater, false, false)
+					{
+						other.inWater = false;
+						if other.canSplash
+						{
+							var splash = instance_create(bbox_right-1, other.y, objSplashH);
+							splash.image_xscale = -1;
+					        playSFX(sfxSplash);
+						}
+					}
+				}
+	        }
+	    }
+		else if !place_meeting(x, y, objWater)
+		{
+			inWater = false;
+		}
+	}
+	
+	
+	
+}

@@ -75,49 +75,5 @@ if dead {
 if !global.frozen and !dead {
     x += xspeed * update_rate;
     y += yspeed * update_rate;
-	
-	//Water
-	if object_get_parent(object_index) == prtEnemy && checkWater
-	{
-		if place_meeting(x, y, objWater) && inWater == false
-		{
-		    inWater = true;
-			
-			if canSplash
-			{
-				playSFX(sfxSplash);
-    
-			    var currentWater;
-			    currentWater = instance_place(x, y, objWater);
-			    instance_create(x, currentWater.bbox_top+1, objSplash);
-			}
-		}
-		
-		if inWater == true
-			currentGrav = gravWater;
-		else
-			currentGrav = grav;
-		
-		//Leaving the water
-		if inWater == true
-		{
-		    var wtr;
-		    wtr = instance_place(x, y-yspeed, objWater);
-		    if wtr >= 0
-		    {
-		        if bbox_bottom <= wtr.bbox_top
-		        {
-		            if canSplash instance_create(x, wtr.bbox_top+1, objSplash);
-		            inWater = false;
-		            if canSplash playSFX(sfxSplash);
-		        }
-		    }
-		}
-	}
-	else
-	{
-		inWater = false;
-		currentGrav = grav;
-	}
 }
 

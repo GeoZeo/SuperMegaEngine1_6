@@ -37,9 +37,15 @@ function checkGround() {
 	    else if place_meeting(x, y+1, prtMovingPlatformSolid) {
 	        var sld = instance_place(x, y+1, prtMovingPlatformSolid);
 	        if sld > -1 and sld.object_index != objRushJet and !sld.dead
-	            ground = true;
+			{
+				ground = true;
+				x += sld.xspeed * sld.update_rate;
+				y += sld.yspeed * sld.update_rate;
+			}
 	        else
+			{
 	            ground = false;
+			}
 	    }
 	    else {
 			var pltfm, totalPlatforms, endCheck;
@@ -53,6 +59,8 @@ function checkGround() {
 		            if bbox_bottom <= pltfm.bbox_top+1 && pltfm.object_index != objRushJet
 		            {
 		                ground = true;
+						x += pltfm.xspeed * pltfm.update_rate;
+						y += pltfm.yspeed * pltfm.update_rate;
 		                endCheck = true;
 						break;
 		            }

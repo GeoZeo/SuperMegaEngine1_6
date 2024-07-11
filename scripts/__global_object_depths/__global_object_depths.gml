@@ -166,6 +166,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objItemExplosion
 	array_push(global.__objectDepths, 0); // objSlideDust
 	array_push(global.__objectDepths, 0); // objSplash
+	array_push(global.__objectDepths, 0); // objSplashH
 	array_push(global.__objectDepths, 0); // objAirBubble
 	array_push(global.__objectDepths, -900); // objDmgText
 	array_push(global.__objectDepths, 0); // objFlash
@@ -413,6 +414,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objItemExplosion");
 	array_push(global.__objectNames, "objSlideDust");
 	array_push(global.__objectNames, "objSplash");
+	array_push(global.__objectNames, "objSplashH");
 	array_push(global.__objectNames, "objAirBubble");
 	array_push(global.__objectNames, "objDmgText");
 	array_push(global.__objectNames, "objFlash");

@@ -15,7 +15,7 @@ function macros() {
 #macro cfgSwitchWeaponsWhileTransitioning true
 #macro cfgLockSwitchingOnBossDeath false
 #macro cfgShowLives false
-#macro cfgShotSplash false
+#macro cfgShotSplash true
 #macro cfgInitialStage -1
 #macro cfgShader noone
 #macro cfgEnableKeyConfig true

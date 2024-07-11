@@ -5,7 +5,6 @@ function check_enemy_death() {
 		    if canSpawnItem {
 				if !instantItemSpawn {
 					var myExplosion = instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objItemExplosion);
-					myExplosion.inWater = inWater;
 				}
 				else {
 					instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
