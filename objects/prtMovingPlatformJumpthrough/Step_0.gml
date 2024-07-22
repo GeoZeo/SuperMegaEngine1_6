@@ -68,7 +68,8 @@ if global.frozen == false && dead == false
 						{
 							if myPlt >= 0 && !myPlt.dead
 							{
-								ground = true;
+								if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
+									ground = true;
 								global.yspeed = 0;
 								
 								//Crush the player if necessary
@@ -271,7 +272,8 @@ if global.frozen == false && dead == false
                     if attempts >= 100
                         y = origY;
                     
-                    ground = true;
+                    if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
+						ground = true;
                 }
             }
         }

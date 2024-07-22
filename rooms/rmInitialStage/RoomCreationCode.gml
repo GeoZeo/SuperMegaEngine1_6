@@ -1,1 +1,1 @@
-playMusicVolume(bgmIntro, 0.9);
+//playMusicVolume(bgmIntro, 0.9);

@@ -72,8 +72,3 @@ if dead {
     exit;
 }
 
-if !global.frozen and !dead {
-    x += xspeed * update_rate;
-    y += yspeed * update_rate;
-}
-

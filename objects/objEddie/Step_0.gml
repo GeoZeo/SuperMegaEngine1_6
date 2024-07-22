@@ -113,9 +113,28 @@ if !global.frozen {
                 delivered = true;
 				itemsLeft--;
 				var item;
-				if called item = choose(objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife);
-                else item = choose(objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife, objLife, objETank);
-                var item_instance = instance_create(x + image_xscale * 8, y - 16, item);
+				if called {
+					if global.enableScrews {
+						randomize();
+						item = choose(objLifeEnergySmall, objWeaponEnergySmall, objScrewSmall, objLifeEnergySmall, objWeaponEnergySmall, objScrewSmall, objLifeEnergySmall, objWeaponEnergySmall, objScrewSmall, objLifeEnergySmall, objWeaponEnergySmall, objScrewSmall, objLifeEnergyBig, objWeaponEnergyBig, objScrewBig, objLifeEnergyBig, objWeaponEnergyBig, objScrewBig, objLife, objLife, objETank);
+					}
+					else {
+						randomize();
+						item = choose(objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergySmall, objWeaponEnergySmall, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife, objLife, objETank);
+					}
+				}
+				else {
+					if global.enableScrews {
+						randomize();
+						item = choose(objLifeEnergyBig, objWeaponEnergyBig, objScrewBig, objLifeEnergyBig, objWeaponEnergyBig, objScrewBig, objLifeEnergyBig, objWeaponEnergyBig, objScrewBig, objLifeEnergyBig, objWeaponEnergyBig, objScrewBig, objLife, objLife, objETank);
+					}
+					else {
+						randomize();
+						item = choose(objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife, objLife, objETank);
+					}
+				}
+				var item_instance = instance_create(x + image_xscale * 8, y - 16, item);
+				if image_xscale > 0 item_instance.x -= (item_instance.sprite_width - item_instance.sprite_xoffset);
 				with item_instance escapeWall(true, true, true, true);
                 item_instance.xspeed = image_xscale;
                 item_instance.yspeed = -4;

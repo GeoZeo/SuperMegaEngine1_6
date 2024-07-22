@@ -208,6 +208,9 @@ if !control.endLevel {
 	exit;
 }
 
+if instance_exists(objMegamanDeathTimer)
+	instance_destroy();
+
 //Otherwise, normal behavior (weapon absorb, etc...)
 if !noBoss
 	alarm[0] = 240;

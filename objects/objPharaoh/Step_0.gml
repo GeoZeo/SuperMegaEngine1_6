@@ -3,14 +3,17 @@ event_inherited();
 if global.frozen == false
 {
     if isFight == true
-    {       
-        checkGround();
-        gravityCheckGround();
-        generalCollision();
-        
+    {   
+		checkGround();
+		gravityCheckGround();
+		generalCollision();
+		
         switch phase
         {
             case 0: //Idle (standing still)
+				xspeed = 0;
+				if yspeed < 0 yspeed = 0;
+				
                 sprite_index = sprPharaohStand;
                 image_speed = 0;
                 
@@ -24,6 +27,12 @@ if global.frozen == false
                         randomize();
                         phase = choose(1, 2, 3, 3); //There seems to be a higher chance of him shooting
                     }
+					
+					if phase == 2
+					{
+						randomize();
+						jumpAmount = choose(0, 0, 1); //Originally in MM4, Pharaoh Man would sometimes only jump once instead of twice during this phase
+					}
                 }
             break;
             
@@ -68,11 +77,13 @@ if global.frozen == false
                 
                 if !place_meeting(x+startXspeed, y, objSolid) && !place_meeting(x+startXspeed, y, prtMovingPlatformSolid)
                     xspeed = startXspeed;
-                else
-                {
-                    while place_meeting(x, y, objSolid)
-                            escapeWall(true, true, true, true);
-                            
+                else if place_meeting(x+startXspeed, y, prtMovingPlatformSolid)
+				{
+					if instance_place(x+startXspeed, y, prtMovingPlatformSolid).dead
+						xspeed = startXspeed;
+				}
+				else
+                {           
                     xspeed = 0;
                 }
                 
@@ -163,11 +174,13 @@ if global.frozen == false
                 
                 if !place_meeting(x+startXScale * 2, y, objSolid) && !place_meeting(x+startXScale * 2, y, prtMovingPlatformSolid)
                     xspeed = startXScale * 2;
-                else
+                else if place_meeting(x+startXScale * 2, y, prtMovingPlatformSolid)
+				{
+					if instance_place(x+startXScale * 2, y, prtMovingPlatformSolid).dead
+						xspeed = startXScale * 2;
+				}
+				else
                 {
-                    while place_meeting(x, y, objSolid)
-                        escapeWall(true, true, true, true);
-                        
                     xspeed = 0;
                 }
                     
@@ -307,6 +320,8 @@ if global.frozen == false
             else
                 image_xscale = 1;
         }
+		
+		escapeWall(true, true, true, true);
     }
 }
 else {

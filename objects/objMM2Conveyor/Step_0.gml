@@ -10,8 +10,9 @@ if !global.frozen and !dead {
 		with prtPlayer
 		{
 			//Push the player down if they're at a standstill prior to being dragged off the conveyor
-			if !ground && place_meeting(x - sign(other.xspeed),y+1, other.id) && bbox_bottom <= other.bbox_top+1
+			if !ground && place_meeting(x - sign(other.xspeed),y+1, other.id) && bbox_bottom <= other.bbox_top
 			{
+				x += sign(other.xspeed);
 				y++;
 			}
 		}

@@ -5,7 +5,7 @@ abbrev = "P.BUSTER";
 maxshots = cfgMaxNumberOfBusterShots - 1;
 chargeSFX = sfxProtoBusterCharging;
 consumption = 0;
-initChargeTime = 20; //The amount of frames after which to start charging after the shooting animation is complete
+initChargeTime = 30; //The amount of frames after which to start charging after the shooting animation is complete
 chargeTime = 57;
 
 primaryCol = make_colour_rgb(222, 41, 0);

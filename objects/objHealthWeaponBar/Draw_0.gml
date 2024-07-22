@@ -40,9 +40,11 @@ if global.weapon != 0 {
 }
 
 //Weapon icon (when using quick weapon switching)
-var myStartingPoint = instance_nearest(x, y, objArenaStartingPoint);
-var myTimer = instance_nearest(x, y, objBossDeathTimer);
-if !((myStartingPoint > -1 and myStartingPoint.isMM) or (myTimer > -1 and myTimer.isMM)) {
+var myStartingPoint = -1;
+with objArenaStartingPoint if isMM { myStartingPoint = id; break; }
+var myTimer = -1;
+with objBossDeathTimer if isMM { myTimer = id; break; }
+if !(myStartingPoint > -1 or myTimer > -1) {
 	if instance_exists(prtPlayer) && !prtPlayer.teleporting && !prtPlayer.showReady && !prtPlayer.dead {
 		if prtPlayer.drawWeaponIcon {
 		    if !prtPlayer.climbing
@@ -52,7 +54,7 @@ if !((myStartingPoint > -1 and myStartingPoint.isMM) or (myTimer > -1 and myTime
 		}
 	}
 }
-else if myStartingPoint > -1 && myStartingPoint.isMM {
+else if myStartingPoint > -1 {
 	if instance_exists(prtPlayer) && !prtPlayer.dead {
 		if prtPlayer.drawWeaponIcon {
 		    if !prtPlayer.climbing
@@ -62,7 +64,7 @@ else if myStartingPoint > -1 && myStartingPoint.isMM {
 		}
 	}
 }
-else if myTimer > -1 && myTimer.isMM {
+else if myTimer > -1 {
 	if instance_exists(prtPlayer) && !prtPlayer.dead && !myTimer.teleporting {
 		if prtPlayer.drawWeaponIcon {
 			if !prtPlayer.climbing

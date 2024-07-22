@@ -36,6 +36,8 @@ if !global.frozen and !dead {
         xspeed = 0;
         frozeTimer -= update_rate;
     }
+	
+	x += xspeed * update_rate;
 }
 else {
     xspeed = 0;

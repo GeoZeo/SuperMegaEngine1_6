@@ -16,9 +16,12 @@ function playerMovingPlatform() {
 	                y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
 	                global.yspeed = 0;
                 
-	                ground = true;
-	                if playLandSound == true
-	                    canPlayLandSound = true;
+	                if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
+					{
+						ground = true;
+		                if playLandSound == true
+		                    canPlayLandSound = true;
+					}
 	            }
 	        }
 	    }
@@ -38,9 +41,12 @@ function playerMovingPlatform() {
 	        y = ID[maxID].bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
 	        global.yspeed = 0;
         
-	        ground = true;
-	        if playLandSound == true
-	            canPlayLandSound = true;
+	        if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
+			{
+				ground = true;
+		        if playLandSound == true
+		            canPlayLandSound = true;
+			}
         
 	        //Note: there used to be a system here that set MM's sprite to the walking sprite when landing
 	        //However, due to complications such as climbing up ladders, it was a lot of work for such a minor feature
@@ -120,6 +126,7 @@ function playerMovingPlatform() {
 
 	//Spikes (now carried out at the end of this script to fully account for moving platforms)
 	if !instance_exists(objSectionSwitcher)
+	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) 
 	{	
 	    //Lots of extra checks to make solid collision take priority over spike collision
 	    //What this means is that when jumping on a solid and spike at the same time, you won't die, unlike in Mega Engine 1.5
@@ -259,7 +266,8 @@ function playerMovingPlatform() {
 	
 
 	//Play the landing SFX. Now carried out at the end since new spike floor code causes part of the landing SFX to start playing before the death SFX.
-	if canPlayLandSound && !global.frozen && !audio_is_playing(sfxEnergyRestore) {
+	if canPlayLandSound && !global.frozen && !audio_is_playing(sfxEnergyRestore)
+	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
 		
 		if !isHit
 			playSFX(sfxLand);

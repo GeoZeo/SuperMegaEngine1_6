@@ -2,10 +2,11 @@
 function checkGround() {
 	//Checks whether or not the object is on the ground
 
-	if place_meeting(x, y+1, objSolid) || (place_meeting(x, y+1, objTopSolid))
-	|| place_meeting(x, y+1, prtMovingPlatformSolid) || (place_meeting(x, y+1, prtMovingPlatformJumpthrough)) {
+	if place_meeting(x, y+1, objSolid) || (place_meeting(x, y+1, objTopSolid) && yspeed >= 0)
+	|| (place_meeting(x, y+1, prtMovingPlatformSolid) && !place_meeting(x, y, prtMovingPlatformSolid))
+	|| (place_meeting(x, y+1, prtMovingPlatformJumpthrough) && yspeed >= 0) {
 	    if place_meeting(x, y+1, objSolid)
-	        ground = true;
+			ground = true;
 	    else if place_meeting(x, y+1, objTopSolid) {
 			var tpsld, totalTSs, endCheck;
 			tpsld = collision_rectangle(bbox_left, bbox_bottom, bbox_right, bbox_bottom+1, objTopSolid, false, true);
@@ -13,7 +14,7 @@ function checkGround() {
 			endCheck = false;
 			while tpsld >= 0 && endCheck == false
 			{
-				if bbox_bottom <= tpsld.bbox_top+1
+				if bbox_bottom < tpsld.bbox_top
 				{
 					ground = true;
 					endCheck = true;
@@ -38,11 +39,11 @@ function checkGround() {
 	        var sld = instance_place(x, y+1, prtMovingPlatformSolid);
 	        if sld > -1 and sld.object_index != objRushJet and !sld.dead
 			{
-				ground = true;
+	            ground = true;
 				x += sld.xspeed * sld.update_rate;
 				y += sld.yspeed * sld.update_rate;
 			}
-	        else
+			else
 			{
 	            ground = false;
 			}
@@ -56,7 +57,8 @@ function checkGround() {
 		    {
 		        if pltfm.dead == false
 		        {
-		            if bbox_bottom <= pltfm.bbox_top+1 && pltfm.object_index != objRushJet
+		            if (bbox_bottom < pltfm.bbox_top or (yspeed == 0 and bbox_bottom < pltfm.bbox_top + abs(pltfm.yspeed) + abs(yspeed) + 2)) 
+					&& pltfm.object_index != objRushJet
 		            {
 		                ground = true;
 						x += pltfm.xspeed * pltfm.update_rate;
@@ -84,7 +86,7 @@ function checkGround() {
 	    }
 	}
 	else
-	    ground = false;
+		ground = false;
 
 
 

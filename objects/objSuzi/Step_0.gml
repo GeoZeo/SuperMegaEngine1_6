@@ -31,6 +31,8 @@ if !global.frozen and !dead {
             startDir = -startDir;   //Change the direction
         }
         
+		x += xspeed * update_rate;
+        y += yspeed * update_rate;
     }
 }
 else {

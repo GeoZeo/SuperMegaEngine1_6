@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Scenery",
-    "path": "folders/Objects/LevelObjects/Scenery.yy",
+    "name": "DontPlaceInLevel",
+    "path": "folders/Objects/LevelObjects/Scenery/DontPlaceInLevel.yy",
   },
   "parentObjectId": null,
   "persistent": false,

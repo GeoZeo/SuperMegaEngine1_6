@@ -10,5 +10,8 @@ if !global.frozen && !dead {
 	        other.yspeed = dirY * other.move_speed / len;
 		}
     }
+	
+	x += xspeed * update_rate;
+    y += yspeed * update_rate;
 }
 

@@ -1,6 +1,11 @@
 event_inherited();
 
 if !global.frozen && !dead {
+	
+	checkGround();
+	gravityCheckGround();
+	generalCollision();
+	
     if instance_exists(prtPlayer) {
         // Turn right.
         if x < prtPlayer.x
@@ -55,11 +60,14 @@ if !global.frozen && !dead {
         }
     }
     
-    //Set the protection of the Picketman
+    //Set the protection of the Sniper Joe
     if floor(image_index) == 0
         reflectProjectiles = true;
     else
         reflectProjectiles = false;
+		
+	x += xspeed * update_rate;
+    y += yspeed * update_rate;
 }
 else {
     if dead {

@@ -22,8 +22,17 @@ function playerShoot() {
 
 
 		//Shooting
+		var _chargeShotsReflected = 0;
+		with objReflectedProjectile
+		{
+			if id_of_origin == prtPlayer 
+			&& string_contains(sprite_get_name(sprite_index), "Buster")
+			&& string_ends_with(sprite_get_name(sprite_index), "Charged") && !string_ends_with(sprite_get_name(sprite_index), "HalfCharged") 
+				_chargeShotsReflected++;
+		}
+		
 		if global.keyShootPressed && canShoot && (canMove || climbing || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet))
-		&& instance_number(objBusterShotCharged) < 1 && global.ammo[global.currentWeapon] > 0
+		&& instance_number(objBusterShotCharged) + _chargeShotsReflected < 1 && global.ammo[global.currentWeapon] > 0
 		{   
 		    if climbing {
 		        image_xscale = climbShootXscale;

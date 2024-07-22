@@ -83,6 +83,12 @@ if !global.frozen {
     x += xspeed * update_rate;
     y += yspeed * update_rate; 
 	
+	if (instance_exists(prtPlayer) && bbox_top >= prtPlayer.sectionBottom)
+	|| bbox_top >= room_height
+	{
+		event_user(13);
+	}
+	
 	//if instance_exists(prtPlayer) {
 	//	if prtPlayer.canHit {
 	//		if place_meeting(x, y, prtPlayer) {

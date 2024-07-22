@@ -4,13 +4,20 @@ function checkWater(){
 	
 	if place_meeting(x, y, objWater) && inWater == false
 	{
-	    inWater = true;
-    
+		var _sectionLeft = __view_get( e__VW.XView, 0 );
+		var _sectionTop = __view_get( e__VW.YView, 0 );
+		var _sectionRight = __view_get( e__VW.XView, 0 ) + (__view_get( e__VW.WView, 0 ));
+		var _sectionBottom = __view_get( e__VW.YView, 0 ) + (__view_get( e__VW.HView, 0 ));
+		
+		inWater = true;
+	
 		var currentWater;
 		currentWater = instance_place(x, y, objWater);
-		if currentWater >= 0
+		if currentWater >= 0 && (insideViewObj_Spr(currentWater) or currentWater.bbox_bottom <= _sectionTop)
 		{
 		    if bbox_bottom <= currentWater.bbox_top+yspeed+1
+			&& currentWater.bbox_top < _sectionBottom
+			&& currentWater.bbox_top > _sectionTop
 		    {
 				if canSplash
 				{
@@ -19,6 +26,7 @@ function checkWater(){
 				}
 		    }
 			else if bbox_top >= currentWater.bbox_bottom+yspeed-1
+			&& currentWater.bbox_bottom < _sectionBottom
 			{
 				if canSplash
 				{
@@ -28,6 +36,8 @@ function checkWater(){
 				}
 			}
 			if bbox_right <= currentWater.bbox_left+xspeed+1
+			&& currentWater.bbox_left > _sectionLeft
+			&& currentWater.bbox_left < _sectionRight
 		    {
 				if canSplash
 				{
@@ -36,6 +46,8 @@ function checkWater(){
 				}
 		    }
 			else if bbox_left >= currentWater.bbox_right+xspeed-1
+			&& currentWater.bbox_right > _sectionLeft
+			&& currentWater.bbox_right < _sectionRight
 			{
 				if canSplash
 				{
@@ -44,6 +56,10 @@ function checkWater(){
 					playSFX(sfxSplash);
 				}
 			}
+		}
+		else if currentWater >= 0 && !(insideViewObj_Spr(currentWater) or currentWater.bbox_bottom <= _sectionTop)
+		{
+			inWater = false;
 		}
 	}
 
@@ -56,6 +72,11 @@ function checkWater(){
 	//Leaving the water
 	if inWater == true
 	{
+		var _sectionLeft = __view_get( e__VW.XView, 0 );
+		var _sectionTop = __view_get( e__VW.YView, 0 );
+		var _sectionRight = __view_get( e__VW.XView, 0 ) + (__view_get( e__VW.WView, 0 ));
+		var _sectionBottom = __view_get( e__VW.YView, 0 ) + (__view_get( e__VW.HView, 0 ));
+		
 	    var wtr;
 	    wtr = instance_place(x-xspeed, y-yspeed, objWater);
 	    if wtr >= 0 && !place_meeting(x+sign(xspeed), y+sign(yspeed), objWater)
@@ -68,6 +89,8 @@ function checkWater(){
 					{
 						other.inWater = false;
 						if other.canSplash
+						&& bbox_top < _sectionBottom
+						&& bbox_top > _sectionTop
 						{
 							instance_create(other.x, bbox_top+1, objSplash);
 							playSFX(sfxSplash);
@@ -83,6 +106,7 @@ function checkWater(){
 					{
 						other.inWater = false;
 						if other.canSplash
+						&& bbox_bottom < _sectionBottom
 						{
 							var splash = instance_create(other.x, bbox_bottom-1, objSplash);
 							splash.image_yscale = -1;
@@ -99,6 +123,8 @@ function checkWater(){
 					{
 						other.inWater = false;
 						if other.canSplash
+						&& bbox_left > _sectionLeft
+						&& bbox_left < _sectionRight
 						{
 							instance_create(bbox_left+1, other.y, objSplashH);
 					        playSFX(sfxSplash);
@@ -114,6 +140,8 @@ function checkWater(){
 					{
 						other.inWater = false;
 						if other.canSplash
+						&& bbox_right > _sectionLeft
+						&& bbox_right < _sectionRight
 						{
 							var splash = instance_create(bbox_right-1, other.y, objSplashH);
 							splash.image_xscale = -1;

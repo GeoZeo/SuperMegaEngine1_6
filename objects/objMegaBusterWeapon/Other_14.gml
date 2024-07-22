@@ -3,7 +3,17 @@ event_inherited();
 
 if (!instance_exists(objSectionSwitcher) or cfgChargeWhileLocked) && chargeTimer != 0 {
   
-	if (prtPlayer.canMove || prtPlayer.climbing) && !instance_exists(objSectionSwitcher) {
+	var _chargeShotsReflected = 0;
+	with objReflectedProjectile
+	{
+		if id_of_origin == prtPlayer 
+		&& string_contains(sprite_get_name(sprite_index), "Buster")
+		&& string_ends_with(sprite_get_name(sprite_index), "Charged") && !string_ends_with(sprite_get_name(sprite_index), "HalfCharged") 
+			_chargeShotsReflected++;
+	}
+  
+	if (prtPlayer.canMove || prtPlayer.climbing) && !instance_exists(objSectionSwitcher)
+	&& instance_number(objBusterShotCharged) + _chargeShotsReflected < 1 {
 		prtPlayer.isShoot = true;
 	    prtPlayer.shootTimer = 0;
 

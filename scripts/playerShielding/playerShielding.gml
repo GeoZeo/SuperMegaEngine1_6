@@ -19,6 +19,7 @@ function playerShielding(argument0) {
 	var _offset = reflector_left_offset;
 	
 	if (_width > 0 and _height > 0) && (reflectProjectilesLeft or reflectProjectilesRight)
+	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
 	{
 		var myProj, totalProjs;
 		if reflectProjectilesLeft

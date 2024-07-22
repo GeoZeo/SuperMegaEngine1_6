@@ -26,6 +26,9 @@ if !global.frozen && !dead && healthpoints > 0 {
     if yspeed > 0 && y > __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 64 {
         yspeed *= -1;
     }
+	
+	x += xspeed * update_rate;
+    y += yspeed * update_rate;
     
 }
 if !global.frozen && dying {

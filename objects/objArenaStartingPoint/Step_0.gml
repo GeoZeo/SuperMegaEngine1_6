@@ -3,6 +3,8 @@ if !global.frozen
 	if isMM && instance_exists(prtPlayer)
 	{
 		checkGround();
+		if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
+	    generalCollision();
 		
 		if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime
 		{
@@ -58,34 +60,34 @@ if !global.frozen
 		        }
 			
 				//Jumping over pits in the arena (comment this out if you wish to troll people somehow)
-				//var _jump = ground;
-				//for (var i = 0; bbox_bottom+1+i < prtPlayer.sectionBottom; i += 8)
-				//{
-				//	if place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objSolid)
-				//	|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objTopSolid)
-				//	|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformSolid)
-				//	|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformJumpthrough)
-				//	{
-				//		_jump = false;
-				//		break;
-				//	}
-				//}
-				//if _jump == true
-				//{
-				//	if (!((place_meeting(x+xspeed+16, y+1, objSolid) || place_meeting(x+xspeed+32, y+1, objSolid)) 
-				//	|| (place_meeting(x+xspeed+16, y+1, objTopSolid) || place_meeting(x+xspeed+32, y+1, objTopSolid))
-				//	|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformSolid) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformSolid))
-				//	|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformJumpthrough) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformJumpthrough)))
-				//	&& image_xscale == 1)
-				//	|| (!((place_meeting((x+xspeed)-16, y+1, objSolid) || place_meeting((x+xspeed)-32, y+1, objSolid)) 
-				//	|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
-				//	|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
-				//	|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
-				//	&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
-				//		yspeed = -5.25
-				//	else //Else, perform a short, 1-block-high jump
-				//		yspeed = -3.5;
-				//}
+				var _jump = ground;
+				for (var i = 0; bbox_bottom+1+i < prtPlayer.sectionBottom; i += 8)
+				{
+					if place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objSolid)
+					|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, objTopSolid)
+					|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformSolid)
+					|| place_meeting((x+xspeed)+sign(image_xscale), bbox_bottom+1+i, prtMovingPlatformJumpthrough)
+					{
+						_jump = false;
+						break;
+					}
+				}
+				if _jump == true
+				{
+					if (!((place_meeting(x+xspeed+16, y+1, objSolid) || place_meeting(x+xspeed+32, y+1, objSolid)) 
+					|| (place_meeting(x+xspeed+16, y+1, objTopSolid) || place_meeting(x+xspeed+32, y+1, objTopSolid))
+					|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformSolid) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformSolid))
+					|| (place_meeting(x+xspeed+16, y+1, prtMovingPlatformJumpthrough) || place_meeting(x+xspeed+32, y+1, prtMovingPlatformJumpthrough)))
+					&& image_xscale == 1)
+					|| (!((place_meeting((x+xspeed)-16, y+1, objSolid) || place_meeting((x+xspeed)-32, y+1, objSolid)) 
+					|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
+					|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
+					|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
+					&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
+						yspeed = -5.25
+					else //Else, perform a short, 1-block-high jump
+						yspeed = -3.5;
+				}
             
 		        if ground == true
 				{
@@ -125,6 +127,8 @@ if !global.frozen
 					prtPlayer.image_speed = image_speed;
 					prtPlayer.x = x;
 					prtPlayer.y = y;
+					global.xspeed = 0;
+					global.yspeed = 0;
 					xspeed = 0;
 		            yspeed = 0;
 					prtPlayer.visible = true;
@@ -133,18 +137,13 @@ if !global.frozen
 		    }
 		}
 		
-		if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
-	    generalCollision();
-		
-		global.xspeed = xspeed;
-		global.yspeed = yspeed;
 	    x += xspeed;
 	    y += yspeed;
 		
+		escapeWall(true, true, true, true);
+		
 		if instance_exists(objBeat) && objBeat.transportTimer < objBeat.transportTime
 		{
-			prtPlayer.x = x;
-			prtPlayer.y = y;
 			if prtPlayer.canGravity prtPlayer.canGravity = false;
 			
 			if objBeat.carrying
@@ -171,9 +170,24 @@ if !global.frozen
 					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 					for (var i = 0; i < sprite_yoffset+15; i++)
 					{
-						if !place_free(x, y-i) 
+						while !place_free(x, y-i) 
 						{
-							x -= xspeed;
+							if abs(xspeed) >= 1
+								x -= xspeed;
+							else
+							{
+								if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) >= x
+								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) >= x
+								{
+									x -= 1;
+								}
+								else if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) < x
+								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) < x
+								{
+									x += 1;
+								}
+							}
+								
 							break;
 						}
 					}

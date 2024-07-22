@@ -3,9 +3,10 @@ function playerStep() {
 	//Handles general step event code for the player
 
 	//Check for ground
-	if place_meeting(x, y+global.yspeed+1, objSolid) || (place_meeting(x, y+global.yspeed+1, objTopSolid)  && global.yspeed >= 0)
+	if (place_meeting(x, y+global.yspeed+1, objSolid) || (place_meeting(x, y+global.yspeed+1, objTopSolid)  && global.yspeed >= 0)
 	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformJumpthrough) && global.yspeed >= 0)
-	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid) && !place_meeting(x, y, prtMovingPlatformSolid))
+	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid) && !place_meeting(x, y, prtMovingPlatformSolid)))
+	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
 	{
 		var endCheck = false;
 		
@@ -557,9 +558,24 @@ function playerStep() {
 					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 					for (var i = 0; i < sprite_yoffset+15; i++)
 					{
-						if !place_free(x, y-i) 
+						while !place_free(x, y-i) 
 						{
-							x -= global.xspeed;
+							if abs(global.xspeed) >= 1
+								x -= global.xspeed;
+							else
+							{
+								if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) >= x
+								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) >= x
+								{
+									x -= 1;
+								}
+								else if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) < x
+								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) < x
+								{
+									x += 1;
+								}
+							}
+								
 							break;
 						}
 					}
@@ -582,6 +598,10 @@ function playerStep() {
 					endBeatCheck = true;
 				}
 				
+				global.weapons[global.currentWeapon].initChargeTimer = 0;
+			    global.weapons[global.currentWeapon].chargeTimer = 0;
+				global.weapons[global.currentWeapon].chargeAnimTimer = 0;
+				shootTimer = 20;
 				event_user(0);
 				with weapons[global.currentWeapon] sound_stop(chargeSFX);
 				with weapons[global.currentWeapon] sound_stop(chargedSFX);
@@ -620,9 +640,24 @@ function playerStep() {
 				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 				for (var i = 0; i < sprite_yoffset+15; i++)
 				{
-					if !place_free(x, y-i) 
+					while !place_free(x, y-i) 
 					{
-						x -= global.xspeed;
+						if abs(global.xspeed) >= 1
+							x -= global.xspeed;
+						else
+						{
+							if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) >= x
+							|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) >= x
+							{
+								x -= 1;
+							}
+							else if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) < x
+							|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) < x
+							{
+								x += 1;
+							}
+						}
+								
 						break;
 					}
 				}
@@ -644,6 +679,10 @@ function playerStep() {
 				}
 			}
 			
+			global.weapons[global.currentWeapon].initChargeTimer = 0;
+			global.weapons[global.currentWeapon].chargeTimer = 0;
+			global.weapons[global.currentWeapon].chargeAnimTimer = 0;
+			shootTimer = 20;
 			event_user(0);
 			with weapons[global.currentWeapon] sound_stop(chargeSFX);
 			with weapons[global.currentWeapon] sound_stop(chargedSFX);
@@ -1127,30 +1166,41 @@ function playerStep() {
     
 		var currentWater;
 		currentWater = instance_place(x, y, objWater);
-		if currentWater >= 0
+		if currentWater >= 0 && (insideViewObj_Spr(currentWater) or currentWater.bbox_bottom <= sectionTop)
 		{
 		    if bbox_bottom <= currentWater.bbox_top+global.yspeed+1
+			&& currentWater.bbox_top < sectionBottom
+			&& currentWater.bbox_top > sectionTop
 		    {
 				instance_create(x, currentWater.bbox_top+1, objSplash);
 				playSFX(sfxSplash);
 		    }
 			else if bbox_top >= currentWater.bbox_bottom+global.yspeed-1
+			&& currentWater.bbox_bottom < sectionBottom
 			{
 				var splash = instance_create(x, currentWater.bbox_bottom-1, objSplash);
 				splash.image_yscale = -1;
 				playSFX(sfxSplash);
 			}
 			if bbox_right <= currentWater.bbox_left+global.xspeed+1
+			&& currentWater.bbox_left > sectionLeft
+			&& currentWater.bbox_left < sectionRight
 		    {
 				instance_create(currentWater.bbox_left+1, y, objSplashH);
 				playSFX(sfxSplash);
 		    }
 			else if bbox_left >= currentWater.bbox_right+global.xspeed-1
+			&& currentWater.bbox_right > sectionLeft
+			&& currentWater.bbox_right < sectionRight
 			{
 				var splash = instance_create(currentWater.bbox_right-1, y, objSplashH);
 				splash.image_xscale = -1;
 				playSFX(sfxSplash);
 			}
+		}
+		else if currentWater >= 0 && !(insideViewObj_Spr(currentWater) or currentWater.bbox_bottom <= sectionTop)
+		{
+			inWater = false;
 		}
 	}
 
@@ -1189,8 +1239,12 @@ function playerStep() {
 					if !collision_rectangle((other.x-8)+1, bbox_top-1, (other.x+8)-1, bbox_top, objWater, false, false)
 					{
 						other.inWater = false;
-						instance_create(other.x, bbox_top+1, objSplash);
-						playSFX(sfxSplash);
+						if bbox_top < other.sectionBottom
+						&& bbox_top > other.sectionTop
+						{
+							instance_create(other.x, bbox_top+1, objSplash);
+							playSFX(sfxSplash);
+						}
 					}
 				}
 	        }
@@ -1201,9 +1255,12 @@ function playerStep() {
 					if !collision_rectangle((other.x-8)+1, bbox_bottom, (other.x+8)-1, bbox_bottom+1, objWater, false, false)
 					{
 						other.inWater = false;
-						var splash = instance_create(other.x, bbox_bottom-1, objSplash);
-						splash.image_yscale = -1;
-				        playSFX(sfxSplash);
+						if bbox_bottom < other.sectionBottom
+						{
+							var splash = instance_create(other.x, bbox_bottom-1, objSplash);
+							splash.image_yscale = -1;
+					        playSFX(sfxSplash);
+						}
 					}
 				}
 	        }
@@ -1214,8 +1271,12 @@ function playerStep() {
 					if !collision_rectangle(bbox_left-1, (other.y-8)+1, bbox_left, (other.y+8)-1, objWater, false, false)
 					{
 						other.inWater = false;
-						instance_create(bbox_left+1, other.y, objSplashH);
-				        playSFX(sfxSplash);
+						if bbox_left > other.sectionLeft
+						&& bbox_left < other.sectionRight
+						{
+							instance_create(bbox_left+1, other.y, objSplashH);
+					        playSFX(sfxSplash);
+						}
 					}
 				}
 	        }
@@ -1226,9 +1287,13 @@ function playerStep() {
 					if !collision_rectangle(bbox_right, (other.y-8)+1, bbox_right+1, (other.y+8)-1, objWater, false, false)
 					{
 						other.inWater = false;
-						var splash = instance_create(bbox_right-1, other.y, objSplashH);
-						splash.image_xscale = -1;
-				        playSFX(sfxSplash);
+						if bbox_right > other.sectionLeft
+						&& bbox_right < other.sectionRight
+						{
+							var splash = instance_create(bbox_right-1, other.y, objSplashH);
+							splash.image_xscale = -1;
+					        playSFX(sfxSplash);
+						}
 					}
 				}
 	        }

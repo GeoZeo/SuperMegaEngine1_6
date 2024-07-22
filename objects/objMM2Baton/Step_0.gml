@@ -85,6 +85,9 @@ if !global.frozen && !dead {
         reflectProjectiles = false;
     }
 	
+	x += xspeed * update_rate;
+    y += yspeed * update_rate;
+	
 	//if place_meeting(x, y, objWater) {
 		
 	//	if moving && !place_meeting(x, y-8, objSolid) {

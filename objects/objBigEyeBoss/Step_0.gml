@@ -8,6 +8,10 @@ if !global.frozen && !dead && isFight
     escapeWall(true, true, true, true);
     
     if ground {
+		
+		xspeed = 0;
+        yspeed = 0;
+		
         moveTimer += 1;
         if moveTimer == 1 {
             if repeatAmount < 2 {
@@ -19,10 +23,13 @@ if !global.frozen && !dead && isFight
             }
             
             if !prevGround {
-                playSFX(sfxBigEye);
                 if repeatIsHigh {
                     instance_create(x, y, objShake);
+					playSFX(sfxGroundPound);
                 }
+				else {
+					playSFX(sfxBigEye);
+				}
             }
             
             image_index = 4;
@@ -44,9 +51,6 @@ if !global.frozen && !dead && isFight
                 else
                     image_xscale = 2;
             }
-            
-            xspeed = 0;
-            yspeed = 0;
         }
         else if moveTimer == 4 {
             image_index = 0;
@@ -60,21 +64,36 @@ if !global.frozen && !dead && isFight
         else if moveTimer == 40 {
             if highJump == true {
                 yspeed = -7;
-                xspeed = image_xscale * 0.5;
-                image_index = 3;
+				
+                if place_free(x+(sign(image_xscale)*6), y)
+	                xspeed = image_xscale * 0.5;
+                
+				image_index = 3;
             }
             else {
                 yspeed = -4;
-                xspeed = image_xscale * 0.5;
-                image_index = 2;
+				
+                if place_free(x+(sign(image_xscale)*6), y)
+	                xspeed = image_xscale * 0.5;
+                
+				image_index = 2;
             }
             
             moveTimer = 0;
         }
     }
+	else if place_free(x+(sign(image_xscale)*6), y)
+	{
+		if moveTimer <= 0 || floor(moveTimer) == 40
+			xspeed = image_xscale * 0.5;
+	}
+	else
+	{
+		xspeed = 0;
+	}
     
-    x += xspeed;
-    y += yspeed;
+    //x += xspeed;
+    //y += yspeed;
     
     prevGround = ground;
 
