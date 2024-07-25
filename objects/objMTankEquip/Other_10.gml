@@ -25,7 +25,7 @@ else {
     for (var i = 0; i < instance_number(prtEnemy); i++) {
         var enemy = instance_find(prtEnemy, i);
         with enemy {
-            if !dead && insideView() && object_get_parent(object_index) != prtBoss && object_get_parent(object_index) != prtMiniBoss && !object_is_ancestor(object_index, objDestructibleWall) {
+            if !dead && insideView() && !object_is_ancestor(object_index, prtBoss) && !object_is_ancestor(object_index, prtFortressBoss) && !object_is_ancestor(object_index, prtMiniBoss) && !object_is_ancestor(object_index, objDestructibleWall) {
                 var l = instance_create(x, y, objLife);
                 l.alarm[0] = room_speed * 99999999;
                 dead = true;

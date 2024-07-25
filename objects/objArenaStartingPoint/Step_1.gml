@@ -12,6 +12,9 @@ if !global.frozen
 			image_xscale = prtPlayer.image_xscale;
 			global.yspeed = 0;
 			yspeed = 0;
+			inWater = prtPlayer.inWater;
+			prtPlayer.inWater = false;
+			bubbleTimer = prtPlayer.bubbleTimer;
 			currentGrav = prtPlayer.currentGrav;
 			ground = prtPlayer.ground;
 			prevGround = ground;

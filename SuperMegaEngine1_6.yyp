@@ -827,6 +827,7 @@
     {"id":{"name":"objMM1MetBullet","path":"objects/objMM1MetBullet/objMM1MetBullet.yy",},},
     {"id":{"name":"objBeakBullet","path":"objects/objBeakBullet/objBeakBullet.yy",},},
     {"id":{"name":"objPicket","path":"objects/objPicket/objPicket.yy",},},
+    {"id":{"name":"sfxChargeKick","path":"sounds/sfxChargeKick/sfxChargeKick.yy",},},
     {"id":{"name":"objMM2Baton","path":"objects/objMM2Baton/objMM2Baton.yy",},},
     {"id":{"name":"objTelly","path":"objects/objTelly/objTelly.yy",},},
     {"id":{"name":"objFanFiend","path":"objects/objFanFiend/objFanFiend.yy",},},

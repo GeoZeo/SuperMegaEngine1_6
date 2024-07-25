@@ -10,10 +10,6 @@ if dead {
                 
     var i, explosionID;
                     
-    doExplosion(sprite_get_xcenter(), (sprite_get_ycenter()-abs(yspeed))-1, 1.5);
-                
-    doExplosion(sprite_get_xcenter(), (sprite_get_ycenter()-abs(yspeed))-1, 2.5);
-                
     instance_activate_object(objTeleport);
     with objTeleport {
         if !insideView() and boss == other.bossID {
@@ -21,7 +17,7 @@ if dead {
         }
     }
     
-    instance_create(x, y, objBossDeathTimer);
+    instance_create(x, y-abs(yspeed)-1, objBossDeathTimer);
     instance_destroy();
 }
 

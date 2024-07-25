@@ -2,7 +2,10 @@ if !global.frozen and instance_exists(prtPlayer) and global.weapons[global.curre
     if prtPlayer.isSlide and !instance_exists(objChargeKick) {
         if instance_exists(objSlideDust) and objSlideDust.image_index == 0 {
             var kick = instance_create(prtPlayer.x + prtPlayer.image_xscale * 5, prtPlayer.y + prtPlayer.sprite_height / 2, objChargeKick);
+			kick.image_xscale = prtPlayer.image_xscale;
             kick.depth = prtPlayer.depth - 1;
+			prtPlayer.canHit = false;
+			if sfx != noone playSFX(sfx);
             ammo -= consumption;
         }
     }

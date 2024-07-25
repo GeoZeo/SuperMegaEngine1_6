@@ -2,13 +2,16 @@ if !global.frozen
 {	
 	if isMM && instance_exists(prtPlayer)
 	{
+		prtPlayer.inWater = false;
+		
 		checkGround();
+		checkWater();
 		if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
 	    generalCollision();
 		
 		if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime
 		{
-			if x < xstart-2 || x > xstart+2 
+			if x < xstart-2 || x > xstart+2
 		    {
 				if stepTimer < stepTime && ground && (sprite_index == prtPlayer.spriteStand or sprite_index == prtPlayer.spriteStep) && abs(xspeed) <= cfgStepSpeed * cfgStepFrames
 				{
@@ -131,6 +134,8 @@ if !global.frozen
 					global.yspeed = 0;
 					xspeed = 0;
 		            yspeed = 0;
+					prtPlayer.inWater = inWater;
+					prtPlayer.bubbleTimer = bubbleTimer;
 					prtPlayer.visible = true;
 	                instance_destroy();
 		        }

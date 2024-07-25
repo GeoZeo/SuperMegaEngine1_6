@@ -217,12 +217,17 @@ if !noBoss
 
 xspeed = 0;
 yspeed = 0;
-currentGrav = cfgGravity;
+grav = cfgGravity;
+gravWater = cfgGravityWater;
+currentGrav = grav;
+canSplash = true;
+bubbleTimer = 0;
 stepTime = cfgStepFrames;
 stepTimer = 0;
 isMM = false;
 ground = true;
 prevGround = ground;
+inWater = false;
 canInitJump = true;
 absorbing = false;
 absorbAmount = 0;

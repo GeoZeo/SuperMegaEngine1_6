@@ -12,7 +12,3 @@ if instance_number(objBusterShot) + instance_number(objBusterShotHalfCharged) + 
     attackID = instance_create(box + prtPlayer.image_xscale * 4, yy, objBusterShot);
 
 }
-
-chargeTimer = 0;
-initChargeTimer = 0;
-chargeAnimTimer = 0;

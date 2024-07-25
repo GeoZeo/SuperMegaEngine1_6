@@ -1,6 +1,9 @@
 if !global.frozen {
 	if isMM {
 	    with prtPlayerProjectile instance_destroy();
+	
+		if instance_exists(prtPlayer)
+			prtPlayer.inWater = false;
 	}
 	if isMM == true && teleporting == false && instance_exists(prtPlayer)
 	{
@@ -13,6 +16,7 @@ if !global.frozen {
 				destX = x;
         
 	        checkGround();
+			checkWater();
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
 	        generalCollision();
 			
@@ -136,7 +140,7 @@ if !global.frozen {
 		                    x = destX;
 		                    sprite_index = prtPlayer.spriteJump;
 							image_speed = prtPlayer.speedJump;
-							currentGrav = cfgGravityWater;
+							currentGrav = gravWater;
 		                    yspeed = -4.85;
 		                }
 		                else
@@ -291,7 +295,7 @@ if !global.frozen {
                 
 	                if ground == true
 	                {
-						currentGrav = cfgGravity;
+						currentGrav = grav;
 	                    sprite_index = prtPlayer.spriteStand;
 	                    image_speed = prtPlayer.speedStand;
 						if startTeleportTimer <= 0 {

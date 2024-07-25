@@ -1,6 +1,11 @@
 xspeed = 0;
 yspeed = 0;
-currentGrav = cfgGravity;
+inWater = false;
+grav = cfgGravity;
+gravWater = cfgGravityWater;
+currentGrav = grav;
+canSplash = true;
+bubbleTimer = 0;
 stepTime = cfgStepFrames;
 stepTimer = 0;
 isMM = false;

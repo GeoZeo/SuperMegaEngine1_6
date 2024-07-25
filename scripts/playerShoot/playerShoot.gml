@@ -31,7 +31,7 @@ function playerShoot() {
 				_chargeShotsReflected++;
 		}
 		
-		if global.keyShootPressed && canShoot && (canMove || climbing || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet))
+		if global.keyShootPressed && global.weapons[global.currentWeapon].chargeTimer <= 0 && canShoot && (canMove || climbing || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet))
 		&& instance_number(objBusterShotCharged) + _chargeShotsReflected < 1 && global.ammo[global.currentWeapon] > 0
 		{   
 		    if climbing {
@@ -208,3 +208,4 @@ function playerShoot() {
 
 
 }
+/**/

@@ -2,6 +2,9 @@
 
 x = prtPlayer.x;
 y = prtPlayer.y;
+inWater = prtPlayer.inWater;
+prtPlayer.inWater = false;
+bubbleTimer = prtPlayer.bubbleTimer;
 sprite_index = prtPlayer.spriteStep;
 image_speed = prtPlayer.speedStep;
 isMM = true;

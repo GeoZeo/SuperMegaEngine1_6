@@ -1,20 +1,26 @@
-useShader = false;
-if hitWhite && object_get_parent(object_index) == prtEnemy
+if !object_is_ancestor(object_index, prtBoss) && !object_is_ancestor(object_index, prtFortressBoss)
 {
-	if alarm[11] > -1 && healthpoints > 0 //Health check optional; comment it out if you don't want it
+	useShader = false;
+	if hitWhite
 	{
-	    shader_set(shBossHit);
-	    useShader = true;
+		if alarm[11] > -1 && healthpoints > 0 && !dying //Health check optional; comment it out if you don't want it
+		{
+		    shader_set(shBossHit);
+		    useShader = true;
+		}
 	}
 }
 
 drawSelf();
 
-if hitWhite && object_get_parent(object_index) == prtEnemy
+if !object_is_ancestor(object_index, prtBoss) && !object_is_ancestor(object_index, prtFortressBoss)
 {
-	if useShader 
+	if hitWhite
 	{
-	    shader_reset();
+		if useShader 
+		{
+		    shader_reset();
+		}
 	}
 }
 

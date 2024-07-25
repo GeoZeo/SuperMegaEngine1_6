@@ -57,7 +57,7 @@ function checkGround() {
 		    {
 		        if pltfm.dead == false
 		        {
-		            if (bbox_bottom < pltfm.bbox_top or (yspeed == 0 and bbox_bottom < pltfm.bbox_top + abs(pltfm.yspeed) + abs(yspeed) + 2)) 
+		            if (bbox_bottom < pltfm.bbox_top or (((variable_instance_exists(id, "ground") and ground) or yspeed == 0 and !variable_instance_exists(id, "ground")) and bbox_bottom < pltfm.bbox_top + abs(pltfm.yspeed) + abs(yspeed) + 2)) 
 					&& pltfm.object_index != objRushJet
 		            {
 		                ground = true;

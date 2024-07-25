@@ -40,8 +40,10 @@ if !global.frozen {
 					if global.bossHealth > 0
 						xspeed = -spd;
 	            }
-	            else if (random(1000) <= 1 or x < __view_get( e__VW.XView, 0 ) + 64 or x > __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - sprite_width) && !dying {
-	                xspeed *= -1;
+	            else {
+					randomize();
+					if (random(1000) <= 1 or x < __view_get( e__VW.XView, 0 ) + 64 or x > __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - sprite_width) && !dying
+						xspeed *= -1;
 	            }
 			}
 			else if !dying
@@ -66,9 +68,13 @@ if !global.frozen {
 					if explosionCounter < explosionMax || dying {
 						var explosion;
 						if !dying
+						{
+							randomize();
 							explosion = instance_create(x + random(64), y + random(64), objExplosion4);
+						}
 						else
 						{
+							randomize();
 							explosion = instance_create((x+32) + random(abs(sprite_width) - 32), (y+32) + random(abs(sprite_height) - 32), objExplosion4);
 							randomize();
 							var explosion2 = instance_create((x+32) + random(abs(sprite_width) - 32), (y+32) + random(abs(sprite_height) - 32), objExplosion4);

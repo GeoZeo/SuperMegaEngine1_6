@@ -1,5 +1,5 @@
 /// @description checkWater()
-function checkWater(){
+function checkWater() {
 	//Allows a general object to be affected by water.
 	
 	if place_meeting(x, y, objWater) && inWater == false
@@ -64,9 +64,34 @@ function checkWater(){
 	}
 
 	if inWater == true
+	{
 	    currentGrav = gravWater;
+		
+		if variable_instance_exists(id, "bubbleTimer")
+		{
+			bubbleTimer += 1;
+			if bubbleTimer >= 10
+			{
+			    bubbleTimer = 0;
+				
+			    var myBubble = -1;
+				with objAirBubble
+				{
+					if id_of_origin = other.id || ((other.object_index == objArenaStartingPoint or other.object_index == objBossDeathTimer) and object_is_ancestor(index_of_origin, prtPlayer))
+						myBubble = id;
+				}
+			
+			    if myBubble < 0 && position_meeting(x, y-4, objWater)
+			        instance_create(x, y, objAirBubble);
+			}
+		}
+	}
 	else
+	{
 	    currentGrav = grav;
+		if variable_instance_exists(id, "bubbleTimer")
+			bubbleTimer = 0;
+	}
 
 
 	//Leaving the water

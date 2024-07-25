@@ -1213,7 +1213,23 @@ function playerStep() {
 		if bubbleTimer >= 10
 		{
 		    bubbleTimer = 0;
-		    if !instance_exists(objAirBubble) && position_meeting(x, y-4, objWater)
+			
+			var myBubble = -1;
+			with objAirBubble
+			{
+				if id_of_origin = other.id || (index_of_origin == objArenaStartingPoint or index_of_origin == objBossDeathTimer)
+					myBubble = id;
+			}
+			
+			var myMM = -1;
+			with objArenaStartingPoint
+				if isMM 
+					myMM = id;
+			with objBossDeathTimer
+				if isMM 
+					myMM = id;
+			
+		    if myBubble < 0 && myMM < 0 && position_meeting(x, y-4, objWater)
 		        instance_create(x, y, objAirBubble);
 		}
 	}

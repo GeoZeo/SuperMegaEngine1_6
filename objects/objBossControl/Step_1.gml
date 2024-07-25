@@ -37,14 +37,17 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 				with prtPlayer.weapons[global.currentWeapon] stopSFX(chargeSFX);
 				with prtPlayer.weapons[global.currentWeapon] stopSFX(chargedSFX);
 		
-			    if musicVolume != -1 && musicLoopPointStart != -1
-			        playMusicVolumeLoopPoint(music, musicVolume, musicLoopPointStart, musicLoopPointEnd);
-			    else if musicVolume != -1
-			        playMusicVolume(music, musicVolume);
-			    else if musicLoopPointStart != -1
-			        playMusicLoopPoint(music, musicLoopPointStart, musicLoopPointEnd);
-			    else
-			        playMusicDefault(music);
+			    if music != -1
+				{
+					if musicVolume != -1 && musicLoopPointStart != -1
+				        playMusicVolumeLoopPoint(music, musicVolume, musicLoopPointStart, musicLoopPointEnd);
+				    else if musicVolume != -1
+				        playMusicVolume(music, musicVolume);
+				    else if musicLoopPointStart != -1
+				        playMusicLoopPoint(music, musicLoopPointStart, musicLoopPointEnd);
+				    else
+				        playMusicDefault(music);
+				}
 			}
 	    }
     

@@ -23,9 +23,5 @@ if prtPlayer.climbing {
         box = prtPlayer.bbox_left;
 }
 
-//chargeTimer = 0;
-//initChargeTimer = 0;
-//chargeAnimTimer = 0;
-
 
 

@@ -4,7 +4,7 @@ if id_of_origin != prtPlayer {
 	    && !(reflectProjectilesLeft && sprite_get_xcenter_object(other.id) < sprite_get_xcenter())
 	    && !(reflectProjectilesRight && sprite_get_xcenter_object(other.id) > sprite_get_xcenter())
 	    && (!useHitBox || collision_rectangle(x + hitbox_left * sign(image_xscale), y + hitbox_top, x + hitbox_right * sign(image_xscale), y + hitbox_bottom, other, false, true)) {
-	        if !dead && (!other.singleHit or ds_list_find_index(other.ignore, self) < 0) {
+	        if !dead && !dying && (!other.singleHit or ds_list_find_index(other.ignore, self) < 0) {
 	            if (other.singleHit) ds_list_add(other.ignore, self);    
 	            if canHit {
 	                drawDamageNumber(x, y, other.contactDamage);
@@ -26,7 +26,7 @@ if id_of_origin != prtPlayer {
 	            }
 	        }
 	    }
-	    else if sprite_index > -1 and !dead {
+	    else if sprite_index > -1 and !dead && !dying {
 	        other.reflected = true;
 	        event_user(0); //Reflect the projectiles
 	    }
