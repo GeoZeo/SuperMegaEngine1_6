@@ -60,5 +60,5 @@ for (var i = 0; object_exists(i); i++) {
     }
 }
 global.frozen = oldFrozen;
-instance_activate_object(prtPlayer); //This fixes a glitch where the create event triggering while the player is colliding with an enemy/projectile/hazard/etc. causes the player to be hit even when they're supposed to be in the middle of i-frames.
+if (!instance_exists(objBeat) or !objBeat.target_found) instance_activate_object(prtPlayer); //This fixes a glitch where the create event triggering while the player is colliding with an enemy/projectile/hazard/etc. causes the player to be hit even when they're supposed to be in the middle of i-frames.
 

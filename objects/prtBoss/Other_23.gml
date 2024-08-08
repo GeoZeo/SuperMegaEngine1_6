@@ -17,7 +17,11 @@ if dead {
         }
     }
     
-    instance_create(x, y-abs(yspeed)-1, objBossDeathTimer);
+	if instance_exists(prtPlayer)
+		instance_create(prtPlayer.x, prtPlayer.y, objBossDeathTimer);
+	else
+		instance_create(x, y-abs(yspeed)-1, objBossDeathTimer);
+		
     instance_destroy();
 }
 

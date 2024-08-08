@@ -1,10 +1,11 @@
-if object_get_parent(other.object_index) == prtBoss || object_get_parent(other.object_index) == prtMiniBoss {
+if (object_is_ancestor(other.object_index, prtBoss) && !object_is_ancestor(other.object_index, prtFortressBoss))
+|| object_is_ancestor(other.object_index, prtMiniBoss) {
     checkDeath = true;
 }
 
 event_inherited();
 
-if !other.dead && other.healthpoints <= 0 && object_get_parent(other.object_index) != prtBoss && object_get_parent(other.object_index) != prtMiniBoss && object_get_parent(other.object_index) != prtFortressBoss {
+if !other.dead && !other.dying && other.healthpoints <= 0 && !object_is_ancestor(other.object_index, prtBoss) && !object_is_ancestor(other.object_index, prtMiniBoss) && !object_is_ancestor(other.object_index, prtFortressBoss) {
     var windID;
     windID = instance_create(sprite_get_xcenter_object(other), sprite_get_ycenter_object(other), objEnemyWindStorm);
     windID.enemySpr = other.sprite_index;
@@ -18,5 +19,6 @@ if !other.dead && other.healthpoints <= 0 && object_get_parent(other.object_inde
     windID.contactDamage = other.contactDamage;
         
     other.dead = false;
+	other.dying = false;
 }
 

@@ -3,13 +3,13 @@ with other {
     && !(reflectProjectilesLeft == true && sprite_get_xcenter_object(other.id) < sprite_get_xcenter())
     && !(reflectProjectilesRight && sprite_get_xcenter_object(other.id) > sprite_get_xcenter())
     && (!useHitBox || collision_rectangle(x + hitbox_left * sign(image_xscale), y + hitbox_top, x + hitbox_right * sign(image_xscale), y + hitbox_bottom, other, false, true)) {
-        if dead == false
+        if dead == false && dying == false
         {
             if canHit == true
             {
                 drawDamageNumber(x, y, damage[other.object_index]);
                 healthpoints -= damage[other.object_index];
-                visible = false;
+                if !hitWhite || healthpoints <= 0 visible = false;
             }
             alarm[11] = 2;
             with other instance_destroy();

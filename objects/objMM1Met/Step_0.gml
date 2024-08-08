@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
 
     checkGround();
 	checkWater();
@@ -60,7 +60,7 @@ if !global.frozen and !dead {
     y += yspeed * update_rate;
 }
 else {
-    if dead {
+    if dead || dying {
         cooldownTimer = 0;
         canShoot = true;
         image_index = 0;

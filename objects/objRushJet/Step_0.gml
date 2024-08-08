@@ -13,6 +13,7 @@ if global.frozen == false
                 {
                     if prtPlayer.ground == true
 					&& prtPlayer.isHit == false
+					&& prtPlayer.isStun == false
 					&& prtPlayer.bbox_bottom <= bbox_top
 					&& global.yspeed >= 0
                     {

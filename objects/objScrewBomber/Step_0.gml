@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
     if instance_exists(prtPlayer) {
         if distance_to_object(prtPlayer) <= radius || shooting == true || image_index != 0 {
             if !shooting {
@@ -90,7 +90,7 @@ if !global.frozen and !dead {
     }
 }
 else {
-    if dead {
+    if dead || dying {
         shootTimer = 0;
         shooting = false;
         shootAmount = 0;

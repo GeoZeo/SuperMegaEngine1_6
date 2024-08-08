@@ -9,14 +9,17 @@ if teleporting == false && showReady == false
         draw_sprite_ext(sprHitspark, 0, sprite_get_xcenter(), sprite_get_ycenter(), image_xscale, image_yscale, 0, c_white, 1);
     }
     
-    ////Weapon icon (when using quick weapon switching)
-    //if drawWeaponIcon == true
-    //{
-    //    if climbing == false
-    //        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8) + image_xscale, round(y-30), 1, 1, 0, c_white, 1);
-    //    else
-    //        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8), round(y-30), 1, 1, 0, c_white, 1);
-    //}
+    //Weapon icon (when using quick weapon switching)
+	if instance_exists(objBeat) and objBeat.carrying and objBeat.target == self.id
+	{
+	    if drawWeaponIcon == true
+	    {
+	        if climbing == false
+	            draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8) + image_xscale, round(y-30), 1, 1, 0, c_white, 1);
+	        else
+	            draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8), round(y-30), 1, 1, 0, c_white, 1);
+	    }
+	}
 }
 else if teleporting == true
 {   

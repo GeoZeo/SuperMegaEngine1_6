@@ -9,5 +9,6 @@ enableCharge = cfgEnableCharge;
 //Static sprites
 spriteSlide = sprMegamanSlide;
 spriteHit = sprMegamanHit;
+spriteStun = sprMegamanStun;
 spriteTeleport = sprMegamanTeleport;
 

@@ -40,44 +40,50 @@ if global.weapon != 0 {
 }
 
 //Weapon icon (when using quick weapon switching)
-var myStartingPoint = -1;
-with objArenaStartingPoint if isMM { myStartingPoint = id; break; }
-var myTimer = -1;
-with objBossDeathTimer if isMM { myTimer = id; break; }
-if !(myStartingPoint > -1 or myTimer > -1) {
-	if instance_exists(prtPlayer) && !prtPlayer.teleporting && !prtPlayer.showReady && !prtPlayer.dead {
-		if prtPlayer.drawWeaponIcon {
-		    if !prtPlayer.climbing
-		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(prtPlayer.x-8) + prtPlayer.image_xscale, round(prtPlayer.y-30), 1, 1, 0, c_white, 1);
-		    else
-		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(prtPlayer.x-8), round(prtPlayer.y-30), 1, 1, 0, c_white, 1);
+if !(instance_exists(objBeat) and objBeat.carrying)
+{
+	var myStartingPoint = -1;
+	with objArenaStartingPoint if isMM { myStartingPoint = id; break; }
+	var myTimer = -1;
+	with objBossDeathTimer if isMM { myTimer = id; break; }
+	if !(myStartingPoint > -1 or myTimer > -1) {
+		if instance_exists(prtPlayer) && !prtPlayer.teleporting && !prtPlayer.showReady && !prtPlayer.dead {
+			if prtPlayer.drawWeaponIcon {
+			    if !prtPlayer.climbing
+			        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(prtPlayer.x-8) + prtPlayer.image_xscale, round(prtPlayer.y-30), 1, 1, 0, c_white, 1);
+			    else
+			        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(prtPlayer.x-8), round(prtPlayer.y-30), 1, 1, 0, c_white, 1);
+			}
 		}
 	}
-}
-else if myStartingPoint > -1 {
-	if instance_exists(prtPlayer) && !prtPlayer.dead {
-		if prtPlayer.drawWeaponIcon {
-		    if !prtPlayer.climbing
-		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myStartingPoint.x-8) + myStartingPoint.image_xscale, round(myStartingPoint.y-30), 1, 1, 0, c_white, 1);
-		    else
-		        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myStartingPoint.x-8), round(myStartingPoint.y-30), 1, 1, 0, c_white, 1);
+	else if myStartingPoint > -1 {
+		if instance_exists(prtPlayer) && !prtPlayer.dead {
+			if prtPlayer.drawWeaponIcon {
+			    if !prtPlayer.climbing
+			        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myStartingPoint.x-8) + myStartingPoint.image_xscale, round(myStartingPoint.y-30), 1, 1, 0, c_white, 1);
+			    else
+			        draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myStartingPoint.x-8), round(myStartingPoint.y-30), 1, 1, 0, c_white, 1);
+			}
 		}
 	}
-}
-else if myTimer > -1 {
-	if instance_exists(prtPlayer) && !prtPlayer.dead && !myTimer.teleporting {
-		if prtPlayer.drawWeaponIcon {
-			if !prtPlayer.climbing
-			    draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myTimer.x-8) + myTimer.image_xscale, round(myTimer.y-30), 1, 1, 0, c_white, 1);
-			else
-			    draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myTimer.x-8), round(myTimer.y-30), 1, 1, 0, c_white, 1);
+	else if myTimer > -1 {
+		if instance_exists(prtPlayer) && !prtPlayer.dead && !myTimer.teleporting {
+			if prtPlayer.drawWeaponIcon {
+				if !prtPlayer.climbing
+				    draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myTimer.x-8) + myTimer.image_xscale, round(myTimer.y-30), 1, 1, 0, c_white, 1);
+				else
+				    draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(myTimer.x-8), round(myTimer.y-30), 1, 1, 0, c_white, 1);
+			}
 		}
 	}
 }
 
 if cfgShowLives {
     draw_set_colour(c_white);
+	var _oldFont = draw_get_font();
+	draw_set_font(global.MM3font);
     draw_text(__view_get( e__VW.XView, 0 )+7+8+1+5, __view_get( e__VW.YView, 0 )+18+sprite_get_height(sprHealthbarBackground), string_hash_to_newline(string(max(0,global._lives))));
+	draw_set_font(_oldFont);
 }
 
 if (cfgDebug || debug_mode) {

@@ -9,7 +9,7 @@ sfx = sfxBuster;
 chargeSFX = sfxCharging;
 chargedSFX = noone;
 
-if cfgFadeOutChargedSound //Apply a fade-out to the fully charged SFX if you want to prioritise not abusing people's eardrums
+if cfgFadeOutChargedSound //Apply a fade-out to the fully charged SFX if you want it to be easier on the player's ears
 	chargedSFX = sfxCharged;
 else //Don't apply it if you want to prioritise accuracy to the NES games
 	chargedSFX = sfxChargedLoop;
@@ -34,7 +34,7 @@ persistent = true;
 primaryCol = make_color_rgb(0, 120, 248);
 secondaryCol = make_color_rgb(0, 232, 216);
 
-character = -1;
+exceptCharacters = ds_list_create();
 
 ID = -1;
 

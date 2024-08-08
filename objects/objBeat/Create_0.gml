@@ -1,5 +1,6 @@
 image_speed = 10 / room_speed;
 target = -1;
+target_found = false;
 normalSpd = 3;
 pullSpd = 1;
 fallSpd = 0.32421875;
@@ -17,7 +18,7 @@ carrying = false;
 tired = false;
 transportTime = 4 * 60;
 transportTimer = 0;
-drawArrows = true;
+drawArrows = true; //Set to false if you want it to be like MM9 instead
 
 update_rate = 1;
 

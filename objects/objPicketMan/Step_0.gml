@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen && !dead {
+if !global.frozen && !dead && !dying {
     if instance_exists(prtPlayer) {
         if x < prtPlayer.x
             image_xscale = 1;
@@ -51,7 +51,7 @@ if !global.frozen && !dead {
         reflectProjectiles = false;
 }
 else {
-    if dead {
+    if dead || dying {
         shootTimer = 0;
         shooting = false;
         shootAmount = 0;

@@ -180,6 +180,7 @@ if !cfgEnableDebugKeys {
 // Suicide.
 if keyboard_check_pressed(vk_f6)
 {
+	instance_activate_object(prtPlayer);
     global._health = 0;
 }
 
@@ -205,7 +206,7 @@ if keyboard_check_pressed(vk_f10) {
 }
 
 if keyboard_check_pressed(vk_f11) {
-	var myEnemy = instance_create(prtPlayer.x+80, prtPlayer.y-48, objBigEye);
+	var myEnemy = instance_create(prtPlayer.x+80, prtPlayer.y-48, objTelly);
 }
 
 if keyboard_check_pressed(vk_f12) {

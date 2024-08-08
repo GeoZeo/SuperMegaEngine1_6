@@ -24,7 +24,7 @@ if !global.frozen && !dead && isFight
             
             if !prevGround {
                 if repeatIsHigh {
-                    instance_create(x, y, objShake);
+                    instance_create(x, bbox_bottom, objShake);
 					playSFX(sfxGroundPound);
                 }
 				else {
@@ -65,7 +65,7 @@ if !global.frozen && !dead && isFight
             if highJump == true {
                 yspeed = -7;
 				
-                if place_free(x+(sign(image_xscale)*6), y)
+                if place_free(x+(sign(image_xscale)*8), y)
 	                xspeed = image_xscale * 0.5;
                 
 				image_index = 3;
@@ -73,7 +73,7 @@ if !global.frozen && !dead && isFight
             else {
                 yspeed = -4;
 				
-                if place_free(x+(sign(image_xscale)*6), y)
+                if place_free(x+(sign(image_xscale)*8), y)
 	                xspeed = image_xscale * 0.5;
                 
 				image_index = 2;
@@ -82,7 +82,7 @@ if !global.frozen && !dead && isFight
             moveTimer = 0;
         }
     }
-	else if place_free(x+(sign(image_xscale)*6), y)
+	else if place_free(x+(sign(image_xscale)*8), y)
 	{
 		if moveTimer <= 0 || floor(moveTimer) == 40
 			xspeed = image_xscale * 0.5;

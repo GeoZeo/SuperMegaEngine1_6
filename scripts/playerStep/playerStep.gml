@@ -3,10 +3,9 @@ function playerStep() {
 	//Handles general step event code for the player
 
 	//Check for ground
-	if (place_meeting(x, y+global.yspeed+1, objSolid) || (place_meeting(x, y+global.yspeed+1, objTopSolid)  && global.yspeed >= 0)
+	if place_meeting(x, y+global.yspeed+1, objSolid) || (place_meeting(x, y+global.yspeed+1, objTopSolid)  && global.yspeed >= 0)
 	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformJumpthrough) && global.yspeed >= 0)
-	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid) && !place_meeting(x, y, prtMovingPlatformSolid)))
-	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
+	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid) && !place_meeting(x, y, prtMovingPlatformSolid))
 	{
 		var endCheck = false;
 		
@@ -532,7 +531,7 @@ function playerStep() {
 
 	//Stop movement at section borders
 	var endBeatCheck = false;
-	if ((canMove or (instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime)) || isSlide || isHit) && visible {
+	if ((canMove or (instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime)) || isSlide || isHit || isStun) && visible {
 	    if x > sectionRight-6 && !place_meeting(x+6, y, objSectionArrowRight) && !place_meeting(x-global.xspeed, y, objSectionArrowRight) {
 	        x = sectionRight-6;
 	        global.xspeed = 0;
@@ -548,6 +547,33 @@ function playerStep() {
 			
 			canHit = false;
 			
+			if isStun
+			{
+				stunTimer = 0;
+				isStun = false;
+				canMove = true;
+				canWalk = true;
+			}
+			
+			if isSlide
+			{
+				slideTimer = 0;
+				isSlide = false;
+		        canMove = true;
+				canWalk = true;
+			}
+			
+			if climbing
+			{
+				climbing = false;
+				canMove = true;
+			}
+			
+			canSpriteChange = false;
+			mask_index = mskMegaman;
+			sprite_index = spriteJump;
+			image_speed = speedJump;
+			
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
 				if objBeatEquip.count < 1 {
 					global._health = 0;
@@ -555,44 +581,57 @@ function playerStep() {
 				}
 				else if global._health > 0 && !dead {
 					objBeatEquip.count--;
-					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
-					for (var i = 0; i < sprite_yoffset+15; i++)
+					
+					var _ceil = abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1;
+					var _attempts = 0;
+					var _old_x = x;
+					while !place_free(x, y-_ceil) && _attempts < 500
 					{
-						while !place_free(x, y-i) 
+						if abs(global.xspeed) >= 1
 						{
-							if abs(global.xspeed) >= 1
-								x -= global.xspeed;
-							else
+							x -= global.xspeed;
+							_attempts += abs(global.xspeed);
+						}
+						else
+						{
+							if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
+							|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
 							{
-								if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) >= x
-								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) >= x
-								{
-									x -= 1;
-								}
-								else if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) < x
-								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) < x
-								{
-									x += 1;
-								}
+								x -= 1;
+								_attempts++;
 							}
-								
-							break;
+							else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
+							|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
+							{
+								x += 1;
+								_attempts++;
+							}
 						}
 					}
+					if !place_free(x, y-_ceil)
+						x = _old_x;
+						
 					global.xspeed = 0;
-					global.yspeed = 0;
+					if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+					{
+						y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+						global.yspeed = 0;
+						drawWeaponIconTimer = -1;
+						drawWeaponIcon = false;
+						instance_deactivate_object(self);
+					}
 					canMove = false;
 					
 					if !instance_exists(objBeat)
 					{
 						var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
-						with myBeat target = other;
+						with myBeat target = other.id;
 						with myBeat event_user(0);
 					}
 					else
 					{
 						objBeat.transportTimer = 0;
-						with objBeat target = other;
+						with objBeat target = other.id;
 						with objBeat event_user(0);
 					}
 					endBeatCheck = true;
@@ -609,9 +648,15 @@ function playerStep() {
 				playChargedSound = true;
 			}
 			else if !objBeat.carrying {
-				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 				global.xspeed = 0;
-				global.yspeed = 0;
+				if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+				{
+					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+					global.yspeed = 0;
+					drawWeaponIconTimer = -1;
+					drawWeaponIcon = false;
+					instance_deactivate_object(self.id);
+				}
 				canMove = false;
 			}
 	    }
@@ -631,38 +676,78 @@ function playerStep() {
 			
 			canHit = false;
 			
+			if isStun
+			{
+				stunTimer = 0;
+				isStun = false;
+				canMove = true;
+				canWalk = true;
+			}
+			
+			if isSlide
+			{
+				slideTimer = 0;
+				isSlide = false;
+		        canMove = true;
+				canWalk = true;
+			}
+			
+			if climbing
+			{
+				climbing = false;
+				canMove = true;
+			}
+			
+			canSpriteChange = false;
+			mask_index = mskMegaman;
+			sprite_index = spriteJump;
+			image_speed = speedJump;
+			
 			if objBeatEquip.count < 1 {
 				global._health = 0;
 				deathByPit = true;
 			}
 			else if global._health > 0 && !dead && !endBeatCheck {
 				objBeatEquip.count--;
-				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
-				for (var i = 0; i < sprite_yoffset+15; i++)
+				
+				var _ceil = abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1;
+				var _attempts = 0;
+				var _old_x = x;
+				while !place_free(x, y-_ceil) && _attempts < 500
 				{
-					while !place_free(x, y-i) 
+					if abs(global.xspeed) >= 1
 					{
-						if abs(global.xspeed) >= 1
-							x -= global.xspeed;
-						else
+						x -= global.xspeed;
+						_attempts += abs(global.xspeed);
+					}
+					else
+					{
+						if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
+						|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
 						{
-							if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) >= x
-							|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) >= x
-							{
-								x -= 1;
-							}
-							else if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) < x
-							|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) < x
-							{
-								x += 1;
-							}
+							x -= 1;
+							_attempts++;
 						}
-								
-						break;
+						else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
+						|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
+						{
+							x += 1;
+							_attempts++;
+						}
 					}
 				}
+				if !place_free(x, y-_ceil)
+					x = _old_x;
+				
 				global.xspeed = 0;
-				global.yspeed = 0;
+				if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+				{
+					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+					global.yspeed = 0;
+					drawWeaponIconTimer = -1;
+					drawWeaponIcon = false;
+					instance_deactivate_object(self.id);
+				}
 				canMove = false;
 				
 				if !instance_exists(objBeat)
@@ -690,9 +775,15 @@ function playerStep() {
 			playChargedSound = true;
 		}
 		else if !objBeat.carrying {
-			y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 			global.xspeed = 0;
-			global.yspeed = 0;
+			if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+			{
+				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+				global.yspeed = 0;
+				drawWeaponIconTimer = -1;
+				drawWeaponIcon = false;
+				instance_deactivate_object(self.id);
+			}
 			canMove = false;
 		}
 	}
@@ -1361,17 +1452,44 @@ function playerStep() {
 	    }
 	    else
 	    {
-	        if invincibilityTimer mod 2 == 1
+	        if invincibilityTimer mod 2 == 1 //(invincibilityTimer mod 4 == 3 or invincibilityTimer mod 4 == 2)
 	            visible = false;
 	        else
 	            visible = true;
 	    }
 	}
 	
+	
+	//While being stunned
+	if isStun
+	{
+		stunTimer -= 1;
+		if stunTimer <= 0
+		{
+			stunTimer = 0;
+			isStun = false;
+			
+	        if !locked && !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+	            canMove = true;
+				canWalk = true;
+	            canSpriteChange = true;
+				
+				if !isSlide
+					mask_index = mskMegaman;
+	        }
+			else if locked && !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+				playerLockMovement(false);
+			}
+		}
+	}
+	
 
 	//Dying
 	if global._health <= 0 {
 		dead = true;
+		canPause = false;
+		invincibilityTimer = 0;
+		if !visible visible = true;
 		
 		if killTime <= 0 {
 			if !deathByPit {
@@ -1397,6 +1515,15 @@ function playerStep() {
 		    }
     
 			with objBossDeathTimer instance_destroy();
+			
+			with objBeat
+			{
+				transportTimer = transportTime;
+				carrying = false;
+				tired = false;
+				yspeed = -normalSpd;
+			}
+			
 		    instance_create(x, y, objMegamanDeathTimer); //Because the Mega Man object is destoyed upon death, we need to make a different object execute the room restarting code
 			instance_destroy();
     
@@ -1435,7 +1562,7 @@ function playerStep() {
 		{
 			instance_deactivate_object(myPlt.id);
             var movingPltfm, meetingPlatform;
-            movingPltfm = collision_rectangle(bbox_left, bbox_top - (isSlide * 2), bbox_right, bbox_bottom + (isSlide * 2), prtMovingPlatformSolid, false, false);
+            movingPltfm = collision_rectangle(bbox_left, bbox_top - ((isSlide or isStun) * 2), bbox_right, bbox_bottom + ((isSlide or isStun) * 2), prtMovingPlatformSolid, false, false);
                 
             meetingPlatform = false;
             if movingPltfm >= 0
@@ -1454,6 +1581,10 @@ function playerStep() {
 			escapeWall(true, true, true, true);
 		}
 	}
+	
+	if global.yspeed == 0 && !place_meeting(x, y+2, objSolid) && (!place_meeting(x, y+2, prtMovingPlatformSolid)
+	|| instance_place(x, y+2, prtMovingPlatformSolid).dead) && movedPlatformID == -20
+		escapeWall(false, false, false, true);
 
 	if place_free(x, y)
 	{

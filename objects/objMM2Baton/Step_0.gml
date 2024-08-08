@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen && !dead {
+if !global.frozen && !dead && !dying {
     if instance_exists(prtPlayer) && image_index > 1 {
         // Turn right.
         if x < prtPlayer.x
@@ -88,17 +88,12 @@ if !global.frozen && !dead {
 	x += xspeed * update_rate;
     y += yspeed * update_rate;
 	
-	//if place_meeting(x, y, objWater) {
-		
-	//	if moving && !place_meeting(x, y-8, objSolid) {
-	//		moveTimer = 0;
-	//		retreating = true;
-	//		yspeed = -3;
-	//	}
-	//}
 }
 else {
-    if dead {
+	if global.frozen {
+		image_speed = 0;	
+	}
+    if dead || dying {
         counter = 0;
         moveTimer = 0;
         moving = false;

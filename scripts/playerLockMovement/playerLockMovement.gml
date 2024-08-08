@@ -29,6 +29,8 @@ function playerLockMovement() {
 			playChargeSound = true;
 			playChargedSound = true;
 			
+			event_user(0);
+			
 			if instance_exists(objBossDeathTimer) && cfgLockSwitchingOnBossDeath {
 				with prtPlayer canSwitch = false;
 			}
@@ -38,6 +40,8 @@ function playerLockMovement() {
 		stepTimer = 0;
 		cancelStep = false;
 	    climbing = false;
+		isStun = false;
+		stunTimer = 0;
 	    canGravity = true;
 		canSwitch = false;
 	    isShoot = false;

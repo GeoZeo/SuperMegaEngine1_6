@@ -17,5 +17,9 @@ chargeCol1 = make_color_rgb(247, 189, 57);
 chargeCol2 = make_color_rgb(255, 231, 165);
 outlineChargeCol2 = make_color_rgb(255, 115, 19);
 
-character = objProtoman;
+for (var i = 0; i < global.totalCharacters; i++)
+{
+	if global.characters[i] != objProtoman
+		ds_list_add(exceptCharacters, global.characters[i]);
+}
 

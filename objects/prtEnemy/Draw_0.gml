@@ -46,6 +46,9 @@ if cfgDebug || debug_mode {
     //Draw velocity vector
     draw_arrow(sprite_get_xcenter(), sprite_get_ycenter(), sprite_get_xcenter() + xspeed * 10, sprite_get_ycenter() + yspeed * 10, 10);
     //Draw HP
+	var _oldFont = draw_get_font();
+	draw_set_font(global.font);
     draw_text(bbox_right, bbox_bottom, string_hash_to_newline(healthpoints));
+	draw_set_font(_oldFont);
 }
 

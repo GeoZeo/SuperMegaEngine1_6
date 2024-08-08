@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen && !dead {
+if !global.frozen && !dead && !dying {
 	
 	checkGround();
 	gravityCheckGround();
@@ -70,7 +70,7 @@ if !global.frozen && !dead {
     y += yspeed * update_rate;
 }
 else {
-    if dead {
+    if dead || dying {
         shootTimer = 0;
         shooting = false;
         shootAmount = 0;

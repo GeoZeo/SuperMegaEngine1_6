@@ -48,21 +48,6 @@ if !global.frozen {
         case block_states.IDLE:   
         break;
     }
-	
-	//if instance_exists(prtPlayer) {
-	//	if prtPlayer.canHit {
-	//		if place_meeting(x, y, prtPlayer) {
-	//			if alarm[1] == -1 {
-	//			    if current_state != block_states.IDLE {
-	//			        with prtPlayer playerGetHit(4);
-	//			    }
-	//			    else {
-	//			        with prtPlayer playerGetHit(8);
-	//			    }
-	//			}
-	//		}
-	//	}
-	//}
 }
 else {
     if alarm[0] > 0 {

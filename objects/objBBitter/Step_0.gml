@@ -1,6 +1,6 @@
 event_inherited();
 
-if global.frozen == false && dead == false
+if global.frozen == false && dead == false && dying == false
 {
     if (shooting == false && instance_exists(prtPlayer))
     {
@@ -77,11 +77,14 @@ if global.frozen == false && dead == false
     }
 }
 else {
-    if dead {
+    if dead || dying {
         shootTimer = 0;
         shooting = false;
         image_index = 0;
         image_speed = 0;
     }
+	if global.frozen {
+		image_speed = 0;
+	}
 }
 

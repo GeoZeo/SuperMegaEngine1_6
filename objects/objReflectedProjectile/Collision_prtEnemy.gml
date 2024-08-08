@@ -19,7 +19,8 @@ if id_of_origin != prtPlayer {
 	            }
             
 	            stopSFX(sfxBuster);
-	            playSFX(sfxEnemyHit);
+	            if !instance_exists(prtPlayer) or !prtPlayer.dead or !global.frozen
+					playSFX(sfxEnemyHit);
             
 	            if other.checkDeath {
 	                check_enemy_death();

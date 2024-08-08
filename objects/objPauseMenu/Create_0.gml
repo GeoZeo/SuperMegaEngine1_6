@@ -13,3 +13,9 @@ primedItemIndex = -1;
 
 with prtPlayer event_user(0);
 
+with objShake
+{
+	if alarm[0] > 0
+		alarm[0]--;
+}
+

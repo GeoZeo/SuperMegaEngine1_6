@@ -247,6 +247,8 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
             
         }
         
+		if sprite_index == prtPlayer.spriteSlide prtPlayer.slideTimer++; //Comment this out if you don't want slides to be cancelled upon the end of a section switch
+		
         //Climbing animation
         if sprite_index == prtPlayer.spriteClimb || sprite_index == prtPlayer.spriteClimbDefault
         {

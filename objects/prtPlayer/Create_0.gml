@@ -44,6 +44,7 @@ iceAccWalk = cfgIceAccWalk; //The acceleration on ice when moving from a standst
 slideSpeed = cfgSlideSpeed;
 slideFrames = cfgSlideFrames;
 climbSpeed = cfgClimbSpeed; //Official value of MM3
+extraStunFrames = cfgExtraStunFrames; //Official value of MM9
 initChargeTime = cfgInitChargeTime; //The amount of frames after which to start charging after the shooting animation is complete
 chargeTime = cfgChargeTime; //Official value of MM6
 hitTime = cfgHitTime; //The amount of frames you experience knockback after getting hit
@@ -93,6 +94,8 @@ initChargeTimer = 0; //The timer for when to start charging after exiting the sh
 canGravity = true;
 climbing = false;
 climbSpriteTimer = 0;
+isStun = false;
+stunTimer = 0;
 canStep = false; //We can actually perform the step event even if canStep = false; it's merely used to block certain events from happening at the first frame, as canStep becomes true after 1 frame
 alarm[0] = 1; //For canStep
 teleporting = false;
@@ -174,6 +177,7 @@ spriteGetup = noone;
 //Static sprites
 spriteSlide = noone;
 spriteHit = noone;
+spriteStun = noone;
 spriteTeleport = noone;
 
 spriteLife = sprLife;
@@ -211,6 +215,7 @@ speedGetup = 0;
 
 speedSlide = 0;
 speedHit = 0;
+speedStun = 0;
 speedTeleport = 0.15;
 
 //Starting jingle (i.e: Proto Man whistle)?
@@ -230,7 +235,7 @@ global.charTotalWeapons = 0;
 var weapon_index = 0;
 for (var i = 0; object_exists(i); i++) {
     if object_is_ancestor(i, prtWeapon) {
-        if i.character == -1 or i.character == self.object_index {
+        if !(ds_list_find_index(i.exceptCharacters, self.object_index) > -1 && ds_list_find_index(i.exceptCharacters, self.object_index) < ds_list_size(i.exceptCharacters)) {
             with i {
                 other.weapons[weapon_index] = self;
                 other.weapons[weapon_index].newID = weapon_index;

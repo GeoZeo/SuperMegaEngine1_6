@@ -2,7 +2,9 @@
 function playerDeathTimer() {
 	//Handles the delay before the player dies (if applicable)
 	if killTime > 0 && killTimer < killTime && dead {
-		killTimer++;
+		
+		if !instance_exists(objPauseMenu)
+			killTimer++;
 	
 		if killTimer >= killTime {
 			killTimer = killTime;
@@ -29,7 +31,17 @@ function playerDeathTimer() {
 		        }
 		    }
     
-		    instance_create(x, y, objMegamanDeathTimer); //Because the Mega Man object is destoyed upon death, we need to make a different object execute the room restarting code
+		    with objBossDeathTimer instance_destroy();
+			
+			with objBeat
+			{
+				transportTimer = transportTime;
+				carrying = false;
+				tired = false;
+				yspeed = -normalSpd;
+			}
+			
+			instance_create(x, y, objMegamanDeathTimer); //Because the Mega Man object is destoyed upon death, we need to make a different object execute the room restarting code
 		    instance_destroy();
     
 		    stopAllSFX();

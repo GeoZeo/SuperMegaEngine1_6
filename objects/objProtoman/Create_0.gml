@@ -12,6 +12,7 @@ knockbackAmount = cfgKnockback * 2;
 //Static sprites
 spriteSlide = sprProtomanSlide;
 spriteHit = sprProtomanHit;
+spriteStun = sprProtomanStun;
 spriteTeleport = sprProtomanTeleport;
 
 spriteLife = sprProtomanLife;

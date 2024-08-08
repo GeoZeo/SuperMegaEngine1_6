@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
     if !shooting {
         shootTimer += update_rate;
         if floor(shootTimer) == 90
@@ -76,7 +76,7 @@ if !global.frozen and !dead {
         reflectProjectiles = false;
 }
 else {
-    if dead {
+    if dead || dying {
         shootTimer = 0;
         shooting = false;
         image_index = 0;

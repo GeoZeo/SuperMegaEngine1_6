@@ -8,13 +8,13 @@ function macros() {
 #macro cfgMaxNumberOfBusterShots 3
 #macro cfgMaxHealth 28
 #macro cfgMaxAmmo 28
-#macro cfgDebug false
+#macro cfgDebug true
 #macro cfgEnableDebugKeys true
 #macro cfgWeaponPreview true
 #macro cfgSwitchWeaponsWhileLocked true
 #macro cfgSwitchWeaponsWhileTransitioning true
 #macro cfgLockSwitchingOnBossDeath false
-#macro cfgShowLives false
+#macro cfgShowLives true
 #macro cfgShotSplash true
 #macro cfgInitialStage -1
 #macro cfgShader noone
@@ -22,6 +22,7 @@ function macros() {
 #macro cfgEnableSaving true
 #macro cfgEnablePasswords true
 #macro cfgLoseChargeOnHit true
+#macro cfgLoseChargeOnStun true
 #macro cfgLoseChargeOnLock false
 #macro cfgBeginChargeOnSlide false
 #macro cfgContinueChargeMidSlide true
@@ -48,6 +49,7 @@ function macros() {
 #macro cfgSlideSpeed 2.5
 #macro cfgSlideFrames 26
 #macro cfgClimbSpeed 1.296875
+#macro cfgExtraStunFrames 10
 #macro cfgInitChargeTime 20
 #macro cfgChargeTime 57
 #macro cfgKnockback 0.5

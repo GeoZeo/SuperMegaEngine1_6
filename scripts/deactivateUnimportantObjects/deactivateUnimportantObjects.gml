@@ -5,7 +5,7 @@ function deactivateUnimportantObjects() {
 	instance_deactivate_all(true);
 
 	//Add more important objects as they are added
-	instance_activate_object(prtPlayer);
+	if (!instance_exists(objBeat) or !objBeat.target_found) instance_activate_object(prtPlayer);
 	instance_activate_object(objGlobalControl);
 	instance_activate_object(objHealthWeaponBar);
 	instance_activate_object(objMusicPlayer);

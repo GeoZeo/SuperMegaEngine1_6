@@ -1,7 +1,7 @@
 /// @description playerSwitchWeapons()
 function playerSwitchWeapons() {
 	//Allows for quick weapon switching
-	//If you do not want quick weapon switching in your game, simply remove the script from objMegaman's step event
+	//If you do not want quick weapon switching in your game, simply remove the script from prtPlayer's step event
 
 	if (canSwitch || cfgSwitchWeaponsWhileLocked) && ((!instance_exists(objArenaStartingPoint) or !objArenaStartingPoint.isMM) or cfgSwitchWeaponsWhileTransitioning) {
 		if global.totalWeapons < 2 or room == rmWeaponGet {

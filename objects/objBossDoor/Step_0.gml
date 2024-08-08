@@ -13,8 +13,9 @@ if canOpen {
     if instance_exists(prtPlayer) {
         //Colliding with the player. We're checking x+7 because in the NES games, the player needs to be slightly inside the door
         //for it to activate.
-        if (collision_rectangle(x+7+(1 * prtPlayer.image_xscale < 0)+((prtPlayer.isSlide && prtPlayer.image_xscale < 0) * 3), y, x+8+(1 * prtPlayer.image_xscale < 0)+((prtPlayer.isSlide && prtPlayer.image_xscale < 0) * 3), y+sprite_height, prtPlayer, false, false) && dir == -1)
-        || (collision_rectangle(x+sprite_width-8-(1 * prtPlayer.image_xscale > 0)-((prtPlayer.isSlide && prtPlayer.image_xscale > 0) * 3), y, x+sprite_width-7-(1 * prtPlayer.image_xscale > 0)-((prtPlayer.isSlide && prtPlayer.image_xscale > 0) * 3), y+sprite_height, prtPlayer, false, false) && dir == 1) {
+        if ((collision_rectangle(x+7+(1 * prtPlayer.image_xscale < 0)+(((prtPlayer.isSlide or prtPlayer.isStun) && prtPlayer.image_xscale < 0) * 3), y, x+8+(1 * prtPlayer.image_xscale < 0)+(((prtPlayer.isSlide or prtPlayer.isStun) && prtPlayer.image_xscale < 0) * 3), y+sprite_height, prtPlayer, false, false) && dir == -1)
+        || (collision_rectangle(x+sprite_width-8-(1 * prtPlayer.image_xscale > 0)-(((prtPlayer.isSlide or prtPlayer.isStun) && prtPlayer.image_xscale > 0) * 3), y, x+sprite_width-7-(1 * prtPlayer.image_xscale > 0)-(((prtPlayer.isSlide or prtPlayer.isStun) && prtPlayer.image_xscale > 0) * 3), y+sprite_height, prtPlayer, false, false) && dir == 1))
+		&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
             canOpen = false;
             opening = true;
             image_speed = openImgSpeed;
@@ -88,7 +89,7 @@ if closing {
                 mySolid.image_yscale = 4;
         }
 		
-		prtPlayer.x = (x+16)+(32*-dir);
+		//prtPlayer.x = (x+16)+(32*-dir); //Comment out if you don't mind MM's exact position upon the door closing being impacted by what sub-pixel he happens to be on upon it opening
             
         with objSectionSwitcher {
 			x = prtPlayer.x;

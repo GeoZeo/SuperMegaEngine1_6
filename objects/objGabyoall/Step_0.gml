@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
     if instance_exists(prtPlayer) {
         if x < prtPlayer.x
             image_xscale = 1;
@@ -43,7 +43,7 @@ else {
     xspeed = 0;
     yspeed = 0;
 
-    if dead {
+    if dead || dying {
 		
 		if instance_exists(prtPlayer) {
 	        if x < prtPlayer.x
@@ -57,5 +57,10 @@ else {
         frozeTimer = 0;
         image_index = 0;
     }
+	
+	if global.frozen {
+		
+		image_speed = 0;
+	}
 }
 

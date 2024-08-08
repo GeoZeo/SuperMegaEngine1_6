@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
     if !moving {
         moveTimer += update_rate;
         if floor(moveTimer) == 10 {
@@ -36,7 +36,7 @@ if !global.frozen and !dead {
     }
 }
 else {
-    if dead {
+    if dead || dying {
         moveTimer = 0;
         startDir = beginStartDir;
         moving = false;

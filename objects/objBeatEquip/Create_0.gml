@@ -8,5 +8,3 @@ showZero = true;
 buyable = true;
 price = 50;
 
-ds_list_add(exceptCharacters, objProtoman);
-

@@ -1,7 +1,10 @@
 event_inherited();
 
 if !global.frozen and instance_exists(prtPlayer) {
-    if sprite_get_xcenter_object(prtPlayer) < sprite_get_xcenter() {
+    
+	image_speed = 4 / room_speed;
+	
+	if sprite_get_xcenter_object(prtPlayer) < sprite_get_xcenter() {
         image_xscale = -1;
     }        
     else {
@@ -12,5 +15,8 @@ if !global.frozen and instance_exists(prtPlayer) {
 
 	x += xspeed * update_rate;
     y += yspeed * update_rate;
+}
+else if global.frozen {
+	image_speed = 0;
 }
 

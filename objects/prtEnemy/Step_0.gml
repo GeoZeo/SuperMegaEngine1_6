@@ -25,7 +25,7 @@ if healthpoints <= 0 {
 		outsideSection = true;
         visible = false;
         dead = true;    //Enemies don't actually destroy themselves, they become invisible and all collision is neglected
-        x = xstart;     //This is done to allow them to still execute code (for respawning)
+        x = xstart;     
         y = ystart;
         canInitDeath = false;
         xspeed = 0;
@@ -38,6 +38,7 @@ if respawn {
     if beenOutsideView && (((insideView() and !checkFullSprite) or (insideView_Spr() and checkFullSprite)) || (mySpawnArea != noone and insideViewObj_Spr(mySpawnArea))) {
         visible = true;
         dead = false;
+		dying = false;
         healthpoints = healthpointsStart;
         canInitDeath = true;
         beenOutsideView = false;

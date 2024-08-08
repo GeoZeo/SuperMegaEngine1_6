@@ -102,7 +102,7 @@ switch phase {
 				if prtPlayer.isShoot || prtPlayer.isThrow {
 					if global.weapons[global.currentWeapon].bThrow {
 						with prtPlayer {
-							if !isSlide && !isHit && !teleporting {
+							if !isSlide && !isHit && !isStun && !teleporting {
 								isThrow = true;
 								isShoot = false;
 							}
@@ -110,7 +110,7 @@ switch phase {
 					}
 					else {
 						with prtPlayer {
-							if !isSlide && !isHit && !teleporting {
+							if !isSlide && !isHit && !isStun && !teleporting {
 								isShoot = true;
 								isThrow = false;
 							}
@@ -121,11 +121,11 @@ switch phase {
 				with prtPlayer {
 					if isThrow {
 						if !global.weapons[global.currentWeapon].freeShot {
-							if ground && !climbing && !isSlide && !isHit && !teleporting {
+							if ground && !climbing && !isSlide && !isHit && !isStun && !teleporting {
 								canWalk = false;
 								global.xspeed = 0;
 							}
-							else if !ground && !climbing && !isSlide && !isHit && !teleporting  {
+							else if !ground && !climbing && !isSlide && !isHit && !isStun && !teleporting  {
 								canWalk = true;
 								canSpriteChange = true;
 							}
@@ -133,7 +133,7 @@ switch phase {
 					}
 					else
 					{
-						if ground && !isSlide && !isHit && !teleporting {
+						if ground && !isSlide && !isHit && !isStun && !teleporting {
 							canWalk = true;
 							canSpriteChange = true;
 						}

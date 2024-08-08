@@ -172,50 +172,67 @@ if !global.frozen
 				}
 				else if global._health > 0 && !prtPlayer.dead {
 					objBeatEquip.count--;
-					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
-					for (var i = 0; i < sprite_yoffset+15; i++)
+					
+					var _ceil = abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1;
+					var _attempts = 0;
+					var _old_x = x;
+					while !place_free(x, y-_ceil) && _attempts < 500
 					{
-						while !place_free(x, y-i) 
+						if abs(xspeed) >= 1
 						{
-							if abs(xspeed) >= 1
-								x -= xspeed;
-							else
+							x -= xspeed;
+							_attempts += abs(xspeed);
+						}
+						else
+						{
+							if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
+							|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
 							{
-								if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) >= x
-								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) >= x
-								{
-									x -= 1;
-								}
-								else if instance_place(x, y-i, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-i, objSolid)) < x
-								|| instance_place(x, y-i, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-i, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-i, prtMovingPlatformSolid)) < x
-								{
-									x += 1;
-								}
+								x -= 1;
+								_attempts++;
 							}
-								
-							break;
+							else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
+							|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
+							{
+								x += 1;
+								_attempts++;
+							}
 						}
 					}
+					if !place_free(x, y-_ceil)
+						x = _old_x;
+					
 					xspeed = 0;
-					yspeed = 0;
+					if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+					{
+						y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+						yspeed = 0;
+						prtPlayer.drawWeaponIconTimer = -1;
+						prtPlayer.drawWeaponIcon = false;
+						instance_deactivate_object(self.id);
+					}
 				
 					if !instance_exists(objBeat)
 					{
 						var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
 						with myBeat depth = other.depth - 1;
-						with myBeat target = other;
+						with myBeat target = other.id;
 						with myBeat event_user(0);
 					}
 					else
 					{
 						objBeat.transportTimer = 0;
-						with objBeat target = other;
+						with objBeat target = other.id;
 						with objBeat event_user(0);
 					}
 				}
 				
 				with prtPlayer
 				{
+					global.weapons[global.currentWeapon].initChargeTimer = 0;
+				    global.weapons[global.currentWeapon].chargeTimer = 0;
+					global.weapons[global.currentWeapon].chargeAnimTimer = 0;
+					shootTimer = 20;
 					event_user(0);
 					with weapons[global.currentWeapon] sound_stop(chargeSFX);
 					with weapons[global.currentWeapon] sound_stop(chargedSFX);
@@ -224,9 +241,15 @@ if !global.frozen
 				}
 			}
 			else if !objBeat.carrying {
-				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+sprite_yoffset);
 				xspeed = 0;
-				yspeed = 0;
+				if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+				{
+					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+					yspeed = 0;
+					prtPlayer.drawWeaponIconTimer = -1;
+					prtPlayer.drawWeaponIcon = false;
+					instance_deactivate_object(self.id);
+				}
 			}
 		}
 	}

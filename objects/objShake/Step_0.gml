@@ -4,11 +4,38 @@ if !global.frozen && insideView() {
     if total_shake_x == 0 || total_shake_y == 0 {
         alarm[0] = shake_duration * room_speed;
     }
-    shake_x = random_range(-shake_amount, shake_amount);
-    shake_y = random_range(-shake_amount, shake_amount);
+	randomize();
+    var shake_x = random_range(-shake_amount, shake_amount);
+	while shake_x == prev_shake_x {
+		randomize();
+		shake_x = random_range(-shake_amount, shake_amount);
+	}
+	prev_shake_x = shake_x;
+	
+	randomize();
+    var shake_y = random_range(-shake_amount, shake_amount);
+	while shake_y == prev_shake_y {
+		randomize();
+		shake_y = random_range(-shake_amount, shake_amount);
+	}
+	prev_shake_y = shake_y;
+	
     total_shake_x += shake_x;
     total_shake_y += shake_y;
     __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (shake_x) );
     __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (shake_y) );
+	
+	if alarm[0] > stun_window * room_speed {
+		with prtPlayer {
+			if ground && bbox_bottom > other.y-1
+				playerStun((other.shake_duration * room_speed));
+		}
+	}
 }
+else if global.frozen {
+	if alarm[0] > 0
+		alarm[0]++;
+}
+print(alarm[0]);
+print(prtPlayer.stunTimer);
 

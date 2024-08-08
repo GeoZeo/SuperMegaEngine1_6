@@ -105,7 +105,8 @@ switch phase {
         timer++;
         if timer >= 4.5 * 60 {
             timer = 0;
-			if global.utilityID < 0 || doAgain {
+			if (global.utilityID < 0 or (ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters))
+			|| doAgain) {
 				var ID = instance_create(x, y, objFadeout);
 	            ID.type = "room";
 	            ID.myRoom = rmPass;
@@ -119,7 +120,9 @@ switch phase {
     break;
 }
 
-if cfgWeaponPreview and global.weaponID > -1 && !doAgain {
+if cfgWeaponPreview
+and (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)))
+&& !doAgain {
     
     if instance_exists(prtPlayer) and prtPlayer.canMove {
         playerLockMovement();
@@ -148,7 +151,9 @@ if cfgWeaponPreview and global.weaponID > -1 && !doAgain {
         }
     }
 }
-if cfgWeaponPreview and global.utilityID > -1 and doAgain {
+if cfgWeaponPreview
+and (global.utilityID > -1 and !(ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters)))
+and doAgain {
     
     if instance_exists(prtPlayer) and prtPlayer.canMove {
         playerLockMovement();

@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
     checkGround();
 	gravityCheckGround();
 	generalCollision();
@@ -59,7 +59,7 @@ if !global.frozen and !dead {
             if highJump {
                 yspeed = -6;
 				
-	            if place_free(x+(sign(image_xscale)*3), y)
+	            if place_free(x+(sign(image_xscale)*5), y)
 	                xspeed = image_xscale * 1;
                 
 				image_index = 3;
@@ -67,7 +67,7 @@ if !global.frozen and !dead {
             else {
                 yspeed = -3;
                 
-	            if place_free(x+(sign(image_xscale)*3), y)
+	            if place_free(x+(sign(image_xscale)*4), y)
 	                xspeed = image_xscale * 1;
                 
                 image_index = 2;
@@ -76,7 +76,7 @@ if !global.frozen and !dead {
             moveTimer = 0;
         }
     }
-	else if place_free(x+(sign(image_xscale)*3), y)
+	else if place_free(x+(sign(image_xscale)*4), y)
 	{
 		if moveTimer <= 0 || floor(moveTimer) == 40
 			xspeed = image_xscale * 1;
@@ -94,7 +94,7 @@ if !global.frozen and !dead {
     escapeWall(true, true, true, true);
 }
 else {
-    if dead {
+    if dead || dying {
         moveTimer = 0;
         image_index = 2;
         repeatAmount = 0;

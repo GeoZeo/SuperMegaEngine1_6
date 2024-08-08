@@ -2,21 +2,43 @@ if !global.frozen
 {
 	image_speed = 10 / room_speed;
 	
-	if target != -1 && instance_exists(target)
+	if target != -1 && (instance_exists(target) or target_found)
 	{	
 		if !carrying && transportTimer < transportTime
 		{
 			image_xscale = target.image_xscale;
 			tired = false;
 			
-			if !(x < target.x-2 || x > target.x+2 || y < target.bbox_top-2 || y > target.bbox_top+2)
+			if insideViewObj_Spr(target)
 			{
+				if objBeatEquip.count < objBeatEquip.maxUnits
+				{
+					objBeatEquip.count++;
+					if objBeatEquip.count >= objBeatEquip.maxUnits
+						objBeatEquip.count = objBeatEquip.maxUnits;
+				}
+				
+				transportTimer = transportTime;
+				carrying = false;
+				tired = false;
+						
+				if object_is_ancestor(target.object_index, prtPlayer) target.canMove = true;
+				if object_is_ancestor(target.object_index, prtPlayer) target.canHit = true;
+				if object_is_ancestor(target.object_index, prtPlayer) target.canGravity = true;
+				if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
+				if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
+				target.visible = true;
+				yspeed = -normalSpd;
+				
+			}
+			
+			if bbox_top >= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 )
+			&& transportTimer < transportTime
+			{
+				instance_activate_object(target);
+				target_found = false;
 				xspeed = 0;
 				yspeed = 0;
-				//global.xspeed = xspeed;
-				//global.yspeed = -pullSpd;
-				//if !object_is_ancestor(target.object_index, prtPlayer) target.xspeed = global.xspeed;
-				//if !object_is_ancestor(target.object_index, prtPlayer) target.yspeed = global.yspeed;
 				if object_is_ancestor(target.object_index, prtPlayer)
 				{
 					global.xspeed = xspeed;
@@ -27,8 +49,19 @@ if !global.frozen
 					target.xspeed = xspeed;
 					target.yspeed = -pullSpd;
 				}
-				//if !object_is_ancestor(target.object_index, prtPlayer) target.yspeed = global.yspeed;
-				x = target.x;
+				
+				target.y = round((__view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ))+target.sprite_yoffset);
+				
+				var _beatPriority = false;
+				with target
+					if !place_free(x, y-(abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1))
+						_beatPriority = true;
+				
+				if !_beatPriority
+					x = target.x;
+				else
+					target.x = x;
+					
 				y = target.bbox_top;
 				target.ground = false;
 				
@@ -52,6 +85,8 @@ if !global.frozen
 				}
 				
 				carrying = true;
+				
+				with target escapeWall(false, false, true, true);
 			}
 		}
 		else if carrying && transportTimer < transportTime
@@ -61,206 +96,439 @@ if !global.frozen
 			{
 				if transportTimer < 1 * 60
 				{
+					var _move = false;
+					with target
+						if place_free(x, y-1)
+							_move = true;
+					
 					if object_is_ancestor(target.object_index, prtPlayer)
 					{
-						global.yspeed = -pullSpd;
+						if _move
+							global.yspeed = -pullSpd;
+						else
+							global.yspeed = 0;
 					}
 					else
 					{
-						target.yspeed = -pullSpd;
+						if _move
+							target.yspeed = -pullSpd;
+						else
+							target.yspeed = 0;
 					}
 				}
 				else
 				{
+					//global.keyJumpPressed = true;
+					
 					if global.keyLeft && !global.keyRight
 					{
 						image_xscale = -1;
 						target.image_xscale = -1;
 						
-						if object_is_ancestor(target.object_index, prtPlayer)
+						var _move = false;
+						with target
+							if place_free(x-1, y)
+								_move = true;
+								
+						with target
 						{
-							if global.xspeed > -transportSpd
+							var _attempts = 0;
+							while !place_free(x+1, y) && _attempts < 100
 							{
-								global.xspeed -= transportAcc
-								if global.xspeed <= -transportSpd
+								x -= other.transportAcc;
+								_attempts++;
+							}
+						}
+						
+						if object_is_ancestor(target.object_index, prtPlayer)
+						{			
+							if _move
+							{
+								if global.xspeed > -transportSpd
 								{
-									global.xspeed = -transportSpd;
+									global.xspeed -= transportAcc
+									if global.xspeed <= -transportSpd
+									{
+										global.xspeed = -transportSpd;
+									}
 								}
+							}
+							else
+							{
+								global.xspeed = 0;
 							}
 						}
 						else
 						{
-							if target.xspeed > -transportSpd
+							if _move
 							{
-								target.xspeed -= transportAcc
-								if target.xspeed <= -transportSpd
+								if target.xspeed > -transportSpd
 								{
-									target.xspeed = -transportSpd;
+									target.xspeed -= transportAcc
+									if target.xspeed <= -transportSpd
+									{
+										target.xspeed = -transportSpd;
+									}
 								}
 							}
+							else
+							{
+								target.xspeed = 0;
+							}
 						}
+						
+						if !_move
+							target.x = round(target.x);
 					}
 					else if global.keyRight && !global.keyLeft
 					{
 						image_xscale = 1;
 						target.image_xscale = 1;
 						
+						var _move = false;
+						with target
+							if place_free(x+1, y)
+								_move = true;
+								
+						with target
+						{
+							var _attempts = 0;
+							while !place_free(x-1, y) && _attempts < 100
+							{
+								x += other.transportAcc;
+								_attempts++;
+							}
+						}
+						
 						if object_is_ancestor(target.object_index, prtPlayer)
 						{
-							if global.xspeed < transportSpd
+							if _move
 							{
-								global.xspeed += transportAcc
-								if global.xspeed >= transportSpd
+								if global.xspeed < transportSpd
 								{
-									global.xspeed = transportSpd;
+									global.xspeed += transportAcc
+									if global.xspeed >= transportSpd
+									{
+										global.xspeed = transportSpd;
+									}
 								}
+							}
+							else
+							{
+								global.xspeed = 0;
 							}
 						}
 						else
 						{
-							if target.xspeed < transportSpd
+							if _move
 							{
-								target.xspeed += transportAcc
-								if target.xspeed >= transportSpd
+								if target.xspeed < transportSpd
 								{
-									target.xspeed = transportSpd;
+									target.xspeed += transportAcc
+									if target.xspeed >= transportSpd
+									{
+										target.xspeed = transportSpd;
+									}
 								}
 							}
+							else
+							{
+								target.xspeed = 0;
+							}
 						}
+						
+						if !_move
+							target.x = round(target.x);
 					}
 					else
 					{
 						if object_is_ancestor(target.object_index, prtPlayer)
 						{
-							if global.xspeed < 0
+							var _move = false;
+							with target
+								if (place_free(x-1, y) and global.xspeed < 0) or (place_free(x+1, y) and global.xspeed > 0)
+									_move = true;
+									
+							with target
 							{
-								global.xspeed += transportDec;
-								if global.xspeed >= 0
+								var _attempts = 0;
+								while !place_free(x+sign(global.xspeed), y) && _attempts < 100
 								{
-									global.xspeed = 0;
+									x -= other.transportDec * sign(global.xspeed);
+									_attempts++;
 								}
 							}
-							else if global.xspeed > 0
+							
+							if _move
 							{
-								global.xspeed -= transportDec;
-								if global.xspeed <= 0
+								if global.xspeed < 0
 								{
-									global.xspeed = 0;
+									global.xspeed += transportDec;
+									if global.xspeed >= 0
+									{
+										global.xspeed = 0;
+									}
 								}
+								else if global.xspeed > 0
+								{
+									global.xspeed -= transportDec;
+									if global.xspeed <= 0
+									{
+										global.xspeed = 0;
+									}
+								}
+							}
+							else
+							{
+								global.xspeed = 0;
+								target.x = round(target.x);
 							}
 						}
 						else
 						{
-							if target.xspeed < 0
+							var _move = false;
+							with target
+								if (place_free(x-1, y) and xspeed < 0) or (place_free(x+1, y) and xspeed > 0)
+									_move = true;
+									
+							with target
 							{
-								target.xspeed += transportDec;
-								if target.xspeed >= 0
+								var _attempts = 0;
+								while !place_free(x+sign(xspeed), y) && _attempts < 100
 								{
-									target.xspeed = 0;
+									x -= other.transportDec * sign(xspeed);
+									_attempts++;
 								}
 							}
-							else if target.xspeed > 0
+							
+							if _move
 							{
-								target.xspeed -= transportDec;
-								if target.xspeed <= 0
+								if target.xspeed < 0
 								{
-									target.xspeed = 0;
+									target.xspeed += transportDec;
+									if target.xspeed >= 0
+									{
+										target.xspeed = 0;
+									}
 								}
+								else if target.xspeed > 0
+								{
+									target.xspeed -= transportDec;
+									if target.xspeed <= 0
+									{
+										target.xspeed = 0;
+									}
+								}
+							}
+							else
+							{
+								target.xspeed = 0;
+								target.x = round(target.x);
 							}
 						}
 					}
 					
 					if global.keyUp && !global.keyDown
 					{
+						var _move = false;
+						with target
+							if place_free(x, y-1)
+								_move = true;
+								
+						with target
+						{
+							var _attempts = 0;
+							while !place_free(x, y+1) && _attempts < 100
+							{
+								y -= other.transportAcc;
+								_attempts++;
+							}
+						}
+						
 						if object_is_ancestor(target.object_index, prtPlayer)
 						{
-							if global.yspeed > -transportSpd
+							if _move
 							{
-								global.yspeed -= transportAcc
-								if global.yspeed <= -transportSpd
+								if global.yspeed > -transportSpd
 								{
-									global.yspeed = -transportSpd;
+									//with target
+									//	if global.yspeed >= 0 && !place_free(x, y+1)
+									//		global.yspeed = 0;
+										
+									global.yspeed -= transportAcc
+									if global.yspeed <= -transportSpd
+									{
+										global.yspeed = -transportSpd;
+									}
 								}
+							}
+							else
+							{
+								global.yspeed = 0;
 							}
 						}
 						else
 						{
-							if target.yspeed > -transportSpd
+							if _move
 							{
-								target.yspeed -= transportAcc
-								if target.yspeed <= -transportSpd
+								if target.yspeed > -transportSpd
 								{
-									target.yspeed = -transportSpd;
+									//with target
+									//	if yspeed >= 0 && !place_free(x, y+1)
+									//		yspeed = 0;
+									
+									target.yspeed -= transportAcc
+									if target.yspeed <= -transportSpd
+									{
+										target.yspeed = -transportSpd;
+									}
 								}
 							}
+							else
+							{
+								target.yspeed = 0;
+							}
 						}
+						
+						if !_move
+							target.y = round(target.y);
 					}
 					else if global.keyDown && !global.keyUp
 					{
+						var _move = false;
+						with target
+							if place_free(x, y+1)
+								_move = true;
+								
+						with target
+						{
+							var _attempts = 0;
+							while !place_free(x, y-1) && _attempts < 100
+							{
+								y += other.transportAcc;
+								_attempts++;
+							}
+						}
+						
 						if object_is_ancestor(target.object_index, prtPlayer)
 						{
-							if global.yspeed < transportSpd
+							if _move
 							{
-								global.yspeed += transportAcc
-								if global.yspeed >= transportSpd
+								if global.yspeed < transportSpd
 								{
-									global.yspeed = transportSpd;
+									global.yspeed += transportAcc
+									if global.yspeed >= transportSpd
+									{
+										global.yspeed = transportSpd;
+									}
 								}
+							}
+							else
+							{
+								global.yspeed = 0;
 							}
 						}
 						else
 						{
-							if target.yspeed < transportSpd
+							if _move
 							{
-								target.yspeed += transportAcc
-								if target.yspeed >= transportSpd
+								if target.yspeed < transportSpd
 								{
-									target.yspeed = transportSpd;
+									target.yspeed += transportAcc
+									if target.yspeed >= transportSpd
+									{
+										target.yspeed = transportSpd;
+									}
 								}
 							}
+							else
+							{
+								target.yspeed = 0;
+							}
 						}
+						
+						if !_move
+							target.y = round(target.y);
 					}
 					else
 					{
+						with target
+						{
+							var _attempts = 0;
+							while !place_free(x, y-1) && _attempts < 100
+							{
+								y += other.transportDec;
+								_attempts++;
+							}
+						}
+						
 						if object_is_ancestor(target.object_index, prtPlayer)
 						{
-							if global.yspeed < fallSpd
+							var _move = false;
+							with target
+								if (place_free(x, y-1) and global.yspeed < 0) or (place_free(x, y+1) and global.yspeed >= 0)
+									_move = true;
+							
+							if _move
 							{
-								global.yspeed += transportDec;
-								if global.yspeed >= fallSpd
+								if global.yspeed < fallSpd
 								{
-									global.yspeed = fallSpd;
+									global.yspeed += transportDec;
+									if global.yspeed >= fallSpd
+									{
+										global.yspeed = fallSpd;
+									}
+								}
+								else if global.yspeed > fallSpd
+								{
+									global.yspeed -= transportDec;
+									if global.yspeed <= fallSpd
+									{
+										global.yspeed = fallSpd;
+									}
 								}
 							}
-							else if global.yspeed > fallSpd
+							else
 							{
-								global.yspeed -= transportDec;
-								if global.yspeed <= fallSpd
-								{
-									global.yspeed = fallSpd;
-								}
+								global.yspeed = 0;
+								target.y = round(target.y);
 							}
 						}
 						else
 						{
-							if target.yspeed < fallSpd
+							var _move = false;
+							with target
+								if (place_free(x, y-1) and yspeed < 0) or (place_free(x, y+1) and yspeed >= 0)
+									_move = true;
+							
+							if _move
 							{
-								target.yspeed += transportDec;
-								if target.yspeed >= fallSpd
+								if target.yspeed < fallSpd
 								{
-									target.yspeed = fallSpd;
+									target.yspeed += transportDec;
+									if target.yspeed >= fallSpd
+									{
+										target.yspeed = fallSpd;
+									}
+								}
+								else if target.yspeed > fallSpd
+								{
+									target.yspeed -= transportDec;
+									if target.yspeed <= fallSpd
+									{
+										target.yspeed = fallSpd;
+									}
 								}
 							}
-							else if target.yspeed > fallSpd
+							else
 							{
-								target.yspeed -= transportDec;
-								if target.yspeed <= fallSpd
-								{
-									target.yspeed = fallSpd;
-								}
+								target.yspeed = 0;
+								target.y = round(target.y);
 							}
 						}
 					}
+					
+					print(global.yspeed);
 					
 					if transportTimer >= 3 * 60
 					{
@@ -293,6 +561,7 @@ if !global.frozen
 						if object_is_ancestor(target.object_index, prtPlayer) target.canHit = true;
 						if object_is_ancestor(target.object_index, prtPlayer) target.canGravity = true;
 						if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
+						if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
 						target.visible = true;
 						yspeed = -normalSpd;
 					}
@@ -311,13 +580,10 @@ if !global.frozen
 						target.yspeed = 0;
 					}
 					
-					target.y = round(prtPlayer.sectionBottom - (sprite_get_height(target.mask_index) - sprite_get_yoffset(target.mask_index))) - 1;
+					with target
+						if place_free(x, y-(sprite_get_height(mask_index)-1))
+							y = round(prtPlayer.sectionBottom - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index))) - 1;
 				}
-				
-				x = target.x;
-				y = target.bbox_top;
-				
-				target.ground = false;
 			}
 			else
 			{
@@ -345,6 +611,7 @@ if !global.frozen
 				if object_is_ancestor(target.object_index, prtPlayer) target.canHit = true;
 				if object_is_ancestor(target.object_index, prtPlayer) target.canGravity = true;
 				if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
+				if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
 				target.visible = true;
 				yspeed = -normalSpd;
 			}

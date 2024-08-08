@@ -5,14 +5,14 @@ function playerCollision() {
 
 	//Floor
 	var mySolid = instance_place(x, y+global.yspeed, objSolid);
-	if mySolid >= 0 && global.yspeed > 0 && !place_meeting(x, y-1, objBossDoorH)
+	if mySolid >= 0 && global.yspeed > 0 && (pltSpeedY >= 0 or place_free(x, y+pltSpeedY)) 
 	{
 	    y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
-	    if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
-			ground = true;
-	    global.yspeed = 0;
-    
-	    if playLandSound && (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
+	    ground = true;
+		if !place_meeting(x, y-1, objBossDoorH)
+			global.yspeed = 0;
+	
+	    if playLandSound {
 			canPlayLandSound = true;
 		}
     
@@ -46,7 +46,7 @@ function playerCollision() {
 	mySolid = instance_place(x, y+global.yspeed, objSolid);
 	if mySolid >= 0 && global.yspeed < 0
 	{
-		y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index);
+		y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
 		if climbing { y -= climbSpeed; y = floor(y); }
     
 	    //For some reason, the code above would work correctly half the time, but clip MM inside the ceiling the other half
@@ -68,11 +68,10 @@ function playerCollision() {
 	    if !place_meeting(x, y, tpsld)
 	    {
 	        y = tpsld.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
-	        if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
-				ground = true;
+	        ground = true;
 	        global.yspeed = 0;
         
-	        if playLandSound && (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
+	        if playLandSound {
 				canPlayLandSound = true;
 			}
 			break;

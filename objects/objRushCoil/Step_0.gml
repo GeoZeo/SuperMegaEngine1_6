@@ -24,6 +24,7 @@ if !global.frozen {
 			//&& prtPlayer.bbox_bottom <= bbox_bottom - 8 + global.yspeed 
 		    && !prtPlayer.climbing
 			&& !prtPlayer.isHit
+			&& !prtPlayer.isStun
 			{
 				prtPlayer.y = bbox_top - (sprite_get_height(prtPlayer.mask_index) - sprite_get_yoffset(prtPlayer.mask_index));
 		        global.yspeed = -7; //-7.53125; Rush Coil sends MM up to about 10 tiles high in MM9 and 10, it seems.

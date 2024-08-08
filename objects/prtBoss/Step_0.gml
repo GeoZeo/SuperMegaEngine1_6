@@ -88,14 +88,6 @@ if !global.frozen {
 	{
 		event_user(13);
 	}
-	
-	//if instance_exists(prtPlayer) {
-	//	if prtPlayer.canHit {
-	//		if place_meeting(x, y, prtPlayer) {
-	//	        event_user(1);
-	//	    }
-	//	}
-	//}
 }
 else {
     if alarm[9] != -1

@@ -33,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprLifeEqup",
-    "path": "sprites/sprLifeEqup/sprLifeEqup.yy",
+    "name": "sprLifeEquip",
+    "path": "sprites/sprLifeEquip/sprLifeEquip.yy",
   },
   "spriteMaskId": null,
   "visible": true,

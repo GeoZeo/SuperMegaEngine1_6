@@ -13,7 +13,7 @@ if !global.frozen and !dead {
                 
                 while place_meeting(x, y, prtPlayer) {
                     with prtPlayer y -= 1; //If the Yoku Block spawns "inside" Mega Man, push Mega Man upwards'. This way, it's much more fair
-                    with prtPlayer if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) ground = true;
+                    with prtPlayer ground = true;
                 }
                 
                 if insideView() {
@@ -59,7 +59,7 @@ if !global.frozen and !dead {
                 while place_meeting(x, y, prtPlayer)
                 {
                     with prtPlayer y -= 1; //If the Yoku Block spawns "inside" Mega Man, push Mega Man upwards'. This way, it's much more fair
-                    with prtPlayer if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) ground = true;
+                    with prtPlayer ground = true;
                 }
                 
                 if insideView()

@@ -19,7 +19,9 @@ if global.bossID > -1 {
 
 //Example (also used for testing):
 if numBossesDefeated() >= 8 {
-	if !objRushJetWeapon.unlocked {
+	if !objRushJetWeapon.unlocked
+	&& !(ds_list_find_index(objRushJetWeapon.exceptCharacters, global.character) > -1
+	and ds_list_find_index(objRushJetWeapon.exceptCharacters, global.character) < ds_list_size(objRushJetWeapon.exceptCharacters)) {
 		if global.weapon < 0 global.weaponID = objRushJetWeapon; //Set the utility as the main weapon ID instead of the utility ID if you just want to unlock the utility on its own instead of alongside a RM weapon
 		else global.utilityID = objRushJetWeapon;
 	}
@@ -28,11 +30,15 @@ if numBossesDefeated() >= 8 {
 ///-----------------------------------------------------------------------------------///
 
 //global.weaponID = objPharaohShotWeapon; //For testing
-if global.weaponID > -1 {
+if global.weaponID > -1
+&& !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1
+and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)) {
     //global.weapons[global.weaponID].unlocked = true; //Unlocks the special weapon of the RM
     global.weaponID.unlocked = true; //Unlocks the special weapon of the RM
 }
-if global.utilityID > -1 {
+if global.utilityID > -1
+&& !(ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1
+and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters)) {
     //global.weapons[global.utilityID].unlocked = true; //Unlocks the utility you get for defeating the RM
     global.utilityID.unlocked = true; //Unlocks the utility you get for defeating the RM
 }
@@ -42,7 +48,9 @@ phase = 0; //0 = preparing for moving up; 1 = moving up; 2 = de-teleporting; 3 =
 
 doAgain = false; //Repeat phases 7-9? For if we unlock both a RM's special weapon AND a utility/Rush ability for defeating them
 
-if cfgWeaponPreview and (global.weaponID > -1 or global.utilityID > -1) {
+if cfgWeaponPreview 
+and ((global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)))
+or (global.utilityID > -1 and !(ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters)))) {
     instance_create(16, 160, global.character);
     
     prtPlayer.readyTimer = 0;

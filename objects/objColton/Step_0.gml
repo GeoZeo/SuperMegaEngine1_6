@@ -1,6 +1,6 @@
 event_inherited();
 
-if !global.frozen and !dead {
+if !global.frozen and !dead and !dying {
     if !instance_exists(bulletID) && enemyProjectileCount(objColtonBullet) < 1 {
         if instance_exists(prtPlayer) {
             if x >= prtPlayer.x
@@ -43,10 +43,13 @@ if !global.frozen and !dead {
     }
 }
 else {
-    if dead {
+    if dead || dying {
         shooting = false;
         animTimer = 0;
         image_index = 0;
     }
+	if global.frozen {
+		image_speed = 0;
+	}
 }
 

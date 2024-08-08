@@ -16,12 +16,9 @@ function playerMovingPlatform() {
 	                y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
 	                global.yspeed = 0;
                 
-	                if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
-					{
-						ground = true;
-		                if playLandSound == true
-		                    canPlayLandSound = true;
-					}
+					ground = true;
+		            if playLandSound == true
+		                canPlayLandSound = true;
 	            }
 	        }
 	    }
@@ -41,12 +38,9 @@ function playerMovingPlatform() {
 	        y = ID[maxID].bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
 	        global.yspeed = 0;
         
-	        if (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
-			{
-				ground = true;
-		        if playLandSound == true
-		            canPlayLandSound = true;
-			}
+			ground = true;
+		    if playLandSound == true
+		        canPlayLandSound = true;
         
 	        //Note: there used to be a system here that set MM's sprite to the walking sprite when landing
 	        //However, due to complications such as climbing up ladders, it was a lot of work for such a minor feature
@@ -107,7 +101,7 @@ function playerMovingPlatform() {
 	    ID[maxID] = instance_place(x, y+global.yspeed+sign(global.yspeed), prtMovingPlatformSolid);
 	    if ID[maxID].dead == false && global.yspeed <= ID[maxID].yspeed
 	    {
-	        y = ID[maxID].bbox_bottom + sprite_get_yoffset(mask_index);
+	        y = ID[maxID].bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
 			if climbing { y -= climbSpeed; y = floor(y); }
 	        if ID[maxID].yspeed == 0
 	            global.yspeed = 0;
@@ -248,7 +242,7 @@ function playerMovingPlatform() {
 	    if (((mySpikeFloor >= 0 || mySpikeFloorLeft >= 0 || mySpikeFloorRight >= 0) && onGround == false && onMovingGround == false && onTopSolid == false && onMovingTopSolid == false)
 	     || (mySpikeWall >= 0 && onWall == false && onMovingWall == false) || (mySpikeCeiling >= 0 && onCeiling == false && onMovingCeiling == false)) && canHit == true
 	    {
-			canPlayLandSound = false;
+			//canPlayLandSound = false; //Comment out if you don't want spike death to cancel landing SFX
 	        if objShockGuardEquip.count < 1 {
 		        global._health = 0;
 		        exit;
@@ -272,6 +266,10 @@ function playerMovingPlatform() {
 		if !isHit
 			playSFX(sfxLand);
 			
+		canPlayLandSound = false;
+	}
+	else if instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime && !ground {
+		
 		canPlayLandSound = false;
 	}
 	

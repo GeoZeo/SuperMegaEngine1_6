@@ -3,7 +3,8 @@
 var ID = instance_create(x, y, objFadeout);
 ID.type = "room";
     
-if (global.weaponID > -1 and !global.weaponID.unlocked) || (global.utilityID > -1 and !global.utilityID.unlocked) {
+if (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)) and !global.weaponID.unlocked)
+|| (global.utilityID > -1 and !(ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters)) and !global.utilityID.unlocked) {
     ID.myRoom = rmWeaponGet;
     global.passPlayVictory = false;
 }

@@ -10,7 +10,9 @@ function playerGetHit(argument0) {
     
 	    canHit = false;
 	    isHit = true;
-	    hitTimer = 0;
+		hitTimer = 0;
+		isStun = false;
+		stunTimer = 0;
 	    isStep = false;
 		stepTimer = 0;
 		cancelStep = false;

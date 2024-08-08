@@ -54,9 +54,9 @@ function generalCollision() {
 	mySolid = instance_place(x, y+yspeed, objSolid);
 	if mySolid >= 0 && yspeed < 0 {
 		if mask_index > -1
-			y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index);
+			y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
 		else
-			y = mySolid.bbox_bottom + sprite_get_yoffset(sprite_index);
+			y = mySolid.bbox_bottom + sprite_get_yoffset(sprite_index) - sprite_get_bbox_top(sprite_index);
     
 	    while place_meeting(x, y, mySolid)
 	        y += 1;
@@ -166,9 +166,9 @@ function generalCollision() {
 	    if mySolid.object_index != objRushJet && mySolid.dead == false
 	    {
 			if mask_index > -1
-				y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index);
+				y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
 			else
-				y = mySolid.bbox_bottom + sprite_get_yoffset(sprite_index);
+				y = mySolid.bbox_bottom + sprite_get_yoffset(sprite_index) - sprite_get_bbox_top(sprite_index);
 				
 	        yspeed = 0;
 	    }

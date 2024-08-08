@@ -7,6 +7,9 @@ function playerSwitchSections() {
 	//which could either cause the game to freeze or the wrong section borders to be used
 	//Using 16 or 32 instead of 64 would also occassionally cause these problems, probably because of the +6/-6
 
+	if instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime
+		return false;
+	
 	if x > sectionRight-6 && place_meeting(x-global.xspeed+6, y, objSectionArrowRight) //Right
 	&& !collision_rectangle(sectionRight+1, bbox_top, sectionRight+2, bbox_bottom, objSolid, false, false)
 	{

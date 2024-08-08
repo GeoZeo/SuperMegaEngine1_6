@@ -3,6 +3,9 @@
 function playerShielding(argument0) {
 	//Reflects/deflects enemy projectiles if the character has a valid reflector hitbox
 	
+	if teleporting or showReady
+		return false;
+	
 	if argument0 == true {
 	    reflectProjectilesLeft = image_xscale < 0;
 	    reflectProjectilesRight = image_xscale > 0;
@@ -19,7 +22,6 @@ function playerShielding(argument0) {
 	var _offset = reflector_left_offset;
 	
 	if (_width > 0 and _height > 0) && (reflectProjectilesLeft or reflectProjectilesRight)
-	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
 	{
 		var myProj, totalProjs;
 		if reflectProjectilesLeft

@@ -13,8 +13,9 @@ if canOpen == true {
     if instance_exists(prtPlayer) {
         //Colliding with the player. We're checking y+7 because in the NES games, the player needs to be slightly inside the door
         //for it to activate.
-        if (collision_rectangle(x, y+7, x+sprite_width, y+8, prtPlayer, false, false) && dir == -1)
-        || (collision_rectangle(x, y+sprite_height-8, x+sprite_width, y+sprite_height-7, prtPlayer, false, false) && dir == 1) {
+        if ((collision_rectangle(x, y+7, x+sprite_width, y+8, prtPlayer, false, false) && dir == -1)
+        || (collision_rectangle(x, y+sprite_height-8, x+sprite_width, y+sprite_height-7, prtPlayer, false, false) && dir == 1))
+		&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
             canOpen = false;
             opening = true;
             image_speed = openImgSpeed;
