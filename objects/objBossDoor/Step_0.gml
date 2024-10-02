@@ -2,6 +2,9 @@ if halfDoor {
     sprite_index = sprBossHalfDoor;
 }
 if canOpen {
+	if instance_exists(prtPlayer) {
+		player_x = prtPlayer.x;
+	}
     if mySolid > -1 {
         if dir == -1 {
             mySolid.x = x+16;
@@ -9,6 +12,10 @@ if canOpen {
         else {
             mySolid.x = x;
         }
+		if dir == -1 && (halfDoor and player_x > x+16)
+			mySolid.x = x;
+		else if dir == 1 && (halfDoor and player_x < x)
+			mySolid.x = x+16;
     }
     if instance_exists(prtPlayer) {
         //Colliding with the player. We're checking x+7 because in the NES games, the player needs to be slightly inside the door
@@ -22,6 +29,8 @@ if canOpen {
             playSFX(sfxDoor);
             instance_activate_object(mySolid);
             with mySolid instance_destroy();
+			with objPauseMenu instance_destroy();
+			stopSFX(sfxPause);
             
             //Switch sections
             if dir == -1 //Switch to the right
@@ -89,7 +98,7 @@ if closing {
                 mySolid.image_yscale = 4;
         }
 		
-		//prtPlayer.x = (x+16)+(32*-dir); //Comment out if you don't mind MM's exact position upon the door closing being impacted by what sub-pixel he happens to be on upon it opening
+		//prtPlayer.x = ((x+16)+(32*-dir))-(cfgPushStartingPosBack*-dir); //Comment out if you don't mind MM's exact position upon the door closing being impacted by what sub-pixel he happens to be on upon it opening
             
         with objSectionSwitcher {
 			x = prtPlayer.x;

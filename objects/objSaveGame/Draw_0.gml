@@ -3,35 +3,62 @@ draw_set_font(global.font);
 var margin = 30;
 var top = 30;
 
-for (var i = 0; i < num_saves; i++) {
-    if selected == i {
-        draw_set_colour(c_white);
-        var map = saves[i];
-        var oldchar = global.character;
-        if map > - 1 and ds_map_exists(map, "character") {
-            setPlayer(map[? "character"]);
-        }
-        drawSave(i, map, selected == i);
-        setPlayer(oldchar);
-        draw_sprite(sprPassCursor, 0, margin + 1 + i * 16, top);
-    }
-    else {
-        draw_set_colour(c_gray);
-    }
-    draw_set_halign(fa_left);
-    draw_text(margin + 3 + i * 16, top + 3, string_hash_to_newline(string(i)));
-}
+if !surePhase {
+	for (var i = 1; i < num_saves + 1; i++) {
+	    if selected == i {
+	        draw_set_colour(c_white);
+	        drawSave(i - 1, saves[i - 1], selected == i);
+	        draw_sprite(sprPassCursorTopLeft, 0, margin + 49 + (i-1) * 16, top);
+			draw_sprite(sprPassCursorTopRight, 0, (margin + 49 + (i-1) * 16) + 7, top);
+			draw_sprite(sprPassCursorBottomLeft, 0, margin + 49 + (i-1) * 16, top + 7);
+			draw_sprite(sprPassCursorBottomRight, 0, (margin + 49 + (i-1) * 16) + 7, top + 7);
+	    }
+	    else {
+	        draw_set_colour(c_gray);
+	    }
+	    draw_set_halign(fa_right);
+	    draw_text(room_width - margin - (((num_saves * 16) - 7) - (i-1) * 16), top + 3, string_hash_to_newline(string(i)));
+	}
 
-if selected == num_saves {
-    draw_set_colour(c_white);
+	if selected == 0 {
+	    draw_set_colour(c_white);
+		draw_sprite(sprPassCursorTopLeft, 0, margin + 1, top);
+		draw_sprite(sprPassCursorTopRight, 0, margin + 32, top);
+		draw_sprite(sprPassCursorBottomLeft, 0, margin + 1, top + 7);
+		draw_sprite(sprPassCursorBottomRight, 0, margin + 32, top + 7);
+	}
+	else {
+	    draw_set_colour(c_gray);
+	}
+
+	//draw_set_halign(fa_center);
+	//draw_text(room_width / 2, room_height - 40, "BACK");
+
+	draw_set_halign(fa_left);
+	draw_text(margin + 3, top + 3, string_hash_to_newline("BACK"));
 }
 else {
-    draw_set_colour(c_gray);
+	for (var i = 1; i < num_saves + 1; i++) {
+	    if selected == i {
+	        draw_set_colour(c_white);
+	        drawSave(i - 1, saves[i - 1], selected == i);
+	    }
+	}
+	
+	draw_set_halign(fa_center);
+	draw_set_colour(c_white);
+	draw_text(round(room_width / 2), top + 3, string_hash_to_newline("OVERWRITE FILE " + string(selected) + "?"));
+	
+	draw_set_halign(fa_left);
+	
+	draw_sprite(sprPassCursorTopLeft, 0, margin + 32 + (!isSure * 112), top + 16);
+	draw_sprite(sprPassCursorTopRight, 0, margin + (47 + (isSure * 8)) + (!isSure * 112), top + 16);
+	draw_sprite(sprPassCursorBottomLeft, 0, margin + 32 + (!isSure * 112), top + 16 + 7);
+	draw_sprite(sprPassCursorBottomRight, 0, margin + (47 + (isSure * 8)) + (!isSure * 112), top + 16 + 7);
+	
+	if isSure draw_set_colour(c_white); else draw_set_colour(c_gray);
+	draw_text(margin + 34, top + 19, string_hash_to_newline("YES"));
+	if !isSure draw_set_colour(c_white); else draw_set_colour(c_gray);
+	draw_text(room_width - margin - 50, top + 19, string_hash_to_newline("NO"));
 }
-
-//draw_set_halign(fa_center);
-//draw_text(room_width / 2, room_height - 40, "BACK");
-
-draw_set_halign(fa_right);
-draw_text(room_width - margin, top + 3, string_hash_to_newline("BACK"));
 

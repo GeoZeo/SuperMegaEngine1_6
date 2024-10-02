@@ -23,43 +23,43 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description playerCameraInit(
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerCamera\playerCamera.gml
-Converted builtin - line 10: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 12: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 22: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 24: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 10: view_xview[0] -> global.viewX
+Converted builtin - line 12: view_xview[0] -> global.viewX
+Converted builtin - line 22: view_xview[0] -> global.viewX
+Converted builtin - line 24: view_xview[0] -> global.viewX
 Converted builtin - line 6: view_xview[0] = round(x - view_wview[0] / 2) -> __view_set( e__VW.XView, 0, round(x - view_wview[0] / 2) )
 Converted builtin - line 11: view_xview[0] = sectionRight-view_wview[0] -> __view_set( e__VW.XView, 0, sectionRight-view_wview[0] )
 Converted builtin - line 13: view_xview[0] = sectionLeft -> __view_set( e__VW.XView, 0, sectionLeft )
 Converted builtin - line 23: view_xview[0] = room_width-view_wview[0] -> __view_set( e__VW.XView, 0, room_width-view_wview[0] )
 Converted builtin - line 25: view_xview[0] = 0 -> __view_set( e__VW.XView, 0, 0 )
-Converted builtin - line 15: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 17: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 27: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 29: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 15: view_yview[0] -> global.viewY
+Converted builtin - line 17: view_yview[0] -> global.viewY
+Converted builtin - line 27: view_yview[0] -> global.viewY
+Converted builtin - line 29: view_yview[0] -> global.viewY
 Converted builtin - line 7: view_yview[0] = round(y - view_hview[0] / 2) -> __view_set( e__VW.YView, 0, round(y - view_hview[0] / 2) )
 Converted builtin - line 16: view_yview[0] = sectionBottom-view_hview[0] -> __view_set( e__VW.YView, 0, sectionBottom-view_hview[0] )
 Converted builtin - line 18: view_yview[0] = sectionTop -> __view_set( e__VW.YView, 0, sectionTop )
 Converted builtin - line 28: view_yview[0] = room_height-view_hview[0] -> __view_set( e__VW.YView, 0, room_height-view_hview[0] )
 Converted builtin - line 30: view_yview[0] = 0 -> __view_set( e__VW.YView, 0, 0 )
-Converted builtin - line 10: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 22: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 15: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 27: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 10: view_wview[0] -> global.viewWidth
+Converted builtin - line 22: view_wview[0] -> global.viewWidth
+Converted builtin - line 15: view_hview[0] -> global.viewHeight
+Converted builtin - line 27: view_hview[0] -> global.viewHeight
 Converted description /// @description playerCamera(
-Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 11: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 23: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 7: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 16: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 28: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 6: view_wview[0] -> global.viewWidth
+Converted builtin - line 11: view_wview[0] -> global.viewWidth
+Converted builtin - line 23: view_wview[0] -> global.viewWidth
+Converted builtin - line 7: view_hview[0] -> global.viewHeight
+Converted builtin - line 16: view_hview[0] -> global.viewHeight
+Converted builtin - line 28: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerSwitchSections\playerSwitchSections.gml
-Converted builtin - line 22: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 24: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 44: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 46: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 24: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 46: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 22: view_yview[0] -> global.viewY
+Converted builtin - line 24: view_yview[0] -> global.viewY
+Converted builtin - line 44: view_yview[0] -> global.viewY
+Converted builtin - line 46: view_yview[0] -> global.viewY
+Converted builtin - line 24: view_hview[0] -> global.viewHeight
+Converted builtin - line 46: view_hview[0] -> global.viewHeight
 Converted description /// @description playerSwitchSections(
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\playerSwitchWeapons\playerSwitchWeapons.gml
@@ -129,8 +129,8 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description mask_get_ycenter_object(obj
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSpriteTiled\drawSpriteTiled.gml
-Converted builtin - line 32: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 32: view_yview -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 32: view_yview[0] -> global.viewY
+Converted builtin - line 32: view_yview -> global.viewY
 Converted description /// @description drawSpriteTiled(tile width, tile height, top sprite tile, middle sprite tile, bottom sprite tile
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\drawSpriteColorSwap\drawSpriteColorSwap.gml
@@ -170,30 +170,30 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  move(xs, ys
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\insideView\insideView.gml
-Converted builtin - line 5: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 5: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 5: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 6: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 5: view_xview[0] -> global.viewX
+Converted builtin - line 5: view_xview[0] -> global.viewX
+Converted builtin - line 6: view_yview[0] -> global.viewY
+Converted builtin - line 6: view_yview[0] -> global.viewY
+Converted builtin - line 5: view_wview[0] -> global.viewWidth
+Converted builtin - line 6: view_hview[0] -> global.viewHeight
 Converted description /// @description insideView(
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\insideViewObj\insideViewObj.gml
-Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 7: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 8: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 7: view_xview[0] -> global.viewX
+Converted builtin - line 7: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_yview[0] -> global.viewY
+Converted builtin - line 7: view_wview[0] -> global.viewWidth
+Converted builtin - line 8: view_hview[0] -> global.viewHeight
 Converted description /// @description  insideViewObj(obj
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\insideViewAny\insideViewAny.gml
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 9: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 9: view_yview[0] -> global.viewY
+Converted builtin - line 9: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_wview[0] -> global.viewWidth
+Converted builtin - line 9: view_hview[0] -> global.viewHeight
 Converted description /// @description  insideViewAny(obj
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\deactivateUnimportantObjects\deactivateUnimportantObjects.gml
@@ -360,20 +360,20 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  platesCount(): returns the total number of plates in the gam
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\makeMap\makeMap.gml
-Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 12: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 9: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 13: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 8: view_wview[0] -> global.viewWidth
+Converted builtin - line 12: view_wview[0] -> global.viewWidth
+Converted builtin - line 9: view_hview[0] -> global.viewHeight
+Converted builtin - line 13: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\placeHorizontalBorders\placeHorizontalBorders.gml
-Converted builtin - line 3: view_wview -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 7: view_wview -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 2: view_hview -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 5: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 3: view_wview -> global.viewWidth
+Converted builtin - line 7: view_wview -> global.viewWidth
+Converted builtin - line 2: view_hview -> global.viewHeight
+Converted builtin - line 5: view_hview -> global.viewHeight
 Converted description /// @description  Place horizontal borders (top and bottom
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\placeRoomBorders\placeRoomBorders.gml
-Converted builtin - line 2: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 2: view_hview -> global.viewHeight
 Converted description /// @description  Place room borders (left and right
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\scripts\instance_nth_nearest\instance_nth_nearest.gml
@@ -472,12 +472,12 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  Change colors depending on the special weapo
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtPlayer\Draw_0.gml
-Converted builtin - line 70: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 23: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 58: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 70: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 70: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 70: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 70: view_xview[0] -> global.viewX
+Converted builtin - line 23: view_yview[0] -> global.viewY
+Converted builtin - line 58: view_yview[0] -> global.viewY
+Converted builtin - line 70: view_yview[0] -> global.viewY
+Converted builtin - line 70: view_wview[0] -> global.viewWidth
+Converted builtin - line 70: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml
 ERROR: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtWeapon\Create_0.gml - 10: unexpected syntax error
@@ -602,23 +602,23 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  onShoo
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushCoil\Draw_0.gml
-Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 37: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 37: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 44: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 83: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 37: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 7: view_yview[0] -> global.viewY
+Converted builtin - line 37: view_yview[0] -> global.viewY
+Converted builtin - line 37: view_yview[0] -> global.viewY
+Converted builtin - line 44: view_yview[0] -> global.viewY
+Converted builtin - line 83: view_yview[0] -> global.viewY
+Converted builtin - line 37: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushCoilWeapon\Other_11.gml
 Converted description /// @description  onShoo
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushJet\Draw_0.gml
-Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 38: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 38: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 45: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 89: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 38: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 7: view_yview[0] -> global.viewY
+Converted builtin - line 38: view_yview[0] -> global.viewY
+Converted builtin - line 38: view_yview[0] -> global.viewY
+Converted builtin - line 45: view_yview[0] -> global.viewY
+Converted builtin - line 89: view_yview[0] -> global.viewY
+Converted builtin - line 38: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objRushJetWeapon\Other_11.gml
 Converted description /// @description  onShoo
@@ -633,65 +633,65 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description Just to cancel the parent even
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTimeSlow\Draw_0.gml
-Converted builtin - line 25: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 25: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 25: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 25: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 25: view_xview[0] -> global.viewX
+Converted builtin - line 25: view_xview[0] -> global.viewX
+Converted builtin - line 25: view_yview[0] -> global.viewY
+Converted builtin - line 25: view_yview[0] -> global.viewY
+Converted builtin - line 25: view_wview[0] -> global.viewWidth
+Converted builtin - line 25: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objHealthWeaponBar\Draw_0.gml
-Converted builtin - line 6: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 10: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 11: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 19: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 19: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 21: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 21: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 25: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 26: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 34: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 37: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 38: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 44: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 10: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 11: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 19: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 19: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 21: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 21: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 26: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 34: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 37: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 38: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 44: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 6: view_xview[0] -> global.viewX
+Converted builtin - line 10: view_xview[0] -> global.viewX
+Converted builtin - line 11: view_xview[0] -> global.viewX
+Converted builtin - line 19: view_xview[0] -> global.viewX
+Converted builtin - line 19: view_xview[0] -> global.viewX
+Converted builtin - line 21: view_xview[0] -> global.viewX
+Converted builtin - line 21: view_xview[0] -> global.viewX
+Converted builtin - line 25: view_xview[0] -> global.viewX
+Converted builtin - line 26: view_xview[0] -> global.viewX
+Converted builtin - line 34: view_xview[0] -> global.viewX
+Converted builtin - line 37: view_xview[0] -> global.viewX
+Converted builtin - line 38: view_xview[0] -> global.viewX
+Converted builtin - line 44: view_xview[0] -> global.viewX
+Converted builtin - line 6: view_yview[0] -> global.viewY
+Converted builtin - line 10: view_yview[0] -> global.viewY
+Converted builtin - line 11: view_yview[0] -> global.viewY
+Converted builtin - line 19: view_yview[0] -> global.viewY
+Converted builtin - line 19: view_yview[0] -> global.viewY
+Converted builtin - line 21: view_yview[0] -> global.viewY
+Converted builtin - line 21: view_yview[0] -> global.viewY
+Converted builtin - line 25: view_yview[0] -> global.viewY
+Converted builtin - line 26: view_yview[0] -> global.viewY
+Converted builtin - line 34: view_yview[0] -> global.viewY
+Converted builtin - line 37: view_yview[0] -> global.viewY
+Converted builtin - line 38: view_yview[0] -> global.viewY
+Converted builtin - line 44: view_yview[0] -> global.viewY
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFadeIn\Draw_0.gml
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 8: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_wview[0] -> global.viewWidth
+Converted builtin - line 8: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objFadeout\Draw_0.gml
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 8: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_wview[0] -> global.viewWidth
+Converted builtin - line 8: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objOctoper\Step_0.gml
-Converted builtin - line 9: view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 13: view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 17: view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 24: view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 13: view_wview -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 17: view_hview -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 24: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 9: view_xview -> global.viewX
+Converted builtin - line 13: view_xview -> global.viewX
+Converted builtin - line 17: view_yview -> global.viewY
+Converted builtin - line 24: view_yview -> global.viewY
+Converted builtin - line 13: view_wview -> global.viewWidth
+Converted builtin - line 17: view_hview -> global.viewHeight
+Converted builtin - line 24: view_hview -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEnemy\Other_25.gml
 Converted description /// @description  Event: onDeath - called when the enemy is kille
@@ -704,24 +704,24 @@ Converted builtin - line 18: background_blend[0] = c_black -> __background_set( 
 Converted builtin - line 21: background_blend[0] = c_white -> __background_set( e__BG.Blend, 0, c_white )
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossControl\Step_0.gml
-Converted builtin - line 1: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 1: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 2: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 2: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 1: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 2: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 1: view_xview[0] -> global.viewX
+Converted builtin - line 1: view_xview[0] -> global.viewX
+Converted builtin - line 2: view_yview[0] -> global.viewY
+Converted builtin - line 2: view_yview[0] -> global.viewY
+Converted builtin - line 1: view_wview[0] -> global.viewWidth
+Converted builtin - line 2: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossControl\Draw_0.gml
-Converted builtin - line 3: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 3: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 3: view_xview[0] -> global.viewX
+Converted builtin - line 7: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 3: view_yview[0] -> global.viewY
+Converted builtin - line 7: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_yview[0] -> global.viewY
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDoor\Create_0.gml
-Converted builtin - line 19: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 19: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 19: view_hview[0] -> global.viewHeight
+Converted builtin - line 19: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPharaoh\Other_25.gml
 Converted description /// @description  onDeat
@@ -736,7 +736,7 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  Put the boss at the top of the scree
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtBoss\Step_1.gml
-Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 6: view_yview[0] -> global.viewY
 Converted description /// @description  Starting the intro pose (and falling down
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDeathTimer\Alarm_2.gml
@@ -749,11 +749,11 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  Lock movement and play musi
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossDeathTimer\Step_0.gml
-Converted builtin - line 9: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 75: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 77: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 9: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 98: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 9: view_xview[0] -> global.viewX
+Converted builtin - line 75: view_yview[0] -> global.viewY
+Converted builtin - line 77: view_yview[0] -> global.viewY
+Converted builtin - line 9: view_wview[0] -> global.viewWidth
+Converted builtin - line 98: view_wview[0] -> global.viewWidth
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objBossShadow\Alarm_0.gml
 Converted description /// @description  Destroy itsel
@@ -762,17 +762,17 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  Close ey
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevil\Alarm_0.gml
-Converted builtin - line 3: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 3: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 3: view_xview[0] -> global.viewX
+Converted builtin - line 3: view_yview[0] -> global.viewY
 Converted description /// @description  Create bloc
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevil\Step_0.gml
-Converted builtin - line 19: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 22: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 24: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 57: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 19: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 24: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 19: view_xview[0] -> global.viewX
+Converted builtin - line 22: view_xview[0] -> global.viewX
+Converted builtin - line 24: view_yview[0] -> global.viewY
+Converted builtin - line 57: view_yview[0] -> global.viewY
+Converted builtin - line 19: view_wview[0] -> global.viewWidth
+Converted builtin - line 24: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevilBlock\Alarm_1.gml
 Converted description /// @description Deat
@@ -781,32 +781,32 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description UNFI
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objYellowDevilBlock\Step_0.gml
-Converted builtin - line 39: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 41: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 43: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 45: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 43: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 45: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 39: view_xview[0] -> global.viewX
+Converted builtin - line 41: view_xview[0] -> global.viewX
+Converted builtin - line 43: view_xview[0] -> global.viewX
+Converted builtin - line 45: view_xview[0] -> global.viewX
+Converted builtin - line 43: view_wview[0] -> global.viewWidth
+Converted builtin - line 45: view_wview[0] -> global.viewWidth
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyMachine4\Alarm_0.gml
 Converted description /// @description  Sho
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyMachine4\Step_0.gml
-Converted builtin - line 37: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 37: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 19: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 26: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 29: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 29: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 31: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 55: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 37: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 19: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 26: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 29: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 29: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 31: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 55: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 37: view_xview[0] -> global.viewX
+Converted builtin - line 37: view_xview[0] -> global.viewX
+Converted builtin - line 19: view_yview[0] -> global.viewY
+Converted builtin - line 26: view_yview[0] -> global.viewY
+Converted builtin - line 29: view_yview[0] -> global.viewY
+Converted builtin - line 29: view_yview[0] -> global.viewY
+Converted builtin - line 31: view_yview[0] -> global.viewY
+Converted builtin - line 55: view_yview[0] -> global.viewY
+Converted builtin - line 37: view_wview[0] -> global.viewWidth
+Converted builtin - line 19: view_hview[0] -> global.viewHeight
+Converted builtin - line 26: view_hview[0] -> global.viewHeight
+Converted builtin - line 29: view_hview[0] -> global.viewHeight
+Converted builtin - line 29: view_hview[0] -> global.viewHeight
+Converted builtin - line 31: view_hview[0] -> global.viewHeight
+Converted builtin - line 55: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyMachine4\Other_25.gml
 Converted description /// @description  onDeat
@@ -815,14 +815,14 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  Disappea
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyCapsule1\Alarm_2.gml
-Converted builtin - line 7: view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 11: view_xview -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 12: view_yview -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 7: view_wview -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 11: view_wview -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 8: view_hview -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 12: view_hview -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 7: view_xview -> global.viewX
+Converted builtin - line 11: view_xview -> global.viewX
+Converted builtin - line 8: view_yview -> global.viewY
+Converted builtin - line 12: view_yview -> global.viewY
+Converted builtin - line 7: view_wview -> global.viewWidth
+Converted builtin - line 11: view_wview -> global.viewWidth
+Converted builtin - line 8: view_hview -> global.viewHeight
+Converted builtin - line 12: view_hview -> global.viewHeight
 Converted description /// @description  Attac
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWilyCapsule1\Alarm_1.gml
@@ -837,12 +837,12 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted builtin - line 14: background_visible[1] = true -> __background_set( e__BG.Visible, 1, true )
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objShake\Alarm_0.gml
-Converted builtin - line 1: view_xview[0] -= total_shake_x -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) - (total_shake_x) )
-Converted builtin - line 2: view_yview[0] -= total_shake_y -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) - (total_shake_y) )
+Converted builtin - line 1: view_xview[0] -= total_shake_x -> __view_set( e__VW.XView, 0, global.viewX - (total_shake_x) )
+Converted builtin - line 2: view_yview[0] -= total_shake_y -> __view_set( e__VW.YView, 0, global.viewY - (total_shake_y) )
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objShake\Step_0.gml
-Converted builtin - line 11: view_xview[0] += shake_x -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (shake_x) )
-Converted builtin - line 12: view_yview[0] += shake_y -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (shake_y) )
+Converted builtin - line 11: view_xview[0] += shake_x -> __view_set( e__VW.XView, 0, global.viewX + (shake_x) )
+Converted builtin - line 12: view_yview[0] += shake_y -> __view_set( e__VW.YView, 0, global.viewY + (shake_y) )
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objTeleport\Alarm_9.gml
 Converted description /// @description Verify if boss is already defeated on boss rus
@@ -864,12 +864,12 @@ String not found: ConversionLog_ConvertedString 12 'W' "W"
 String not found: ConversionLog_ConvertedString 12 'S' "S"
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAutoScroll\Step_0.gml
-Converted builtin - line 7: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 10: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 8: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 10: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 7: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 9: view_yview[0] -> global.viewY
+Converted builtin - line 10: view_yview[0] -> global.viewY
+Converted builtin - line 8: view_wview[0] -> global.viewWidth
+Converted builtin - line 10: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objDmgText\Alarm_0.gml
 Converted description /// @description  Finish the effec
@@ -881,72 +881,72 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description  Cursor Movemen
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPauseMenu\Draw_0.gml
-Converted builtin - line 18: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 24: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 34: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 41: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 57: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 64: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 68: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 79: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 83: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 94: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 98: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 110: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 121: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 136: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 141: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 146: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 157: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 157: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 18: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 25: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 35: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 42: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 57: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 64: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 68: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 79: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 83: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 94: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 98: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 110: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 121: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 136: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 141: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 146: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 157: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 157: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 157: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 157: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 18: view_xview[0] -> global.viewX
+Converted builtin - line 24: view_xview[0] -> global.viewX
+Converted builtin - line 34: view_xview[0] -> global.viewX
+Converted builtin - line 41: view_xview[0] -> global.viewX
+Converted builtin - line 57: view_xview[0] -> global.viewX
+Converted builtin - line 64: view_xview[0] -> global.viewX
+Converted builtin - line 68: view_xview[0] -> global.viewX
+Converted builtin - line 79: view_xview[0] -> global.viewX
+Converted builtin - line 83: view_xview[0] -> global.viewX
+Converted builtin - line 94: view_xview[0] -> global.viewX
+Converted builtin - line 98: view_xview[0] -> global.viewX
+Converted builtin - line 110: view_xview[0] -> global.viewX
+Converted builtin - line 121: view_xview[0] -> global.viewX
+Converted builtin - line 136: view_xview[0] -> global.viewX
+Converted builtin - line 141: view_xview[0] -> global.viewX
+Converted builtin - line 146: view_xview[0] -> global.viewX
+Converted builtin - line 157: view_xview[0] -> global.viewX
+Converted builtin - line 157: view_xview[0] -> global.viewX
+Converted builtin - line 18: view_yview[0] -> global.viewY
+Converted builtin - line 25: view_yview[0] -> global.viewY
+Converted builtin - line 35: view_yview[0] -> global.viewY
+Converted builtin - line 42: view_yview[0] -> global.viewY
+Converted builtin - line 57: view_yview[0] -> global.viewY
+Converted builtin - line 64: view_yview[0] -> global.viewY
+Converted builtin - line 68: view_yview[0] -> global.viewY
+Converted builtin - line 79: view_yview[0] -> global.viewY
+Converted builtin - line 83: view_yview[0] -> global.viewY
+Converted builtin - line 94: view_yview[0] -> global.viewY
+Converted builtin - line 98: view_yview[0] -> global.viewY
+Converted builtin - line 110: view_yview[0] -> global.viewY
+Converted builtin - line 121: view_yview[0] -> global.viewY
+Converted builtin - line 136: view_yview[0] -> global.viewY
+Converted builtin - line 141: view_yview[0] -> global.viewY
+Converted builtin - line 146: view_yview[0] -> global.viewY
+Converted builtin - line 157: view_yview[0] -> global.viewY
+Converted builtin - line 157: view_yview[0] -> global.viewY
+Converted builtin - line 157: view_wview[0] -> global.viewWidth
+Converted builtin - line 157: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPassMenu\Alarm_0.gml
 Converted description /// @description  Enables cursor and plays music
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWeaponGet\Create_0.gml
-Converted builtin - line 2: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 3: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 2: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 3: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 2: view_xview[0] -> global.viewX
+Converted builtin - line 3: view_yview[0] -> global.viewY
+Converted builtin - line 2: view_wview[0] -> global.viewWidth
+Converted builtin - line 3: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWeaponGet\Step_0.gml
-Converted builtin - line 42: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 43: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 12: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 13: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 42: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 43: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 12: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 13: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 42: view_xview[0] -> global.viewX
+Converted builtin - line 43: view_xview[0] -> global.viewX
+Converted builtin - line 12: view_yview[0] -> global.viewY
+Converted builtin - line 13: view_yview[0] -> global.viewY
+Converted builtin - line 42: view_wview[0] -> global.viewWidth
+Converted builtin - line 43: view_wview[0] -> global.viewWidth
+Converted builtin - line 12: view_hview[0] -> global.viewHeight
+Converted builtin - line 13: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objWeaponGet\Draw_0.gml
-Converted builtin - line 22: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 23: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 22: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 23: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 22: view_xview[0] -> global.viewX
+Converted builtin - line 23: view_yview[0] -> global.viewY
+Converted builtin - line 22: view_wview[0] -> global.viewWidth
+Converted builtin - line 23: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objStageSelect\Draw_0.gml
-Converted builtin - line 76: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 76: view_wview[0] -> global.viewWidth
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objIntroduction\Alarm_0.gml
 Converted description /// @description  Go to leve
@@ -958,32 +958,32 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted builtin - line 16: background_index[0] = bg -> __background_set( e__BG.Index, 0, bg )
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objPlayerSelect\Draw_0.gml
-Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 11: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 12: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 14: view_wview[0] -> __view_get( e__VW.WView, 0 )
+Converted builtin - line 6: view_wview[0] -> global.viewWidth
+Converted builtin - line 11: view_wview[0] -> global.viewWidth
+Converted builtin - line 12: view_wview[0] -> global.viewWidth
+Converted builtin - line 14: view_wview[0] -> global.viewWidth
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievements\Draw_0.gml
-Converted builtin - line 16: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 12: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 16: view_wview[0] -> global.viewWidth
+Converted builtin - line 12: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objSectionSwitcher\Step_0.gml
-Converted builtin - line 23: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 74: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 10: view_xview[0] += screenSpeedHor -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (screenSpeedHor) )
+Converted builtin - line 23: view_xview[0] -> global.viewX
+Converted builtin - line 74: view_xview[0] -> global.viewX
+Converted builtin - line 10: view_xview[0] += screenSpeedHor -> __view_set( e__VW.XView, 0, global.viewX + (screenSpeedHor) )
 Converted builtin - line 25: view_xview[0] = prtPlayer.sectionLeft -> __view_set( e__VW.XView, 0, prtPlayer.sectionLeft )
-Converted builtin - line 61: view_xview[0] -= screenSpeedHor -> __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) - (screenSpeedHor) )
+Converted builtin - line 61: view_xview[0] -= screenSpeedHor -> __view_set( e__VW.XView, 0, global.viewX - (screenSpeedHor) )
 Converted builtin - line 76: view_xview[0] = prtPlayer.sectionRight-view_wview[0] -> __view_set( e__VW.XView, 0, prtPlayer.sectionRight-view_wview[0] )
-Converted builtin - line 125: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 179: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 112: view_yview[0] += screenSpeedVert -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (screenSpeedVert) )
+Converted builtin - line 125: view_yview[0] -> global.viewY
+Converted builtin - line 179: view_yview[0] -> global.viewY
+Converted builtin - line 112: view_yview[0] += screenSpeedVert -> __view_set( e__VW.YView, 0, global.viewY + (screenSpeedVert) )
 Converted builtin - line 127: view_yview[0] = prtPlayer.sectionTop -> __view_set( e__VW.YView, 0, prtPlayer.sectionTop )
-Converted builtin - line 166: view_yview[0] -= screenSpeedVert -> __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) - (screenSpeedVert) )
+Converted builtin - line 166: view_yview[0] -= screenSpeedVert -> __view_set( e__VW.YView, 0, global.viewY - (screenSpeedVert) )
 Converted builtin - line 181: view_yview[0] = prtPlayer.sectionBottom - view_hview[0] -> __view_set( e__VW.YView, 0, prtPlayer.sectionBottom - view_hview[0] )
-Converted builtin - line 74: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 179: view_hview[0] -> __view_get( e__VW.HView, 0 )
-Converted builtin - line 76: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 181: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 74: view_wview[0] -> global.viewWidth
+Converted builtin - line 179: view_hview[0] -> global.viewHeight
+Converted builtin - line 76: view_wview[0] -> global.viewWidth
+Converted builtin - line 181: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtEquip\Create_0.gml
 Converted description /// @description Initialize equipment variable
@@ -1019,7 +1019,7 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description onChangePlaye
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objEddieEquip\Other_10.gml
-Converted builtin - line 14: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 14: view_yview[0] -> global.viewY
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objEnergyBalancerEquip\Other_15.gml
 Converted description /// @description onChangePlaye
@@ -1034,11 +1034,11 @@ Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEng
 Converted description /// @description onAd
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objText\Draw_0.gml
-Converted builtin - line 6: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 6: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 3: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
-Converted builtin - line 6: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 6: view_xview[0] -> global.viewX
+Converted builtin - line 6: view_yview[0] -> global.viewY
+Converted builtin - line 3: view_wview[0] -> global.viewWidth
+Converted builtin - line 6: view_wview[0] -> global.viewWidth
+Converted builtin - line 6: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\prtCutscene\Step_0.gml
 Converted builtin - line 4: background_visible[other.current_scene] = false -> __background_set( e__BG.Visible, other.current_scene, false )
@@ -1082,26 +1082,26 @@ Converted builtin - line 8: background_visible[0] = true -> __background_set( e_
 Converted builtin - line 1: background_blend[0] -> __background_get( e__BG.Blend, 0 )
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objEddie\Step_0.gml
-Converted builtin - line 9: view_yview[0] -> __view_get( e__VW.YView, 0 )
+Converted builtin - line 9: view_yview[0] -> global.viewY
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievementBox\Create_0.gml
-Converted builtin - line 7: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 7: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 7: view_yview[0] -> global.viewY
+Converted builtin - line 7: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievementBox\Step_0.gml
-Converted builtin - line 18: view_yview[0] -> __view_get( e__VW.YView, 0 )
-Converted builtin - line 18: view_hview[0] -> __view_get( e__VW.HView, 0 )
+Converted builtin - line 18: view_yview[0] -> global.viewY
+Converted builtin - line 18: view_hview[0] -> global.viewHeight
 
 Converting GML script: C:\Users\Geo Holt\Documents\GameMakerStudio2\SuperMegaEngine2\conv\gmx\SuperMegaEngine2_38AE4AEB\objects\objAchievementBox\Draw_73.gml
-Converted builtin - line 2: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 2: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 4: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 5: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 8: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 9: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 12: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 16: view_xview[0] -> __view_get( e__VW.XView, 0 )
-Converted builtin - line 17: view_xview[0] -> __view_get( e__VW.XView, 0 )
+Converted builtin - line 2: view_xview[0] -> global.viewX
+Converted builtin - line 2: view_xview[0] -> global.viewX
+Converted builtin - line 4: view_xview[0] -> global.viewX
+Converted builtin - line 5: view_xview[0] -> global.viewX
+Converted builtin - line 8: view_xview[0] -> global.viewX
+Converted builtin - line 9: view_xview[0] -> global.viewX
+Converted builtin - line 12: view_xview[0] -> global.viewX
+Converted builtin - line 16: view_xview[0] -> global.viewX
+Converted builtin - line 17: view_xview[0] -> global.viewX
 String not found: ConversionLog_ConvertedString 16 ' "' " \""
 String not found: ConversionLog_ConvertedString 16 '"' "\""
 

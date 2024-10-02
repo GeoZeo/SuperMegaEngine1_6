@@ -1,3 +1,5 @@
+if !other.projCanTouch return false;
+
 with other {
     if sprite_index > -1 and !reflectProjectiles && damage[other.object_index] != 0
     && !(reflectProjectilesLeft && sprite_get_xcenter_object(other.id) < sprite_get_xcenter())
@@ -14,7 +16,13 @@ with other {
             
             alarm[11] = 2;
             if (!other.passThrough || healthpoints > 0) and !other.unstoppable {
-                with other instance_destroy();
+                with other 
+				{
+					if explosionEffect
+						instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
+					
+					instance_destroy();
+				}
             }
             
             stopSFX(sfxBuster);

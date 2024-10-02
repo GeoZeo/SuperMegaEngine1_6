@@ -30,7 +30,7 @@ function drawSpriteTiled(argument0, argument1, argument2, argument3, argument4) 
 	                for (j = 1; j < image_yscale; j += 1)
 	                {
 	                    //Make sure only on screen tiles are drawn.
-	                    if y+(argument1*j) > __view_get( e__VW.YView, 0 ) - argument1 and y+(argument1*j) < __view_get( e__VW.YView, 0 ) + 240 + argument1
+	                    if y+(argument1*j) > global.viewY - argument1 and y+(argument1*j) < global.viewY + 240 + argument1
 	                    //
 	                    {
 	                        if j = image_yscale - 1

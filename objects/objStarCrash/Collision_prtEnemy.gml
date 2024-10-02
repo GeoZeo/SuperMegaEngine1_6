@@ -1,3 +1,5 @@
+if !other.projCanTouch return false;
+
 with other {
     if reflectProjectiles == false && damage[other.object_index] != 0
     && !(reflectProjectilesLeft == true && sprite_get_xcenter_object(other.id) < sprite_get_xcenter())

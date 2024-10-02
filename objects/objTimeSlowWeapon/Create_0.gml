@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "TIME SLOW";
+wpnName = "TIME SLOW";
 abbrev = "T.SLOW";
 consumption = 7;
 maxshots = 1;

@@ -1,10 +1,11 @@
 //Changed to a Begin Step event to fix an issue where MM would fire a charge shot/needle the moment the boss door closes.
-if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XView, 0 ) && x <= __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )-1
-&& y >= __view_get( e__VW.YView, 0 ) && y <= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )-1 && !insideViewAny_Spr(objArenaStartingPoint) && (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
-{
+if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= global.viewX+global.viewWidth-1
+&& y >= global.viewY && y <= global.viewY+global.viewHeight-1 && !insideViewAny_Spr(objArenaStartingPoint) && (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
+{	
 	var _groundChecked = prtPlayer.ground || !checkForGround;
 	
-	if (myBoss > -1 and (bossID > -1 and bossID < array_length(global.bossDefeated) and !global.bossDefeated[bossID])) || (myBoss > -1 and (bossPersistent or bossIsClone))
+	if ((myBoss > -1 and (bossID > -1 and bossID < array_length_1d(global.bossDefeated) and !global.bossDefeated[bossID])) || (myBoss > -1 and (bossPersistent or bossIsClone)))
+	&& !(room == cfgInitialStage && global.initialStageClear) //Comment this line out if you want the initial stage boss to be refightable
 	{
 		if bossTimer < bossTime && _groundChecked
 		{
@@ -27,6 +28,9 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			
 			if !prtPlayer.locked
 				playerLockMovement();
+				
+			with objPauseMenu instance_destroy();
+			stopSFX(sfxPause);
 				
 			stopSFX(global.bgm);
 			
@@ -80,13 +84,13 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 			        healthBarTimer = 0;
 			    }
         
-			    if global.bossHealth >= 28
+			    if global.bossHealth >= myBoss.healthpointsStart
 			    {
-			        global.bossHealth = 28;
+			        global.bossHealth = myBoss.healthpointsStart;
 			        stopSFX(sfxEnergyRestore);
 			        playerFreeMovement();
 			        myBoss.startFight = true;
-			        myBoss.healthpoints = 28;
+			        myBoss.healthpoints = myBoss.healthpointsStart;
 			        fillingHealthBar = false;
 			    }
 			}
@@ -108,6 +112,9 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= __view_get( e__VW.XVi
 					if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
 						playerLockMovement(true);
 				}
+				
+				with objPauseMenu instance_destroy();
+				stopSFX(sfxPause);
 			
 				stopSFX(global.bgm);
 				

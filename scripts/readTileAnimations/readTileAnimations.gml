@@ -48,7 +48,7 @@ function readTileAnimations() {
 	}
 
 	var _layers = layer_get_all();
-	var _numLayers = array_length(_layers);
+	var _numLayers = array_length_1d(_layers);
 	
 	for(var i = 0; i < _numLayers; i++) {
 		

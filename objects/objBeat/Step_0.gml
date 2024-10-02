@@ -8,9 +8,13 @@ if !global.frozen
 		{
 			image_xscale = target.image_xscale;
 			tired = false;
+			transportTimer = 0;
 			
 			if insideViewObj_Spr(target)
 			{
+				instance_activate_object(target);
+				target_found = false;
+				
 				if objBeatEquip.count < objBeatEquip.maxUnits
 				{
 					objBeatEquip.count++;
@@ -28,11 +32,10 @@ if !global.frozen
 				if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
 				if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
 				target.visible = true;
-				yspeed = -normalSpd;
-				
+				yspeed = -normalSpd;	
 			}
 			
-			if bbox_top >= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 )
+			if bbox_top >= global.viewY + global.viewHeight
 			&& transportTimer < transportTime
 			{
 				instance_activate_object(target);
@@ -50,11 +53,11 @@ if !global.frozen
 					target.yspeed = -pullSpd;
 				}
 				
-				target.y = round((__view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ))+target.sprite_yoffset);
+				target.y = round((global.viewY + global.viewHeight)+target.sprite_yoffset);
 				
 				var _beatPriority = false;
 				with target
-					if !place_free(x, y-(abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1))
+					if !place_free(x, y-(abs(bbox_top-round(global.viewY+global.viewHeight))+1))
 						_beatPriority = true;
 				
 				if !_beatPriority
@@ -88,6 +91,14 @@ if !global.frozen
 				
 				with target escapeWall(false, false, true, true);
 			}
+			
+			if !carrying && !instance_exists(prtPlayer) && !instance_exists(objMegamanDeathTimer)
+			{
+				instance_activate_object(prtPlayer);
+				with prtPlayer playerPause();
+				with prtPlayer playerSwitchWeapons();
+				instance_deactivate_object(prtPlayer);
+			}
 		}
 		else if carrying && transportTimer < transportTime
 		{
@@ -105,15 +116,11 @@ if !global.frozen
 					{
 						if _move
 							global.yspeed = -pullSpd;
-						else
-							global.yspeed = 0;
 					}
 					else
 					{
 						if _move
 							target.yspeed = -pullSpd;
-						else
-							target.yspeed = 0;
 					}
 				}
 				else
@@ -153,10 +160,6 @@ if !global.frozen
 									}
 								}
 							}
-							else
-							{
-								global.xspeed = 0;
-							}
 						}
 						else
 						{
@@ -170,10 +173,6 @@ if !global.frozen
 										target.xspeed = -transportSpd;
 									}
 								}
-							}
-							else
-							{
-								target.xspeed = 0;
 							}
 						}
 						
@@ -213,10 +212,6 @@ if !global.frozen
 									}
 								}
 							}
-							else
-							{
-								global.xspeed = 0;
-							}
 						}
 						else
 						{
@@ -230,10 +225,6 @@ if !global.frozen
 										target.xspeed = transportSpd;
 									}
 								}
-							}
-							else
-							{
-								target.xspeed = 0;
 							}
 						}
 						
@@ -280,7 +271,6 @@ if !global.frozen
 							}
 							else
 							{
-								global.xspeed = 0;
 								target.x = round(target.x);
 							}
 						}
@@ -322,7 +312,6 @@ if !global.frozen
 							}
 							else
 							{
-								target.xspeed = 0;
 								target.x = round(target.x);
 							}
 						}
@@ -362,10 +351,6 @@ if !global.frozen
 									}
 								}
 							}
-							else
-							{
-								global.yspeed = 0;
-							}
 						}
 						else
 						{
@@ -383,10 +368,6 @@ if !global.frozen
 										target.yspeed = -transportSpd;
 									}
 								}
-							}
-							else
-							{
-								target.yspeed = 0;
 							}
 						}
 						
@@ -423,10 +404,6 @@ if !global.frozen
 									}
 								}
 							}
-							else
-							{
-								global.yspeed = 0;
-							}
 						}
 						else
 						{
@@ -440,10 +417,6 @@ if !global.frozen
 										target.yspeed = transportSpd;
 									}
 								}
-							}
-							else
-							{
-								target.yspeed = 0;
 							}
 						}
 						
@@ -490,7 +463,6 @@ if !global.frozen
 							}
 							else
 							{
-								global.yspeed = 0;
 								target.y = round(target.y);
 							}
 						}
@@ -522,7 +494,6 @@ if !global.frozen
 							}
 							else
 							{
-								target.yspeed = 0;
 								target.y = round(target.y);
 							}
 						}
@@ -632,23 +603,9 @@ if !global.frozen
 			flapCounter++;
 			if flapCounter >= flapCount
 			{
-				image_index = 3;
+				image_index++;
 				flapCounter = 0;
 			}
-		}
-		if image_index >= 4 || (image_index >= 3 and flapCounter > 0)
-		{
-			image_index = 0;
-		}
-	}
-	else
-	{
-		if image_index < 4
-		{
-			if image_index == 3
-				image_index += 3;
-			else
-				image_index += 4;
 		}
 	}
 }
@@ -656,4 +613,22 @@ else
 {
 	image_speed = 0;
 }
+if !tired
+{
+	if image_index >= 4 || (image_index >= 3 and flapCounter > 0)
+	{
+		image_index = 0;
+	}
+}
+else
+{
+	if image_index < 4
+	{
+		if image_index == 3
+			image_index += 3;
+		else
+			image_index += 4;
+	}
+}
+print(flapCounter);
 

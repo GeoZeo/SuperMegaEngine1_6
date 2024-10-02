@@ -6,7 +6,7 @@ function save_achievements() {
 	//Achievements
 	for (var i = 0; object_exists(i); i++) {
 	    if object_get_parent(i) == prtAchievement {
-	        ds_map_add(map, i.name, i.completed);
+	        ds_map_add(map, i.achName, i.completed);
 	    }
 	}
 

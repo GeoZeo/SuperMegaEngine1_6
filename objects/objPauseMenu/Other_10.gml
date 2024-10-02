@@ -22,17 +22,21 @@ if global.keyDownPressed {
         else if option == weapons_per_col-1 //The bottom of the left column
         {
             option = global.totalWeapons; //First item
+			global.weapon = oldWeapon;
+			with prtPlayer event_user(0);
         }
         else //The bottom of the right column
         {
             option = global.totalWeapons+array_length_1d(global.items)-1; //Last item
+			global.weapon = oldWeapon;
+			with prtPlayer event_user(0);
         }
             
-        if option < global.totalWeapons
-        {
-            global.weapon = option;
-            with prtPlayer event_user(0);
-        }
+        //if option < global.totalWeapons
+        //{
+        //    global.weapon = option;
+        //    with prtPlayer event_user(0);
+        //}
         
         loops++;
     }
@@ -55,25 +59,33 @@ else if global.keyUpPressed {
         else if option == weapons_per_col //The top weapon of the right column
         {
             option = global.totalWeapons+array_length_1d(global.items)-1; //Last item
+			global.weapon = oldWeapon;
+			with prtPlayer event_user(0);
         }
         else if option == 0 //The top weapon of the left column
         {
             option = global.totalWeapons; //First item
+			global.weapon = oldWeapon;
+			with prtPlayer event_user(0);
         }
         else
         {
             option -= 1;
-            if option < 0
+            if option < 0 {
                 option = global.totalWeapons;
-            else if option > global.totalWeapons+array_length_1d(global.items)-1
+				global.weapon = oldWeapon;
+				with prtPlayer event_user(0);
+			}
+            else if option > global.totalWeapons+array_length_1d(global.items)-1 {
                 option = 0;
+			}
         }
             
-        if option < global.totalWeapons
-        {
-            global.weapon = option;
-            with prtPlayer event_user(0);
-        }
+        //if option < global.totalWeapons
+        //{
+        //    global.weapon = option;
+        //    with prtPlayer event_user(0);
+        //}
         
         loops++;
     }
@@ -109,13 +121,17 @@ if global.keyLeftPressed || global.keyRightPressed
             if option > global.totalWeapons+array_length_1d(global.items)-1
                 option = global.totalWeapons; //First item
         }
+		global.weapon = oldWeapon;
+		with prtPlayer event_user(0);
 
             
         playSFX(sfxMenuMove);
     }
     
     
-    while (option < global.totalWeapons && global.weapons[option].unlocked == false) || option > global.totalWeapons+array_length_1d(global.items)-1  || (option >= global.totalWeapons && (!global.items[option-global.totalWeapons].usable || !global.items[option-global.totalWeapons].showPause || (global.items[option-global.totalWeapons].count == 0 and !global.items[option-global.totalWeapons].showZero)))
+    while (option < global.totalWeapons && global.weapons[option].unlocked == false)
+	|| option > global.totalWeapons+array_length_1d(global.items)-1
+	|| (option >= global.totalWeapons && (!global.items[option-global.totalWeapons].usable || !global.items[option-global.totalWeapons].showPause || (global.items[option-global.totalWeapons].count == 0 and !global.items[option-global.totalWeapons].showZero)))
     {
         if option == weapons_per_col
             option = global.totalWeapons-1;
@@ -126,21 +142,37 @@ if global.keyLeftPressed || global.keyRightPressed
             else
                 option = global.totalWeapons-1;
         }
-        else if option > global.totalWeapons+array_length_1d(global.items)-1
+        else if option > global.totalWeapons+array_length_1d(global.items)-1 {
             option = global.totalWeapons; //First item
+			global.weapon = oldWeapon;
+			with prtPlayer event_user(0);
+		}
         else if global.keyLeftPressed {
-            if option == global.totalWeapons
+            if option == global.totalWeapons {
                 option = global.totalWeapons+array_length_1d(global.items)-1
-            else
+				global.weapon = oldWeapon;
+				with prtPlayer event_user(0);
+			}
+            else {
                 option -= 1;
+				if option >= global.totalWeapons || option <= global.totalWeapons+array_length_1d(global.items)-1 {
+					global.weapon = oldWeapon;
+					with prtPlayer event_user(0);
+				}
+			}
         }
-        else if global.keyRightPressed   
+        else if global.keyRightPressed {
             option += 1;
+			if option >= global.totalWeapons || option <= global.totalWeapons+array_length_1d(global.items)-1 {
+				global.weapon = oldWeapon;
+				with prtPlayer event_user(0);
+			}
+		}
     }
     
-    if option < global.totalWeapons {
-        global.weapon = option;
-        with prtPlayer event_user(0);
-    }
+    //if option < global.totalWeapons {
+    //    global.weapon = option;
+    //    with prtPlayer event_user(0);
+    //}
 }
 

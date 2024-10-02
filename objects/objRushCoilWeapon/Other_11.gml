@@ -95,6 +95,6 @@ if instance_number(objRushCoil) < 1 {
     prtPlayer.isShoot = false;
 }
 else {
-    with objMegaBusterWeapon event_user(1);
+    with global.defaultWeapon event_user(1);
 }
 

@@ -7,7 +7,7 @@ function playerCollision() {
 	var mySolid = instance_place(x, y+global.yspeed, objSolid);
 	if mySolid >= 0 && global.yspeed > 0 && (pltSpeedY >= 0 or place_free(x, y+pltSpeedY)) 
 	{
-	    y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+	    y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 	    ground = true;
 		if !place_meeting(x, y-1, objBossDoorH)
 			global.yspeed = 0;
@@ -47,7 +47,6 @@ function playerCollision() {
 	if mySolid >= 0 && global.yspeed < 0
 	{
 		y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
-		if climbing { y -= climbSpeed; y = floor(y); }
     
 	    //For some reason, the code above would work correctly half the time, but clip MM inside the ceiling the other half
 	    //This while-loop fixes the issue by forcing MM out of the ceiling
@@ -67,7 +66,7 @@ function playerCollision() {
 	{
 	    if !place_meeting(x, y, tpsld)
 	    {
-	        y = tpsld.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+	        y = tpsld.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 	        ground = true;
 	        global.yspeed = 0;
         

@@ -14,7 +14,21 @@ else if global.keyDownPressed || global.keySelectPressed {
     }
     playSFX(sfxMenuMove);
 }
-else if global.keyPausePressed || global.keyJumpPressed || global.keyShootPressed {
+if global.keyShootPressed {
+	switch menu[selected] {
+        case "RETURN TO TITLE":
+			var ID = instance_create(0, 0, objFadeout);
+			ID.type = "room";
+            ID.myRoom = rmTitleScreen;
+			playSFX(sfxMenuSelect);
+			break;
+        default:
+            selected = num_menu_items - 1;
+			playSFX(sfxMenuMove);
+			break;
+    }
+}
+else if global.keyPausePressed || global.keyJumpPressed {
     playSFX(sfxMenuSelect);            
     var ID = instance_create(0, 0, objFadeout);
     ID.type = "room";
@@ -47,8 +61,8 @@ else if global.keyPausePressed || global.keyJumpPressed || global.keyShootPresse
         case "GAMEPAD CONFIG":
             ID.myRoom = rmJoyConfig;
         break;
-        case "BACK":
-            ID.myRoom = rmDisclaimer;
+        case "RETURN TO TITLE":
+            ID.myRoom = rmTitleScreen;
         break;
         default:
             ID.myRoom = room;

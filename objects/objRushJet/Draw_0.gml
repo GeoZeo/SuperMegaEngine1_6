@@ -4,7 +4,7 @@ if teleporting == false && teleportingUp == false
 }
 else if teleporting == true
 {
-    if round(__view_get( e__VW.YView, 0 )-16+teleportY) >= y && shouldLand == true
+    if round(global.viewY-16+teleportY) >= y && shouldLand == true
     {
         if teleportTimer == 0
             playSFX(sfxTeleportIn);
@@ -36,17 +36,17 @@ else if teleporting == true
         if global.frozen == false
             teleportTimer += 1;
     }
-    else if round(__view_get( e__VW.YView, 0 )-16+teleportY) >= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )
+    else if round(global.viewY-16+teleportY) >= global.viewY+global.viewHeight
     {
 		//Teleporting downwards
-        draw_sprite_ext(sprite_index, image_index, round(x), round(__view_get( e__VW.YView, 0 )-16+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
+        draw_sprite_ext(sprite_index, image_index, round(x), round(global.viewY-16+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
 		
         instance_destroy();
     }
     else
     {
         //Teleporting downwards
-        draw_sprite_ext(sprite_index, image_index, round(x), round(__view_get( e__VW.YView, 0 )-16+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
+        draw_sprite_ext(sprite_index, image_index, round(x), round(global.viewY-16+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
         if !prtPlayer.ground && !place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, objSolid)
 		&& (!place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid) or instance_place(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid).dead){
             y = round(sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed);
@@ -148,7 +148,7 @@ else if teleportingUp == true
             teleportY -= currentTeleportSpeed;
 		}
         
-        if round(y+16+teleportY) <= __view_get( e__VW.YView, 0 ) || round(y+16+teleportY) <= 0
+        if round(y+16+teleportY) <= global.viewY || round(y+16+teleportY) <= 0
             instance_destroy();
     }
 }

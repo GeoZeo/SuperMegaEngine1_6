@@ -17,10 +17,12 @@ with objTeleport {
 		if other.control.itemToSpawn > -1 {
 			if other.control.bossSpawnItem {
 				var inst = instance_create(other.x - 8, other.y - 8, other.control.itemToSpawn);
+				inst.targetable = false;
 				inst.alarm[0] = room_speed * 9999;
 			}
 			else {
 				var inst = instance_create(other.control.itemX, other.control.itemY, other.control.itemToSpawn);
+				inst.targetable = false;
 			}
 		}
         global.bossRushDefeated[other.bossID] = true;
@@ -52,6 +54,7 @@ with objTeleport {
 if bossRush {
 	if control.bossSpawnItem && control.itemToSpawn > -1 {
 		var inst = instance_create(x - 8, y - 8, control.itemToSpawn);
+		inst.targetable = false;
         inst.alarm[0] = 105 * 2;
 		inst.teleport = true;
 		inst.toX = control.toX;
@@ -70,8 +73,10 @@ if bossRush {
 			alarm[2] = 180;
 		}
 		
-		if control.itemToSpawn > -1
+		if control.itemToSpawn > -1 {
 			var inst = instance_create(control.itemX, control.itemY, control.itemToSpawn);
+			inst.targetable = false;
+		}
 	}
 	global.bossRushDefeated[other.bossID] = true;
     if numRushBossesDefeated() == 8 {
@@ -130,6 +135,7 @@ if !control.endLevel {
 	if warp {
 		if control.bossSpawnItem && control.itemToSpawn > -1 {
 			inst = instance_create(x - 8, y - 8, control.itemToSpawn);
+			inst.targetable = false;
 	        inst.alarm[0] = 105 * 2;
 			inst.teleport = true;
 			inst.toX = control.toX;
@@ -166,8 +172,10 @@ if !control.endLevel {
 				alarm[2] = 180;
 			}
 		
-			if control.itemToSpawn > -1
+			if control.itemToSpawn > -1 {
 				inst = instance_create(control.itemX, control.itemY, control.itemToSpawn);
+				inst.targetable = false;
+			}
 		}
 	}
 	else {
@@ -175,10 +183,12 @@ if !control.endLevel {
 		if control.itemToSpawn > -1 {
 			if control.bossSpawnItem {
 				inst = instance_create(x - 8, y - 8, control.itemToSpawn);
+				inst.targetable = false;
 				inst.alarm[0] = room_speed * 9999;
 			}
 			else {
 				inst = instance_create(other.control.itemX, other.control.itemY, other.control.itemToSpawn);
+				inst.targetable = false;
 			}
 		}
 		
@@ -239,5 +249,7 @@ currentTeleportSpeed = 0;
 update_rate = 1;
 
 with prtPlayer canPause = false;
+with objPauseMenu instance_destroy();
+stopSFX(sfxPause);
 with prtPlayerProjectile instance_destroy();
 

@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "Charge Kick";
+wpnName = "Charge Kick";
 abbrev = "C.KICK";
 consumption = 1;
 maxshots = 0;

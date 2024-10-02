@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "SILVER TOMAHAWK";
+wpnName = "SILVER TOMAHAWK";
 abbrev = "SILVER.T";
 consumption = 1;
 maxshots = 2;

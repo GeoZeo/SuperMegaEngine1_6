@@ -16,7 +16,7 @@ if using {
         firstCheck = true;
     }
     else {
-        loopSFX(sfxEnergyRestore);
+        if playRestoreSound { loopSFX(sfxEnergyRestore); playRestoreSound = false; }
         if timer >= 3 {
             var proceed = false;
             firstCheck = false;
@@ -39,6 +39,7 @@ if using {
                 useOnIndex = 0;
                 count--;
                 stopSFX(sfxEnergyRestore);
+				playRestoreSound = true;
                 
                 firstCheck = true;
             }

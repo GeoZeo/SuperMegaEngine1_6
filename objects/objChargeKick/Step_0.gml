@@ -1,4 +1,4 @@
-if !global.frozen {
+if !global.frozen || instance_exists(objSectionSwitcher) {
 	image_speed = img_speed;
 }
 else {

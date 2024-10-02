@@ -2,6 +2,9 @@ if halfDoor {
     sprite_index = sprBossHalfDoorH;
 }
 if canOpen == true {
+	if instance_exists(prtPlayer) {
+		player_y = prtPlayer.y;
+	}
 	if mySolid > -1 {
         if dir == -1 {
             mySolid.y = y+16;
@@ -9,6 +12,10 @@ if canOpen == true {
         else {
             mySolid.y = y;
         }
+		if dir == -1 && (halfDoor and player_y > x+16)
+			mySolid.y = y;
+		else if dir == 1 && (halfDoor and player_y < x)
+			mySolid.y = y+16;
     }
     if instance_exists(prtPlayer) {
         //Colliding with the player. We're checking y+7 because in the NES games, the player needs to be slightly inside the door
@@ -22,6 +29,8 @@ if canOpen == true {
             playSFX(sfxDoor);
 			instance_activate_object(mySolid);
             with mySolid instance_destroy();
+			with objPauseMenu instance_destroy();
+			stopSFX(sfxPause);
             
             //Switch sections
             if dir == -1 //Switch to the bottom

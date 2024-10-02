@@ -33,7 +33,7 @@ function placeTileAnimations() {
 	}
 
 	var _layers = layer_get_all();
-	var _numLayers = array_length(_layers);
+	var _numLayers = array_length_1d(_layers);
 	
 	for(var i = 0; i < _numLayers; i++) {
 		
@@ -82,7 +82,7 @@ function placeTileAnimations() {
 										var _layerToUse = -1;
 										var _tilemapToUse = -1;
 										var _layersAtDepth = layer_get_id_at_depth(key);
-										var _numLayersAtDepth = array_length(_layersAtDepth);
+										var _numLayersAtDepth = array_length_1d(_layersAtDepth);
 									
 										for(var l = 0; l < _numLayersAtDepth; l++){
 											var _lid = _layersAtDepth[l];

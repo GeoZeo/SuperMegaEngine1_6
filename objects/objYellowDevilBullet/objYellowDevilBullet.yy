@@ -4,6 +4,7 @@
   "name": "objYellowDevilBullet",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -31,8 +32,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprMM2Bullet",
-    "path": "sprites/sprMM2Bullet/sprMM2Bullet.yy",
+    "name": "sprMM1MetBullet",
+    "path": "sprites/sprMM1MetBullet/sprMM1MetBullet.yy",
   },
   "spriteMaskId": null,
   "visible": true,

@@ -1,5 +1,5 @@
 event_inherited();
 
-name = "ENERGY BALANCED";
+achName = "ENERGY BALANCED";
 description = "FIND THE ENERGY BALANCER WITHOUT BUYING IT";
 

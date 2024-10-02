@@ -1,15 +1,19 @@
 /// @description  Attack
-randomize();
 
 image_xscale = 4;
 image_yscale = 4;
+
 do {
-    x = random(__view_get( e__VW.WView, 0 ) - 96) + __view_get( e__VW.XView, 0 ) + 48;
-    y = random(__view_get( e__VW.HView, 0 ) - 96) + __view_get( e__VW.YView, 0 ) + 48;
+	randomize();
+    x = random(global.viewWidth - 96) + global.viewX + 48;
+	randomize();
+    y = random(global.viewHeight - 96) + global.viewY + 48;
 } until(!place_meeting(x, y, prtPlayer));
 do {
-    centerX = random(__view_get( e__VW.WView, 0 ) - maxRadius * 2) + __view_get( e__VW.XView, 0 ) + maxRadius;
-    centerY = random(__view_get( e__VW.HView, 0 ) - maxRadius * 2) + __view_get( e__VW.YView, 0 ) + maxRadius;
+	randomize();
+    centerX = random(global.viewWidth - maxRadius * 2) + global.viewX + maxRadius;
+    randomize();
+	centerY = random(global.viewHeight - maxRadius * 2) + global.viewY + maxRadius;
     image_xscale *= 0.9;
     image_yscale *= 0.9;
 } until(!place_meeting(centerX, centerY, prtPlayer));

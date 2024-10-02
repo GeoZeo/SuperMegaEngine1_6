@@ -51,7 +51,7 @@ for(i = 0; i < 8; i++) {
 
 ds_queue_destroy(words);
 
-if numBossesDefeated() < 8 {
+if !drawLogo {
     //Draw MM's head in the middle
     if global.stageSelectFollow {
         idx = option;
@@ -66,14 +66,14 @@ if numBossesDefeated() < 8 {
 }
 else {
     //Draw Dr. Wily's logo
-     draw_sprite(sprStageSelectIcons, 8, xx[8]+8, yy[8]+8);
-    
+	draw_sprite(sprStageSelectIcons, 8, xx[8]+8, yy[8]+8);
+	
 }
 
 if global.enableScrews && showShop >= 1 {
     draw_set_halign(fa_center);
     draw_set_valign(fa_top);
-    var posx = __view_get( e__VW.WView, 0 ) / 2;
+    var posx = global.viewWidth / 2;
     var posy = yy[8] + 52;
     if global.GP == -1 {
         draw_text(posx, posy, string_hash_to_newline("SHIFT] SHOP"));

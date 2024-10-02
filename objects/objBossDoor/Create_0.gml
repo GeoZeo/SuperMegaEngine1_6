@@ -9,6 +9,8 @@ canOpen = true;
 openImgSpeed = 0.15;
 image_speed = 0;
 
+player_x = 0;
+
 rushExit = false;
 
 alarm[0] = 1;
@@ -17,5 +19,5 @@ halfDoor = false;   //Whether to use just half the door
 
 mySolid = -1;
 
-instance_create(x, floor(y / __view_get( e__VW.HView, 0 )) * __view_get( e__VW.HView, 0 ), objSectionBorderVertical);
+instance_create(x, floor(y / global.viewHeight) * global.viewHeight, objSectionBorderVertical);
 

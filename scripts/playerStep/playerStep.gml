@@ -256,15 +256,15 @@ function playerStep() {
 					else if global.xspeed < walkSpeed
 					{
 						//Ice physics
-	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
+	                    if !place_meeting(x+1, y, objSolid) && !place_meeting(x+1, y, prtMovingPlatformSolid)
 						{
 							global.xspeed += iceAccWalk;
 							if global.xspeed >= walkSpeed
 								global.xspeed = walkSpeed;
 						}
-	                    else if place_meeting(x-1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    else if place_meeting(x+1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
 	                    {
-	                        if instance_place(x-1, y, prtMovingPlatformSolid).dead == true
+	                        if instance_place(x+1, y, prtMovingPlatformSolid).dead == true
 	                        {
 								global.xspeed += iceAccWalk;
 								if global.xspeed >= walkSpeed
@@ -349,7 +349,7 @@ function playerStep() {
 	                }
 	            }
 	        }
-	        else if global.keyRight && !global.keyLeft && !place_meeting(x+1 + (prevXScale == -1), y, objSolid) && canWalk //For some reason, while on the left of the wall and facing left, then jumping and holding right would clip you through it. Prevented by checking if the player was facing left on the previous frame, and if so, disallow Mega Man to move if 2 pixels away from the wall instead of 1
+	        else if global.keyRight && !global.keyLeft && !place_meeting(x+1 + (prevXScale == -1), y, objSolid) && canWalk //For some reason, being on the left of the wall and facing left, then jumping and holding right would clip you through it. Prevented by checking if the player was facing left on the previous frame, and if so, disallow Mega Man to move if 2 pixels away from the wall instead of 1
 	        {
 	            if !place_meeting(x+1 + (prevXScale == -1), y, prtMovingPlatformSolid)
 	            {
@@ -521,6 +521,14 @@ function playerStep() {
 
 	//Allow movement
 	move(global.xspeed, global.yspeed);
+	
+	
+	//This (temporarily) fixes a glitch where MM's x-position is rounded/shuffled awkwardly when moving in integer steps while his x-position has a remainder of exactly 0.5
+	//Seems to occur in the official games (MM9 & 10, at least) though, so comment this out if you wish
+	if x mod 1 == 0.5 && (global.xspeed + pltSpeedX) mod 1 == 0
+	{
+		x += 0.000005 * sign(image_xscale);
+	}
 
 
 	//Avoids free movement on screen above
@@ -547,33 +555,6 @@ function playerStep() {
 			
 			canHit = false;
 			
-			if isStun
-			{
-				stunTimer = 0;
-				isStun = false;
-				canMove = true;
-				canWalk = true;
-			}
-			
-			if isSlide
-			{
-				slideTimer = 0;
-				isSlide = false;
-		        canMove = true;
-				canWalk = true;
-			}
-			
-			if climbing
-			{
-				climbing = false;
-				canMove = true;
-			}
-			
-			canSpriteChange = false;
-			mask_index = mskMegaman;
-			sprite_index = spriteJump;
-			image_speed = speedJump;
-			
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
 				if objBeatEquip.count < 1 {
 					global._health = 0;
@@ -582,7 +563,7 @@ function playerStep() {
 				else if global._health > 0 && !dead {
 					objBeatEquip.count--;
 					
-					var _ceil = abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1;
+					var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
 					var _attempts = 0;
 					var _old_x = x;
 					while !place_free(x, y-_ceil) && _attempts < 500
@@ -610,21 +591,47 @@ function playerStep() {
 					}
 					if !place_free(x, y-_ceil)
 						x = _old_x;
-						
+					
 					global.xspeed = 0;
-					if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+					if y > round((global.viewY+global.viewHeight)+30)
 					{
-						y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+						y = round((global.viewY+global.viewHeight)+30);
 						global.yspeed = 0;
-						drawWeaponIconTimer = -1;
-						drawWeaponIcon = false;
-						instance_deactivate_object(self);
+						
+						if isStun
+						{
+							stunTimer = 0;
+							isStun = false;
+							canMove = true;
+							canWalk = true;
+						}
+			
+						if isSlide
+						{
+							slideTimer = 0;
+							isSlide = false;
+					        canMove = true;
+							canWalk = true;
+						}
+			
+						if climbing
+						{
+							climbing = false;
+							canMove = true;
+						}
+			
+						canSpriteChange = false;
+						mask_index = mskMegaman;
+						sprite_index = spriteJump;
+						image_speed = speedJump;
+						
+						instance_deactivate_object(self.id);
 					}
 					canMove = false;
 					
 					if !instance_exists(objBeat)
 					{
-						var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
+						var myBeat = instance_create(x, round(global.viewY-3), objBeat);
 						with myBeat target = other.id;
 						with myBeat event_user(0);
 					}
@@ -649,12 +656,38 @@ function playerStep() {
 			}
 			else if !objBeat.carrying {
 				global.xspeed = 0;
-				if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+				if y > round((global.viewY+global.viewHeight)+30)
 				{
-					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+					y = round((global.viewY+global.viewHeight)+30);
 					global.yspeed = 0;
-					drawWeaponIconTimer = -1;
-					drawWeaponIcon = false;
+					
+					if isStun
+					{
+						stunTimer = 0;
+						isStun = false;
+						canMove = true;
+						canWalk = true;
+					}
+			
+					if isSlide
+					{
+						slideTimer = 0;
+						isSlide = false;
+					    canMove = true;
+						canWalk = true;
+					}
+			
+					if climbing
+					{
+						climbing = false;
+						canMove = true;
+					}
+			
+					canSpriteChange = false;
+					mask_index = mskMegaman;
+					sprite_index = spriteJump;
+					image_speed = speedJump;
+						
 					instance_deactivate_object(self.id);
 				}
 				canMove = false;
@@ -676,33 +709,6 @@ function playerStep() {
 			
 			canHit = false;
 			
-			if isStun
-			{
-				stunTimer = 0;
-				isStun = false;
-				canMove = true;
-				canWalk = true;
-			}
-			
-			if isSlide
-			{
-				slideTimer = 0;
-				isSlide = false;
-		        canMove = true;
-				canWalk = true;
-			}
-			
-			if climbing
-			{
-				climbing = false;
-				canMove = true;
-			}
-			
-			canSpriteChange = false;
-			mask_index = mskMegaman;
-			sprite_index = spriteJump;
-			image_speed = speedJump;
-			
 			if objBeatEquip.count < 1 {
 				global._health = 0;
 				deathByPit = true;
@@ -710,7 +716,7 @@ function playerStep() {
 			else if global._health > 0 && !dead && !endBeatCheck {
 				objBeatEquip.count--;
 				
-				var _ceil = abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1;
+				var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
 				var _attempts = 0;
 				var _old_x = x;
 				while !place_free(x, y-_ceil) && _attempts < 500
@@ -740,19 +746,45 @@ function playerStep() {
 					x = _old_x;
 				
 				global.xspeed = 0;
-				if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+				if y > round((global.viewY+global.viewHeight)+30)
 				{
-					y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+					y = round((global.viewY+global.viewHeight)+30);
 					global.yspeed = 0;
-					drawWeaponIconTimer = -1;
-					drawWeaponIcon = false;
+					
+					if isStun
+					{
+						stunTimer = 0;
+						isStun = false;
+						canMove = true;
+						canWalk = true;
+					}
+			
+					if isSlide
+					{
+						slideTimer = 0;
+						isSlide = false;
+				        canMove = true;
+						canWalk = true;
+					}
+			
+					if climbing
+					{
+						climbing = false;
+						canMove = true;
+					}
+			
+					canSpriteChange = false;
+					mask_index = mskMegaman;
+					sprite_index = spriteJump;
+					image_speed = speedJump;
+					
 					instance_deactivate_object(self.id);
 				}
 				canMove = false;
 				
 				if !instance_exists(objBeat)
 				{
-					var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
+					var myBeat = instance_create(x, round(global.viewY-3), objBeat);
 					with myBeat target = other;
 					with myBeat event_user(0);
 				}
@@ -776,12 +808,38 @@ function playerStep() {
 		}
 		else if !objBeat.carrying {
 			global.xspeed = 0;
-			if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+			if y > round((global.viewY+global.viewHeight)+30)
 			{
-				y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+				y = round((global.viewY+global.viewHeight)+30);
 				global.yspeed = 0;
-				drawWeaponIconTimer = -1;
-				drawWeaponIcon = false;
+				
+				if isStun
+				{
+					stunTimer = 0;
+					isStun = false;
+					canMove = true;
+					canWalk = true;
+				}
+			
+				if isSlide
+				{
+					slideTimer = 0;
+					isSlide = false;
+				    canMove = true;
+					canWalk = true;
+				}
+			
+				if climbing
+				{
+					climbing = false;
+					canMove = true;
+				}
+			
+				canSpriteChange = false;
+				mask_index = mskMegaman;
+				sprite_index = spriteJump;
+				image_speed = speedJump;
+					
 				instance_deactivate_object(self.id);
 			}
 			canMove = false;
@@ -1195,19 +1253,19 @@ function playerStep() {
 				
 				if position_meeting(x, bbox_bottom+climbSpeed, objSolid) {
 					var mySolid = instance_position(x, bbox_bottom+climbSpeed, objSolid);
-					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 				}
 				else if position_meeting(x, bbox_bottom+climbSpeed, objTopSolid) {
 					var mySolid = instance_position(x, bbox_bottom+climbSpeed, objTopSolid);
-					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 				}
 				else if position_meeting(x, bbox_bottom+climbSpeed, prtMovingPlatformSolid) {
 					var mySolid = instance_position(x, bbox_bottom+climbSpeed, prtMovingPlatformSolid);
-					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+					y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 				}
 				else if position_meeting(x, bbox_bottom+climbSpeed, prtMovingPlatformJumpthrough) {
 					var mySolid = instance_position(x, bbox_bottom+climbSpeed, prtMovingPlatformJumpthrough);
-					y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+					y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 				}
 				
 	            ground = true;  //To avoid "falling" after climbing (shouldn't play the landing sfx)
@@ -1240,7 +1298,7 @@ function playerStep() {
 	            var topSolidID;
 	            topSolidID = instance_place(x, y+2, objTopSolid);
 	            if topSolidID >= 0
-	                y = topSolidID.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+	                y = topSolidID.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
                 
 				canJump = true;
 	            playLandSound = false;
@@ -1414,6 +1472,31 @@ function playerStep() {
 
 	//While being hit
 	if isHit {
+		
+		//Just in case we get into a situation that results in the sprite and image speeds not matching when the hit animation is cancelled
+		if sprite_index != spriteHit {
+			
+			if sprite_index = spriteStand
+				image_speed = speedStand;
+			else if sprite_index = spriteStep
+				image_speed = speedStep;
+			else if sprite_index = spriteJump
+				image_speed = speedJump;
+			else if sprite_index = spriteWalk
+				image_speed = speedWalk;
+			else if sprite_index = spriteSlide
+				image_speed = speedSlide;
+			else if sprite_index = spriteStun
+				image_speed = speedStun;
+			else if sprite_index = spriteClimb
+				image_speed = speedClimb;
+			else if sprite_index = spriteGetup
+				image_speed = speedGetup;
+			else if sprite_index = spriteTeleport
+				image_speed = speedTeleport;
+			
+		}
+		
 	    hitTimer += 1;
 	    if hitTimer >= hitTime {
 	        isHit = false;
@@ -1422,7 +1505,7 @@ function playerStep() {
         
 	        //When sliding and there's a solid above us, we should not experience knockback
 	        //If we did, we would clip inside the ceiling above us
-	        if !locked && !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+	        if !locked && !((isSlide or isStun) && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
 	            canMove = true;
 				canWalk = true;
 	            canSpriteChange = true;
@@ -1469,19 +1552,56 @@ function playerStep() {
 			stunTimer = 0;
 			isStun = false;
 			
-	        if !locked && !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
-	            canMove = true;
-				canWalk = true;
-	            canSpriteChange = true;
-				
-				if !isSlide
+	        if !locked {
+				var mySolid = instance_place(x, y+1, objSolid);
+				if mySolid < 0
+					if place_meeting(x, y+1, prtMovingPlatformSolid) && !instance_place(x, y+1, prtMovingPlatformSolid).dead
+						mySolid = instance_place(x, y+1, prtMovingPlatformSolid);
+						
+				if mySolid >= 0 {
+					instance_deactivate_object(mySolid.id);
+					if (collision_rectangle(bbox_left+(3-(image_xscale < 0)), bbox_top-2, bbox_right-(2+(image_xscale < 0)), bbox_bottom, objSolid, false, false) >= 0
+					|| (collision_rectangle(bbox_left+(3-(image_xscale < 0)), bbox_top-2, bbox_right-(2+(image_xscale < 0)), bbox_bottom, prtMovingPlatformSolid, false, false) >= 0 and !collision_rectangle(bbox_left+(3-(image_xscale < 0)), bbox_top-2, bbox_right-(2+(image_xscale < 0)), bbox_bottom, prtMovingPlatformSolid, false, false).dead)) {
+						global._health = 0;
+						sprite_index = spriteStand;
+						image_speed = speedStand;
+					}
+					else {
+						canMove = true;
+						canWalk = true;
+			            canSpriteChange = true;
+						mask_index = mskMegaman;
+					}
+					instance_activate_object(mySolid.id);
+				}
+				else {
+					canMove = true;
+					canWalk = true;
+		            canSpriteChange = true;
 					mask_index = mskMegaman;
+				}
 	        }
-			else if locked && !(isSlide && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+			else {
 				playerLockMovement(false);
 			}
 		}
+		else
+		{
+			if !place_meeting(x, y+1, objIce)
+				global.xspeed = 0;
+		}
 	}
+	
+	
+	//Guard Power Up effect
+	if createGuardPowerUpEffect
+	{
+		if !instance_exists(objGuardPowerUpEffect)
+		{
+			instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objGuardPowerUpEffect);
+			createGuardPowerUpEffect = false;
+		}
+	}	
 	
 
 	//Dying
@@ -1489,7 +1609,6 @@ function playerStep() {
 		dead = true;
 		canPause = false;
 		invincibilityTimer = 0;
-		if !visible visible = true;
 		
 		if killTime <= 0 {
 			if !deathByPit {
@@ -1550,12 +1669,7 @@ function playerStep() {
 	}
 
 
-	//Variables on the previous frame
-	prevGround = ground;
-	prevXScale = image_xscale;
-
-
-	if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0
+	if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0 && !pushedBySpawnedSolid
 	{
 		var myPlt = instance_place(x, y, prtMovingPlatformSolid)
 		if myPlt >= 0 && !myPlt.dead && insideViewObj_Spr(myPlt)
@@ -1583,7 +1697,7 @@ function playerStep() {
 	}
 	
 	if global.yspeed == 0 && !place_meeting(x, y+2, objSolid) && (!place_meeting(x, y+2, prtMovingPlatformSolid)
-	|| instance_place(x, y+2, prtMovingPlatformSolid).dead) && movedPlatformID == -20
+	|| instance_place(x, y+2, prtMovingPlatformSolid).dead) && movedPlatformID == -20 && !pushedBySpawnedSolid
 		escapeWall(false, false, false, true);
 
 	if place_free(x, y)

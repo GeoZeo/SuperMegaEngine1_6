@@ -4,4 +4,6 @@ image_speed = 0.2;
 eyebrows_count = 0;
 playNoMusic();
 loopSFX(sfxWilyUFO);
+var fadein = instance_create(0,0, objFadeIn);
+fadein.deactivate = false;
 

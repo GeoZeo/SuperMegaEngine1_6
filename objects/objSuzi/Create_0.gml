@@ -9,8 +9,8 @@ healthpointsStart = 5;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 
-damage[objPharaohShot] = 2
-damage[objPharaohShotCharging] = 4;
+damage[objPharaohShot] = 2;
+damage[objPharaohShotCharging] = 2;
 damage[objPharaohShotCharged] = 4;
 
 damage[objStarCrash] = 5;

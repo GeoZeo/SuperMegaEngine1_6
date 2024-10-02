@@ -16,20 +16,22 @@ if global.loopEnd > -1 && global.loopStart > -1 && global.bgm > -1 {    //Loop p
 tile_layer_show(curr_back_layer);
 //curr_layer--;
 
-var _layers_back = layer_get_id_at_depth(curr_back_layer);
-var _numLayers_back = array_length(_layers_back);
+if array_length_1d(validLayers_back) > 0 {
+	var _layers_back = layer_get_id_at_depth(curr_back_layer);
+	var _numLayers_back = array_length_1d(_layers_back);
 
-for(var i = 0; i < _numLayers_back; i++) {
-	var _layer = _layers_back[i];
+	for(var i = 0; i < _numLayers_back; i++) {
+		var _layer = _layers_back[i];
 	
-	if array_contains(validLayers_back, _layer) {
+		if array_contains(validLayers_back, _layer) {
 		
-		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+			if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 		
-			var _tilemap = layer_tilemap_get_id(_layer);
+				var _tilemap = layer_tilemap_get_id(_layer);
 		
-			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
-				layer_set_visible(_layer, true);
+				if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
+					layer_set_visible(_layer, true);
+				}
 			}
 		}
 	}
@@ -39,20 +41,22 @@ if curr_back_layer < global.end_back_layer {
     curr_back_layer = global.ini_back_layer;
     for (var l = global.ini_back_layer; l >= global.end_back_layer; l--) {
 		
-		_layers_back = layer_get_id_at_depth(l);
-		_numLayers_back = array_length(_layers_back);
+		if array_length_1d(validLayers_back) > 0 {
+			var _layers_back = layer_get_id_at_depth(l);
+			var _numLayers_back = array_length_1d(_layers_back);
 
-		for(var j = 0; j < _numLayers_back; j++) {
-			var _layer = _layers_back[j];
+			for(var j = 0; j < _numLayers_back; j++) {
+				var _layer = _layers_back[j];
 			
-			if array_contains(validLayers_back, _layer) {
+				if array_contains(validLayers_back, _layer) {
 				
-				if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+					if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 				
-					var _tilemap = layer_tilemap_get_id(_layer);
+						var _tilemap = layer_tilemap_get_id(_layer);
 		
-					if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
-						layer_set_visible(_layer, false);
+						if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
+							layer_set_visible(_layer, false);
+						}
 					}
 				}
 			}
@@ -71,20 +75,22 @@ if curr_back_layer < global.end_back_layer {
 tile_layer_show(curr_front_layer);
 //curr_layer--;
 
-var _layers_front = layer_get_id_at_depth(curr_front_layer);
-var _numLayers_front = array_length(_layers_front);
+if array_length_1d(validLayers_front) > 0 {
+	var _layers_front = layer_get_id_at_depth(curr_front_layer);
+	var _numLayers_front = array_length_1d(_layers_front);
 
-for(var i = 0; i < _numLayers_front; i++) {
-	var _layer = _layers_front[i];
+	for(var i = 0; i < _numLayers_front; i++) {
+		var _layer = _layers_front[i];
 	
-	if array_contains(validLayers_front, _layer) {
+		if array_contains(validLayers_front, _layer) {
 		
-		if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+			if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 		
-			var _tilemap = layer_tilemap_get_id(_layer);
+				var _tilemap = layer_tilemap_get_id(_layer);
 		
-			if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
-				layer_set_visible(_layer, true);
+				if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
+					layer_set_visible(_layer, true);
+				}
 			}
 		}
 	}
@@ -94,20 +100,22 @@ if curr_front_layer < global.end_front_layer {
     curr_front_layer = global.ini_front_layer;
     for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
 		
-		_layers_front = layer_get_id_at_depth(l);
-		_numLayers_front = array_length(_layers_front);
+		if array_length_1d(validLayers_front) > 0 {
+			var _layers_front = layer_get_id_at_depth(l);
+			var _numLayers_front = array_length_1d(_layers_front);
 
-		for(var j = 0; j < _numLayers_front; j++) {
-			var _layer = _layers_front[j];
+			for(var j = 0; j < _numLayers_front; j++) {
+				var _layer = _layers_front[j];
 			
-			if array_contains(validLayers_front, _layer) {
+				if array_contains(validLayers_front, _layer) {
 				
-				if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
+					if(layer_tilemap_exists(_layer, layer_tilemap_get_id(_layer))) {
 				
-					var _tilemap = layer_tilemap_get_id(_layer);
+						var _tilemap = layer_tilemap_get_id(_layer);
 		
-					if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
-						layer_set_visible(_layer, false);
+						if(layer_get_element_type(_tilemap) == layerelementtype_tilemap) {
+							layer_set_visible(_layer, false);
+						}
 					}
 				}
 			}
@@ -120,15 +128,6 @@ if curr_front_layer < global.end_front_layer {
 //    for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
 //        tile_layer_hide(l);
 //    }
-//}
-
-//if instance_exists(prtPlayer) {
-//	with prtPlayer {
-//		if !climbing && image_xscale < 0
-//			other.cameraXOffset = -1;
-//		else
-//			other.cameraXOffset = 0;
-//	}
 //}
 
 //Non-debug QoL keys
@@ -206,7 +205,7 @@ if keyboard_check_pressed(vk_f10) {
 }
 
 if keyboard_check_pressed(vk_f11) {
-	var myEnemy = instance_create(prtPlayer.x+80, prtPlayer.y-48, objTelly);
+	with prtPlayer playerStun(60);
 }
 
 if keyboard_check_pressed(vk_f12) {

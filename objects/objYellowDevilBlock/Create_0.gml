@@ -12,5 +12,5 @@ row = 0;
 xpos = 0;
 ypos = 0;
 
-delay = 0.5;
+delay = 26/60;
 

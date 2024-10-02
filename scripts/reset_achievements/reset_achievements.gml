@@ -6,14 +6,14 @@ function reset_achievements() {
 	if map > -1 {
 	    //Write achievements' completion status
 	    for (var i = 0; object_exists(i); i++) {
-	        if object_get_parent(i) == prtAchievement {
+	        if object_get_parent(i) == prtAchievement && instance_exists(i) {
 	            i.completed = false;
-	            print("Reset achievement " + i.name + " to PENDING");
+	            print("Reset achievement " + i.achName + " to PENDING");
 	        }
 	    }
 	}
 	
-	ds_map_secure_save(map, "achievements.dat");
+	save_achievements();
 
 
 

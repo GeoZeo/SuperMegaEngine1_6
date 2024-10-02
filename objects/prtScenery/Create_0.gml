@@ -7,11 +7,11 @@ _front_layer = -1;
 
 var _front_depth = global.end_front_layer - 1;
 var _front_layers = layer_get_id_at_depth(_front_depth);
-var _num_front_layers = array_length(_front_layers);
+var _num_front_layers = array_length_1d(_front_layers);
 
 for (var i = 0; i < _num_front_layers; i++) {
 	var _a = layer_get_all_elements(_front_layers[i]);
-	var _num_a = array_length(_a);
+	var _num_a = array_length_1d(_a);
 	for (var j = 0; j < _num_a; j++) {
 		if layer_get_element_type(_a[j]) == layerelementtype_sprite {
 			_front_layer = _front_layers[i];
@@ -27,11 +27,11 @@ _back_layer = -1;
 
 var _back_depth = global.end_back_layer - 1;
 var _back_layers = layer_get_id_at_depth(_back_depth);
-var _num_back_layers = array_length(_back_layers);
+var _num_back_layers = array_length_1d(_back_layers);
 
 for (var i = 0; i < _num_back_layers; i++) {
 	var _a = layer_get_all_elements(_back_layers[i]);
-	var _num_a = array_length(_a);
+	var _num_a = array_length_1d(_a);
 	for (var j = 0; j < _num_a; j++) {
 		if layer_get_element_type(_a[j]) == layerelementtype_sprite {
 			_back_layer = _back_layers[i];

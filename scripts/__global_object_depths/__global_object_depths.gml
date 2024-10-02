@@ -61,6 +61,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objTimeSlow
 	array_push(global.__objectDepths, 0); // objMegamanSweat
 	array_push(global.__objectDepths, 0); // objMegamanExplosion
+	array_push(global.__objectDepths, -3); // objGuardPowerUpEffect
 	array_push(global.__objectDepths, -1001000); // objHealthWeaponBar
 	array_push(global.__objectDepths, 0); // objMegamanDeathTimer
 	array_push(global.__objectDepths, -1100000); // objFadeIn
@@ -106,8 +107,8 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objAbsorbEffect
 	array_push(global.__objectDepths, 0); // prtFortressBoss
 	array_push(global.__objectDepths, 0); // objBossShadow
-	array_push(global.__objectDepths, 0); // objYellowDevil
-	array_push(global.__objectDepths, 0); // objYellowDevilBlock
+	array_push(global.__objectDepths, 3); // objYellowDevil
+	array_push(global.__objectDepths, 3); // objYellowDevilBlock
 	array_push(global.__objectDepths, 0); // objYellowDevilBullet
 	array_push(global.__objectDepths, 0); // objWilyMachine4
 	array_push(global.__objectDepths, 0); // objWilyMachine4Shot
@@ -167,7 +168,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objSlideDust
 	array_push(global.__objectDepths, 0); // objSplash
 	array_push(global.__objectDepths, 0); // objSplashH
-	array_push(global.__objectDepths, 0); // objAirBubble
+	array_push(global.__objectDepths, -4); // objAirBubble
 	array_push(global.__objectDepths, -900); // objDmgText
 	array_push(global.__objectDepths, 0); // objFlash
 	array_push(global.__objectDepths, 0); // objExplosion4
@@ -309,6 +310,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objTimeSlow");
 	array_push(global.__objectNames, "objMegamanSweat");
 	array_push(global.__objectNames, "objMegamanExplosion");
+	array_push(global.__objectNames, "objGuardPowerUpEffect");
 	array_push(global.__objectNames, "objHealthWeaponBar");
 	array_push(global.__objectNames, "objMegamanDeathTimer");
 	array_push(global.__objectNames, "objFadeIn");

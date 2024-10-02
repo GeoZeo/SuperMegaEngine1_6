@@ -7,7 +7,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
         //Right
         if dir == "right"
         {
-            __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (screenSpeedHor) );
+            global.viewX += screenSpeedHor;
             
             if door == false
             {
@@ -32,9 +32,9 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
 				}
             }
             
-            if __view_get( e__VW.XView, 0 ) >= prtPlayer.sectionLeft
+            if global.viewX >= prtPlayer.sectionLeft
             {
-                __view_set( e__VW.XView, 0, prtPlayer.sectionLeft );
+                global.viewX = prtPlayer.sectionLeft;
                 
                 if door == false
                 {
@@ -70,7 +70,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
         //Left
         else if dir == "left"
         {
-            __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) - (screenSpeedHor) );
+            global.viewX -= screenSpeedHor;
             
             if door == false
             {
@@ -95,9 +95,9 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
 				}
             }
             
-            if __view_get( e__VW.XView, 0 ) <= prtPlayer.sectionRight-__view_get( e__VW.WView, 0 )
+            if global.viewX <= prtPlayer.sectionRight-global.viewWidth
             {
-                __view_set( e__VW.XView, 0, prtPlayer.sectionRight-__view_get( e__VW.WView, 0 ) );
+                global.viewX = prtPlayer.sectionRight-global.viewWidth;
                 
                 if door == false
                 {
@@ -133,7 +133,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
         //Down
         else if dir == "down"
         {
-            __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (screenSpeedVert) );
+            global.viewY += screenSpeedVert;
             
             if door == false
             {
@@ -151,9 +151,9 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
 				plt.y = prtPlayer.bbox_bottom + plt.sprite_yoffset;
 			}
 			
-            if __view_get( e__VW.YView, 0 ) >= prtPlayer.sectionTop
+            if global.viewY >= prtPlayer.sectionTop
             {
-                __view_set( e__VW.YView, 0, prtPlayer.sectionTop );
+                global.viewY = prtPlayer.sectionTop;
                 
                 if door == false
                 {
@@ -192,7 +192,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
         //Up
         else if dir == "up"
         {
-            __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) - (screenSpeedVert) );            
+            global.viewY -= screenSpeedVert;
             
             if door == false
             {
@@ -210,9 +210,9 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
 			    plt.y = prtPlayer.bbox_bottom + plt.sprite_yoffset;
 			}
 
-            if __view_get( e__VW.YView, 0 ) <= prtPlayer.sectionBottom - __view_get( e__VW.HView, 0 )
+            if global.viewY <= prtPlayer.sectionBottom - global.viewHeight
             {
-                __view_set( e__VW.YView, 0, prtPlayer.sectionBottom - __view_get( e__VW.HView, 0 ) );
+                global.viewY = prtPlayer.sectionBottom - global.viewHeight;
 
                 if door == false
                 {

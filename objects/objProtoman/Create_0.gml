@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "Proto Man";
+charName = "Proto Man";
 sprName = "Protoman";
 
 enableSlide = true;
@@ -18,6 +18,7 @@ spriteTeleport = sprProtomanTeleport;
 spriteLife = sprProtomanLife;
 spriteStageSelect = sprPMStageSelect;
 stageSelectFollow = false;
+spriteShopNPC = spr5QuestionMarks;
 
 //Sprite animation speeds
 speedStandDefault = 0.15;
@@ -44,6 +45,13 @@ src_col2 = make_colour_rgb(173, 0, 16);
 src_col3 = secondary_color;
 
 jingle = sfxWhistle;
+
+jetSprite = sprProtoJet;
+
+shopBGM = bgmProtomanShop;
+shopBGMvolume = 0.9;
+shopBGMloopStart = 1.74/43.73;
+shopBGMloopEnd = 23.15/43.73;
 
 defaultWeapon = objProtoBusterWeapon;
 

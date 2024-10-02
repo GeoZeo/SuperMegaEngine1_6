@@ -2,15 +2,22 @@ draw_set_font(global.font);
 draw_set_halign(fa_center);
 draw_set_colour(c_white);
 playMusicLoopPoint(bgmCredits, 0.157, 1);
-vspeed = -0.2;
+vspeed = 0;
 megamanx = 0;
 megamany = room_height;
-rushx = 0;
-rushy = megamany + 19;
+jetx = 0;
+jety = megamany + 19;
 megamansprite = global.spriteStand;
+jetsprite = global.jetSprite;
+megaImg = 0;
 scroll_threshold = -430;
 
-text = @"SUPER MEGA ENGINE (SME)
+var fadein = instance_create(0,0, objFadeIn);
+fadein.deactivate = false;
+
+text = @"
+
+SUPER MEGA ENGINE (SME)
 
 github.com / rafaelcp / Super-Mega-Engine
 
@@ -57,8 +64,6 @@ Capcom
 
 
 And You
-
-
 
 
 

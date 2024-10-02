@@ -4,10 +4,10 @@ if object_index == prtPlayer {
     exit;
 }
 
-name = "";
+charName = "";
 sprName = "";
 
-if room != rmInit {
+if room != rmInit && room != rmPlayerSelect && room != rmLoadGame && room != rmSaveGame && room != rmPassInput {
     //Teleport to the checkpoint location, if we hit a checkpoint
     if global.checkpoint {
         x = global.checkpointX;
@@ -56,10 +56,10 @@ enableCharge = cfgEnableCharge;
 
 //Variables
 ground = false;
+old_x = x;
+old_y = y;
 prevGround = false;
 prevXScale = image_xscale;
-oldX = x;
-oldY = y;
 isStep = false;
 stepTimer = 0;
 canInitStep = true; //Can we initialize sidestepping?
@@ -70,6 +70,7 @@ pltSpeedX = 0;
 pltSpeedY = 0;
 prevPltSpeedX = pltSpeedX;
 prevPltSpeedY = pltSpeedY;
+pushedBySpawnedSolid = false;
 canMinJump = true;
 locked = false; //Are we currently supposed to be locked via playerLockMovement?
 canMove = true;
@@ -104,6 +105,8 @@ teleportTimer = 0;
 teleportSpeed = 7;
 teleportAcc = 7/30;
 currentTeleportSpeed = 0;
+cameraXOffset = 0;
+cameraYOffset = 0;
 dead = false;
 deathByPit = false; //Did we die by falling in a bottomless pit?
 killTime = 40; //Delay before MM explodes upon death (in frames). Change here as you see fit.
@@ -123,6 +126,7 @@ blinkImage = 0; //0 for no blinking, 1 for blinking
 blinkDuration = 8; //The amount of frames the blinking lasts
 drawWeaponIcon = false; //Whether or not we should draw the weapon icon above our head (used when using quick weapon switching)
 drawWeaponIconTimer = -1;
+createGuardPowerUpEffect = false;
 onRushJet = false; //Are we on the Rush Jet?
 movedByPlatform = false;
 movedPlatformID = -20;
@@ -183,6 +187,7 @@ spriteTeleport = noone;
 spriteLife = sprLife;
 spriteStageSelect = sprMMStageSelect;
 stageSelectFollow = true;
+spriteShopNPC = sprAuto;
 
 //Sprite animation speeds
 speedStandDefault = 0;
@@ -220,6 +225,15 @@ speedTeleport = 0.15;
 
 //Starting jingle (i.e: Proto Man whistle)?
 jingle = noone;
+
+//Jet sprite (used in the credits)
+jetSprite = sprRushJet;
+
+//Shop BGM
+shopBGM = bgmShop;
+shopBGMvolume = 0.9;
+shopBGMloopStart = 0;
+shopBGMloopEnd = 1;
 
 //Show the READY text
 showReady = true;

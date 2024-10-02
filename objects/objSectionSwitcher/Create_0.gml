@@ -5,7 +5,10 @@ global.switchingSections = true;
 
 with prtEnemy beenOutsideView = true;
 with prtPlayerProjectile if destroyOnScroll instance_destroy();
+with objReflectedProjectile instance_destroy();
 with objMegamanExplosion instance_destroy();
+with objPauseMenu instance_destroy();
+stopSFX(sfxPause);
 
 with prtRush instance_destroy();
 with objRushJet instance_destroy();

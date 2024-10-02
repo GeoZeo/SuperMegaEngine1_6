@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "HORNET CHASER";
+wpnName = "HORNET CHASER";
 abbrev = "H.CHASER";
 consumption = 1;
 maxshots = 3;

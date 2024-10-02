@@ -22,6 +22,14 @@ global.spriteLife = sprLife;
 global.spriteStageSelect = sprMMStageSelect;
 global.stageSelectFollow = true;
 
+global.spriteShopNPC = sprAuto;
+global.shopBGM = bgmShop;
+global.shopVolume = 0.9;
+global.shopLoopStart = 0;
+global.shopLoopEnd = 1;
+
+global.jetSprite = -1;
+
 //Characters
 var char_index = 0;
 for (var i = 0; object_exists(i); i++) {
@@ -33,6 +41,10 @@ for (var i = 0; object_exists(i); i++) {
 }
 global.totalCharacters = array_length_1d(global.characters);
 
+global.character = -1;
+
+global.initialStageClear = false;
+
 //Weapons
 global.charWeapons = ds_map_create();
 with prtWeapon instance_destroy();
@@ -41,7 +53,7 @@ for (var i = 0; object_exists(i); i++) {
     if object_is_ancestor(i, prtWeapon) {
         global.weapons[weapon_index] = instance_create(0,0, i);
         global.weapons[weapon_index].ID = weapon_index;
-        //Unlock for testing purposes. Remove the following line when distributing your game.
+        //Unlock for testing purposes. Remove the following line when distributing your game. NOTE: Also applies to the resetData() script.
         global.weapons[weapon_index].unlocked = true;
         
         weapon_index++;
@@ -55,12 +67,15 @@ objTimeSlowWeapon.unlocked = false;  //Leave it locked for testing plates
 global.totalWeapons = array_length_1d(global.weapons);
 global.weapons_per_col = ceil(global.totalWeapons / 2);
 
+global.defaultWeapon = -1;
+
 //Boss Names
 for (var i = 0; object_exists(i); i++) {
     if object_is_ancestor(i, prtBoss) {
         var boss = instance_create(0, 0, i);
+		boss.cancelDestroyEvent = true;
         if boss.bossID > -1 {
-            global.bossNames[boss.bossID] = boss.name;
+            global.bossNames[boss.bossID] = boss.bossName;
             global.bosses[boss.bossID] = i;
         }
         with boss instance_destroy();
@@ -110,6 +125,8 @@ for (var i = 0; object_exists(i); i++) {
 }
 
 load_achievements();
+
+global.achievementQueue = [];
 
 global.damageMultiplier = 1;
 

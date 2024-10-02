@@ -5,9 +5,15 @@ function add_achievement(argument0) {
 
 	if !achievement.completed {
 	    achievement.completed = true;
-	    var box = instance_create(0, 0, objAchievementBox);
-	    box.txt = achievement.name;
-	    print("Challenge completed! " + achievement.name);
+		array_push(global.achievementQueue, achievement);
+		
+		if !instance_exists(objAchievementBox) {
+		    var box = instance_create(0, 0, objAchievementBox);
+		    box.txt = achievement.achName;
+			box.achievement_index = achievement;
+		}
+		
+	    print("Challenge completed! " + achievement.achName);
 	    save_achievements();
 	}
 

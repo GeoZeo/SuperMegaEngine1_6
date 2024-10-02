@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "RUSH COIL";
+wpnName = "RUSH COIL";
 abbrev = "R.COIL";
 consumption = 2;
 maxshots = cfgMaxNumberOfBusterShots;

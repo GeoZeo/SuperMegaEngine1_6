@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "PHARAOH SHOT";
+wpnName = "PHARAOH SHOT";
 abbrev = "P.SHOT";
 consumption = 1;
 chargeConsumption = 2;

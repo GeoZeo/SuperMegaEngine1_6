@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "POWER GENERATOR";
+eqName = "POWER GENERATOR";
 description = "Halves weapon energy consumption.";
 maxUnits = 1;
 showZero = false;

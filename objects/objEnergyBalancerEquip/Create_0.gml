@@ -1,7 +1,7 @@
 event_inherited();
 
-name = "ENERGY BALANCER";
-description = "Weapon capsules will refill the weapon with less energy.";
+eqName = "Energy Balancer";
+description = "Weapon Capsules will refill the least-filled weapon.";
 maxUnits = 1;
 showZero = false;
 showCount = false;

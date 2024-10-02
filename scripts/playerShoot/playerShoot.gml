@@ -73,9 +73,11 @@ function playerShoot() {
 		        box = bbox_left;
 	
 		    with global.weapons[global.weapon] {
-		        print("Trying to use " + name + " with " + string(ammo) + " ammo");
+		        print("Trying to use " + wpnName + " with " + string(ammo) + " ammo");
 		        event_user(1);
 		    }
+			
+			global.weapons[global.currentWeapon].initChargeTimer = 0;
     
 		}
 

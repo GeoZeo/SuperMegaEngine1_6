@@ -6,8 +6,8 @@ function insideViewAny_Spr(argument0) {
 	var obj = argument0;
 
 	with obj {
-	    if bbox_right-1 >= __view_get( e__VW.XView, 0 ) && bbox_left < __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )
-	    && bbox_bottom-1 >= __view_get( e__VW.YView, 0 ) && bbox_top < __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )
+	    if bbox_right-1 >= global.viewX && bbox_left < global.viewX+global.viewWidth
+	    && bbox_bottom-1 >= global.viewY && bbox_top < global.viewY+global.viewHeight
 	        return self;
 	}
 	return -1;

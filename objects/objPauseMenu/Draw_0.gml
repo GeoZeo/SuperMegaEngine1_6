@@ -10,19 +10,20 @@ var iniY = 17 + spacing;
 //Menu
 if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
 {
-    draw_set_font(global.font);
+	//draw_set_font(global.font);
+    draw_set_font(global.MM3font);
     
     //BG
     draw_set_color(c_white);
     draw_set_alpha(1);
-    draw_sprite(sprPauseMenuNew, 0, __view_get( e__VW.XView, 0 ), __view_get( e__VW.YView, 0 ));
+    draw_sprite(sprPauseMenuNew, 0, global.viewX, global.viewY);
     
 
     //Life
     var xx, yy, bgCol, i;
     bgCol = make_color_rgb(5, 5, 5);
-    xx = __view_get( e__VW.XView, 0 )+200;
-    yy = __view_get( e__VW.YView, 0 )+180;
+    xx = global.viewX+200;
+    yy = global.viewY+180;
     /*draw_sprite_ext(sprLife, 0, xx, yy, 1, 1, 0, c_white, 1);
     draw_sprite_ext(sprLifePrimary, 0, xx, yy, 1, 1, 0, global.primaryCol, 1);
     draw_sprite_ext(sprLifeSecondary, 0, xx, yy, 1, 1, 0, global.secondaryCol, 1);
@@ -31,17 +32,17 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
     
     //Screws
     if global.enableScrews {
-        xx = __view_get( e__VW.XView, 0 )+192;
-        yy = __view_get( e__VW.YView, 0 )+199;
+        xx = global.viewX+192;
+        yy = global.viewY+199;
         draw_sprite(sprScrewBig, 0, xx - 2, yy);
         draw_text(xx + (41-24), yy + (201-194), string_hash_to_newline(string_replace_all(string_format(global.screws, 3, 0), " ", "0")));
     }
     
     //Player
-    xx = __view_get( e__VW.XView, 0 )+194;
-    yy = __view_get( e__VW.YView, 0 )+172;
+    xx = global.viewX+194;
+    yy = global.viewY+172;
 
-    drawSpriteColorSwap(prtPlayer.spriteStandDefault, 0, xx, yy, global.charPrimaryColor, global.charSecondaryColor, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
+    drawSpriteColorSwap(playerSprite, 0, xx, yy, global.charPrimaryColor, global.charSecondaryColor, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
             
     //Weapons
     currX = 32;
@@ -54,48 +55,58 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
         if global.weapons[i].unlocked {
             //Icon
             if option == i {
-                draw_sprite_ext(sprWeaponIconsColor, global.weapons[i].ID, __view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY, 1, 1, 0, c_white, 1);
+                //draw_sprite_ext(sprWeaponIcons, global.weapons[i].ID, __view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY, 1, 1, 0, c_white, 1);
+				draw_sprite_ext(sprWeaponIcons, global.weapons[i].ID, global.viewX+currX, global.viewY+currY, 1, 1, 0, c_white, 1);
                 /*shader_set(shBlueish);
                 draw_sprite_ext(sprWeaponIconsColor, global.weaponSlot[i], view_xview[0]+currX, view_yview[0]+currY, 1, 1, 0, c_white, 1);
                 shader_reset();*/
                 
                 // If using something like an W-Tank, draw the arrow as an indicator.
                 if primedItemIndex != -1
-                    draw_sprite_ext(sprPassArrow, 0, __view_get( e__VW.XView, 0 )+currX-6, __view_get( e__VW.YView, 0 )+currY+8, 1, 1, 0, c_white, 1);
+                    draw_sprite_ext(sprPassArrow, 0, global.viewX+currX-6, global.viewY+currY+8, 1, 1, 0, c_white, 1);
             }
             else {
-                shader_set(shGrayscale);
-                draw_sprite_ext(sprWeaponIconsColor, global.weapons[i].ID, __view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY, 1, 1, 0, c_white, 1);
-                shader_reset();
+				draw_sprite_ext(sprWeaponIconsGray, global.weapons[i].ID, global.viewX+currX, global.viewY+currY, 1, 1, 0, c_white, 1);
+                //shader_set(shGrayscale);
+                //draw_sprite_ext(sprWeaponIconsColor, global.weapons[i].ID, __view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY, 1, 1, 0, c_white, 1);
+                //shader_reset();
             }    
             //Ammo bar
             var ammo;
-            if i == 0
-                ammo = global._health;
-            else
-                ammo = ceil(global.weapons[i].ammo);
+            if i == 0 {
+				var j = 0;
+				while (j+1) * 28 < global._health j++;
+				ammo = global._health - (28 * j);
+			}
+            else {
+				var j = 0;
+				while (j+1) * 28 < ceil(global.weapons[i].ammo) j++;
+				ammo = ceil(global.weapons[i].ammo) - (28 * j);
+			}
                 
             if option == i
-                draw_sprite_ext(sprPauseMenuBar, ammo, __view_get( e__VW.XView, 0 )+currX+32, __view_get( e__VW.YView, 0 )+currY+8, 1, 1, 0, c_white, 1);
+                draw_sprite_ext(sprPauseMenuBarNew, ammo, global.viewX+currX+32, global.viewY+currY+8, 1, 1, 0, c_white, 1);
             else {
+				draw_sprite_ext(sprPauseMenuBarGray, ammo, global.viewX+currX+32, global.viewY+currY+8, 1, 1, 0, c_white, 1);
                 //draw_sprite_ext(sprPauseMenuBarGray, ammo, view_xview[0]+currX+32, view_yview[0]+currY+8, 1, 1, 0, c_white, 1);
-                shader_set(shGrayscale);
-                draw_sprite_ext(sprPauseMenuBar, ammo, __view_get( e__VW.XView, 0 )+currX+32, __view_get( e__VW.YView, 0 )+currY+8, 1, 1, 0, c_white, 1);
-                shader_reset();
+                //shader_set(shGrayscale);
+                //draw_sprite_ext(sprPauseMenuBar, ammo, __view_get( e__VW.XView, 0 )+currX+32, __view_get( e__VW.YView, 0 )+currY+8, 1, 1, 0, c_white, 1);
+                //shader_reset();
             }                
             //Name
-            draw_set_font(global.font);
+			//draw_set_font(global.font);
+            draw_set_font(global.MM3font);
             draw_set_halign(fa_left);
             draw_set_valign(fa_top);
             
             if option == i
             {
                 draw_set_color(make_color_rgb(255, 217, 162)); //Light yellow-ish
-                draw_text(__view_get( e__VW.XView, 0 )+currX+16+10, __view_get( e__VW.YView, 0 )+currY+1, string_hash_to_newline(global.weapons[i].abbrev));
+                draw_text(global.viewX+currX+16+10, global.viewY+currY+1, string_hash_to_newline(global.weapons[i].abbrev));
                 draw_set_color(c_white);
             }
             else
-                draw_text(__view_get( e__VW.XView, 0 )+currX+16+10, __view_get( e__VW.YView, 0 )+currY+1, string_hash_to_newline(global.weapons[i].abbrev));
+                draw_text(global.viewX+currX+16+10, global.viewY+currY+1, string_hash_to_newline(global.weapons[i].abbrev));
         }
         else if prtPlateEquip.weapon == global.weapons[i].object_index {
             var tempX = currX;
@@ -107,7 +118,7 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
                     else {
                         col = c_gray;
                     }
-                    draw_sprite_ext(p.sprite_index, 0, __view_get( e__VW.XView, 0 )+tempX, __view_get( e__VW.YView, 0 )+currY, 1, 1, 0, col, 1); 
+                    draw_sprite_ext(p.sprite_index, 0, global.viewX+tempX, global.viewY+currY, 1, 1, 0, col, 1); 
                     tempX += p.sprite_width + 1;
                 }
             }
@@ -117,9 +128,13 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
   
     //Life bar
     //draw_sprite_ext(sprPauseMenuBarGray, global._health, view_xview[0]+182, view_yview[0]+192, 1, 1, 0, c_white, 1);
-    shader_set(shGrayscale);
-    draw_sprite_ext(sprPauseMenuBarGray, global._health, __view_get( e__VW.XView, 0 )+182, __view_get( e__VW.YView, 0 )+192, 1, 1, 0, c_white, 1);
-    shader_reset();
+    //shader_set(shGrayscale);
+	var _health;
+	var j = 0;
+	while (j+1) * 28 < global._health j++;
+	_health = global._health - (28 * j);
+    draw_sprite_ext(sprPauseMenuLifeBar, _health, global.viewX+182, global.viewY+192, 1, 1, 0, c_white, 1);
+    //shader_reset();
   
     //Items
     currX = 16;
@@ -133,17 +148,17 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
             currY = 191;
         }
         if option == global.totalWeapons + i || !global.items[i].usable || i == primedItemIndex {
-            draw_sprite(global.items[i].sprite_index, 0, __view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY);
+            draw_sprite(global.items[i].sprite_index, 0, global.viewX+currX, global.viewY+currY);
         }
         else {
            //draw_sprite(global.items[i].sprite_index, 1, view_xview[0]+currX, view_yview[0]+currY);           
            shader_set(shGrayscale);
-           draw_sprite(global.items[i].sprite_index, 0, __view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY);           
+           draw_sprite(global.items[i].sprite_index, 0, global.viewX+currX, global.viewY+currY);           
            shader_reset();
         }
         
         if (global.items[i].showCount) {
-            draw_text(__view_get( e__VW.XView, 0 )+currX, __view_get( e__VW.YView, 0 )+currY+17, string_hash_to_newline("0" + string(global.items[i].count)));
+            draw_text(global.viewX+currX, global.viewY+currY+17, string_hash_to_newline("0" + string(global.items[i].count)));
         }
         currX += 21;
     }
@@ -154,7 +169,7 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
 //Black rectangle
 draw_set_color(c_black);
 draw_set_alpha(blackAlpha);
-draw_rectangle(__view_get( e__VW.XView, 0 ), __view_get( e__VW.YView, 0 ), __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 ), __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ), false);
+draw_rectangle(global.viewX, global.viewY, global.viewX+global.viewWidth, global.viewY+global.viewHeight, false);
 
 
 draw_set_color(oldCol);

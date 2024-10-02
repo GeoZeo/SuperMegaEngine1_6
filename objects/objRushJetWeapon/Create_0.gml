@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "RUSH JET";
+wpnName = "RUSH JET";
 abbrev = "R.JET";
 consumption = 1;
 maxshots = cfgMaxNumberOfBusterShots;

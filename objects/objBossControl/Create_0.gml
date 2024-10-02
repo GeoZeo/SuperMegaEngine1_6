@@ -53,6 +53,7 @@ itemY = 0;
 myBoss = -1;
 bossID = -1;
 bossPersistent = false;
+healthpointsStart = 28;
 
 global.bossHealth = 0;
 

@@ -1,6 +1,7 @@
 /// @description  onCharging
 event_inherited();
-if !instance_exists(objPharaohShotCharging) {
+if !instance_exists(objPharaohShotCharging) && (!instance_exists(objPharaohShotCharged) or objPharaohShotCharged.thrown)
+&& !prtPlayer.teleporting && !prtPlayer.showReady {
     initChargeTimer++;
     if initChargeTimer >= initChargeTime {
         instance_create(prtPlayer.x + prtPlayer.image_xscale, prtPlayer.y - 20, objPharaohShotCharging);

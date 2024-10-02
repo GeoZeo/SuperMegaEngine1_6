@@ -1,6 +1,6 @@
 /// @description playMusicDefault(filename)
 function playMusicDefault(argument0) {
-	//Plays music 100% as is, without any looping or loop start/end points, and at its default volume
+	//Plays music 100% as is, looping normally, and at its default volume
 	//Example: playMusicDefault("CutMan.ogg")
 
 	stopSFX(global.bgm);
@@ -19,7 +19,10 @@ function playMusicDefault(argument0) {
 		global.bgmIndex = argument0;
 	}
 	if snd != noone {
+		global.length = audio_sound_length(snd);
 		global.bgm = snd;
+		global.loopStart = 0;
+		global.loopEnd = global.length + 0.1;
 	}
 	if instance_exists(prtPlayer)
 	&& ((!is_string(prtPlayer.jingle) and prtPlayer.jingle > -1)

@@ -1,6 +1,6 @@
 /// @description playMusicVolume(filename, volume)
 function playMusicVolume(argument0, argument1) {
-	//Plays music with a set volume. Volume should be between 0 and 1.
+	//Plays music with a set volume, looping normally. Volume should be between 0 and 1.
 	//Example: playMusicVolume("CutMan.ogg", 0.6)
 
 	stopSFX(global.bgm);
@@ -20,8 +20,11 @@ function playMusicVolume(argument0, argument1) {
 	}
 	if snd != noone {
 	    audio_sound_gain(snd, argument1, 0);
-	    global.bgm = snd;
+	    global.length = audio_sound_length(snd);
+		global.bgm = snd;
 		global.volume = argument1;
+		global.loopStart = 0;
+		global.loopEnd = global.length + 0.1;
 	}
 	if instance_exists(prtPlayer)
 	&& ((!is_string(prtPlayer.jingle) and prtPlayer.jingle > -1)

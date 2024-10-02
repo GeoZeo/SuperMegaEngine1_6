@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "Mega Man";
+charName = "Mega Man";
 sprName = "Megaman";
 
 enableSlide = cfgEnableSlide;

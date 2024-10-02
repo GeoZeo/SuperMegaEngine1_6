@@ -14,8 +14,13 @@ if (char < 0) char = global.totalCharacters - 1;
 
 setPlayer(global.characters[char]);
 
+if global.keyShootPressed {
+	var ID = instance_create(0, 0, objFadeout);
+	ID.type = "room";
+	ID.myRoom = rmMainMenu;
+}
 //Select Player
-if (global.keyPausePressed or global.keyShootPressed or global.keyJumpPressed) {
+else if (global.keyPausePressed or global.keyJumpPressed) {
     playSFX(sfxMenuSelect);
     var ID = instance_create(0, 0, objFadeout);
     ID.type = "room";

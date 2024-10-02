@@ -5,13 +5,14 @@ if count <= 0 || !usable {
     show_debug_message("Equipment not usable or inexistent. Count: " + string(count) + " Usable: " + string(usable));
     playSFX(sfxError);
     ok = false;
+	cancelQuit = true;
     return false;
 }
 
 count--;
 ok = true;
 
-show_debug_message("Activating " + name);
+show_debug_message("Activating " + eqName);
 
 return true;
 

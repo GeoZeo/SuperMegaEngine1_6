@@ -1,6 +1,6 @@
 /// @description  Create block
 var block_id = instance_number(objYellowDevilBlock);
-var block = instance_create(__view_get( e__VW.XView, 0 ) - 100, __view_get( e__VW.YView, 0 ) + blockY[block_id] * 16 + offsetY, objYellowDevilBlock);
+var block = instance_create(global.viewX - 100, global.viewY + blockY[block_id] * 16 + offsetY, objYellowDevilBlock);
 block.block_id = block_id;
 block.col = blockX[block_id];
 block.row = blockY[block_id];

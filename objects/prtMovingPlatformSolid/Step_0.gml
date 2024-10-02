@@ -155,8 +155,8 @@ if dead == false
 	            {
 	                var proceed, xsp, ysp;
 	                proceed = true;
-	                xsp = (other.xspeed * update_rate) + (other.x - prev_x);
-	                ysp = (other.yspeed * update_rate) + (other.y - prev_y);
+	                xsp = (other.xspeed * other.update_rate) + (other.x - prev_x);
+	                ysp = (other.yspeed * other.update_rate) + (other.y - prev_y);
 					pltSpeedX = xsp;
 					pltSpeedY = ysp;
                 
@@ -178,7 +178,7 @@ if dead == false
 								{
 									proceed = false;
 									if ysp > 0 && !place_meeting(x, y, tpsld)
-										y = tpsld.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+										y = tpsld.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 									endCheck = true;
 									break;
 								}
@@ -209,7 +209,7 @@ if dead == false
 						                {
 						                    proceed = false;
 											if pltfm.yspeed > 0
-												y = pltfm.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+												y = pltfm.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 										
 											endCheck = true;
 						                }
@@ -234,7 +234,7 @@ if dead == false
 							{
 								var mySolid = instance_place(x + (xsp * place_free(x+xsp, y+ysp)), y + ysp, objSolid)
 								if ysp > 0 && !place_meeting(x, y, mySolid)
-									y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+									y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 								
 								proceed = false;
 							}
@@ -244,7 +244,7 @@ if dead == false
 								if !mySolid.dead
 								{
 									if mySolid.yspeed > 0 && bbox_bottom < sprite_get_ycenter_object(mySolid)
-										y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+										y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 									
 									proceed = false;
 								}
@@ -253,14 +253,20 @@ if dead == false
 					}
 	                instance_activate_object(other.id);
                 
-	                if proceed == true
+	                if proceed == true && global.frozen == false
 	                {
 	                    movedByPlatform = true;
 	                    
 						instance_deactivate_object(other.id);
 						if global.yspeed == 0 && (!place_meeting(x+xsp, y, prtMovingPlatformSolid)
 						|| instance_place(x+xsp, y, prtMovingPlatformSolid).dead)
+						{
+							if abs(xsp) < 1 && abs(xsp) > 0 && !place_free(x + (-sign(xsp) - -xsp), y)
+							{
+								xsp = sign(xsp) - xsp;
+							}
 							x += xsp;
+						}
 						instance_activate_object(other.id);
 	                    
 						y += ysp;

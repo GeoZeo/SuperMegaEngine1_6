@@ -8,6 +8,8 @@ if increaseHealth {
         increaseTimer++;
         if increaseTimer >= 3 {
             global._health += 1;
+			if global._health > global._maxHealth
+				global._health = global._maxHealth;
             increaseHealthAmount -= 1;
             increaseTimer = 0;
         }
@@ -26,6 +28,8 @@ else if increaseAmmo {
         increaseTimer++;
         if increaseTimer >= 3 {
             global.weapons[global.currentWeapon].ammo += 1;
+			if global.weapons[global.currentWeapon].ammo > global.maxAmmo
+				global.weapons[global.currentWeapon].ammo = global.maxAmmo;
             increaseAmmoAmount -= 1;
             increaseTimer = 0;
         }
@@ -44,6 +48,8 @@ else if increaseAmmoOffscreen {
         increaseTimer++;
         if increaseTimer >= 3 {
             global.weapons[weaponToIncreaseIndex].ammo++;
+			if global.weapons[weaponToIncreaseIndex].ammo > global.maxAmmo
+				global.weapons[weaponToIncreaseIndex].ammo = global.maxAmmo;
             increaseAmmoAmount--;
             increaseTimer = 0;
         }

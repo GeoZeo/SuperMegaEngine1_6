@@ -1,7 +1,7 @@
 event_inherited();
 
-name = "Beat Call";
-description = "Beat will save you from falling into pits.";
+eqName = "Beat Call";
+description = "Beat will save you if you fall into a pit.";
 usable = false;
 maxUnits = 9;
 showZero = true;

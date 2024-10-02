@@ -1,5 +1,5 @@
 event_inherited();
 
-name = "FRUGAL";
+achName = "FRUGAL";
 description = "BUY THE POWER GENERATOR";
 

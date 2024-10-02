@@ -10,6 +10,7 @@ function playerFreeMovement() {
 		canGravity = true;
 	    canSpriteChange = true;
 	    canPause = true;
+		with objGlobalControl pressBufferCount = 2;
 		
 		if ground
 			canInitStep = true;

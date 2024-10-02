@@ -1,5 +1,5 @@
 event_inherited();
 
-name = "DEVIL SLAYER";
+achName = "DEVIL SLAYER";
 description = "DEFEAT THE YELLOW DEVIL";
 

@@ -13,13 +13,18 @@ if !global.frozen {
 			if control > -1
 			&& (control.centreExit
 			or (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)) and !global.weaponID.unlocked))
-				destX = round(__view_get( e__VW.XView, 0 ) + (__view_get( e__VW.WView, 0 )/2));
+				destX = round(global.viewX + (global.viewWidth/2)) - cfgPushStartingPosBack;
 			else
 				destX = x;
         
 	        checkGround();
 			checkWater();
-			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
+			
+			if !canInitJump currentGrav = gravWater;
+			
+			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime
+				gravityCheckGroundExt(currentGrav);
+				
 	        generalCollision();
 			
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime
@@ -157,9 +162,9 @@ if !global.frozen {
 		                }
 		            }
             
-		            if yspeed > 0 && y >= __view_get( e__VW.YView, 0 )+112 && canInitJump == false && !global.weaponID.unlocked
+		            if yspeed > 0 && y >= global.viewY+112 && canInitJump == false && !global.weaponID.unlocked
 		            {
-		                y = __view_get( e__VW.YView, 0 )+112;
+		                y = global.viewY+112;
 		                absorbing = true;
 		            }
 				
@@ -207,7 +212,7 @@ if !global.frozen {
 					else if global._health > 0 && !prtPlayer.dead {
 						objBeatEquip.count--;
 						
-						var _ceil = abs(bbox_top-round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )))+1;
+						var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
 						var _attempts = 0;
 						var _old_x = x;
 						while !place_free(x, y-_ceil) && _attempts < 500
@@ -237,18 +242,16 @@ if !global.frozen {
 							x = _old_x;
 						
 						xspeed = 0;
-						if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+						if y > round((global.viewY+global.viewHeight)+30)
 						{
-							y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+							y = round((global.viewY+global.viewHeight)+30);
 							yspeed = 0;
-							prtPlayer.drawWeaponIconTimer = -1;
-							prtPlayer.drawWeaponIcon = false;
 							instance_deactivate_object(self.id);
 						}
 				
 						if !instance_exists(objBeat)
 						{
-							var myBeat = instance_create(x, round(__view_get( e__VW.YView, 0 )-3), objBeat);
+							var myBeat = instance_create(x, round(global.viewY-3), objBeat);
 							with myBeat depth = other.depth - 1;
 							with myBeat target = other.id;
 							with myBeat event_user(0);
@@ -276,12 +279,10 @@ if !global.frozen {
 				}
 				else if !objBeat.carrying {
 					xspeed = 0;
-					if y-30 > round(__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))
+					if y > round((global.viewY+global.viewHeight)+30)
 					{
-						y = round((__view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 ))+30);
+						y = round((global.viewY+global.viewHeight)+30);
 						yspeed = 0;
-						prtPlayer.drawWeaponIconTimer = -1;
-						prtPlayer.drawWeaponIcon = false;
 						instance_deactivate_object(self.id);
 					}
 				}
@@ -299,7 +300,7 @@ if !global.frozen {
 	                playSFX(sfxAbsorb);
 	                var ID, fastSpd, slowSpd, radius, angle;
 	                fastSpd = 7;
-	                slowSpd = 3;radius = __view_get( e__VW.WView, 0 )/2;
+	                slowSpd = 3;radius = global.viewWidth/2;
 	                angle = 0;
                 
 	                repeat 8

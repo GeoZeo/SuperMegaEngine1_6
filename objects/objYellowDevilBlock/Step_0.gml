@@ -36,13 +36,13 @@ if !global.frozen {
                 image_index = 2;
             }
             hspeed = image_xscale * spd;
-            if image_xscale == -1 && x + sprite_xoffset <= __view_get( e__VW.XView, 0 ) + xpos {
+            if image_xscale == -1 && x + sprite_xoffset <= global.viewX + xpos {
                 current_state = block_states.FIT;
-                x = __view_get( e__VW.XView, 0 ) + xpos - sprite_xoffset;
+                x = global.viewX + xpos - sprite_xoffset;
             }
-            else if image_xscale == 1 && x - sprite_xoffset + sprite_width >= __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - xpos {
+            else if image_xscale == 1 && x - sprite_xoffset + sprite_width >= global.viewX + global.viewWidth - xpos {
                 current_state = block_states.FIT;
-                x = __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - xpos + sprite_xoffset - sprite_width;
+                x = global.viewX + global.viewWidth - xpos + sprite_xoffset - sprite_width;
             }
         break;
         case block_states.IDLE:   

@@ -21,6 +21,8 @@ if !global.frozen
 			stepTimer = prtPlayer.stepTimer;
 			isMM = true;
 			playerLockMovement();
+			with objPauseMenu instance_destroy();
+			stopSFX(sfxPause);
 			with prtPlayer visible = false;
 			visible = true;
 		}

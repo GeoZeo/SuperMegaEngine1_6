@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "PHARAOH MAN";
+bossName = "PHARAOH MAN";
 level = rmBeta;
 introBGCol = make_color_rgb(255, 145, 95);
 introLineCol = make_color_rgb(255, 204, 174);
@@ -9,7 +9,7 @@ pose = sprPharaohPose;
 poseImgSpeed = 3/60;
 weaponID = objPharaohShotWeapon;
 utilityID = -1;
-//utilityID = objRushJetWeapon; Uncomment this line (and remove the line above, optionally) for testing weapon get with utilities
+//utilityID = objRushJetWeapon; //Uncomment this line (and remove the line above, optionally) for testing weapon get with utilities
 bossID = 7; //The ID on the stage select screen. The top-left has an ID of 0, then it goes clockwise (so the left panel's ID is 7)
             //The middle panel's ID is 8
 			
@@ -20,6 +20,10 @@ contactDamage = 4;
 global.weaponID = weaponID;
 global.utilityID = utilityID;
 global.bossID = bossID;
+
+healthpointsStart = 28;
+healthpoints = healthpointsStart;
+prevHealthPoints = healthpoints;
 
 ground = false;
 attackTimer = 0;

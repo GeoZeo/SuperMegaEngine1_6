@@ -1,3 +1,9 @@
+if room == rmSaveGame {
+	with objSaveGame {
+		setPlayer(currentChar);
+	}
+}
+
 if type == "restart" {
     room_restart();
 }

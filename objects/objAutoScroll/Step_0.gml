@@ -4,10 +4,10 @@ if !global.frozen {
         x = prtPlayer.x;
         y = prtPlayer.y;
         with prtPlayer {
-            sectionLeft = __view_get( e__VW.XView, 0 );
-            sectionRight = __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 );
-            sectionTop = __view_get( e__VW.YView, 0 );
-            sectionBottom = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 );    
+            sectionLeft = global.viewX;
+            sectionRight = global.viewX + global.viewWidth;
+            sectionTop = global.viewY;
+            sectionBottom = global.viewY + global.viewHeight;    
         }
     }
     else if started {

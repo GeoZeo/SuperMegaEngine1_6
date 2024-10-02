@@ -27,7 +27,7 @@ else {
 
 //Proceed to the next screen ("phase")
 proceedTimer++;
-if global.keyPausePressed || global.keyJumpPressed || global.keyShootPressed || proceedTimer >= proceedTimerMax {
+if global.keyPausePressed || global.keyJumpPressed || proceedTimer >= proceedTimerMax {
     textAlphaIncrease = false;
 }
 

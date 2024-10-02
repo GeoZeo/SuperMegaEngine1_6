@@ -7,6 +7,7 @@ image_index = 0;
 
 passThrough = true;
 reflectible = false;
+destroyOnScroll = false;
 
-defaultDamage = 3;
+defaultDamage = 1;
 

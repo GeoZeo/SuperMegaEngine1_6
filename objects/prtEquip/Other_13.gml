@@ -10,7 +10,7 @@ if count <= 0 || !usable {
 
 
 ok = true;
-show_debug_message("Unpriming " + name);
+show_debug_message("Unpriming " + eqName);
 
 return true;
 

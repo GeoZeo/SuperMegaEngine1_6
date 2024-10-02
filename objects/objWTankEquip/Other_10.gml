@@ -10,7 +10,7 @@ for(i = 0; i < global.totalWeapons; i++) {
         proceed = true;
 }
 
-count++ // Don't decrement the counter yet! Returns the unit subtracted in parent
+count++; // Don't decrement the counter yet! Returns the unit subtracted in parent
 // If the W-Tank is ready to proceed, prime it for use.
 if proceed {
     show_debug_message("Can use. Primed.");

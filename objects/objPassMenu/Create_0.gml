@@ -13,6 +13,20 @@ if global._lives < 0 {
         playMusicNoLoopVolume(bgmGameOver, 1);
     }
     alarm[0] = 240;
+	
+	if numRushBossesDefeated() > 0 {
+		//Initialize all rush bosses as undefeated (this is the correct behavior)
+		for(var i = 0; i < 8; i++) {
+		    global.bossRushDefeated[i] = false; 
+		}
+
+		//While there are not other bosses, let's overwrite this for testing
+		//Comment the following lines when your game has 8 bosses
+		for(var i = 0; i < 8; i++) {
+		    global.bossRushDefeated[i] = true;  //All rush bosses are defeated
+		}
+		global.bossRushDefeated[7] = false; //We have only Pharaoh Man
+	}
 }
 else {
     gameOver = false;
@@ -21,10 +35,13 @@ else {
     if global.passPlayVictory && !audio_is_playing(bgmWeaponGet) {
         playMusicVolume(bgmWeaponGet, 1);
     }
+	else if !global.passPlayVictory && !audio_is_playing(bgmPassScreen) {
+		playMusicVolume(bgmPassScreen, 1);
+	}
 }
     
 for(var i = 0; i < global.totalWeapons; i++){
-    global.weapons[i].ammo = 28;
+    global.weapons[i].ammo = global.maxAmmo;
 }
 
 pass = make_password();

@@ -2,7 +2,7 @@
   "resourceType": "GMRoom",
   "resourceVersion": "1.0",
   "name": "rmStageSelect",
-  "creationCodeFile": "",
+  "creationCodeFile": "rooms/rmStageSelect/RoomCreationCode.gml",
   "inheritCode": false,
   "inheritCreationOrder": false,
   "inheritLayers": false,

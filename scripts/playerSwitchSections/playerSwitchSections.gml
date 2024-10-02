@@ -23,9 +23,9 @@ function playerSwitchSections() {
 	    instance_activate_object(objSectionArrowDown);
 	    newSectionXOffset = 64;
     
-	    if bbox_top <= __view_get( e__VW.YView, 0 )
+	    if bbox_top <= global.viewY
 	        newSectionYOffset = 96;
-	    else if bbox_bottom >= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )
+	    else if bbox_bottom >= global.viewY+global.viewHeight
 	        newSectionYOffset = -96;
 	    else
 	        newSectionYOffset = 0;
@@ -45,16 +45,16 @@ function playerSwitchSections() {
 	    instance_activate_object(objSectionArrowDown);
 	    newSectionXOffset = -64;
     
-	    if bbox_top <= __view_get( e__VW.YView, 0 )
+	    if bbox_top <= global.viewY
 	        newSectionYOffset = 96;
-	    else if bbox_bottom >= __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )
+	    else if bbox_bottom >= global.viewY+global.viewHeight
 	        newSectionYOffset = -96;
 	    else
 	        newSectionYOffset = 0;
     
 	    alarm[1] = 1; //In GM Studio, the code in alarm 1 needs to be executed one frame later, else an error message will pop up
 	}
-	else if sprite_get_ycenter() > sectionBottom-6  && place_meeting(x, sprite_get_ycenter()-global.yspeed+6, objSectionArrowDown) //Down
+	else if sprite_get_ycenter()+(3 * (isSlide or isStun)) > sectionBottom-6  && place_meeting(x, sprite_get_ycenter()-global.yspeed+6, objSectionArrowDown) //Down
 	&& !collision_rectangle(bbox_left+4, sectionBottom+1, bbox_right-4, sectionBottom+2, objSolid, false, false)
 	{
 	    instance_activate_object(objSectionBorderLeft);
@@ -68,9 +68,9 @@ function playerSwitchSections() {
 	    //newSectionXOffset = 0;
 	    newSectionYOffset = 64;
 		
-		if bbox_left <= __view_get( e__VW.XView, 0 )
+		if bbox_left <= global.viewX
 	        newSectionXOffset = 96;
-	    else if bbox_right >= __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )
+	    else if bbox_right >= global.viewX+global.viewWidth
 	        newSectionXOffset = -96;
 	    else
 	        newSectionXOffset = 0;
@@ -91,9 +91,9 @@ function playerSwitchSections() {
 	    //newSectionXOffset = 0;
 	    newSectionYOffset = -64;
 		
-		if bbox_left <= __view_get( e__VW.XView, 0 )
+		if bbox_left <= global.viewX
 	        newSectionXOffset = 96;
-	    else if bbox_right >= __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )
+	    else if bbox_right >= global.viewX+global.viewWidth
 	        newSectionXOffset = -96;
 	    else
 	        newSectionXOffset = 0;

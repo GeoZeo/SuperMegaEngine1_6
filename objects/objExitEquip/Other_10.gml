@@ -11,7 +11,7 @@ if global.weaponID > -1 and (global.weaponID.unlocked or (ds_list_find_index(glo
     var ID = instance_create(x, y, objFadeout);
     ID.type = "room";
     ID.myRoom = rmPass;
-    global.passPlayVictory = true;
+    global.passPlayVictory = false;
     global.passContinueRoom = room;
     
     return true;

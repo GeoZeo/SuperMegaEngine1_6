@@ -22,8 +22,9 @@ if !global.frozen && insideView() {
 	
     total_shake_x += shake_x;
     total_shake_y += shake_y;
-    __view_set( e__VW.XView, 0, __view_get( e__VW.XView, 0 ) + (shake_x) );
-    __view_set( e__VW.YView, 0, __view_get( e__VW.YView, 0 ) + (shake_y) );
+	
+	global.viewX += shake_x;
+	global.viewY += shake_y;
 	
 	if alarm[0] > stun_window * room_speed {
 		with prtPlayer {
@@ -36,6 +37,4 @@ else if global.frozen {
 	if alarm[0] > 0
 		alarm[0]++;
 }
-print(alarm[0]);
-print(prtPlayer.stunTimer);
 

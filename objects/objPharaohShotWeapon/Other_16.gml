@@ -2,11 +2,12 @@
 
 if shots == 3 {
     with global.weapons[global.currentWeapon] event_user(3);
-}
-if instance_exists(objPharaohShotCharging) and objPharaohShotCharging.sprite_index == sprPharaohShotCharged {
-    prtPlayer.canMove = true;
-    event_user(4);
-    prtPlayer.canMove = false;
+	if instance_exists(objPharaohShotCharged) and !objPharaohShotCharged.thrown {
+	    prtPlayer.canMove = true;
+	    event_user(4);
+	    prtPlayer.canMove = false;
+		shots++;
+	}
 }
 if timer == 0 {
     switch shots {
@@ -15,12 +16,12 @@ if timer == 0 {
         default: global.keyUp = false; global.keyDown = false; global.keyRight = false; global.keyLeft = false;
     }
     with global.weapons[global.currentWeapon] {
-        ammo = 28;
+        ammo = global.maxAmmo;
         if shots < 3 {
             event_user(1);
         }
     }
-    shots++;
+    if shots < 3 shots++;
 }
 timer++;
 if timer > maxTimer {

@@ -1,0 +1,1 @@
+if !global.initialStageClear global.initialStageClear = true;

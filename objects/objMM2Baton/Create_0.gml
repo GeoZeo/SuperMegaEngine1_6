@@ -15,7 +15,7 @@ reflectProjectiles = true;
 damage[objMetalBlade] = 2;
 
 damage[objPharaohShotCharged] = 4;
-damage[objPharaohShotCharging] = 4;
+damage[objPharaohShotCharging] = 2;
 
 damage[objSilverTomahawk] = 2;
 

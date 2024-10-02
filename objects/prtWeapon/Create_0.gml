@@ -1,7 +1,8 @@
-name = "";
+wpnName = "";
 abbrev = "";
 description = "";
 ammo = global.maxAmmo;
+old_ammo = ammo;
 consumption = 0;
 chargeConsumption = 0;
 maxshots = cfgMaxNumberOfBusterShots;

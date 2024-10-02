@@ -1,5 +1,5 @@
 event_inherited();
 
-name = "PENTAWER";
+achName = "PENTAWER";
 description = "DEFEAT PHARAOH MAN";
 

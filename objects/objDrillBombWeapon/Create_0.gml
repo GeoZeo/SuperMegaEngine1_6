@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "DRILL BOMB";
+wpnName = "DRILL BOMB";
 abbrev = "D.BOMB";
 consumption = 1;
 maxshots = 1;

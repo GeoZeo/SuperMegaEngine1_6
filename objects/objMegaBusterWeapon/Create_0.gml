@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "MEGA BUSTER";
+wpnName = "MEGA BUSTER";
 abbrev = "M.BUSTER";
 consumption = 0;
 initChargeTime = 20; //The amount of frames after which to start charging after the shooting animation is complete

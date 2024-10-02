@@ -37,7 +37,7 @@ var oldCol;
 oldCol = draw_get_color();
 draw_set_color(c_white);
 
-draw_text(round(room_width/2) - round(string_width(string_hash_to_newline(name))/2), 136, string_hash_to_newline(bossDisplayName));
+draw_text(round(room_width/2) - round(string_width(string_hash_to_newline(bossName))/2), 136, string_hash_to_newline(bossDisplayName));
 
 draw_set_color(oldCol);
 

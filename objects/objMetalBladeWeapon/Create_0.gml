@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "METAL BLADE";
+wpnName = "METAL BLADE";
 abbrev = "M.BLADE";
 consumption = 0.25;
 maxshots = 3;

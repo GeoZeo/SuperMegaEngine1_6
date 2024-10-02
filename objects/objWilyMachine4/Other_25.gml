@@ -29,7 +29,7 @@ else if !dying {
 	nullifyDeath(false);
 	dying = true;
 	xspeed = 0;
-	yspeed = 0.15;
+	yspeed = 0.1311051;
 	if alarm[1] < 0
 		alarm[1] = 180;
 }

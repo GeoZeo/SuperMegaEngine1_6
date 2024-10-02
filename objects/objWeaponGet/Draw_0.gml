@@ -40,12 +40,12 @@ if phase >= 7 {
     //Draw the weapon name
     draw_set_alpha(text2Alpha);
     if (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters))) {
-        draw_text(textX, textY+25, string_hash_to_newline(global.weaponID.name));
+        draw_text(textX, textY+25, string_hash_to_newline(global.weaponID.wpnName));
     }
 	draw_set_alpha(text3Alpha);
 	if (global.utilityID > -1 and !(ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters)))
 	&& doAgain {
-		draw_text(textX, textY+50, string_hash_to_newline("AND " + global.utilityID.name));
+		draw_text(textX, textY+50, string_hash_to_newline("AND " + global.utilityID.wpnName));
 	}
 	draw_set_alpha(1);
 	if doAgain drawSpriteColorSwap(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);

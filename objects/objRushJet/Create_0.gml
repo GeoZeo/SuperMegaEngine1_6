@@ -16,7 +16,7 @@ decreaseAmmoTimerMax = 60;
 shouldLand = true;
 
 spd = 1;
-ySpd = 0.5;
+ySpd = 1;
     
 alarm[0] = 4 * 60;
 

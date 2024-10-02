@@ -46,5 +46,8 @@ num_menu_items = array_length_1d(menu);
 
 selected = 0;
 
+surePhase = false;
+isSure = false;
+
 
 

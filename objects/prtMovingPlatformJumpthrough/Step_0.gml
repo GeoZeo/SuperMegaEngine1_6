@@ -89,7 +89,7 @@ if dead == false
 								
 									//Crush the player if necessary
 									if place_free(x, y - (abs(other.yspeed) + abs(global.yspeed)))
-										y = myPlt.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+										y = myPlt.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 									else
 										global._health = 0;
 								}
@@ -127,8 +127,8 @@ if dead == false
 	            {	
 	                var proceed, xsp, ysp;
 	                proceed = true;
-	                xsp = (other.xspeed * update_rate) + (other.x - prev_x);
-	                ysp = (other.yspeed * update_rate) + (other.y - prev_y);
+	                xsp = (other.xspeed * other.update_rate) + (other.x - prev_x);
+	                ysp = (other.yspeed * other.update_rate) + (other.y - prev_y);
 					pltSpeedX = xsp;
 					pltSpeedY = ysp;
                 
@@ -138,7 +138,7 @@ if dead == false
 						{
 							var mySolid = instance_place(x + (xsp * place_free(x+xsp, y+ysp)), y + ysp, objSolid)
 							if ysp > 0 && !place_meeting(x, y, mySolid)
-								y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+								y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 							
 							if onRushJet == true
 							{
@@ -153,7 +153,7 @@ if dead == false
 							if !mySolid.dead
 							{
 								if mySolid.yspeed > 0 && bbox_bottom < sprite_get_ycenter_object(mySolid)
-									y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+									y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 								
 								if onRushJet == true
 								{
@@ -215,7 +215,7 @@ if dead == false
 										}
 										proceed = false;
 										if ysp > 0 && !place_meeting(x, y, tpsld)
-											y = tpsld.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+											y = tpsld.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 										_endCheck = true;
 										break;
 									}
@@ -230,7 +230,7 @@ if dead == false
 								for(i = 0; i < totalTSs; i += 1)
 									instance_activate_object(platformID[i]);
 							}
-							else if (myPltJumpthrough >= 0 and myPltJumpthrough.id != other.id) && ysp > 0 && (myPltJumpthrough.yspeed * update_rate) < ysp
+							else if (myPltJumpthrough >= 0 and myPltJumpthrough.id != other.id) && ysp > 0 && (myPltJumpthrough.yspeed * other.update_rate) < ysp
 							{
 								if bbox_bottom <= myPltJumpthrough.bbox_top
 								{
@@ -244,20 +244,25 @@ if dead == false
 									}
 									proceed = false;
 									if myPltJumpthrough.yspeed > 0
-										y = (myPltJumpthrough.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (myPltJumpthrough.yspeed * update_rate));
+										y = (myPltJumpthrough.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1) + (myPltJumpthrough.yspeed * other.update_rate);
 								}
 							}
 						}
 					}
                 
-	                if proceed == true
+	                if proceed == true && global.frozen == false
 	                {
 	                    movedByPlatform = true;
                     
 	                    if movedPlatformID == -20
 	                        movedPlatformID = other.id;
                         
-	                    x += xsp;
+	                    if abs(xsp) < 1 && abs(xsp) > 0 && !place_free(x + (-sign(xsp) - -xsp), y)
+						{
+							xsp = sign(xsp) - xsp;
+						}
+						
+						x += xsp;
 	                    y += ysp;
                     
 	                    if ysp < 0

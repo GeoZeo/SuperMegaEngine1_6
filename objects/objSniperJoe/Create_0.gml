@@ -10,7 +10,7 @@ contactDamage = 4;
 reflectProjectiles = true;
 
 damage[objPharaohShotCharged] = 4;
-damage[objPharaohShotCharging] = 4;
+damage[objPharaohShotCharging] = 2;
 
 damage[objStarCrash] = 4;
 

@@ -4,5 +4,6 @@ if myBoss > -1
 {
 	bossID = myBoss.bossID;
 	bossPersistent = myBoss.bPersistent;
+	healthpointsStart = myBoss.healthpointsStart;
 }
 

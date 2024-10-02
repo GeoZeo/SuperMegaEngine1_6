@@ -73,14 +73,14 @@ if bossTextTimer < bossTextTimerMax
 }
 else
 {
-    if bossTextPos < string_length(name)
+    if bossTextPos < string_length(bossName)
     {
         bossTextIntervalTimer += 1;
         if bossTextIntervalTimer >= bossTextInterval
         {
             bossTextIntervalTimer = 0;
             bossTextPos += 1;
-            bossDisplayName = string_copy(name, 0, bossTextPos);
+            bossDisplayName = string_copy(bossName, 0, bossTextPos);
         }
     }
 }

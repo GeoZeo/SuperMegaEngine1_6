@@ -2,6 +2,14 @@ if global.screen_shader != noone {
     application_surface_draw_enable(false);
 }
 
+//Views (for easy access, as GMS2 doesn't have view variables anymore)
+//Make sure that any references to these variables are used AFTER objGlobalControl's Create event
+global.view = view_get_camera(camera_create_view(0, 0, 256, 224, 0, noone, 0, 0, 9999, 9999));
+global.viewX = 0;
+global.viewY = 0;
+global.viewWidth = camera_get_view_width(global.view);
+global.viewHeight = camera_get_view_height(global.view);
+
 event_perform(ev_step_begin, 0); //Registers the key inputs
 
 //Variables
@@ -9,8 +17,8 @@ global._health = global._maxHealth;
 global.weapon = 0;  //Can have values like megabuster, silvertomahawk etc for all weapons in the game, even those that are not on the pause menu
 global.currentWeapon = 0;   //Only the weapons used in the level; only those that are on the pause menu
 
-global.font = font_add_sprite(sprFont, ord("!"), true, 0);
-global.MM3font = font_add_sprite(sprMM3Font, ord("!"), true, 0);
+global.font = font_add_sprite(sprFont, ord("!"), false, 0);
+global.MM3font = font_add_sprite(sprMM3Font, ord("!"), false, 0);
 
 global.frozen = false;
 global.switchingSection = false;
@@ -60,13 +68,15 @@ if room == rmInit {
     application_surface_draw_enable(true);
 }
 
+pressBufferCount = 0;
+
 //Hide midground tiles/tile animation frames at start
 curr_back_layer = global.ini_back_layer;
-validLayers_back = array_create(0);
+validLayers_back = [];
 for (var l = global.ini_back_layer; l >= global.end_back_layer; l--) {
     
 	var _layers = layer_get_id_at_depth(l);
-	var _numLayers = array_length(_layers);
+	var _numLayers = array_length_1d(_layers);
 
 	for(var i = 0; i < _numLayers; i++) {
 		var _layer = _layers[i];
@@ -87,11 +97,11 @@ for (var l = global.ini_back_layer; l >= global.end_back_layer; l--) {
 
 //Hide foreground tiles/tile animation frames at start
 curr_front_layer = global.ini_front_layer;
-validLayers_front = array_create(0);
+validLayers_front = [];
 for (var l = global.ini_front_layer; l >= global.end_front_layer; l--) {
     
 	var _layers = layer_get_id_at_depth(l);
-	var _numLayers = array_length(_layers);
+	var _numLayers = array_length_1d(_layers);
 
 	for(var i = 0; i < _numLayers; i++) {
 		var _layer = _layers[i];

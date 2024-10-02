@@ -12,8 +12,8 @@
     "path": "folders/Objects/Sections.yy",
   },
   "parentObjectId": {
-    "name": "objSectionBorderRightScreen",
-    "path": "objects/objSectionBorderRightScreen/objSectionBorderRightScreen.yy",
+    "name": "objSectionBorderBottomScreen",
+    "path": "objects/objSectionBorderBottomScreen/objSectionBorderBottomScreen.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

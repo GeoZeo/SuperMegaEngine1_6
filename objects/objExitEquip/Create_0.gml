@@ -1,7 +1,7 @@
 event_inherited();
 
-name = "EXIT UNIT";
-description = "Allows escaping from completed stages.";
+eqName = "EXIT UNIT";
+description = "Allows you to instantly escape from completed stages.";
 usable = true;
 maxUnits = 1;
 showZero = false;

@@ -5,55 +5,92 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 	var myEnemy, myPickup;
 
     image_xscale *= 2;
-    image_yscale *= 2;
+	image_yscale *= 2;
+		
 	myPickup = instance_place(x, y, prtPickup)
-	if (myPickup > -1 && insideViewObj(myPickup) && myPickup.targetable && (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy != id)) target = myPickup	//If touching an item
-    image_xscale /= 2;
-    image_yscale /= 2;
+	if (myPickup > -1
+	&& instance_exists(myPickup)
+	&& insideViewObj(myPickup)
+	&& myPickup.targetable
+	&& myPickup.targetedBy != object_index
+	&& (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy != id))    //If touching an item
+	{
+		target = myPickup.id;
+		myPickup.targetedBy = object_index;
+		targetLocked = true;
+	}
+	
+	image_xscale /= 2;
+	image_yscale /= 2;
+	
+	myEnemy = instance_place(x, y, prtEnemy)
+	if (myEnemy > -1
+	&& instance_exists(myEnemy)
+	&& insideViewObj(myEnemy)
+	&& !myEnemy.dead && !myEnemy.dying
+	&& myEnemy.targetable
+	&& myEnemy.targetedBy != object_index)    //If touching an enemy
+	{
+		targetLocked = true;
+	}
 
-    //Find a target, either an enemy or an item, whichever's closest.
-    if target < 0 {
-        var n = 1;
-        while target < 0 or (object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying)) or (object_is_ancestor(target.object_index, prtPickup) and target.grabbedBy == id) or !insideViewObj(target) or !target.targetable  {
-            if n > instance_number(prtEnemy) + instance_number(prtPickup) {
-                target = -1;
-                break;
-            }
-			var e_dx = 0;
-	        var e_dy = 0;
-			myEnemy = instance_nth_nearest(x, y, prtEnemy, n);
-			if myEnemy > -1
-			{
-				e_dx = sprite_get_xcenter_object(myEnemy) - x;
-		        e_dy = sprite_get_ycenter_object(myEnemy) - y;
-			}
-			var e_len = sqrt(e_dx*e_dx + e_dy*e_dy);
+	if chaseTimer < chaseTime && !targetLocked
+	{
+		chaseTimer++;
+	}
+	if chaseTimer >= chaseTime && !targetLocked
+	{
+		chaseTimer = chaseTime;
 			
-			var p_dx = 0;
-	        var p_dy = 0;
-			myPickup = instance_nth_nearest(x, y, prtPickup, n);
-			if myPickup > -1
-			{
-				p_dx = sprite_get_xcenter_object(myPickup) - x;
-		        p_dy = sprite_get_ycenter_object(myPickup) - y;
-			}
-			var p_len = sqrt(p_dx*p_dx + p_dy*p_dy);
+		//Find a target, either an enemy or an item, whichever's closest.
+		if target < 0 {
+		    var n = 1;
+		    while target < 0 or (object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying)) or (object_is_ancestor(target.object_index, prtPickup) and target.grabbedBy == id) or !insideViewObj(target) or !target.targetable  {
+		        if n > instance_number(prtEnemy) + instance_number(prtPickup) {
+		            target = -1;
+		            break;
+		        }
+				var e_dx = 0;
+			    var e_dy = 0;
+				myEnemy = instance_nth_nearest(x, y, prtEnemy, n);
+				if myEnemy > -1 && instance_exists(myEnemy)
+				{
+					e_dx = sprite_get_xcenter_object(myEnemy.id) - x;
+				    e_dy = sprite_get_ycenter_object(myEnemy.id) - y;
+				}
+				var e_len = sqrt(e_dx*e_dx + e_dy*e_dy);
 			
-			if ((abs(e_len) <= abs(p_len)
-			or (myPickup < 0 or (!insideViewObj(myPickup) or !myPickup.targetable)
-			or (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy == id)))
-			&& myEnemy > -1 && !myEnemy.dead && !myEnemy.dying && insideViewObj(myEnemy) && myEnemy.targetable) {
-				target = myEnemy;
-			}
-			else if myPickup > -1 && insideViewObj(myPickup) && myPickup.targetable
-			&& (object_is_ancestor(myPickup.object_index, prtPickup)
-			and myPickup.grabbedBy != id) {
+				var p_dx = 0;
+			    var p_dy = 0;
+				myPickup = instance_nth_nearest(x, y, prtPickup, n);
+				if myPickup > -1 && instance_exists(myPickup)
+				{
+					p_dx = sprite_get_xcenter_object(myPickup.id) - x;
+				    p_dy = sprite_get_ycenter_object(myPickup.id) - y;
+				}
+				var p_len = sqrt(p_dx*p_dx + p_dy*p_dy);
 			
-				target = myPickup;
-			}
-            n++;
-        }
-    }
+				if ((abs(e_len) <= abs(p_len)
+				or (myPickup < 0 or (!insideViewObj(myPickup) or !myPickup.targetable)
+				or (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy == id)))
+				&& (myEnemy.targetedBy != object_index or n < instance_number(object_index))
+				&& myEnemy > -1 && !myEnemy.dead && !myEnemy.dying && insideViewObj(myEnemy) && myEnemy.targetable) {
+					target = myEnemy.id;
+					myEnemy.targetedBy = object_index;
+					targetLocked = true;
+				}
+				else if myPickup > -1 && insideViewObj(myPickup) && myPickup.targetable && myPickup.targetedBy != object_index
+				&& (object_is_ancestor(myPickup.object_index, prtPickup)
+				and myPickup.grabbedBy != id) {
+			
+					target = myPickup.id;
+					myPickup.targetedBy = object_index;
+					targetLocked = true;
+				}
+		        n++;
+		    }
+		}
+	}
 }
 
 if target > -1 {    //Chasing
@@ -62,11 +99,11 @@ if target > -1 {    //Chasing
 			target = -1;
 		}
 		else {
-			var dx = sprite_get_xcenter_object(target) - x;
-	        var dy = sprite_get_ycenter_object(target) - y;
+			var dx = sprite_get_xcenter_object(target.id) - x;
+	        var dy = sprite_get_ycenter_object(target.id) - y;
 	        var len = sqrt(dx*dx + dy*dy);
-	        xspeed = dx * spd / len;
-	        yspeed = dy * spd / len;
+			xspeed = dx * spd / len;
+			yspeed = dy * spd / len;
 		}
     }
     else {
@@ -74,23 +111,24 @@ if target > -1 {    //Chasing
     }
     if object_is_ancestor(target.object_index, prtPickup) and place_meeting(x, y, target)
 	and target.grabbedBy != id {
-        item = target;
+        item = target.id;
 		if (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy < 0) item.grabbedBy = id;
         target = -1;
     }
     else if object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying) {
+		target.targetedBy = -1;
         target = -1;
     }
 }
 
-if target < 0 and item > -1 {   //Bringing item
+if target < 0 and item > -1 and instance_exists(item) {   //Bringing item
     if instance_exists(item) and place_meeting(x, y, item) and (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy == id) {
         if instance_exists(prtPlayer) {
             var dx = sprite_get_xcenter_object(prtPlayer) - x;
             var dy = sprite_get_ycenter_object(prtPlayer) - y;
             var len = sqrt(dx*dx + dy*dy);
-            xspeed = dx * spd / len;
-            yspeed = dy * spd / len;
+			xspeed = dx * spd / len;
+			yspeed = dy * spd / len;
         }
         item.x = x + sprite_get_xoffset(item.sprite_index);
         item.y = y + sprite_get_yoffset(item.sprite_index) - (8 - item.sprite_height / 2);
@@ -117,7 +155,8 @@ if target < 0 and item > -1 {   //Bringing item
 		with item flash = false;
     }
     else {
-        item = -1;
+        item.targetedBy = -1;
+		item = -1;
 		if object_is_ancestor(item.object_index, prtPickup) item.grabbedBy = -1;
     }
 }
@@ -131,7 +170,7 @@ if xspeed > 0 {
 }
 
 //Animation
-if item < 0 {   //Not carrying any item
+if item < 0 or !instance_exists(item) {   //Not carrying any item
     if image_index >= 2 {
         image_index = 0;
     }

@@ -5,5 +5,5 @@ showCount = false;
 
 weapon = objTimeSlowWeapon;
 
-name = "Plate";
+eqName = "Plate";
 

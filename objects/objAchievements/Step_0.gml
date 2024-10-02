@@ -1,4 +1,6 @@
-timer++;
+if (instance_exists(objFadeout)) exit;
+
+//timer++;
 if global.keyUpPressed {
     selected--;
     if selected < 0 {
@@ -13,7 +15,7 @@ else if global.keyDownPressed || global.keySelectPressed {
     }
     playSFX(sfxMenuMove);
 }
-else if global.keyPausePressed || global.keyJumpPressed || global.keyShootPressed {
+if global.keyShootPressed {
     var ID = instance_create(0, 0, objFadeout);
     ID.type = "room";    
     ID.myRoom = rmMainMenu;

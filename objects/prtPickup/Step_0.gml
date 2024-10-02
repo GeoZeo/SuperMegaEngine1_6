@@ -18,13 +18,20 @@ if !global.frozen {
     }
     
     if insideView() {
-        checkGround();
+        if (grabbedBy < 0 or !instance_exists(grabbedBy) or grabbedBy.object_index != objHornetChaser)
+			checkGround();
+		else
+			ground = false;
+		
 		checkWater();
-        gravityCheckGroundExt(currentGrav);
-        generalCollision();
+		
+        if (grabbedBy < 0 or !instance_exists(grabbedBy) or grabbedBy.object_index != objHornetChaser)
+			gravityCheckGroundExt(currentGrav);
+        if (grabbedBy < 0 or !instance_exists(grabbedBy) or grabbedBy.object_index != objHornetChaser)
+			generalCollision();
         
         y += yspeed * update_rate;
-        if ground {
+        if ground || (grabbedBy > -1 and instance_exists(grabbedBy) and grabbedBy.object_index == objHornetChaser) {
             xspeed = 0;
         }
         x += xspeed * update_rate;

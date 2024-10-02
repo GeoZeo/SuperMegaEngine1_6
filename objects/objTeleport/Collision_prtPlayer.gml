@@ -25,6 +25,8 @@ or (mask_get_xcenter_object(prtPlayer)-prevMaskX > 0 and prevMaskX <= x and x <=
     }
 		
     //instance_deactivate_object(objMegaman);
+	with objPauseMenu instance_destroy();
+	stopSFX(sfxPause);
     playerLockMovement();
 	other.canGravity = false;
 	stopSFX(sfxLand);

@@ -2,7 +2,7 @@
 function placeTileObjects() {
 
 	var _layers = array_concat(layer_get_id_at_depth(-1000000), layer_get_id_at_depth(1000000));
-	var _numLayers = array_length(_layers);
+	var _numLayers = array_length_1d(_layers);
 	for(var i = 0; i < _numLayers; i++) {
 		
 		if(layer_tilemap_exists(_layers[i], layer_tilemap_get_id(_layers[i]))) {
@@ -41,13 +41,6 @@ function placeTileObjects() {
 									
 									inst.image_xscale = tw / inst.sprite_width;
 									inst.image_yscale = th / inst.sprite_height;
-									
-									//if obj != objTopSolid {
-									//	inst.image_yscale = th / inst.sprite_height;
-									//}
-									//else {
-									//	inst.image_yscale = (th / inst.sprite_height) / 16;
-									//}
 						
 								}
 							}
@@ -55,12 +48,6 @@ function placeTileObjects() {
 					}
 				}
 			}
-	
-			//var i = 1;
-			//repeat 6 {
-			//	show_debug_message("{0} count: {1}", object_get_name(i), instance_number(i));
-			//	i++;
-			//}
 		}
 	}
 

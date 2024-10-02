@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "STAR CRASH";
+wpnName = "STAR CRASH";
 abbrev = "S.CRASH";
 consumption = 2;
 consumptionContact = 3;

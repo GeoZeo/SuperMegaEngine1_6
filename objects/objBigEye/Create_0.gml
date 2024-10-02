@@ -17,7 +17,7 @@ contactDamage = 10;
 damage[objMetalBlade] = 2;
 
 damage[objPharaohShot] = 4;
-damage[objPharaohShotCharging] = 10;
+damage[objPharaohShotCharging] = 4;
 damage[objPharaohShotCharged] = 10;
 
 damage[objStarCrash] = 7;

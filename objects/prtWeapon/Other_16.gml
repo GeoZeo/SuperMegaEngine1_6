@@ -9,7 +9,7 @@ if timer == 0 {
         default: global.keyUp = false; global.keyDown = false; global.keyRight = false; global.keyLeft = false;
     }
     with global.weapons[global.currentWeapon] {
-        ammo = 28;
+        ammo = global.maxAmmo;
         event_user(1);
     }
     with prtPlayer playerShoot();

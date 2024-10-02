@@ -76,14 +76,14 @@ draw_sprite(sprFortressPoint, 0, x, y);
 var last_line = ds_list_find_value(lines, lines_size - 1);
 if !hidden || draw_speed > 0 {
     if is_array(last_line) {
-        draw_sprite(place_icon, round(point_frame), x + last_line[2], y + last_line[3]);
+        draw_sprite(place_icon, floor(point_frame), x + last_line[2], y + last_line[3]);
     }
     else {
         var line = ds_list_find_value(last_line, 0);
-        draw_sprite(place_icon, round(point_frame), x + line[2], y + line[3]);
+        draw_sprite(place_icon, floor(point_frame), x + line[2], y + line[3]);
     }
 }
-if draw_speed > 0 && point_frame < 1 {
+if draw_speed > 0 && point_frame + 0.1 < 2 {
     point_frame += 0.1;
 }
 else {

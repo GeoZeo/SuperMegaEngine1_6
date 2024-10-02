@@ -90,8 +90,8 @@ function playerSwitchWeapons() {
 			switched = true;
 		}
 
-		//Holding the left and right weapon switch keys at the same time results in the Mega Buster being selected
-		if global.keyWeaponSwitchLeft && global.keyWeaponSwitchRight && global.weapon != objMegaBusterWeapon.ID {
+		//Holding the left and right weapon switch keys at the same time results in the default weapon being selected
+		if global.keyWeaponSwitchLeft && global.keyWeaponSwitchRight && global.weapon != global.defaultWeapon.ID {
 		    global.weapons[global.currentWeapon].initChargeTimer = 0;
 		    global.weapons[global.currentWeapon].chargeTimer = 0;
 			global.weapons[global.currentWeapon].chargeAnimTimer = 0;

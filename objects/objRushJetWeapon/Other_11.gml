@@ -10,6 +10,6 @@ if instance_number(objRushJet) < 1 {
     prtPlayer.isShoot = false;
 }
 else {
-    with objMegaBusterWeapon event_user(1);
+    with global.defaultWeapon event_user(1);
 }
 

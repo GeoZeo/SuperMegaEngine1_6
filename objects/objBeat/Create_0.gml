@@ -1,12 +1,13 @@
 image_speed = 10 / room_speed;
+prevImgInd = image_index;
 target = -1;
 target_found = false;
 normalSpd = 3;
 pullSpd = 1;
 fallSpd = 0.32421875;
 transportSpd = 0.6484375;
-transportAcc = 0.05;
-transportDec = 0.05;
+transportAcc = 0.025;
+transportDec = 0.025;
 xspeed = 0;
 yspeed = 0;
 grav = 5;

@@ -7,12 +7,14 @@ image_xscale = -1;
 eyeTimer = 0;
 hitWhite = false;
 makeShadow = false;
+projCanTouch = false;
+depthFinalised = false;
 
 offsetX = 16 + 12;
 offsetY = 16 * 5 - 8;
 
 blocks = 19;
-block_delay = 0.5;    //Interval between blocks, in seconds
+block_delay = 26/60;    //Interval between blocks, in seconds
 
 //First column
 blockX[0] = 0;
@@ -71,5 +73,5 @@ enum yd_states {OPENING, CLOSING, SHOOTING, CLOSED};
 
 current_state = yd_states.CLOSED;
 
-depth--;
+depth = 3;
 

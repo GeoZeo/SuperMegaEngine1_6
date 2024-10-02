@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "WIND STORM";
+wpnName = "WIND STORM";
 abbrev = "W.STORM";
 consumption = 1;
 maxshots = 3;

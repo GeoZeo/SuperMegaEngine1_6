@@ -10,7 +10,6 @@ stepTime = cfgStepFrames;
 stepTimer = 0;
 isMM = false;
 ground = false;
-oldX = x;
 prevGround = ground;
 update_rate = 1;
 

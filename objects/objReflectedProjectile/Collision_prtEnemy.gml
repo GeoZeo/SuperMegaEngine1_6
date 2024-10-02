@@ -1,3 +1,5 @@
+if !other.projCanTouch return false;
+
 if id_of_origin != prtPlayer {
 	with other {
 	    if sprite_index > -1 and !reflectProjectiles && other.contactDamage != 0

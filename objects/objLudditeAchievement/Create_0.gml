@@ -1,5 +1,5 @@
 event_inherited();
 
-name = "LUDDITE";
+achName = "LUDDITE";
 description = "DESTROY THE WILY MACHINE";
 

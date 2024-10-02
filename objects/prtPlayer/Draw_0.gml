@@ -23,7 +23,7 @@ if teleporting == false && showReady == false
 }
 else if teleporting == true
 {   
-    if round(__view_get( e__VW.YView, 0 )-16+teleportY) >= y
+    if round(global.viewY-16+teleportY) >= y
     {
         if teleportTimer == 0
             playSFX(sfxTeleportIn);
@@ -54,6 +54,7 @@ else if teleporting == true
             sprite_index = spriteStand;
 			image_speed = speedStand;
             instance_activate_all();
+			with objGlobalControl pressBufferCount = 2;
             exit;
         }
         
@@ -63,7 +64,7 @@ else if teleporting == true
     {
         //Teleporting downwards
         image_index = 0;
-        drawSpriteColorSwap(spriteTeleport, image_index, round(x), round(__view_get( e__VW.YView, 0 )-16+teleportY), primary_color, secondary_color, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
+        drawSpriteColorSwap(spriteTeleport, image_index, round(x), round(global.viewY-16+teleportY), primary_color, secondary_color, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
         if abs(teleportAcc) > 0 {
 			currentTeleportSpeed += abs(teleportAcc);
 			if currentTeleportSpeed >= abs(teleportSpeed) {
@@ -85,7 +86,7 @@ else if showReady == true
     var readyIndicator;
     readyIndicator = readyTimer mod 12;
     if readyIndicator >= 6 && readyIndicator <= 11 //For the last 7 frames of every 14 frames, show the READY text
-        draw_sprite_ext(sprReady, 0, round(__view_get( e__VW.XView, 0 )+(__view_get( e__VW.WView, 0 )/2)), round(__view_get( e__VW.YView, 0 )+(__view_get( e__VW.HView, 0 )/2)), 1, 1, 0, c_white, 1);
+        draw_sprite_ext(sprReady, 0, round(global.viewX+(global.viewWidth/2)), round(global.viewY+(global.viewHeight/2)), 1, 1, 0, c_white, 1);
     
 	var _jingle = noone;
 	if is_string(jingle)

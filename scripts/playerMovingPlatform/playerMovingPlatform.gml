@@ -13,7 +13,7 @@ function playerMovingPlatform() {
 	        {
 	            if !place_meeting(x, y, mySolid)
 	            {
-	                y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+	                y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 	                global.yspeed = 0;
                 
 					ground = true;
@@ -35,7 +35,7 @@ function playerMovingPlatform() {
 	    ID[maxID] = instance_place(x, y+global.yspeed, prtMovingPlatformSolid);
 	    if ID[maxID].dead == false
 	    {
-	        y = ID[maxID].bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index));
+	        y = ID[maxID].bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 	        global.yspeed = 0;
         
 			ground = true;
@@ -102,7 +102,6 @@ function playerMovingPlatform() {
 	    if ID[maxID].dead == false && global.yspeed <= ID[maxID].yspeed
 	    {
 	        y = ID[maxID].bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
-			if climbing { y -= climbSpeed; y = floor(y); }
 	        if ID[maxID].yspeed == 0
 	            global.yspeed = 0;
 	        else
@@ -263,7 +262,7 @@ function playerMovingPlatform() {
 	if canPlayLandSound && !global.frozen && !audio_is_playing(sfxEnergyRestore)
 	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
 		
-		if !isHit
+		if !isHit && !isStun
 			playSFX(sfxLand);
 			
 		canPlayLandSound = false;

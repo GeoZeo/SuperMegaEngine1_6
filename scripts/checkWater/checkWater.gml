@@ -4,10 +4,10 @@ function checkWater() {
 	
 	if place_meeting(x, y, objWater) && inWater == false
 	{
-		var _sectionLeft = __view_get( e__VW.XView, 0 );
-		var _sectionTop = __view_get( e__VW.YView, 0 );
-		var _sectionRight = __view_get( e__VW.XView, 0 ) + (__view_get( e__VW.WView, 0 ));
-		var _sectionBottom = __view_get( e__VW.YView, 0 ) + (__view_get( e__VW.HView, 0 ));
+		var _sectionLeft = global.viewX;
+		var _sectionTop = global.viewY;
+		var _sectionRight = global.viewX + (global.viewWidth);
+		var _sectionBottom = global.viewY + (global.viewHeight);
 		
 		inWater = true;
 	
@@ -97,10 +97,10 @@ function checkWater() {
 	//Leaving the water
 	if inWater == true
 	{
-		var _sectionLeft = __view_get( e__VW.XView, 0 );
-		var _sectionTop = __view_get( e__VW.YView, 0 );
-		var _sectionRight = __view_get( e__VW.XView, 0 ) + (__view_get( e__VW.WView, 0 ));
-		var _sectionBottom = __view_get( e__VW.YView, 0 ) + (__view_get( e__VW.HView, 0 ));
+		var _sectionLeft = global.viewX;
+		var _sectionTop = global.viewY;
+		var _sectionRight = global.viewX + (global.viewWidth);
+		var _sectionBottom = global.viewY + (global.viewHeight);
 		
 	    var wtr;
 	    wtr = instance_place(x-xspeed, y-yspeed, objWater);

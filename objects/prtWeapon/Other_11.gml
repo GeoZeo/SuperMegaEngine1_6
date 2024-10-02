@@ -4,7 +4,7 @@ ok = true;
 
 if projectileCount() >= maxshots
 || ammo <= 0 || !instance_exists(prtPlayer) {
-    print("Can't shoot " + name);
+    print("Can't shoot " + wpnName);
     ok = false;
     return false;
 }
@@ -36,6 +36,7 @@ if sfx != noone {
     playSFX(sfx);
 }
 
+old_ammo = ammo; //In case we need to cancel ammo consumption for whatever reason
 ammo -= consumption;
 if ammo < 0 {
     ammo = 0;
@@ -49,7 +50,7 @@ else {
 
 prtPlayer.shootTimer = 0;
 
-print("Shooting " + name);
+print("Shooting " + wpnName);
 
 if (cooldown > 0) {
     with prtPlayer canShoot = false;

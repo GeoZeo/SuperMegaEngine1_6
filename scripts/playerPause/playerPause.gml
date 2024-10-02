@@ -10,6 +10,9 @@ function playerPause() {
 		with weapons[global.currentWeapon] stopSFX(chargedSFX);
 		playChargeSound = true;
 		playChargedSound = true;
+		
+		drawWeaponIcon = false;
+		drawWeaponIconTimer = -1;
 
 	    global.frozen = true;
 	    instance_create(x, y, objPauseMenu);

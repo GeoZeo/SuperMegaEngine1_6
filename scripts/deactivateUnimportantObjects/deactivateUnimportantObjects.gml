@@ -1,6 +1,6 @@
 /// @description deactivateUnimportantObjects()
 function deactivateUnimportantObjects() {
-	//Deactivates umimportant objects. Even deactivates objects inside the section
+	//Deactivates unimportant objects. Even deactivates objects inside the section
 
 	instance_deactivate_all(true);
 
@@ -19,6 +19,17 @@ function deactivateUnimportantObjects() {
 
 	//Objects that should remain activated, but without animation (disabled animation code is in the object itself)
 	instance_activate_object(objMM2Conveyor);
+	
+	
+	//Player projectiles that persist during 
+	instance_activate_object(prtPlayerProjectile);
+	with prtPlayerProjectile
+	{
+		if destroyOnScroll && instance_exists(objSectionSwitcher)
+		{
+			instance_deactivate_object(id);
+		}
+	}
 
 
 	//Objects that destroy themselves off screen

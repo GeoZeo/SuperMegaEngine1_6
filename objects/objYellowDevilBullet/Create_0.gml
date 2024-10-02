@@ -1,11 +1,8 @@
-event_inherited()
+event_inherited();
 
 spd = 6;
 contactDamage = 4;
 destroyOnReflect = true;
-
-image_xscale = 0.5;
-image_yscale = 0.5;
 
 if instance_exists(prtPlayer) {
     hspeed = prtPlayer.x - x;
@@ -14,4 +11,7 @@ if instance_exists(prtPlayer) {
     hspeed = hspeed * spd / norm;
     vspeed = vspeed * spd / norm;
 }
+
+_hspeed = hspeed;
+_vspeed = vspeed;
 

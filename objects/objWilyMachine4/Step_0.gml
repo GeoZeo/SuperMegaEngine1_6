@@ -15,14 +15,14 @@ if !global.frozen {
         smoke2 = instance_create(x + 64 + 29, sprite_get_bottom(), objWilyMachine4Smoke);
     }
     if isFight {
-        if sprite_get_bottom() > __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 32 {
+        if sprite_get_bottom() > global.viewY + global.viewHeight - 32 {
             yspeed = -spd;
             with objWilyMachine4Smoke {
                 image_index = 0;
                 visible = true;
             }
         }
-        else if sprite_get_bottom() < __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 64 or yspeed == 0 {
+        else if sprite_get_bottom() < global.viewY + global.viewHeight - 64 or yspeed == 0 {
             yspeed = spd;
         }
         //if sprite_index == sprWilyMachine4b and ((yspeed < 0 and sprite_get_bottom() <= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45) or (yspeed > 0 and sprite_get_bottom() >= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45)) {
@@ -31,7 +31,7 @@ if !global.frozen {
         //}
         if sprite_index == sprWilyMachine4b {
 			
-			var yCoord_phase2 = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 43.4765625 - sprite_height;
+			var yCoord_phase2 = global.viewY + global.viewHeight - 38 - sprite_height;
 			
 			if y == yCoord_phase2 {
 				if !dying
@@ -42,7 +42,7 @@ if !global.frozen {
 	            }
 	            else {
 					randomize();
-					if (random(1000) <= 1 or x < __view_get( e__VW.XView, 0 ) + 64 or x > __view_get( e__VW.XView, 0 ) + __view_get( e__VW.WView, 0 ) - sprite_width) && !dying
+					if (random(1000) <= 1 or x < global.viewX + 64 or x > global.viewX + global.viewWidth - sprite_width) && !dying
 						xspeed *= -1;
 	            }
 			}
@@ -102,7 +102,7 @@ if !global.frozen {
 				
 			if dying {
 				xspeed = 0;
-				yspeed = 0.15;
+				yspeed = 0.1311051;
 			}
         }
         with objWilyMachine4Smoke {
@@ -115,7 +115,7 @@ if !global.frozen {
         }
     }
     else if !dying {
-        if sprite_get_bottom() > __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 64 {
+        if sprite_get_bottom() > global.viewY + global.viewHeight - 64 {
             yspeed = 0;
             control.healthBarTimerMax = 10;
 			

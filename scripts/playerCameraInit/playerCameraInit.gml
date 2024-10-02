@@ -68,6 +68,14 @@ function playerCameraInit() {
 	}
 
 	sectionBottom = instance_place(x+newSectionXOffset, ceil((y+newSectionYOffset)/16)*16 + dist, objSectionBorderBottom).y + 16;
+	
+	
+	//Set the correct camera center position
+	if variable_instance_exists(id, "climbing")
+	{
+		cameraXOffset = ((x + (round(image_xscale) * !climbing)) - global.viewX) / global.viewWidth;
+		cameraYOffset = ((y + round(image_yscale)) - global.viewY) / global.viewHeight;
+	}
 
 
 

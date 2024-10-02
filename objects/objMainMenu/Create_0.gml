@@ -34,7 +34,7 @@ if cfgEnableKeyConfig and os_browser == browser_not_a_browser {
     }
 }
 
-menu[current_item] = "BACK";
+menu[current_item] = "RETURN TO TITLE";
 
 num_menu_items = array_length_1d(menu);
 

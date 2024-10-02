@@ -7,7 +7,7 @@ if !global.frozen {
         if teleportTimer == 0 {   //Falling
 			if insideView_Spr() {
 				if yspeed == 0 {
-					y = __view_get( e__VW.YView, 0 )-16;
+					y = global.viewY-16;
 					visible = true;
 					if abs(cfgRushTeleportAcc) <= 0 {
 						yspeed = cfgRushTeleportSpeed;
@@ -133,7 +133,7 @@ if !global.frozen {
 						item = choose(objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLifeEnergyBig, objWeaponEnergyBig, objLife, objLife, objETank);
 					}
 				}
-				var item_instance = instance_create(x + image_xscale * 8, y - 16, item);
+				var item_instance = instance_create(x + sign(image_xscale) * 8, y - 16, item);
 				if image_xscale > 0 item_instance.x -= (item_instance.sprite_width - item_instance.sprite_xoffset);
 				with item_instance escapeWall(true, true, true, true);
                 item_instance.xspeed = image_xscale;

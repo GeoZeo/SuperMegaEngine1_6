@@ -14,8 +14,22 @@ if !global.frozen && !dead && !dying {
         
         //generalCollision();
         if !place_free(x, y + yspeed) && place_free(x, y) {
-            yspeed = 0;
-        }
+            
+			var mySolid = instance_place(x, y + yspeed, objSolid)
+			if mySolid < 0
+				if place_meeting(x, y + yspeed, prtMovingPlatformSolid) && !instance_place(x, y + yspeed, prtMovingPlatformSolid).dead
+					mySolid = instance_place(x, y + yspeed, prtMovingPlatformSolid)
+					
+			if mySolid >= 0
+			{
+				y = mySolid.bbox_bottom + sprite_get_yoffset(sprite_index) - sprite_get_bbox_top(sprite_index) + 3;
+				
+				while place_meeting(x, y, mySolid)
+					y += 1;
+			}
+			
+			yspeed = 0;
+		}
         
         if (yspeed == 0) {
             retreating = false;

@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "NEEDLE CANNON";
+wpnName = "NEEDLE CANNON";
 abbrev = "N.CANNON";
 consumption = 0.25;
 maxshots = 3;

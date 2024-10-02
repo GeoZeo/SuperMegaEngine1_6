@@ -12,8 +12,8 @@
     "path": "folders/Objects/Sections.yy",
   },
   "parentObjectId": {
-    "name": "objSectionBorderVertical",
-    "path": "objects/objSectionBorderVertical/objSectionBorderVertical.yy",
+    "name": "objSectionBorderHorizontal",
+    "path": "objects/objSectionBorderHorizontal/objSectionBorderHorizontal.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

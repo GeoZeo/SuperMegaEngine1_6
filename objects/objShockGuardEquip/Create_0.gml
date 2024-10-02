@@ -1,7 +1,7 @@
 event_inherited();
 
-name = "Shock Guard";
-description = "Protects you from instant death on spikes.";
+eqName = "Shock Guard";
+description = "Protects you from one instant death by spikes.";
 usable = false;
 maxUnits = 3;
 showZero = true;

@@ -7,6 +7,7 @@ checkFullSprite = false; //Should we check whether the whole sprite is in view i
 canSpawnItem = true;
 instantItemSpawn = false; //Spawn item instantly upon death (like in MM2) instead of on a timer?
 canHit = true;
+projCanTouch = true; //Whether projectiles touch us or pass through us
 dying = false; //In the middle of a death animation?
 inWater = false; //Currently underwater?
 canSplash = true;
@@ -45,6 +46,7 @@ respawn = true; //Should we respawn after leaving the screen and entering it aga
 neverDespawn = false;
 
 targetable = true;  //For Hornet Chaser and other homing weapons
+targetedBy = -1;
 
 useHitBox = false;
 hitbox_left = bbox_left - x;

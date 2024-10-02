@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "CENTAUR FLASH";
+wpnName = "CENTAUR FLASH";
 abbrev = "C.FLASH";
 consumption = 4;
 maxshots = 1;

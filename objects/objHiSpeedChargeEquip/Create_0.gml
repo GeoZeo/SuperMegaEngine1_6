@@ -1,7 +1,7 @@
 event_inherited();
 
-name = "HI-SPEED CHARGE";
-description = "Halves weapons charge time.";
+eqName = "HI-SPEED CHARGE";
+description = "Halves weapon charge time.";
 maxUnits = 1;
 showZero = false;
 showCount = false;

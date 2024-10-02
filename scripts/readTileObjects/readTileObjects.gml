@@ -5,7 +5,7 @@ function readTileObjects() {
 	global.tiles = ds_map_create();
 	
 	var _layers = layer_get_id_at_depth(1000000);
-	var _numLayers = array_length(_layers);
+	var _numLayers = array_length_1d(_layers);
 	for(var i = 0; i < _numLayers; i++) {
 	
 		if (layer_tilemap_exists(_layers[i], layer_tilemap_get_id(_layers[i]))) {

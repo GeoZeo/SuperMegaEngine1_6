@@ -1,7 +1,7 @@
 event_inherited();
 
 //Boss Info (for stage select and intro)
-name = "";
+bossName = "";
 level = noone;
 introBGCol = noone;
 introLineCol = noone;
@@ -33,7 +33,10 @@ image_xscale = -1;
 image_speed = 0;
 image_index = 0;
 
-healthpoints = 28;
+cancelDestroyEvent = false;
+
+healthpointsStart = 28;
+healthpoints = healthpointsStart;
 prevHealthPoints = healthpoints;
 canHit = false;
 drawHitSpark = false;

@@ -8,7 +8,7 @@ draw_set_font(global.MM3font);
 draw_set_valign(fa_top);
 draw_set_halign(fa_center);
 
-draw_text(round(room_width/2), room_height-30, string_hash_to_newline("OPEN SOURCE SOFTWARE#MAINTAINED BY THE MEGA MAN FANDOM"));
+draw_text(round(room_width/2), room_height-30, string_hash_to_newline("OPEN SOURCE SOFTWARE MAINTAINED#BY THE MEGA MAN FANDOM"));
 
 if drawText {
     var text = "PRESS ";

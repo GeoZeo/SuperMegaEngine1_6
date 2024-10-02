@@ -39,3 +39,9 @@ if (global.enableSlideKey) {
     global.keySlideReleased = keyboard_check_released(global.slideKey) || gamepad_button_check_released_any(global.slideButton);
 }
 
+if pressBufferCount > 0
+{
+	playerPressBuffer();
+	pressBufferCount--;
+}
+

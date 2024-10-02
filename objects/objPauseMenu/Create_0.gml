@@ -3,6 +3,7 @@ blackAlphaIncrease = 0.2;
 blackAlphaTimer = 0;
 blackAlphaTimerMax = 2;
 weapons_per_col = global.weapons_per_col;
+playerSprite = prtPlayer.spriteStandDefault;
 
 phase = 0;  //0: increasing the black rectangle's alpha
 option = global.currentWeapon;

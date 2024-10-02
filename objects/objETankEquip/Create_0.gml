@@ -1,7 +1,7 @@
 event_inherited();
 
-name = "E-TANK";
-description = "Fully restores your energy when used.";
+eqName = "E-Tank";
+description = "Fully restores your Life Energy when used.";
 usable = true;
 maxUnits = 9;
 showZero = true;

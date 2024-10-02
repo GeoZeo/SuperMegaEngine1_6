@@ -1,6 +1,6 @@
 event_inherited();
 
-name = "Proto Buster";
+wpnName = "Proto Buster";
 abbrev = "P.BUSTER";
 maxshots = cfgMaxNumberOfBusterShots - 1;
 chargeSFX = sfxProtoBusterCharging;

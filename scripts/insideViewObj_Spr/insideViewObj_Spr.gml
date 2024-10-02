@@ -5,8 +5,8 @@ function insideViewObj_Spr(argument0) {
 
 	var obj = argument0;
 
-	if obj.bbox_right-1 >= __view_get( e__VW.XView, 0 ) && obj.bbox_left < __view_get( e__VW.XView, 0 )+__view_get( e__VW.WView, 0 )
-	&& obj.bbox_bottom-1 >= __view_get( e__VW.YView, 0 ) && obj.bbox_top < __view_get( e__VW.YView, 0 )+__view_get( e__VW.HView, 0 )
+	if obj.bbox_right-1 >= global.viewX && obj.bbox_left < global.viewX+global.viewWidth
+	&& obj.bbox_bottom-1 >= global.viewY && obj.bbox_top < global.viewY+global.viewHeight
 	    return true;
 	else
 	    return false;
