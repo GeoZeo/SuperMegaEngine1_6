@@ -30,7 +30,7 @@ function macros() {
 #macro cfgBeginChargeOnSlide false
 #macro cfgContinueChargeMidSlide true
 #macro cfgChargeWhileLocked false
-#macro cfgContinueChargeAnimWhileLocked false
+#macro cfgContinueChargeAnimWhileLocked true
 #macro cfgFadeOutChargedSound false
 #macro cfgDestroyBossProjectilesOnBossDeath false
 #macro cfgRushTeleportSpeed 10

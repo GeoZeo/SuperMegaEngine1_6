@@ -1,7 +1,7 @@
 if !global.frozen {
-    if !instance_exists(prtPlayer) and insideView() {
-        instance_destroy();
-        exit;
+    if instance_exists(prtPlayer) {
+        player_x = prtPlayer.x;
+		player_y = prtPlayer.y;
     }
     if !leaving and sprite_index == sprRushTeleport {    //Teleporting in
         if teleportTimer == 0 {   //Falling
@@ -41,7 +41,7 @@ if !global.frozen {
 				
 			//	visible = true;
             //}
-            if (!called or abs(prtPlayer.y - y) < 64) and place_meeting(x, y + yspeed, objSolid) and place_free(x, y) {
+            if (!called or abs(player_y - y) < 64) and place_meeting(x, y + yspeed, objSolid) and place_free(x, y) {
                 
 				if teleportTimer == 0
 					playSFX(sfxTeleportIn);
@@ -64,7 +64,7 @@ if !global.frozen {
             while !place_meeting(x, y + 1, objSolid) {
                 y++;
             }
-            if prtPlayer.x < x {
+            if player_x < x {
                 image_xscale = -1;
             }
         }
@@ -91,7 +91,7 @@ if !global.frozen {
 				
 	        yspeed = 0;
 	    }
-        if (!delivering and abs(prtPlayer.x - x) > 48 and !place_meeting(x + image_xscale, y, objSolid)) || mySolid < 0   { //Walking towards Mega Man
+        if (!delivering and abs(player_x - x) > 48 and !place_meeting(x + image_xscale, y, objSolid)) || mySolid < 0   { //Walking towards Mega Man
             xspeed = image_xscale * spd;
             x += xspeed;
             if image_index >= 3 and image_speed > 0 {

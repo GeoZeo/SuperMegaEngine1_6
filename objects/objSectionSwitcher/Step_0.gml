@@ -51,7 +51,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                     {
                         bossdr.opening = false;
                         bossdr.closing = true;
-                        image_speed = 0;
+                        image_speed = imgSpd; //Change from 0 to imgSpd if you want animations to play during door closings.
                         playSFX(sfxDoor);
                         
                         playerSpeedHorDoor = 0;
@@ -114,7 +114,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                     {
                         bossdr.opening = false;
                         bossdr.closing = true;
-                        image_speed = 0;
+                        image_speed = imgSpd; //Change from 0 to imgSpd if you want animations to play during door closings.
                         playSFX(sfxDoor);
                         
                         playerSpeedHorDoor = 0;
@@ -171,7 +171,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                     {
                         bossdr.opening = false;
                         bossdr.closing = true;
-                        image_speed = 0;
+                        image_speed = imgSpd; //Change from 0 to imgSpd if you want animations to play during door closings.
                         playSFX(sfxDoor);
                         
                         playerSpeedVertDoor = 0;
@@ -229,7 +229,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                     {
                         bossdr.opening = false;
                         bossdr.closing = true;
-                        image_speed = 0;
+                        image_speed = imgSpd; //Change from 0 to imgSpd if you want animations to play during door closings.
                         playSFX(sfxDoor);
                         
                         playerSpeedVertDoor = 0;
@@ -247,7 +247,18 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
             
         }
         
-		if sprite_index == prtPlayer.spriteSlide prtPlayer.slideTimer++; //Comment this out if you don't want slides to be cancelled upon the end of a section switch
+		//Comment this section out if you don't want slides to be cancelled upon the end of a section switch
+		if sprite_index == prtPlayer.spriteSlide prtPlayer.slideTimer++;
+		if prtPlayer.slideTimer >= prtPlayer.slideFrames
+		{
+			with prtPlayer
+			{
+				if !place_meeting(x, y+1, objIce)
+	                global.xspeed = 0;
+	            else
+	                global.xspeed = walkSpeed * image_xscale;
+			}
+		}
 		
         //Climbing animation
         if sprite_index == prtPlayer.spriteClimb || sprite_index == prtPlayer.spriteClimbDefault

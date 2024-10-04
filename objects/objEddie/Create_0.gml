@@ -1,6 +1,8 @@
 sprite_index = sprRushTeleport;
 teleportTimer = 0;
 yspeed = 0;
+player_x = 0;
+player_y = 0;
 image_speed = 0;
 image_index = 0;
 spd = 1;
