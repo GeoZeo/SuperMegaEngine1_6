@@ -16,7 +16,7 @@ if instance_exists(objPharaohShotCharging) {
 	        chargeTimer = 0;
 			event_user(1);
 		}
-        if !prtPlayer.locked || cfgChargeWhileLocked || room == rmWeaponGet
+        if (!instance_exists(objSectionSwitcher) and !prtPlayer.locked) || cfgChargeWhileLocked || room == rmWeaponGet
 			with objPharaohShotCharging instance_destroy();
     }
 

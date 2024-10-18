@@ -1,6 +1,7 @@
 global.damageMultiplier = 1;
 
 option = 0;
+timer = 0;
 selectedOption = false;
 global.checkpoint = false;
 global.levelStart = true;
@@ -46,4 +47,10 @@ for(var i = 0; i < global.totalWeapons; i++){
 
 pass = make_password();
 print("Password", pass);
+
+//For auto-shifting through the options in the menu
+as_delay = 25;
+as_rate = 5;
+as_init_timer = as_delay;
+as_timer = as_rate;
 

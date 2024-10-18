@@ -14,7 +14,7 @@ if numBossesDefeated() == 8 && !drawLogo {
 	
 	}
 }
-else if numBossesDefeated() < 8 || drawLogo {
+else if (numBossesDefeated() < 8 or drawLogo) && !instance_exists(objFadeIn) {
 	
 	if playBGM { playMusicVolume(bgmStageSelect, 0.6); playBGM = false; }
 

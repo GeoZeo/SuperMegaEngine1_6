@@ -1,15 +1,26 @@
 event_inherited();
 
 if !global.frozen && !dead && !dying {
-    if instance_exists(prtPlayer) && image_index > 1 {
+    if image_index > 1 {
         // Turn right.
-        if x < prtPlayer.x
+        if x < player_x
             image_xscale = 1;
         // Turn left.
         else
             image_xscale = -1;
     }
     
+	if instance_exists(prtPlayer) {
+		player_x = sprite_get_xcenter_object(prtPlayer);
+		player_y = sprite_get_ycenter_object(prtPlayer);
+	}
+	
+	dirX = player_x - sprite_get_xcenter();
+    dirY = player_y - sprite_get_ycenter();
+	if dirX != 0 || dirY != 0 {
+	    len = sqrt(dirX * dirX + dirY * dirY);
+	}
+	
     if retreating {
         
         //generalCollision();
@@ -42,7 +53,8 @@ if !global.frozen && !dead && !dying {
     }
     else {
         if !moving {
-            moveTimer += update_rate;
+			if instance_exists(prtPlayer) canMoveTimer = true;
+            if canMoveTimer moveTimer += update_rate;
             xspeed = 0;
             if (moveTimer >= 180) {
                 image_speed = 0.1;
@@ -50,22 +62,20 @@ if !global.frozen && !dead && !dying {
             
             if (floor(image_index) == 2) {
                 moving = true;
+				canMoveTimer = false;
                 image_speed = 0;
                 playSFX(sfxTaban);
             }
         }
         else {
-            if instance_exists(prtPlayer) {
-                with prtPlayer {
-                    dirX = sprite_get_xcenter() - sprite_get_xcenter_object(other);
-                    dirY = sprite_get_ycenter() - sprite_get_ycenter_object(other);
-					if dirX != 0 || dirY != 0 {
-	                    len = sqrt(dirX * dirX + dirY * dirY);
-	                    other.xspeed = dirX * other.move_speed / len;
-	                    other.yspeed = dirY * other.move_speed / len;
-					}
-                }
-            }
+			if dirX != 0 || dirY != 0 {
+				xspeed = dirX * move_speed / len;
+				yspeed = dirY * move_speed / len;
+			}
+			else {
+				xspeed = 0;
+				yspeed = 0;
+			}
         }
     }
     
@@ -109,6 +119,7 @@ else {
 	}
     if dead || dying {
         counter = 0;
+		canMoveTimer = false;
         moveTimer = 0;
         moving = false;
         retreating = false;

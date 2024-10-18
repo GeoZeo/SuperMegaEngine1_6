@@ -6,9 +6,12 @@ section_right = 0;
 section_bottom = 0;
 xspeed = 1;
 yspeed = 0;
+target_xspeed = 0;
+target_yspeed = 0;
+xaccel = 0;
+yaccel = 0;
 started = false;
-border = -1;
-border2 = -1;
+fixed = true;
 
 if cfgDebug || debug_mode {
     visible = true;

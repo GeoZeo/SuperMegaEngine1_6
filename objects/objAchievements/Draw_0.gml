@@ -8,7 +8,7 @@ for (var i = topItem; i < topItem + maxItems; i++) {
     }
     draw_text(68, 32 + height * 16, string_hash_to_newline(achievement.achName));
     if i == selected {
-        draw_sprite(sprPassArrow, (timer div 4) % 2, 32, 34 + height * 16);
+        draw_sprite(sprPassArrow, (timer % 30 >= 15) % 2, 32, 34 + height * 16);
         draw_text(32, global.viewHeight - 48, string_hash_to_newline(string_break(achievement.description, 25)));
     }
 }

@@ -23,11 +23,8 @@ bulletID = -10;
 image_speed = 0;
 image_index = 0;
 
-if instance_exists(prtPlayer)
-{
-    if x >= prtPlayer.x
-        image_xscale = -1;
-    else
-        image_xscale = 1;
-}
+if x >= player_x
+    image_xscale = -1;
+else
+    image_xscale = 1;
 

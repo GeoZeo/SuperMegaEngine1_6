@@ -10,6 +10,10 @@ makeShadow = false;
 projCanTouch = false;
 depthFinalised = false;
 
+contactDamage = 4;
+
+damage[objStarCrash] = 4;
+
 offsetX = 16 + 12;
 offsetY = 16 * 5 - 8;
 

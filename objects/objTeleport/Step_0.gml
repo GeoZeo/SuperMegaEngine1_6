@@ -54,7 +54,7 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	        else {
 	            //instance_activate_object(objMegaman);
 				if instance_exists(objBossControl) {
-					with instance_nearest(toX, toY, objBossControl) {
+					with instance_nearest(toX - (cfgPushStartingPosBack * toDir), toY, objBossControl) {
 		                if !insideView() or (bossID > -1 and global.bossRushDefeated[bossID]) {
 		                    playerFreeMovement();
 		                }
@@ -63,15 +63,17 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 				else {
 					playerFreeMovement();
 				}
-	            prtPlayer.x = toX;
+	            prtPlayer.x = toX - (cfgPushStartingPosBack * toDir);
 	            prtPlayer.y = toY;
 	            prtPlayer.visible = true;
 	            prtPlayer.image_xscale = toDir;
 	            x = origX;
 	            y = origY;            
 	            visible = false;
-	            sprite_index = sprCollisionOther;
+	            sprite_index = sprTeleport;
+				image_speed = 1;
 	            out = false;
+				with objWind playerTeleporting = false;
 	            instance_activate_object(objSolid);
 				instance_activate_object(objTopSolid);
 				instance_activate_object(prtMovingPlatformSolid);
@@ -104,9 +106,6 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	        }
 	    }
 	}
-	
-	prevPlayerX = prtPlayer.x;
-	prevMaskX = mask_get_xcenter_object(prtPlayer);
 	
 	if prtPlayer.ground && playerLocked {
 		if warpTime > 0 {

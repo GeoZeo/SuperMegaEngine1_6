@@ -1,6 +1,6 @@
 if !cancelDestroyEvent {
 	
-	playerLockMovement();
+	playerLockMovement(true);
 
 	if makeShadow {
 	    var shadow = instance_create(x, y, objBossShadow);

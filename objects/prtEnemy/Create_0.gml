@@ -16,6 +16,8 @@ gravWater = cfgGravityWater;
 currentGrav = grav;
 xspeed = 0;
 yspeed = 0;
+player_x = 0;
+player_y = 0;
  
 update_rate = 1;
 

@@ -4,6 +4,12 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
 {
     if !(door == true && canProgressDoor == false)
     {
+		if sprite_index == prtPlayer.spriteSlide prtPlayer.slideTimer++; //Comment this line out if you don't want section switches to always automatically cancel slides
+		if prtPlayer.slideTimer >= prtPlayer.slideFrames
+		{
+			cancelSlide = true;
+		}
+		
         //Right
         if dir == "right"
         {
@@ -64,6 +70,19 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                         with prtPlayer playerDeactivateObjects();
                     }
                 }
+				if cancelSlide
+				{
+					with prtPlayer
+					{
+						if place_free(x, y-7)
+						{
+							if !place_meeting(x, y+1, objIce)
+							    global.xspeed = 0;
+							else
+							    global.xspeed = walkSpeed * image_xscale;
+						}
+					}
+				}
             }
         }
         
@@ -127,6 +146,19 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                         with prtPlayer playerDeactivateObjects();
                     }
                 }
+				if cancelSlide
+				{
+					with prtPlayer
+					{
+						if place_free(x, y-7)
+						{
+							if !place_meeting(x, y+1, objIce)
+							    global.xspeed = 0;
+							else
+							    global.xspeed = walkSpeed * image_xscale;
+						}
+					}
+				}
             }
         }
         
@@ -183,7 +215,20 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                         instance_destroy();
                         with prtPlayer playerDeactivateObjects();
                     }
-                }                
+                }
+				if cancelSlide
+				{
+					with prtPlayer
+					{
+						if place_free(x, y-7)
+						{
+							if !place_meeting(x, y+1, objIce)
+							    global.xspeed = 0;
+							else
+							    global.xspeed = walkSpeed * image_xscale;
+						}
+					}
+				}
             }
             
                         
@@ -241,24 +286,24 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
                         instance_destroy();
                         with prtPlayer playerDeactivateObjects();
                     }
-                }                                        
+                }
+				if cancelSlide
+				{
+					with prtPlayer
+					{
+						if place_free(x, y-7)
+						{
+							if !place_meeting(x, y+1, objIce)
+							    global.xspeed = 0;
+							else
+							    global.xspeed = walkSpeed * image_xscale;
+						}
+					}
+				}
             }
             
             
         }
-        
-		//Comment this section out if you don't want slides to be cancelled upon the end of a section switch
-		if sprite_index == prtPlayer.spriteSlide prtPlayer.slideTimer++;
-		if prtPlayer.slideTimer >= prtPlayer.slideFrames
-		{
-			with prtPlayer
-			{
-				if !place_meeting(x, y+1, objIce)
-	                global.xspeed = 0;
-	            else
-	                global.xspeed = walkSpeed * image_xscale;
-			}
-		}
 		
         //Climbing animation
         if sprite_index == prtPlayer.spriteClimb || sprite_index == prtPlayer.spriteClimbDefault
@@ -285,6 +330,7 @@ if canStep == true && (playerSpeedHorDoor != 0 && playerSpeedVertDoor != 0) //Wh
 if cfgSwitchWeaponsWhileTransitioning
 	with prtPlayer playerSwitchWeapons();
 
-//Optionally continue charge animations during scrolling. Comment this out if you only want charge animations to persist when MM is locked (i.e: during a boss cutscene, for example).
-if cfgContinueChargeAnimWhileLocked || cfgChargeWhileLocked
+//Optionally continue charge animations during scrolling.
+if global.weapons[global.currentWeapon].chargeWhileScrolling
+|| cfgContinueChargeAnimWhileLocked || cfgChargeWhileLocked //Comment this line out if you only want charge animations to persist when MM is locked (i.e: during a boss cutscene, for example) unless the above returns true.
 	with prtPlayer playerShoot();

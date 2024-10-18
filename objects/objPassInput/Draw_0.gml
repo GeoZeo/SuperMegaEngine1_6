@@ -20,10 +20,10 @@ var offset = 3;
 draw_password(password);
 
 //Password cursor
-draw_sprite(sprPassCursorTopLeft, 0, posx + col * size + offset, posy + row * size + offset);
-draw_sprite(sprPassCursorTopRight, 0, (posx + col * size + offset) + 7, posy + row * size + offset);
-draw_sprite(sprPassCursorBottomLeft, 0, posx + col * size + offset, (posy + row * size + offset) + 7);
-draw_sprite(sprPassCursorBottomRight, 0, (posx + col * size + offset) + 7, (posy + row * size + offset) + 7);
+draw_sprite(sprPassCursorTopLeft, floor(cursorTimer), posx + col * size + offset, posy + row * size + offset);
+draw_sprite(sprPassCursorTopRight, floor(cursorTimer), (posx + col * size + offset) + 7, posy + row * size + offset);
+draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), posx + col * size + offset, (posy + row * size + offset) + 7);
+draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), (posx + col * size + offset) + 7, (posy + row * size + offset) + 7);
 
 //Selected color
 draw_sprite(sprPassCursorTopLeft, 0, posx + (11 + (1 - color)) * size + offset - 2, posy + 1.5 * size + offset + 2);

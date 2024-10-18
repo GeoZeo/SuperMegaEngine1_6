@@ -30,6 +30,9 @@ attackTimer = 0;
 jumpTimer = 0;
 jumpAmount = 0;
 canInitShoot = true;
+player_sprite_xcenter = 0;
+player_sprite_ycenter = 0;
+player_bbox_bottom = 0;
 phase = 0; //0 = nothing; 1 = jumping; 2 = jumping and shooting; 3 = shooting the big shot
 
 //Weapon damages (only the ones different from default)

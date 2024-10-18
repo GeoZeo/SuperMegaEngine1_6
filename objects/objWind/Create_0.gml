@@ -13,3 +13,18 @@ affectProjectiles = false;
 affectBosses = false;
 affectItems = false;
 
+playerTeleporting = false;
+
+if instance_exists(prtPlayer) && !prtPlayer.showReady && prtPlayer.teleporting
+&& instance_exists(objTeleport)
+{
+	with objTeleport
+	{
+		if sprite_index = prtPlayer.spriteTeleport
+		{
+			other.playerTeleporting = true;
+			break;
+		}
+	}
+}
+

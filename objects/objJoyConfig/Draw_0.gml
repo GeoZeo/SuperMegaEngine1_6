@@ -30,7 +30,7 @@ for (var i = 0; i < num_menu_items; i++) {
     else {
         draw_text(left, i * vspace + initial_y, string_hash_to_newline(menu[i]));
         if waiting and i == selected {
-            draw_text(room_width / 2 + 20, i * vspace + initial_y, string_hash_to_newline("PRESS"));
+            if ((timer % 30 >= 15) % 2) == 0 draw_text(room_width / 2 + 20, i * vspace + initial_y, string_hash_to_newline("PRESS"));
         }
         else {
             draw_text(room_width / 2 + 20, i * vspace + initial_y, string_hash_to_newline(string_upper(button_to_string(key[i]))));
@@ -40,13 +40,13 @@ for (var i = 0; i < num_menu_items; i++) {
 
 if !surePhase {
 	if selected >= num_menu_items - 2 {
-	    draw_sprite(sprPassArrow, 0, room_width / 2 - 24, selected * vspace + initial_y + 2);
+	    draw_sprite(sprPassArrow, ((timer % 30 >= 15) % 2) * !waiting, room_width / 2 - 24, selected * vspace + initial_y + 2);
 	}
 	else {
-	    draw_sprite(sprPassArrow, 0, left - 10, selected * vspace + initial_y + 2);
+	    draw_sprite(sprPassArrow, ((timer % 30 >= 15) % 2) * !waiting, left - 10, selected * vspace + initial_y + 2);
 	}
 }
 else {
-	draw_sprite(sprPassArrow, 0, (left - 10) + (!isSure * 98), (num_menu_items - 1) * vspace + initial_y + 2);
+	draw_sprite(sprPassArrow, ((timer % 30 >= 15) % 2) * !waiting, (left - 10) + (!isSure * 98), (num_menu_items - 1) * vspace + initial_y + 2);
 }
 

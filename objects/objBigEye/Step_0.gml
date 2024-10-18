@@ -37,12 +37,10 @@ if !global.frozen and !dead and !dying {
                 repeatIsHigh = highJump;
             }
                 
-            if instance_exists(prtPlayer) {
-                if x > prtPlayer.x
-                    image_xscale = -1;
-                else
-                    image_xscale = 1;
-            }
+            if x > player_x
+                image_xscale = -1;
+            else
+                image_xscale = 1;
         }
         else if floor(moveTimer) == 4 {
             moveTimer = 5;

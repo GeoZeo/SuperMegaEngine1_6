@@ -7,7 +7,7 @@ image_index = 0;
 
 passThrough = true;
 reflectible = false;
-destroyOnScroll = false;
+if cfgChargeWhileLocked destroyOnScroll = false;
 
 defaultDamage = 1;
 

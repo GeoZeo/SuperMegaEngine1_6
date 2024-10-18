@@ -8,14 +8,14 @@ if !global.frozen && isFight {
         alarm[3] = 1;
     }
     if dead && !instance_exists(objDrWily) {
+		image_blend = c_black;
+		__background_set_colour( c_black );
         instance_create(x, y, objDrWily);
-        with prtPlayer {
-            if other.x < x {
-                image_xscale = -1;
-            }
-            else {
-                image_xscale = 1;
-            }
+        if x < player_x {
+            image_xscale = -1;
+        }
+        else {
+            image_xscale = 1;
         }
     }
 }

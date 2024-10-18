@@ -60,7 +60,10 @@ if isFight && !global.frozen {
             if alarm[9] == -1 canHit = true;
             image_index = 0;
             if alarm[1] == -1 && !instance_exists(objYellowDevilBullet) {
-				instance_create(x, y, objYellowDevilBullet);
+				var shootID = instance_create(x, y, objYellowDevilBullet);
+				shootID.player_x = player_x;
+				shootID.player_y = player_y;
+				with shootID event_user(0);
 				playSFX(sfxEnemyShootClassic);
                 alarm[1] = room_speed * 1;
             }

@@ -45,12 +45,10 @@ if !global.frozen && !dead && isFight
                 repeatIsHigh = highJump;
             }
                 
-            if instance_exists(prtPlayer) {
-                if x > prtPlayer.x
-                    image_xscale = -2;
-                else
-                    image_xscale = 2;
-            }
+            if x > player_x
+                image_xscale = -2;
+            else
+                image_xscale = 2;
         }
         else if moveTimer == 4 {
             image_index = 0;

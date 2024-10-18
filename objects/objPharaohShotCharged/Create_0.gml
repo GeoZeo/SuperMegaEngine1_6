@@ -6,7 +6,7 @@ thrown = false;
 
 passThrough = true;
 reflectible = false;
-destroyOnScroll = false;
+if cfgChargeWhileLocked destroyOnScroll = false;
 
 defaultDamage = 3;
 

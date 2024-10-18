@@ -1,4 +1,4 @@
-/// @description insideViewSpr()
+/// @description insideView_Spr()
 function insideView_Spr() {
 	//Returns true if the object's sprite intersects with the view in any capacity, and false if not
 	//This script only works for view 0

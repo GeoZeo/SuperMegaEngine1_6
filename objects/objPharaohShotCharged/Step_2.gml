@@ -11,8 +11,11 @@ if !thrown {
 	    instance_destroy();
 	}
 	
-	if instance_exists(objSectionSwitcher) && (cfgChargeWhileLocked or cfgContinueChargeAnimWhileLocked) {
+	if !global.frozen || (instance_exists(objSectionSwitcher) and (cfgChargeWhileLocked or cfgContinueChargeAnimWhileLocked)) {
 		image_speed = img_speed;
+	}
+	else {
+		image_speed = 0;
 	}
 }
 

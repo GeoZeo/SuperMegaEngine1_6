@@ -1,12 +1,10 @@
 event_inherited();
 
 if !global.frozen && !dead && !dying {
-    if instance_exists(prtPlayer) {
-        if x < prtPlayer.x
-            image_xscale = 1;
-        else
-            image_xscale = -1;
-    }
+    if x < player_x
+        image_xscale = 1;
+    else
+        image_xscale = -1;
     
     if !shooting {
         shootTimer += update_rate;
@@ -26,6 +24,9 @@ if !global.frozen && !dead && !dying {
             var shootID = instance_create(x+image_xscale*16, sprite_get_ycenter(), objPicket);
             if instance_exists(shootID) {
                 shootID.image_xscale = image_xscale;
+				shootID.player_x = player_x;
+				shootID.player_y = player_y;
+				with shootID event_user(0);
             }
             shootAmount++;
         }

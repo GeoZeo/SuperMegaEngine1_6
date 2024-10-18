@@ -12,5 +12,5 @@ for (var i = 0; i < num_menu_items; i++) {
     draw_text(left, i * vspace + initial_y, string_hash_to_newline(menu[i]));
 }
 
-draw_sprite(sprPassArrow, 0, left - 10, selected * vspace + initial_y + 2);
+draw_sprite(sprPassArrow, (timer % 30 >= 15) % 2, left - 10, selected * vspace + initial_y + 2);
 

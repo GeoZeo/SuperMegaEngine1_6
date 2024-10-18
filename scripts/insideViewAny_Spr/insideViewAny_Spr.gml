@@ -1,4 +1,4 @@
-/// @description  insideViewAny(obj)
+/// @description  insideViewAny_Spr(obj)
 function insideViewAny_Spr(argument0) {
 	//Returns an object if any object of this type's sprite intersects with the view in any capacity, and -1 otherwise
 	//This script only works for view 0

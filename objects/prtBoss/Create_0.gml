@@ -16,6 +16,7 @@ bossID = -1;
 bPersistent = true;
 
 control = -1;
+section_bottom = 0;
 
 //Initialization variables, don't change
 global.weaponID = weaponID;

@@ -6,14 +6,12 @@ if !global.frozen && !dead && !dying {
 	gravityCheckGround();
 	generalCollision();
 	
-    if instance_exists(prtPlayer) {
-        // Turn right.
-        if x < prtPlayer.x
-            image_xscale = 1;
-        // Turn left.
-        else
-            image_xscale = -1;
-    }
+    // Turn right.
+    if x < player_x
+        image_xscale = 1;
+    // Turn left.
+    else
+        image_xscale = -1;
     
     if !shooting {
         shootTimer += update_rate;

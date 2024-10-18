@@ -9,6 +9,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objBusterShotCharged","path":"objects/objBusterShotCharged/objBusterShotCharged.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objBusterShotHalfCharged","path":"objects/objBusterShotHalfCharged/objBusterShotHalfCharged.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objBusterShot","path":"objects/objBusterShot/objBusterShot.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":4,"eventType":7,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],

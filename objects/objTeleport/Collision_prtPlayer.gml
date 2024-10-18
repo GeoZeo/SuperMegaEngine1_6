@@ -1,12 +1,5 @@
-if on /*&& other.ground*/ && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !other.teleporting) && !global.frozen &&
-(collision_point(x-(sprite_width/2), y+(sprite_height/2), other, false, false) && collision_point(x+(sprite_width/2), y+(sprite_height/2), other, false, false)
-or collision_point((x-(sprite_width/2))+(abs(global.xspeed)), y+(sprite_height/2), other, false, false) && collision_point((x+(sprite_width/2))-(abs(global.xspeed)), y+(sprite_height/2), other, false, false)
-or (((round(other.x) == x)
-or (other.x-prevPlayerX < 0 and prevPlayerX >= x and x >= other.x)
-or (other.x-prevPlayerX > 0 and prevPlayerX <= x and x <= other.x))
-or ((round(mask_get_xcenter_object(prtPlayer)) == x)
-or (mask_get_xcenter_object(prtPlayer)-prevMaskX < 0 and prevMaskX >= x and x >= mask_get_xcenter_object(prtPlayer))
-or (mask_get_xcenter_object(prtPlayer)-prevMaskX > 0 and prevMaskX <= x and x <= mask_get_xcenter_object(prtPlayer))))) {
+if on && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !other.teleporting and !other.isHit) && !global.frozen //&& other.ground
+&& (round(other.x) == x || (abs(global.xspeed+other.pltSpeedX) > 1 and (other.x >= (x-other.image_xscale)-2 and other.x <= (x-other.image_xscale)+2) and sign(global.xspeed+other.pltSpeedX) != sign(other.x - x)) || (abs(global.xspeed+other.pltSpeedX) <= 1 and round(other.x) == (x-other.image_xscale))) {
     if image_xscale != other.image_xscale
 		image_xscale = other.image_xscale;
 	if image_yscale != other.image_yscale
@@ -22,6 +15,10 @@ or (mask_get_xcenter_object(prtPlayer)-prevMaskX > 0 and prevMaskX <= x and x <=
         global.xspeed = 0;
         global.yspeed = 0;
 		canHit = false;
+		isHit = false;
+	    drawHitspark = false;
+	    hitTimer = 0;
+		invincibilityTimer = 0;
     }
 		
     //instance_deactivate_object(objMegaman);
@@ -29,13 +26,14 @@ or (mask_get_xcenter_object(prtPlayer)-prevMaskX > 0 and prevMaskX <= x and x <=
 	stopSFX(sfxPause);
     playerLockMovement();
 	other.canGravity = false;
+	with objWind playerTeleporting = true;
 	stopSFX(sfxLand);
     playSFX(sfxTeleportIn);
     instance_activate_object(objSectionBorderLeft);
     instance_activate_object(objSectionBorderRight);
     instance_activate_object(objSectionBorderTop);
     instance_activate_object(objSectionBorderBottom);    
-    show_debug_message("Teleport start! Going to ("+string(toX)+","+string(toY)+")");
+    show_debug_message("Teleport start! Going to ("+string(toX-(cfgPushStartingPosBack*toDir))+","+string(toY)+")");
 
 }
 

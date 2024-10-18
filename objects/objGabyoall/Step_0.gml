@@ -2,17 +2,20 @@ event_inherited();
 
 if !global.frozen and !dead and !dying {
     if instance_exists(prtPlayer) {
-        if x < prtPlayer.x
-            image_xscale = 1;
-        else
-            image_xscale = -1;
-        
-        // If this Gabyoall and Mega Man are on the same height, have the Gabyoall start dashing.
-        if abs(y - (prtPlayer.y - prtPlayer.sprite_yoffset + prtPlayer.sprite_height)) < 4
-            dashing = true;
-        else
-            dashing = false;
+		player_sprite_yoffset = prtPlayer.sprite_yoffset;
+		player_sprite_height = prtPlayer.sprite_height;
     }
+	
+	if x < player_x
+        image_xscale = 1;
+    else
+        image_xscale = -1;
+        
+    // If this Gabyoall and Mega Man are on the same height, have the Gabyoall start dashing.
+    if abs(y - (player_y - player_sprite_yoffset + player_sprite_height)) < 4
+        dashing = true;
+    else
+        dashing = false;
     
     if dashing
         xspeed = startDir * 2;
@@ -45,12 +48,10 @@ else {
 
     if dead || dying {
 		
-		if instance_exists(prtPlayer) {
-	        if x < prtPlayer.x
-	            startDir = 1;
-	        else
-	            startDir = -1;
-		}
+		if x < player_x
+	        startDir = 1;
+	    else
+	        startDir = -1;
 		
         //startDir = beginStartDir;
         dashing = false;

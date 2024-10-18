@@ -1,5 +1,5 @@
 function macros() {
-#macro initialRoom rmBeta
+#macro initialRoom rmDisclaimer
 #macro cfgEnableSlideKey false
 #macro cfgEnableDamageNumbers false
 #macro cfgEnableCharge true
@@ -10,7 +10,7 @@ function macros() {
 #macro cfgMaxNumberOfBusterShots 3
 #macro cfgMaxHealth 28
 #macro cfgMaxAmmo 28
-#macro cfgDebug false
+#macro cfgDebug true
 #macro cfgEnableDebugKeys true
 #macro cfgWeaponPreview true
 #macro cfgSwitchWeaponsWhileLocked true
@@ -24,13 +24,14 @@ function macros() {
 #macro cfgEnableKeyConfig true
 #macro cfgEnableSaving true
 #macro cfgEnablePasswords true
+#macro cfgEnableDelayedAutoShifting false
 #macro cfgLoseChargeOnHit true
 #macro cfgLoseChargeOnStun true
 #macro cfgLoseChargeOnLock false
 #macro cfgBeginChargeOnSlide false
 #macro cfgContinueChargeMidSlide true
 #macro cfgChargeWhileLocked false
-#macro cfgContinueChargeAnimWhileLocked true
+#macro cfgContinueChargeAnimWhileLocked false
 #macro cfgFadeOutChargedSound false
 #macro cfgDestroyBossProjectilesOnBossDeath false
 #macro cfgRushTeleportSpeed 10

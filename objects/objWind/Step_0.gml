@@ -54,7 +54,7 @@ if !global.frozen && insideView() {
             }
         }
     }
-    if affectPlayer && instance_exists(prtPlayer) && !prtPlayer.climbing
+    if affectPlayer && !playerTeleporting && instance_exists(prtPlayer) && !prtPlayer.climbing
 	&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {
         with prtPlayer {
             if !place_meeting(x + other.xspeed, y + other.yspeed, objSolid) && !place_meeting(x + other.xspeed, y + other.yspeed, prtMovingPlatformSolid){

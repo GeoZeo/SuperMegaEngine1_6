@@ -5,7 +5,3 @@ if on && createScenery {
 	createScenery = false;
 }
 
-if instance_exists(prtPlayer)
-	playerPrevX = round(prtPlayer.x);
-	
-	

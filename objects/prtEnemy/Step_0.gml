@@ -73,3 +73,10 @@ if dead {
     exit;
 }
 
+if !global.frozen and !dead and !dying {
+	if instance_exists(prtPlayer) {
+		player_x = prtPlayer.x;
+		player_y = prtPlayer.y;
+	}
+}
+

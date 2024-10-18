@@ -4,6 +4,10 @@ if !global.frozen && insideView() {
     if total_shake_x == 0 || total_shake_y == 0 {
         alarm[0] = shake_duration * room_speed;
     }
+	if alarm[0] > 0 {
+		global.viewX -= prev_shake_x;
+		global.viewY -= prev_shake_y;
+	}
 	randomize();
     var shake_x = random_range(-shake_amount, shake_amount);
 	while shake_x == prev_shake_x {

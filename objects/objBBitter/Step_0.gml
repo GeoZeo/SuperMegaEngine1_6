@@ -2,25 +2,29 @@ event_inherited();
 
 if global.frozen == false && dead == false && dying == false
 {
-    if (shooting == false && instance_exists(prtPlayer))
+    if instance_exists(prtPlayer) {
+		player_distance = distance_to_object(prtPlayer);
+	}
+	
+	if shooting == false
     {
-        if x < prtPlayer.x
+        if x < player_x
             image_xscale = 1;
         else
             image_xscale = -1;
             
-        if distance_to_object(prtPlayer) <= radius
+        if player_distance <= radius
         {
             shooting = true;
         }
     }
 
-    if (shooting && instance_exists(prtPlayer))
+    if (shooting)
     {
         shootTimer += update_rate;
         if floor(shootTimer) == 7 {
             shootTimer = 8;
-            if x < prtPlayer.x
+            if x < player_x
                 image_xscale = 1;
             else
                 image_xscale = -1;

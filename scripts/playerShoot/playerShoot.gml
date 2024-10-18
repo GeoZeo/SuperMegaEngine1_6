@@ -197,7 +197,7 @@ function playerShoot() {
 
 	//Charging weapons
 	if global.weapons[global.currentWeapon].ammo > 0 and room != rmWeaponGet {
-	    if ((((!locked and !instance_exists(objSectionSwitcher)) and global.keyShoot) or (((locked and !instance_exists(objBossDeathTimer)) or instance_exists(objSectionSwitcher)) and (cfgContinueChargeAnimWhileLocked or cfgChargeWhileLocked or (instance_exists(objArenaStartingPoint) and objArenaStartingPoint.isMM))))
+	    if ((((!(locked and !global.weapons[global.currentWeapon].chargeWhileLocked) and !(instance_exists(objSectionSwitcher) and !global.weapons[global.currentWeapon].chargeWhileScrolling)) and global.keyShoot) or ((((locked and !global.weapons[global.currentWeapon].chargeWhileLocked) and !instance_exists(objBossDeathTimer)) or (instance_exists(objSectionSwitcher) and !global.weapons[global.currentWeapon].chargeWhileScrolling)) and (cfgContinueChargeAnimWhileLocked or cfgChargeWhileLocked or (instance_exists(objArenaStartingPoint) and objArenaStartingPoint.isMM))))
 		|| (isSlide && global.weapons[global.currentWeapon].chargeTimer != 0))
 		&& (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime) {    // Pressing shoot key
 	        with global.weapons[global.currentWeapon] event_user(3);

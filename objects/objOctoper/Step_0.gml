@@ -20,6 +20,9 @@ if !global.frozen && !dead && healthpoints > 0 {
         yspeed *= -1;
         if !instance_exists(objOctoShot) {
             var shot = instance_create(x + image_xscale * 32, y + 40, objOctoShot);
+			shot.player_x = player_x;
+			shot.player_y = player_y;
+			with shot event_user(0);
         }
     }
     

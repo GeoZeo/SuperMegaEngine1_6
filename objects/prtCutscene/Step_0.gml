@@ -7,7 +7,14 @@ if instance_exists(objFadeIn) {
         }
     }
 }
-if current_scene > final_scene || (can_skip && global.keyPausePressed) {
+
+var _fadeInExists = instance_exists(objFadeIn) && !objFadeIn.reverse;
+
+if (can_skip && (global.keyPausePressed or global.keyJumpPressed) && (!_fadeInExists or skip_fade_ins) && !skip_fade_outs) {
+	if skip_fade_ins with objFadeIn if !reverse instance_destroy();
+	changeScene(final_scene, delay);
+}
+if current_scene > final_scene || (can_skip && global.keyPausePressed && ((!_fadeInExists or skip_fade_ins) and skip_fade_outs)) {
     instance_destroy();
     room_goto(next_room);
 }

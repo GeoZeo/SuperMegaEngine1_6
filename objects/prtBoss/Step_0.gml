@@ -1,7 +1,13 @@
 canDamage = true;
 
-if !global.frozen {   
-    if pose > -1 && isIntro {
+if !global.frozen {
+	if (instance_exists(prtPlayer)) {
+		player_x = prtPlayer.x;
+		player_y = prtPlayer.y;
+		section_bottom = prtPlayer.sectionBottom;
+	}
+	
+	if pose > -1 && isIntro {
         if y < ystart {
             update_rate = 1;
             gravityNoGround();
@@ -83,7 +89,7 @@ if !global.frozen {
     x += xspeed * update_rate;
     y += yspeed * update_rate; 
 	
-	if (instance_exists(prtPlayer) && bbox_top >= prtPlayer.sectionBottom)
+	if bbox_top >= section_bottom
 	|| bbox_top >= room_height
 	{
 		event_user(13);

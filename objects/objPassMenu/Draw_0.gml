@@ -8,11 +8,11 @@ if !canSelectOption draw_sprite(sprPassText, 1, xx + 10, yy1 - 7);
 
 if canSelectOption {
     if option == 0
-        draw_sprite(sprPassArrow, 0, xx, (yy1 - 1) + (8 * (global.passContinueRoom == cfgInitialStage && !(global.initialStageClear and cfgInitialStageReplayable))) + (8 * !cfgEnableSaving));
+        draw_sprite(sprPassArrow, (timer % 30 >= 15) % 2, xx, (yy1 - 1) + (8 * (global.passContinueRoom == cfgInitialStage && !(global.initialStageClear and cfgInitialStageReplayable))) + (8 * !cfgEnableSaving));
     else if option == 1
-        draw_sprite(sprPassArrow, 0, xx, (yy2 - 1) + (8 * (global.passContinueRoom == cfgInitialStage && !(global.initialStageClear and cfgInitialStageReplayable))) + (8 * !cfgEnableSaving));
+        draw_sprite(sprPassArrow, (timer % 30 >= 15) % 2, xx, (yy2 - 1) + (8 * (global.passContinueRoom == cfgInitialStage && !(global.initialStageClear and cfgInitialStageReplayable))) + (8 * !cfgEnableSaving));
     else
-        draw_sprite(sprPassArrow, 0, xx, yy3 - 1);
+        draw_sprite(sprPassArrow, (timer % 30 >= 15) % 2, xx, yy3 - 1);
 	
 	draw_set_colour(c_white);
     draw_set_font(global.MM3font);

@@ -1,5 +1,7 @@
 xspeed = 0;
 yspeed = 0;
+player_x = 0;
+player_y = 0;
 contactDamage = 1;
 update_rate = 1;
 reflected = false;

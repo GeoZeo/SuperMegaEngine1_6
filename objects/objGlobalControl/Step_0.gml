@@ -205,7 +205,8 @@ if keyboard_check_pressed(vk_f10) {
 }
 
 if keyboard_check_pressed(vk_f11) {
-	with prtPlayer playerStun(60);
+	var myEnemy = instance_create(x + 64, y, objFanFiend);
+	//with prtPlayer playerGetHit(0);
 }
 
 if keyboard_check_pressed(vk_f12) {

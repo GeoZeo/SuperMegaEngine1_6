@@ -18,6 +18,7 @@ damage[objWindStorm] = 3;
 
 //Enemy specific code
 col = 0; //0 = red; 1 = orange; 2 = blue
+player_distance = 0;
 
 shootTimer = 0;
 shooting = false;

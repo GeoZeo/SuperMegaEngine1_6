@@ -22,6 +22,7 @@ damage[objSilverTomahawk] = 2;
 damage[objWindStorm] = 2;
 
 //Enemy specific code
+canMoveTimer = false;
 moveTimer = 0;
 moving = false;
 retreating = false;
@@ -29,6 +30,9 @@ xspeed = 0;
 yspeed = 0;
 image_speed = 0;
 image_index = 0;
+dirX = 0;
+dirY = 0;
+len = 0;
 
 counter = 0;
 

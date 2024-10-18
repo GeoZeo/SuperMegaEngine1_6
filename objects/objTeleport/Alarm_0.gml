@@ -10,19 +10,14 @@ if !prtPlayer.showReady && !prtPlayer.teleporting
 	with prtPlayer 
 	{
 		playerCameraInit();
-		//if sectionRight - global.viewWidth != sectionLeft
-		//&& ((global.viewX >= sectionRight - global.viewWidth and x <= round(global.viewWidth - global.viewX) / 2)
-		//or (global.viewX <= sectionLeft and x >= round(global.viewWidth - global.viewX) / 2))
-		//{
-		//	cameraXOffset = round(x - (global.viewWidth - global.viewX) / 2) - (round(image_xscale) * !climbing);
-		//	print(cameraXOffset);
-		//}
+		cameraXOffset = 0.5;
+		cameraYOffset = 0.5;
 	}
 
 	x = toX - (cfgPushStartingPosBack * toDir);
 	y = toY;
 
-	show_debug_message("Teleport to (" + string(toX - 1) + "," + string(toY) + ") now!");
+	show_debug_message("Teleport to (" + string(toX - (cfgPushStartingPosBack * toDir)) + "," + string(toY) + ") now!");
 }
 
 with objMegamanExplosion instance_destroy();

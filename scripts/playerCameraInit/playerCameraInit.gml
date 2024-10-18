@@ -71,10 +71,15 @@ function playerCameraInit() {
 	
 	
 	//Set the correct camera center position
-	if variable_instance_exists(id, "climbing")
+	if variable_instance_exists(id, "climbing") && (variable_instance_exists(id, "showReady") and !showReady) && room != rmWeaponGet
 	{
 		cameraXOffset = ((x + (round(image_xscale) * !climbing)) - global.viewX) / global.viewWidth;
 		cameraYOffset = ((y + round(image_yscale)) - global.viewY) / global.viewHeight;
+	}
+	else
+	{
+		cameraXOffset = 0.5;
+		cameraYOffset = 0.5;
 	}
 
 

@@ -15,4 +15,5 @@ shootTimer = 0;
 shooting = false;
 image_speed = 0;
 image_index = 0;
+player_distance = 0;
 

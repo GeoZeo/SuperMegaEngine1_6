@@ -8,10 +8,10 @@ if !surePhase {
 	    if selected == i {
 	        draw_set_colour(c_white);
 	        drawSave(i - 1, saves[i - 1], selected == i);
-	        draw_sprite(sprPassCursorTopLeft, 0, margin + 49 + (i-1) * 16, top);
-			draw_sprite(sprPassCursorTopRight, 0, (margin + 49 + (i-1) * 16) + 7, top);
-			draw_sprite(sprPassCursorBottomLeft, 0, margin + 49 + (i-1) * 16, top + 7);
-			draw_sprite(sprPassCursorBottomRight, 0, (margin + 49 + (i-1) * 16) + 7, top + 7);
+	        draw_sprite(sprPassCursorTopLeft, floor(cursorTimer), margin + 49 + (i-1) * 16, top);
+			draw_sprite(sprPassCursorTopRight, floor(cursorTimer), (margin + 49 + (i-1) * 16) + 7, top);
+			draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), margin + 49 + (i-1) * 16, top + 7);
+			draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), (margin + 49 + (i-1) * 16) + 7, top + 7);
 	    }
 	    else {
 	        draw_set_colour(c_gray);
@@ -22,10 +22,10 @@ if !surePhase {
 
 	if selected == 0 {
 	    draw_set_colour(c_white);
-		draw_sprite(sprPassCursorTopLeft, 0, margin + 1, top);
-		draw_sprite(sprPassCursorTopRight, 0, margin + 32, top);
-		draw_sprite(sprPassCursorBottomLeft, 0, margin + 1, top + 7);
-		draw_sprite(sprPassCursorBottomRight, 0, margin + 32, top + 7);
+		draw_sprite(sprPassCursorTopLeft, floor(cursorTimer), margin + 1, top);
+		draw_sprite(sprPassCursorTopRight, floor(cursorTimer), margin + 32, top);
+		draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), margin + 1, top + 7);
+		draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), margin + 32, top + 7);
 	}
 	else {
 	    draw_set_colour(c_gray);
@@ -51,10 +51,10 @@ else {
 	
 	draw_set_halign(fa_left);
 	
-	draw_sprite(sprPassCursorTopLeft, 0, margin + 32 + (!isSure * 112), top + 16);
-	draw_sprite(sprPassCursorTopRight, 0, margin + (47 + (isSure * 8)) + (!isSure * 112), top + 16);
-	draw_sprite(sprPassCursorBottomLeft, 0, margin + 32 + (!isSure * 112), top + 16 + 7);
-	draw_sprite(sprPassCursorBottomRight, 0, margin + (47 + (isSure * 8)) + (!isSure * 112), top + 16 + 7);
+	draw_sprite(sprPassCursorTopLeft, floor(cursorTimer), margin + 32 + (!isSure * 112), top + 16);
+	draw_sprite(sprPassCursorTopRight, floor(cursorTimer), margin + (47 + (isSure * 8)) + (!isSure * 112), top + 16);
+	draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), margin + 32 + (!isSure * 112), top + 16 + 7);
+	draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), margin + (47 + (isSure * 8)) + (!isSure * 112), top + 16 + 7);
 	
 	if isSure draw_set_colour(c_white); else draw_set_colour(c_gray);
 	draw_text(margin + 34, top + 19, string_hash_to_newline("YES"));

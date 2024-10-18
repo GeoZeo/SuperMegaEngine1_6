@@ -1,4 +1,4 @@
-global.viewX -= total_shake_x;
-global.viewY -= total_shake_y;
+global.viewX -= prev_shake_x;
+global.viewY -= prev_shake_y;
 instance_destroy();
 

@@ -1,4 +1,4 @@
-if (instance_exists(objFadeout)) exit;
+if (instance_exists(objFadeout) or instance_exists(objFadeIn)) exit;
 
 if !global.frozen {
 	var total_items_ = array_length_1d(global.items);
@@ -30,36 +30,6 @@ if !global.frozen {
 	    cursorCounter = 0;
 	}
 
-	if global.keyRightPressed || global.keySelectPressed {
-	    if !surePhase {
-			option++;
-		    if option == items_per_row {
-		        option = 0;
-		    }
-		    else if option == total_items {
-		        option = items_per_row;
-		    }
-		}
-		else {
-			isSure = !isSure;
-		}
-	    playSFX(sfxMenuMove);
-	}
-	if global.keyDownPressed {
-	    if option < items_per_row {
-	        option += items_per_row;
-	        if option > total_items {
-	            option = total_items;
-	        }
-	    }
-		else if option == total_items {
-			option = 0;
-		}
-	    else {
-	        option = total_items;
-	    }
-	    playSFX(sfxMenuMove);
-	}
 	if global.keyLeftPressed {
 	    if !surePhase {
 			option--;
@@ -74,18 +44,159 @@ if !global.frozen {
 			isSure = !isSure;
 		}
 	    playSFX(sfxMenuMove);
+		h_as_timer = h_as_rate;
+		h_as_init_timer = 0;
 	}
-	if global.keyUpPressed {
-	    if option >= items_per_row && option < total_items {
-	        option -= items_per_row;
-	    }
-	    else if option < items_per_row {
-	        option = total_items;
-	    }
-	    else {
-	        option = total_items - 1;
-	    }
+	else if global.keyRightPressed || global.keySelectPressed {
+	    if !surePhase {
+			option++;
+		    if option == items_per_row {
+		        option = 0;
+		    }
+		    else if option == total_items {
+		        option = items_per_row;
+		    }
+		}
+		else {
+			isSure = !isSure;
+		}
 	    playSFX(sfxMenuMove);
+		h_as_timer = h_as_rate;
+		h_as_init_timer = 0;
+	}
+	if global.keyDownPressed {
+		if !surePhase {
+		    if option < items_per_row {
+		        option += items_per_row;
+		        if option > total_items {
+		            option = total_items;
+		        }
+		    }
+			else if option == total_items {
+				option = 0;
+			}
+		    else {
+		        option = total_items;
+		    }
+		    playSFX(sfxMenuMove);
+			v_as_timer = v_as_rate;
+			v_as_init_timer = 0;
+		}
+	}
+	else if global.keyUpPressed {
+	    if !surePhase {
+			if option >= items_per_row && option < total_items {
+		        option -= items_per_row;
+		    }
+		    else if option < items_per_row {
+		        option = total_items;
+		    }
+		    else {
+		        option = total_items - 1;
+		    }
+		    playSFX(sfxMenuMove);
+			v_as_timer = v_as_rate;
+			v_as_init_timer = 0;
+		}
+	}
+	if cfgEnableDelayedAutoShifting {
+		if global.keyLeft {
+			h_as_init_timer++;
+			if h_as_init_timer >= h_as_delay {
+				h_as_init_timer = h_as_delay;
+				h_as_timer++;
+				if h_as_timer >= h_as_rate {
+				    if !surePhase {
+						option--;
+					    if option == -1 {
+					        option = items_per_row - 1;
+					    }
+					    else if option == items_per_row - 1 {
+					        option = total_items - 1;
+					    }
+					}
+					else {
+						isSure = !isSure;
+					}
+				    playSFX(sfxMenuMove);
+		
+					h_as_timer = 0;
+				}
+			}
+		}
+		else if global.keyRight || global.keySelect {
+		    h_as_init_timer++;
+			if h_as_init_timer >= h_as_delay {
+				h_as_init_timer = h_as_delay;
+				h_as_timer++;
+				if h_as_timer >= h_as_rate {
+					if !surePhase {
+						option++;
+					    if option == items_per_row {
+					        option = 0;
+					    }
+					    else if option == total_items {
+					        option = items_per_row;
+					    }
+					}
+					else {
+						isSure = !isSure;
+					}
+				    playSFX(sfxMenuMove);
+		
+					h_as_timer = 0;
+				}
+			}
+		}
+		if global.keyDown {
+			if !surePhase {
+				v_as_init_timer++;
+				if v_as_init_timer >= v_as_delay {
+					v_as_init_timer = v_as_delay;
+					v_as_timer++;
+					if v_as_timer >= v_as_rate {
+					    if option < items_per_row {
+					        option += items_per_row;
+					        if option > total_items {
+					            option = total_items;
+					        }
+					    }
+						else if option == total_items {
+							option = 0;
+						}
+					    else {
+					        option = total_items;
+					    }
+					    playSFX(sfxMenuMove);
+			
+						v_as_timer = 0;
+					}
+				}
+			}
+		}
+		else if global.keyUp {
+		    if !surePhase {
+				v_as_init_timer++;
+				if v_as_init_timer >= v_as_delay {
+					v_as_init_timer = v_as_delay;
+					v_as_timer++;
+					if v_as_timer >= v_as_rate {
+						if option >= items_per_row && option < total_items {
+					        option -= items_per_row;
+					    }
+					    else if option < items_per_row {
+					        option = total_items;
+					    }
+					    else {
+					        option = total_items - 1;
+					    }
+					    playSFX(sfxMenuMove);
+			
+						v_as_timer = 0;
+					}
+				}
+			}
+		}
 	}
 	if option > total_items {
 	    option = 0;
@@ -102,6 +213,8 @@ if !global.frozen {
 			}
 			else {
 		        playSFX(sfxMenuSelect);
+				stopSFX(sfxMenuMove);
+				option = total_items;
 		        var ID = instance_create(0, 0, objFadeout);
 		        ID.type = "room";
 		        ID.myRoom = rmStageSelect;
@@ -111,9 +224,17 @@ if !global.frozen {
 			surePhase = false;
 			playSFX(sfxMenuSelect);
 		}
+		h_as_timer = h_as_rate;
+		h_as_init_timer = 0;
+		v_as_timer = v_as_rate;
+		v_as_init_timer = 0;
 	}
 	else if global.keyJumpPressed || global.keyPausePressed {
-	    if surePhase && !isSure {
+	    h_as_timer = h_as_rate;
+		h_as_init_timer = 0;
+		v_as_timer = v_as_rate;
+		v_as_init_timer = 0;
+		if surePhase && !isSure {
 			surePhase = false;
 			playSFX(sfxMenuSelect);
 		}
@@ -145,6 +266,8 @@ if !global.frozen {
 		    }
 		    else {
 		        playSFX(sfxMenuSelect);
+				stopSFX(sfxMenuMove);
+				option = total_items;
 		        var ID = instance_create(0, 0, objFadeout);
 		        ID.type = "room";
 		        ID.myRoom = rmStageSelect;

@@ -1,4 +1,6 @@
-//Timer for toggling the visibility of the "PRESS THE SPACE BAR" text
+if (instance_exists(objFadeout) or instance_exists(objFadeIn)) exit;
+
+//Timer for toggling the visibility of the "PRESS THE [PAUSE KEY/BUTTON HERE]" text
 if canProceed {
     drawTextTimer += 1;
     if drawTextTimer >= drawTextTimerMax {
@@ -7,7 +9,7 @@ if canProceed {
     }
 }
 
-//Going to the stage select (or initial stage)
+//Going to the stage select/initial stage/main menu
 if global.keyPausePressed && canProceed {
     canProceed = false;
     drawText = false;

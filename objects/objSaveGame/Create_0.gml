@@ -16,3 +16,11 @@ isSure = false;
 
 currentChar = global.character;
 
+cursorTimer = 0;
+
+//For auto-shifting through the options in the menu
+as_delay = 25;
+as_rate = 5;
+as_init_timer = as_delay;
+as_timer = as_rate;
+

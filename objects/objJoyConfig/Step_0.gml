@@ -1,4 +1,7 @@
-if (instance_exists(objFadeout)) exit;
+if (instance_exists(objFadeout) or instance_exists(objFadeIn)) exit;
+
+timer++;
+if timer >= 30 timer = 0;
 
 key[0] = global.leftButton;
 key[1] = global.rightButton;
@@ -19,8 +22,11 @@ if !waiting {
 		    if selected < 0 {
 		        selected = num_menu_items - 1;
 		    }
+			timer = 0;
+			playSFX(sfxMenuMove);
+			as_timer = as_rate;
+			as_init_timer = 0;
 		}
-        playSFX(sfxMenuMove);
     }
     else if global.keyDownPressed || global.keySelectPressed {
 		if !surePhase {
@@ -28,22 +34,103 @@ if !waiting {
 		    if selected >= num_menu_items {
 		        selected = 0;
 		    }
+			timer = 0;
+			playSFX(sfxMenuMove);
+			as_timer = as_rate;
+			as_init_timer = 0;
 		}
 		else if global.keySelectPressed {
 			isSure = !isSure;
+			timer = 0;
+			playSFX(sfxMenuMove);
+			as_timer = as_rate;
+			as_init_timer = 0;
 		}
-        playSFX(sfxMenuMove);
     }
 	else if global.keyLeftPressed || global.keyRightPressed {
 		if surePhase {
 			isSure = !isSure;
+			timer = 0;
 			playSFX(sfxMenuMove);
+			as_timer = as_rate;
+			as_init_timer = 0;
 		}
     }
+	if cfgEnableDelayedAutoShifting {
+		if global.keyUp {
+			if !surePhase {
+				as_init_timer++;
+				if as_init_timer >= as_delay {
+					as_init_timer = as_delay;
+					as_timer++;
+					if as_timer >= as_rate {
+						selected--;
+					    if selected < 0 {
+					        selected = num_menu_items - 1;
+					    }
+						timer = 0;
+						playSFX(sfxMenuMove);
+					
+						as_timer = 0;
+					}
+				}
+			}
+	    }
+	    else if global.keyDown || global.keySelect {
+			if !surePhase {
+				as_init_timer++;
+				if as_init_timer >= as_delay {
+					as_init_timer = as_delay;
+					as_timer++;
+					if as_timer >= as_rate {
+						selected++;
+					    if selected >= num_menu_items {
+					        selected = 0;
+					    }
+						timer = 0;
+						playSFX(sfxMenuMove);
+					
+						as_timer = 0;
+					}
+				}
+			}
+			else if global.keySelect {
+				as_init_timer++;
+				if as_init_timer >= as_delay {
+					as_init_timer = as_delay;
+					as_timer++;
+					if as_timer >= as_rate {
+						isSure = !isSure;
+						timer = 0;
+						playSFX(sfxMenuMove);
+					
+						as_timer = 0;
+					}
+				}
+			}
+	    }
+		else if global.keyLeft || global.keyRight {
+			if surePhase {
+				as_init_timer++;
+				if as_init_timer >= as_delay {
+					as_init_timer = as_delay;
+					as_timer++;
+					if as_timer >= as_rate {
+						isSure = !isSure;
+						timer = 0;
+						playSFX(sfxMenuMove);
+					
+						as_timer = 0;
+					}
+				}
+			}
+	    }
+	}
 	if global.keyShootPressed {
 		if !surePhase {
 			if selected != num_menu_items - 1 {
 				selected = num_menu_items - 1;
+				timer = 0;
 				playSFX(sfxMenuMove);
 			}
 			else {
@@ -54,12 +141,18 @@ if !waiting {
 		}
 		else {
 			playSFX(sfxMenuSelect);
+			timer = 0;
 			surePhase = false;
 		}
+		as_timer = as_rate;
+		as_init_timer = 0;
 	}
     else if global.keyPausePressed || global.keyJumpPressed {
+		as_timer = as_rate;
+		as_init_timer = 0;
 		if surePhase && !isSure {
 			surePhase = false;
+			timer = 0;
 			playSFX(sfxMenuSelect3);
 		}
 		else {
@@ -74,6 +167,7 @@ if !waiting {
 						surePhase = true;
 						isSure = false;
 					}
+					timer = 0;
 					playSFX(sfxMenuSelect3);
 	                break;
 	            case "BACK":
@@ -83,6 +177,7 @@ if !waiting {
 	                ID.myRoom = rmMainMenu;
 	                break;
 	            default:
+					timer = 0;
 	                playSFX(sfxMenuSelect3);
 	                waiting = true;
 	        }
@@ -105,7 +200,10 @@ else {  //Set button
             case 9: global.selectButton = button; key[9] = global.selectButton; break;
             case 10: global.slideButton = button; key[10] = global.slideButton; break;
         }
+		timer = 0;
         waiting = false;
+		as_timer = as_rate;
+		as_init_timer = 0;
         save_configs();
     }
 }

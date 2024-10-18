@@ -10,7 +10,7 @@ draw_set_halign(fa_center);
 
 draw_text(round(room_width/2), room_height-30, string_hash_to_newline("OPEN SOURCE SOFTWARE MAINTAINED#BY THE MEGA MAN FANDOM"));
 
-if drawText {
+if drawText && !instance_exists(objFadeIn) {
     var text = "PRESS ";
     if global.GP > -1 {
         text += string_upper(button_to_string(global.pauseButton));

@@ -1,6 +1,6 @@
 playMusicNoLoopVolume(bgmTitleScreen, 0.55);
 
-drawText = false;
+drawText = true;
 drawTextTimer = 0;
 drawTextTimerMax = 25;
 canProceed = true;

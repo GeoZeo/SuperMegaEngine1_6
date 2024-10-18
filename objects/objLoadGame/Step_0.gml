@@ -1,5 +1,17 @@
-if (instance_exists(objFadeout)) exit;
+if (instance_exists(objFadeout) or instance_exists(objFadeIn)) exit;
 
+cursorTimer += 0.1;
+if cursorTimer >= 2 cursorTimer = 0;
+
+if global.keyUpPressed || global.keyDownPressed {
+	if !surePhase {
+		row = 1 - row;
+		cursorTimer = row;
+		playSFX(sfxMenuMove);
+		v_as_timer = v_as_rate;
+		v_as_init_timer = 0;
+	}
+}
 if global.keyLeftPressed {
     if !surePhase {
 		if row == 0 {
@@ -14,7 +26,12 @@ if global.keyLeftPressed {
 				action_index = 3;
 			}
 		}
-	    if !(row == 1 && primed_index != -1) playSFX(sfxMenuMove);
+	    if !(row == 1 && primed_index != -1) {
+			cursorTimer = 0;
+			playSFX(sfxMenuMove);
+			h_as_timer = h_as_rate;
+			h_as_init_timer = 0;
+		}
 	    if selected > 0 and saves[selected - 1] > -1 {
 	        var map = saves[selected - 1];
 	        if map > -1 and ds_map_exists(map, "character") {
@@ -24,7 +41,10 @@ if global.keyLeftPressed {
 	}
 	else {
 		isSure = !isSure;
+		cursorTimer = 0;
 		playSFX(sfxMenuMove);
+		h_as_timer = h_as_rate;
+		h_as_init_timer = 0;
 	}
 }
 else if global.keyRightPressed or global.keySelectPressed {
@@ -41,7 +61,12 @@ else if global.keyRightPressed or global.keySelectPressed {
 				action_index = 0;
 			}
 		}
-	    if !(row == 1 && primed_index != -1) playSFX(sfxMenuMove);
+	    if !(row == 1 && primed_index != -1) {
+			cursorTimer = 0;
+			playSFX(sfxMenuMove);
+			h_as_timer = h_as_rate;
+			h_as_init_timer = 0;
+		}
 	    if selected > 0 and saves[selected - 1] > -1 {
 	        var map = saves[selected - 1];
 	        if map > -1 and ds_map_exists(map, "character") {
@@ -51,13 +76,130 @@ else if global.keyRightPressed or global.keySelectPressed {
 	}
 	else {
 		isSure = !isSure;
+		cursorTimer = 0;
 		playSFX(sfxMenuMove);
+		h_as_timer = h_as_rate;
+		h_as_init_timer = 0;
 	}
 }
-else if global.keyUpPressed || global.keyDownPressed {
-	if !surePhase {
-		row = 1 - row;
-		playSFX(sfxMenuMove);
+if cfgEnableDelayedAutoShifting {
+	if global.keyUp || global.keyDown {
+		if !surePhase {
+			v_as_init_timer++;
+			if v_as_init_timer >= v_as_delay {
+				v_as_init_timer = v_as_delay;
+				v_as_timer++;
+				if v_as_timer >= v_as_rate {
+					row = 1 - row;
+					cursorTimer = row;
+					playSFX(sfxMenuMove);
+		
+					v_as_timer = 0;
+				}
+			}
+		}
+	}
+	if global.keyLeft {
+	    if !surePhase {
+			if !(row == 1 && primed_index != -1) {
+				h_as_init_timer++;
+				if h_as_init_timer >= h_as_delay {
+					h_as_init_timer = h_as_delay;
+					h_as_timer++;
+					if h_as_timer >= h_as_rate {
+						if row == 0 {
+							selected--;
+							if selected < 0 {
+							    selected = num_saves;
+							}
+						}
+						else if row == 1 && primed_index == -1 {
+							action_index--;
+							if action_index < 0 {
+								action_index = 3;
+							}
+						}
+					    if !(row == 1 && primed_index != -1) {
+							cursorTimer = 0;
+							playSFX(sfxMenuMove);
+			
+							h_as_timer = 0;
+						}
+					    if selected > 0 and saves[selected - 1] > -1 {
+					        var map = saves[selected - 1];
+					        if map > -1 and ds_map_exists(map, "character") {
+							    setPlayer(map[? "character"]);
+							}
+					    }
+					}
+				}
+			}
+		}
+		else {
+			h_as_init_timer++;
+			if h_as_init_timer >= h_as_delay {
+				h_as_init_timer = h_as_delay;
+				h_as_timer++;
+				if h_as_timer >= h_as_rate {
+					isSure = !isSure;
+					cursorTimer = 0;
+					playSFX(sfxMenuMove);
+		
+					h_as_timer = 0;
+				}
+			}
+		}
+	}
+	else if global.keyRight or global.keySelect {
+		if !surePhase {
+			if !(row == 1 && primed_index != -1) {
+				h_as_init_timer++;
+				if h_as_init_timer >= h_as_delay {
+					h_as_init_timer = h_as_delay;
+					h_as_timer++;
+					if h_as_timer >= h_as_rate {
+						if row == 0 {
+							selected++;
+							if selected > num_saves {
+							    selected = 0;
+							}
+						}
+						else if row == 1 && primed_index == -1 {
+							action_index++;
+							if action_index > 3 {
+								action_index = 0;
+							}
+						}
+					    if !(row == 1 && primed_index != -1) {
+							cursorTimer = 0;
+							playSFX(sfxMenuMove);
+			
+							h_as_timer = 0;
+						}
+					    if selected > 0 and saves[selected - 1] > -1 {
+					        var map = saves[selected - 1];
+					        if map > -1 and ds_map_exists(map, "character") {
+							    setPlayer(map[? "character"]);
+							}
+					    }
+					}
+				}
+			}
+		}
+		else {
+			h_as_init_timer++;
+			if h_as_init_timer >= h_as_delay {
+				h_as_init_timer = h_as_delay;
+				h_as_timer++;
+				if h_as_timer >= h_as_rate {
+					isSure = !isSure;
+					cursorTimer = 0;
+					playSFX(sfxMenuMove);
+		
+					h_as_timer = 0;
+				}
+			}
+		}
 	}
 }
 if global.keyShootPressed {
@@ -70,6 +212,7 @@ if global.keyShootPressed {
 			if selected != 0 || row != 0 {
 				selected = 0;
 				row = 0;
+				cursorTimer = 0;
 				playSFX(sfxMenuMove);
 			}
 			else {
@@ -80,20 +223,30 @@ if global.keyShootPressed {
 		}
 	}
 	else {
+		cursorTimer = 0;
 		playSFX(sfxMenuSelect);
 		surePhase = false;
 	}
+	h_as_timer = h_as_rate;
+	h_as_init_timer = 0;
+	v_as_timer = v_as_rate;
+	v_as_init_timer = 0;
 }
 else if global.keyPausePressed || global.keyJumpPressed {
- 
+	h_as_timer = h_as_rate;
+	h_as_init_timer = 0;
+	v_as_timer = v_as_rate;
+	v_as_init_timer = 0;
     if row = 0 {
 		if surePhase && !isSure {
 			surePhase = false;
+			cursorTimer = 0;
 			playSFX(sfxMenuSelect);
 		}
 		else {
 			if selected > 0 && saves[selected - 1] == -1 && primed_index == -1 {  //Empty Slot?
-		        playSFX(sfxError);
+		        cursorTimer = 0;
+				playSFX(sfxError);
 		    }
 		    else if selected == 0 { //Back?
 				playSFX(sfxMenuSelect);
@@ -123,6 +276,7 @@ else if global.keyPausePressed || global.keyJumpPressed {
 							}
 						}
 						else {
+							cursorTimer = 0;
 							surePhase = true;
 							isSure = false;
 						}
@@ -130,10 +284,12 @@ else if global.keyPausePressed || global.keyJumpPressed {
 					case 1:
 						if primed_index == -1 {
 							primed_index = selected;
+							cursorTimer = 0;
 						}
 						else {
 							if selected == primed_index {
 								primed_index = -1;
+								cursorTimer = 0;
 							}
 							else {
 								ds_map_secure_save(saves[primed_index - 1], "temp.dat");
@@ -155,16 +311,19 @@ else if global.keyPausePressed || global.keyJumpPressed {
 								}
 								primed_index = -1;
 								file_delete("temp.dat");
+								cursorTimer = 0;
 							}
 						}
 						break;
 					case 2:
 						if primed_index == -1 {
 							primed_index = selected;
+							cursorTimer = 0;
 						}
 						else {
 							if selected == primed_index {
 								primed_index = -1;
+								cursorTimer = 0;
 							}
 							else {
 								if surePhase || saves[selected - 1] == -1 {
@@ -178,8 +337,10 @@ else if global.keyPausePressed || global.keyJumpPressed {
 									primed_index = -1;
 									file_delete("temp.dat");
 									surePhase = false;
+									cursorTimer = 0;
 								}
 								else {
+									cursorTimer = 0;
 									surePhase = true;
 									isSure = false;
 								}
@@ -192,8 +353,10 @@ else if global.keyPausePressed || global.keyJumpPressed {
 							file_delete("save" + string(selected - 1) + ".dat");
 							saves[selected - 1] = -1;
 							surePhase = false;
+							cursorTimer = 0;
 						}
 						else {
+							cursorTimer = 0;
 							surePhase = true;
 							isSure = false;
 						}
@@ -205,6 +368,7 @@ else if global.keyPausePressed || global.keyJumpPressed {
 	else if row == 1 {
 		row = 0;
 		primed_index = -1;
+		cursorTimer = 0;
 		playSFX(sfxMenuSelect);
 	}
     

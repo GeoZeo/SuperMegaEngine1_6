@@ -28,6 +28,8 @@ chargeTimer = 0;
 initChargeTimer = 0;
 chargeAnimTime = chargeTime;
 chargeAnimTimer = 0;
+chargeWhileLocked = false;
+chargeWhileScrolling = false;
 cooldown = 0;
 
 persistent = true;

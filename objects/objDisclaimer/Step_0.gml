@@ -27,7 +27,10 @@ else {
 
 //Proceed to the next screen ("phase")
 proceedTimer++;
-if global.keyPausePressed || global.keyJumpPressed || proceedTimer >= proceedTimerMax {
-    textAlphaIncrease = false;
+if ((global.keyPausePressed || global.keyJumpPressed) and (textAlpha >= 1 or skip_fade_in)) || proceedTimer >= proceedTimerMax {
+    if textAlphaIncrease textAlpha = 1;
+	textAlphaIncrease = false;
+	if skip_fade_out && !(proceedTimer >= proceedTimerMax)
+		room_goto(rmOpening);
 }
 

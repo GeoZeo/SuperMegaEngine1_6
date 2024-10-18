@@ -5,6 +5,8 @@ textAlphaIncreaseAmount = 0.2;
 textAlphaInterval = 3;
 proceedTimer = 0;
 proceedTimerMax = 420;
+skip_fade_in = false;
+skip_fade_out = false;
 
 disclaimerText =
 @"MEGA MAN AND ALL

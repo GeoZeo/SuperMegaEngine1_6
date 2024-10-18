@@ -1,4 +1,4 @@
-if (instance_exists(objFadeout)) exit;
+if (instance_exists(objFadeout) or instance_exists(objFadeIn)) exit;
 
 //Move cursor
 if (global.keyLeftPressed) {

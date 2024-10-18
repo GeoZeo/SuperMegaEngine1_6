@@ -28,3 +28,16 @@ __background_set( e__BG.Index, 0, bg );
 stopAllSFX();
 playMusic(global.shopBGM, global.shopVolume, global.shopLoopStart, global.shopLoopEnd);
 
+//For auto-shifting through the options in the menu
+//Horizontal
+h_as_delay = 25;
+h_as_rate = 5;
+h_as_init_timer = h_as_delay;
+h_as_timer = h_as_rate;
+
+//Vertical
+v_as_delay = 25;
+v_as_rate = 5;
+v_as_init_timer = v_as_delay;
+v_as_timer = v_as_rate;
+

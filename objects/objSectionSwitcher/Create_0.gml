@@ -61,6 +61,7 @@ climbTimer = 0;
 canProgressDoor = false;
 canStep = false;
 plt = -1;
+cancelSlide = false;
 
 if !(cfgContinueChargeAnimWhileLocked || cfgChargeWhileLocked) && !cfgFadeOutChargedSound
 	stopSFX(global.weapons[global.currentWeapon].chargedSFX);

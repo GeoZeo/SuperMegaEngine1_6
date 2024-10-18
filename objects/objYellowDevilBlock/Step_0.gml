@@ -1,4 +1,15 @@
 if !global.frozen {
+	
+	var _oldActive = instance_exists(objYellowDevil);
+	if !_oldActive instance_activate_object(objYellowDevil);
+	if instance_exists(prtPlayer) {
+		with objYellowDevil {
+			player_x = prtPlayer.x;
+			player_y = prtPlayer.y;
+		}
+	}
+	if !_oldActive instance_deactivate_object(objYellowDevil);
+	
     switch current_state {
         case block_states.FIT:
             hspeed = 0;

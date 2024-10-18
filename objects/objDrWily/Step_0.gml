@@ -16,8 +16,8 @@ if !global.frozen {
 		image_speed = ((240 / 119) * 2) / room_speed;
 	}
 
-	if instance_exists(prtPlayer) && !insideView_Spr() {
-		x = round(prtPlayer.sectionLeft + (((prtPlayer.sectionRight - prtPlayer.sectionLeft) / 4) * 3));
+	if !insideView_Spr() {
+		x = round(global.viewX + ((((global.viewX + global.viewWidth) - global.viewX) / 4) * 3));
 	}
 	if vspeed >= 0 && insideView() {
 	    __background_set( e__BG.Visible, 1, true );

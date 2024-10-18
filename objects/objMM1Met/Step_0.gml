@@ -1,23 +1,25 @@
 event_inherited();
 
 if !global.frozen and !dead and !dying {
+	
+	if instance_exists(prtPlayer) {
+		player_distance = distance_to_object(prtPlayer);
+	}
 
     checkGround();
 	checkWater();
     gravityCheckGround();
     generalCollision();
         
-    if instance_exists(prtPlayer) {
-        if x < prtPlayer.x
-            image_xscale = 1;
-        else
-            image_xscale = -1;
+    if x < player_x
+        image_xscale = 1;
+    else
+        image_xscale = -1;
         
-        if distance_to_object(prtPlayer) <= radius {
-            if canShoot {
-                canShoot = false;
-                image_index = 1;
-            }
+    if player_distance <= radius {
+        if canShoot {
+            canShoot = false;
+            image_index = 1;
         }
     }
     

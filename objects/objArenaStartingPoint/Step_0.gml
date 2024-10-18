@@ -17,18 +17,28 @@ if !global.frozen
 				{
 					if x < (xstart-cfgPushStartingPosBack)
 			        {
-						if stepTimer <= 0
+						if stepTimer <= 0 && (image_xscale >= 0 or cfgCanTurnaroundStep) {
 							xspeed = cfgStepSpeed * cfgStepFrames;
-						else
+						}
+						else {
 							xspeed = 0;
+							if stepTimer <= 0 && (image_xscale <= 0 and !cfgCanTurnaroundStep) {
+								x += sign(image_xscale);
+							}
+						}
 			            image_xscale = 1;
 			        }
 			        else if x > (xstart-cfgPushStartingPosBack)
 			        {
-			            if stepTimer <= 0
+			            if stepTimer <= 0 && (image_xscale <= 0 or cfgCanTurnaroundStep) {
 							xspeed = -cfgStepSpeed * cfgStepFrames;
-						else
+						}
+						else {
 							xspeed = 0;
+							if stepTimer <= 0 && (image_xscale >= 0 and !cfgCanTurnaroundStep) {
+								x += sign(image_xscale);
+							}
+						}
 			            image_xscale = -1;
 			        }
 				

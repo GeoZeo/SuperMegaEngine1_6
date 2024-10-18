@@ -37,6 +37,8 @@ col = 0; //0 = red; 1 = orange; 2 = blue
 frozeTimer = 0;
 dashing = false;
 startDir = -1; // Default start direction is left.
+player_sprite_yoffset = 0;
+player_sprite_height = 0;
 
 image_speed = 0.2;
 image_index = 0;

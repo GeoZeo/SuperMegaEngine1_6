@@ -4,6 +4,13 @@ if global.frozen == false
 {
     if isFight == true
     {   
+		if instance_exists(prtPlayer)
+		{
+			player_sprite_xcenter = sprite_get_xcenter_object(prtPlayer);
+			player_sprite_ycenter = sprite_get_ycenter_object(prtPlayer);
+			player_bbox_bottom = prtPlayer.bbox_bottom;
+		}
+		
 		checkGround();
 		gravityCheckGround();
 		generalCollision();
@@ -43,36 +50,28 @@ if global.frozen == false
                 {
                     attackTimer = 35;
                     
-                    if instance_exists(prtPlayer)
+                    startXScale = image_xscale;
+                        
+                    //Calculate the time needed to jump to MM's position, and with that, calculate the horizontal speed
+                    var dx, initYspeed;
+                    dx = player_sprite_xcenter - sprite_get_xcenter();
+                    initYspeed = -6.5;
+                        
+                    var time, yy, yyspeed; //time: How much time (in frames) it would take to land on Mega Man's location
+                    yy = bbox_bottom;
+                    yyspeed = initYspeed;
+                    time = 0;
+                        
+                    while yy < player_bbox_bottom || yyspeed < 0
                     {
-                        startXScale = image_xscale;
-                        
-                        //Calculate the time needed to jump to MM's position, and with that, calculate the horizontal speed
-                        var dx, initYspeed;
-                        dx = sprite_get_xcenter_object(prtPlayer) - sprite_get_xcenter();
-                        initYspeed = -6.5;
-                        
-                        var time, yy, yyspeed; //time: How much time (in frames) it would take to land on Mega Man's location
-                        yy = bbox_bottom;
-                        yyspeed = initYspeed;
-                        time = 0;
-                        
-                        while yy < prtPlayer.bbox_bottom || yyspeed < 0
-                        {
-                            yyspeed += 0.25;
-                            yy += yyspeed;
-                            time += 1;
-                        }
-                        
-                        startXspeed = dx / time;
-                        yspeed = initYspeed;
-                        ground = false;
+                        yyspeed += 0.25;
+                        yy += yyspeed;
+                        time += 1;
                     }
-                    else
-                    {
-                        startXScale = image_xscale;
-                        startXspeed = 0;
-                    }
+                        
+                    startXspeed = dx / time;
+                    yspeed = initYspeed;
+                    ground = false;
                 }
                 
                 if !place_meeting(x+startXspeed, y, objSolid) && !place_meeting(x+startXspeed, y, prtMovingPlatformSolid)
@@ -89,22 +88,19 @@ if global.frozen == false
                 
                 
                 //Face the player
-                if instance_exists(prtPlayer)
+                if startXScale == -1
                 {
-                    if startXScale == -1
-                    {
-                        if x > prtPlayer.x
-                            sprite_index = sprPharaohJump;
-                        else
-                            sprite_index = sprPharaohJumpBack;
-                    }
+                    if x > player_x
+                        sprite_index = sprPharaohJump;
                     else
-                    {
-                        if x > prtPlayer.x
-                            sprite_index = sprPharaohJumpBack;
-                        else
-                            sprite_index = sprPharaohJump;
-                    }
+                        sprite_index = sprPharaohJumpBack;
+                }
+                else
+                {
+                    if x > player_x
+                        sprite_index = sprPharaohJumpBack;
+                    else
+                        sprite_index = sprPharaohJump;
                 }
                 
                 
@@ -150,13 +146,16 @@ if global.frozen == false
                         {
                             canInitShoot = false;
                             
-                            var box;
+                            var shootID, box;
                             if image_xscale == 1
                                 box = bbox_right;
                             else
                                 box = bbox_left;
                             
-                            instance_create(box, y-8, objPharaohManShot);
+                            shootID = instance_create(box, y-8, objPharaohManShot);
+								shootID.player_x = player_sprite_xcenter;
+								shootID.player_y = player_sprite_ycenter;
+								with shootID event_user(0);
                         }
                         
                         image_speed = 6/60 * update_rate;
@@ -209,41 +208,38 @@ if global.frozen == false
                     
                     
                 //Face the player
-                if instance_exists(prtPlayer)
+                if startXScale == -1
                 {
-                    if startXScale == -1
+                    if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
                     {
-                        if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
-                        {
-                            if x > prtPlayer.x
-                                sprite_index = sprPharaohJump;
-                            else
-                                sprite_index = sprPharaohJumpBack;
-                        }
-                        else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
-                        {
-                            if x > prtPlayer.x
-                                sprite_index = sprPharaohJumpShoot;
-                            else
-                                sprite_index = sprPharaohJumpShootBack;
-                        }
+                        if x > player_x
+                            sprite_index = sprPharaohJump;
+                        else
+                            sprite_index = sprPharaohJumpBack;
                     }
-                    else
+                    else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
                     {
-                        if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
-                        {
-                            if x > prtPlayer.x
-                                sprite_index = sprPharaohJumpBack;
-                            else
-                                sprite_index = sprPharaohJump;
-                        }
-                        else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
-                        {
-                            if x > prtPlayer.x
-                                sprite_index = sprPharaohJumpShootBack;
-                            else
-                                sprite_index = sprPharaohJumpShoot;
-                        }
+                        if x > player_x
+                            sprite_index = sprPharaohJumpShoot;
+                        else
+                            sprite_index = sprPharaohJumpShootBack;
+                    }
+                }
+                else
+                {
+                    if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
+                    {
+                        if x > player_x
+                            sprite_index = sprPharaohJumpBack;
+                        else
+                            sprite_index = sprPharaohJump;
+                    }
+                    else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
+                    {
+                        if x > player_x
+                            sprite_index = sprPharaohJumpShootBack;
+                        else
+                            sprite_index = sprPharaohJumpShoot;
                     }
                 }
             break;
@@ -313,13 +309,10 @@ if global.frozen == false
         
         
         //Face the player
-        if instance_exists(prtPlayer)
-        {
-            if x > prtPlayer.x
-                image_xscale = -1;
-            else
-                image_xscale = 1;
-        }
+        if x > player_x
+            image_xscale = -1;
+        else
+            image_xscale = 1;
 		
 		escapeWall(true, true, true, true);
     }
