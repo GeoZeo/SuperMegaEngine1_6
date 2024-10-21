@@ -2,7 +2,7 @@
 function base_convert(argument0, argument1, argument2) {
 	//
 	//  Returns a string of digits representing the
-	//  given number converted form one base to another.
+	//  given number converted from one base to another.
 	//  Base36 is the largest base supported.
 	//
 	//      number      integer value to be converted, string

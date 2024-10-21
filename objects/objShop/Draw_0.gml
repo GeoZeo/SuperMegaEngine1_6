@@ -34,9 +34,10 @@ for (var i = 0; i < total_items_; i++) {
         draw_sprite(global.items[i].sprite_index, 0, currX + 3, currY+1);
     }
     else {
-        shader_set(shGrayscale);
-        draw_sprite(global.items[i].sprite_index, 0, currX + 3, currY+1);
-        shader_reset();
+        //shader_set(shGrayscale);
+        //draw_sprite(global.items[i].sprite_index, 0, currX + 3, currY+1);
+        //shader_reset();
+		draw_sprite(global.items[i].sprite_index, 1, currX + 3, currY+1);
     }
     draw_text(currX-1, currY+18, string_hash_to_newline(string_replace_all(string_format(global.items[i].price, 3, 0), " ", "0")));
     currX += spacing + item_size;

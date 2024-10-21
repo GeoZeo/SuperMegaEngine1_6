@@ -31,23 +31,29 @@ switch phase {
             
         
         if global.keyShootPressed {
-			with prtPlayer event_user(0);
-            with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
-            with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
-            with prtRush instance_destroy();
-            with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
-            with prtPlayer {
-                if onRushJet {
-                    onRushJet = false;
-					canWalk = true;
-                }
-            }
+			if (primedItemIndex == -1) {
+				with prtPlayer event_user(0);
+	            with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
+	            with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+	            with prtRush instance_destroy();
+	            with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
+	            with prtPlayer {
+	                if onRushJet {
+	                    onRushJet = false;
+						canWalk = true;
+	                }
+	            }
 			
-			if global.currentWeapon != oldWeapon {
-                with global.weapons[global.currentWeapon] event_user(0);
-            }
-			playSFX(sfxPause);
-			phase = 3;
+				if global.currentWeapon != oldWeapon {
+	                with global.weapons[global.currentWeapon] event_user(0);
+	            }
+				playSFX(sfxPause);
+				phase = 3;
+			}
+			else {
+				with global.items[primedItemIndex] event_user(3);    //Unprime item.
+                primedItemIndex = -1;
+			}
 		}
 		//Select the weapon/tank
         else if global.keyJumpPressed || global.keyPausePressed || global.keySelectPressed {

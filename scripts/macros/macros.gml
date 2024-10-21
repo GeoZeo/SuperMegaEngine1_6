@@ -10,7 +10,7 @@ function macros() {
 #macro cfgMaxNumberOfBusterShots 3
 #macro cfgMaxHealth 28
 #macro cfgMaxAmmo 28
-#macro cfgDebug true
+#macro cfgDebug false
 #macro cfgEnableDebugKeys true
 #macro cfgWeaponPreview true
 #macro cfgSwitchWeaponsWhileLocked true
@@ -24,7 +24,9 @@ function macros() {
 #macro cfgEnableKeyConfig true
 #macro cfgEnableSaving true
 #macro cfgEnablePasswords true
-#macro cfgEnableDelayedAutoShifting false
+#macro cfgTwoPasswordColours false
+#macro cfgUseRedPassDotsNotBlue false
+#macro cfgEnableDelayedAutoShifting true
 #macro cfgLoseChargeOnHit true
 #macro cfgLoseChargeOnStun true
 #macro cfgLoseChargeOnLock false

@@ -1,8 +1,19 @@
-/// @description apply_password(tern_pass)
+/// @description apply_password(my_pass)
 function apply_password(argument0) {
-	var tern_pass = argument0;
-	var bin_pass = block_base_convert(tern_pass, 3, 2, 2, 3);
-	bin_pass = string_lpad(bin_pass, 96, "0");
+	var bin_pass;
+	var max_pass;
+	
+	if cfgTwoPasswordColours {
+		max_pass = 96;
+		var tern_pass = argument0;
+		bin_pass = block_base_convert(tern_pass, 3, 2, 2, 3);
+	}
+	else {
+		max_pass = 64;
+		bin_pass = argument0;
+	}
+	
+	bin_pass = string_lpad(bin_pass, max_pass, "0");
 
 	var pos = 1;
 

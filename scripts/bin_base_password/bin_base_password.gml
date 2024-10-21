@@ -8,7 +8,7 @@ function bin_base_password() {
 	bin_pass += dec_to_bin(global.screws, 10);
 	if cfgInitialStage > -1 bin_pass += iif(global.initialStageClear, "1", "0");
 
-	for (var i = 1; i < global.totalWeapons; i++) { //Skip weapon 0 (mega buster)
+	for (var i = 1; i < global.totalWeapons; i++) { //Skip weapon 0 (mega buster/other default weapon)
 	    bin_pass += iif(global.weapons[i].unlocked, "1", "0");
 	}
 	for (var i = 1; i < array_length_1d(global.items); i++) {   //Skip item 0 (lives)

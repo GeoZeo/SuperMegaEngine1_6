@@ -63,7 +63,7 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
                 
                 // If using something like an W-Tank, draw the arrow as an indicator.
                 if primedItemIndex != -1
-                    draw_sprite_ext(sprPassArrow, 0, global.viewX+currX-6, global.viewY+currY+8, 1, 1, 0, c_white, 1);
+                    draw_sprite_ext(sprPassArrow, 0, global.viewX+currX-6, global.viewY+currY+6, 1, 1, 0, c_white, 1);
             }
             else {
 				draw_sprite_ext(sprWeaponIconsGray, global.weapons[i].ID, global.viewX+currX, global.viewY+currY, 1, 1, 0, c_white, 1);
@@ -151,10 +151,15 @@ if (phase >= 1 && phase <= 3) || phase == 5 || phase == 6
             draw_sprite(global.items[i].sprite_index, 0, global.viewX+currX, global.viewY+currY);
         }
         else {
-           //draw_sprite(global.items[i].sprite_index, 1, view_xview[0]+currX, view_yview[0]+currY);           
-           shader_set(shGrayscale);
-           draw_sprite(global.items[i].sprite_index, 0, global.viewX+currX, global.viewY+currY);           
-           shader_reset();
+           draw_sprite(global.items[i].sprite_index, 1, global.viewX+currX, global.viewY+currY);
+		   //if sprite_exists(asset_get_index(sprite_get_name(global.items[i].sprite_index) + "Gray")) {
+			//   draw_sprite(asset_get_index(sprite_get_name(global.items[i].sprite_index) + "Gray"), 0, global.viewX+currX, global.viewY+currY);
+		   //}
+		   //else {
+	       //    shader_set(shGrayscale);
+	       //    draw_sprite(global.items[i].sprite_index, 0, global.viewX+currX, global.viewY+currY);
+	       //    shader_reset();
+		   //}
         }
         
         if (global.items[i].showCount) {

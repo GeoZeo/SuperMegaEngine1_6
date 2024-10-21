@@ -2,7 +2,9 @@
 function password_checksum(argument0) {
 	var bin_pass = argument0;
 
-	var max_pass = 96;
+	var max_pass;
+	if cfgTwoPasswordColours max_pass = 96;
+	else max_pass = 64;
 	var pass_length = string_length(bin_pass);
 	var checksum_size = max_pass - pass_length;
 	var sum = string_count("1", bin_pass + dec_to_bin(abs(game_id),checksum_size));

@@ -33,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprSTank",
-    "path": "sprites/sprSTank/sprSTank.yy",
+    "name": "sprSTankEquip",
+    "path": "sprites/sprSTankEquip/sprSTankEquip.yy",
   },
   "spriteMaskId": null,
   "visible": true,

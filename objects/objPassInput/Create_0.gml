@@ -1,6 +1,10 @@
+if !cfgTwoPasswordColours {
+	__background_set( e__BG.Index, 0, bgPass1Colour );
+}
+
 row = 0;
 col = 0;
-color = 0;
+color = 0; //0 = red; 1 = blue; change to 1 if you'd rather have blue be the default colour when you enter this menu
 password = string_repeat("0", 64);
 finished = false;
 cursorTimer = 0;

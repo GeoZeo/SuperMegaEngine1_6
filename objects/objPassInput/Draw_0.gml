@@ -9,7 +9,8 @@ draw_set_colour(c_white);
 draw_set_font(global.MM3font);
 draw_set_halign(fa_left);
 draw_text(xx + 10, yy, string_hash_to_newline("INPUT PASSWORD"));
-draw_text(xx - 30, yy + 16, string_hash_to_newline("JUMP:  SET - SEL: COLOR"));
+if cfgTwoPasswordColours draw_text(xx - 30, yy + 16, string_hash_to_newline("JUMP:  SET - SEL: COLOR"));
+else draw_text(xx - 30, yy + 16, string_hash_to_newline("      JUMP:   SET"));
 draw_text(xx - 30, yy + 26, string_hash_to_newline("FIRE: BACK - PAUSE: END"));
 
 var posx = 21;
@@ -26,10 +27,12 @@ draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), posx + col * size + off
 draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), (posx + col * size + offset) + 7, (posy + row * size + offset) + 7);
 
 //Selected color
-draw_sprite(sprPassCursorTopLeft, 0, posx + (11 + (1 - color)) * size + offset - 2, posy + 1.5 * size + offset + 2);
-draw_sprite(sprPassCursorTopRight, 0, (posx + (11 + (1 - color)) * size + offset - 2) + 7, posy + 1.5 * size + offset + 2);
-draw_sprite(sprPassCursorBottomLeft, 0, posx + (11 + (1 - color)) * size + offset - 2, (posy + 1.5 * size + offset + 2) + 7);
-draw_sprite(sprPassCursorBottomRight, 0, (posx + (11 + (1 - color)) * size + offset - 2) + 7, (posy + 1.5 * size + offset + 2) + 7);
+if cfgTwoPasswordColours {
+	draw_sprite(sprPassCursorTopLeft, 0, posx + (11 + (1 - color)) * size + offset - 2, posy + 1.5 * size + offset + 2);
+	draw_sprite(sprPassCursorTopRight, 0, (posx + (11 + (1 - color)) * size + offset - 2) + 7, posy + 1.5 * size + offset + 2);
+	draw_sprite(sprPassCursorBottomLeft, 0, posx + (11 + (1 - color)) * size + offset - 2, (posy + 1.5 * size + offset + 2) + 7);
+	draw_sprite(sprPassCursorBottomRight, 0, (posx + (11 + (1 - color)) * size + offset - 2) + 7, (posy + 1.5 * size + offset + 2) + 7);
+}
 
 draw_set_color(oldCol);
 draw_set_font(oldFont);

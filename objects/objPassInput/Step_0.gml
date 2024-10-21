@@ -124,7 +124,7 @@ if global.keyJumpPressed { //Place marble
 	}
 	cursorTimer = 0;
 }
-if global.keySelectPressed {  //Toggle marble colour
+if global.keySelectPressed && cfgTwoPasswordColours {  //Toggle marble colour
 	color = 1 - color;
 	cursorTimer = 0;
 	playSFX(sfxMenuMove);
@@ -145,7 +145,7 @@ if global.keyPausePressed { //Finish
 	h_as_init_timer = 0;
 	v_as_timer = v_as_rate;
 	v_as_init_timer = 0;
-	if check_password(password) {
+	if check_password(password) && password != string_repeat("0", 64) {
 	    playSFX(sfxMenuSelect);
 	    apply_password(password);
 	    var ID = instance_create(x, y, objFadeout);

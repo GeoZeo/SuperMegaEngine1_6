@@ -9,10 +9,17 @@ function draw_password(argument0) {
 	    var value = string_char_at(password, i + 1);
 	    var row = i div 8;
 	    var col = i mod 8;
-	    switch(value) {
-	        case "1": draw_sprite(reddot, 0, posx + col * size + offset, posy + row * size + offset); break;
-	        case "2": draw_sprite(bluedot, 0, posx + col * size + offset, posy+ row * size + offset); break;
-	    }
+		if !(!cfgTwoPasswordColours && !cfgUseRedPassDotsNotBlue) {
+		    switch(value) {
+		        case "1": draw_sprite(reddot, 0, posx + col * size + offset, posy + row * size + offset); break;
+		        case "2": draw_sprite(bluedot, 0, posx + col * size + offset, posy+ row * size + offset); break;
+		    }
+		}
+		else {
+			//If we're only using one dot colour for the password system
+			//and it's been set to blue in the macros script (via cfgUseRedPassDotsNotBlue being set to false)
+			if value == "1" draw_sprite(bluedot, 0, posx + col * size + offset, posy + row * size + offset);
+		}
 	}
 
 
