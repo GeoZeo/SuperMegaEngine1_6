@@ -27,6 +27,9 @@ switch phase {
     break;
     
     case 2: //Idle
+		arrowTimer++;
+		if arrowTimer >= 30 arrowTimer = 0;
+	
         event_user(0); //Moving the selection
             
         
@@ -53,27 +56,28 @@ switch phase {
 			else {
 				with global.items[primedItemIndex] event_user(3);    //Unprime item.
                 primedItemIndex = -1;
+				arrowTimer = 0;
 			}
 		}
 		//Select the weapon/tank
         else if global.keyJumpPressed || global.keyPausePressed || global.keySelectPressed {
             if option < global.totalWeapons {   //Selected a weapon             
-                global.currentWeapon = option;
-				global.weapon = option;
-				with prtPlayer event_user(0);
-                with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
-                with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
-                with prtRush instance_destroy();
-                with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
-                with prtPlayer {
-                    if onRushJet {
-                        onRushJet = false;
-						canWalk = true;
-                    }
-                }
-                
                 // If an item hasn't been primed for use, transition to phase 3.
                 if (primedItemIndex == -1) {
+					global.currentWeapon = option;
+					global.weapon = option;
+					with prtPlayer event_user(0);
+	                with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
+	                with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+	                with prtRush instance_destroy();
+	                with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
+	                with prtPlayer {
+	                    if onRushJet {
+	                        onRushJet = false;
+							canWalk = true;
+	                    }
+	                }
+					
                     if global.currentWeapon != oldWeapon {
                         with global.weapons[global.currentWeapon] event_user(0);
                     }
@@ -86,6 +90,7 @@ switch phase {
                     global.items[primedItemIndex].useOnIndex = option;
                     //option = 99;
                     phase = 5;
+					arrowTimer = 0;
                 }
             }
             else {  //Selected an item
@@ -95,6 +100,7 @@ switch phase {
                 if (item_index == primedItemIndex) {
                     with global.items[item_index] event_user(3);    //Unprime item.
                     primedItemIndex = -1;
+					arrowTimer = 0;
                 }
                 else if (primedItemIndex == -1) {                    
                     with global.items[item_index] event_user(0);    //Activate item
@@ -103,17 +109,20 @@ switch phase {
                         if (global.items[item_index].useOnWeapon) {
                             global.currentWeapon = global.defaultWeapon.ID;
                             primedItemIndex = item_index;
+							arrowTimer = 0;
                             option = 0;
                         }
                         else {
                             //option = 99;
                             phase = 5;
                             primedItemIndex = -1;
+							arrowTimer = 0;
                         }
                     }
                 }
                 else {
                     playSFX(sfxError);
+					arrowTimer = 0;
                 }
             }
         }

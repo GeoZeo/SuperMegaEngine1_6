@@ -12,6 +12,8 @@ resetWeapon = false; //Should we, after exiting the menu, reset our weapon to th
 
 primedItemIndex = -1;
 
+arrowTimer = 0;
+
 with prtPlayer event_user(0);
 
 with objShake

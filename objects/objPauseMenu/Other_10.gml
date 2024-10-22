@@ -1,6 +1,7 @@
 /// @description  Cursor Movement
 if global.keyDownPressed {
     playSFX(sfxMenuMove);
+	arrowTimer = 0;
 	v_as_timer = v_as_rate;
 	v_as_init_timer = 0;
     
@@ -45,6 +46,7 @@ if global.keyDownPressed {
 }
 else if global.keyUpPressed {
     playSFX(sfxMenuMove);
+	arrowTimer = 0;
 	v_as_timer = v_as_rate;
 	v_as_init_timer = 0;
     
@@ -111,6 +113,7 @@ if global.keyLeftPressed || global.keyRightPressed
             option = 0;
             
         playSFX(sfxMenuMove);
+		arrowTimer = 0;
 		h_as_timer = h_as_rate;
 		h_as_init_timer = 0;
     }
@@ -132,6 +135,7 @@ if global.keyLeftPressed || global.keyRightPressed
 
             
         playSFX(sfxMenuMove);
+		arrowTimer = 0;
 		h_as_timer = h_as_rate;
 		h_as_init_timer = 0;
     }
@@ -192,6 +196,7 @@ if cfgEnableDelayedAutoShifting {
 			if v_as_timer >= v_as_rate {
 				v_as_timer = 0;
 			    playSFX(sfxMenuMove);
+				arrowTimer = 0;
     
 			    var loops = 0; //How many times the while-loop has been passed through
 			    //show_debug_message("Going down from " + string(option));
@@ -242,6 +247,7 @@ if cfgEnableDelayedAutoShifting {
 			if v_as_timer >= v_as_rate {
 			    v_as_timer = 0;
 				playSFX(sfxMenuMove);
+				arrowTimer = 0;
     
 			    var loops = 0;
     
@@ -314,6 +320,7 @@ if cfgEnableDelayedAutoShifting {
             
 			        playSFX(sfxMenuMove);
 					h_as_timer = 0;
+					arrowTimer = 0;
 			    }
     
 			    //Items
@@ -334,6 +341,7 @@ if cfgEnableDelayedAutoShifting {
             
 			        playSFX(sfxMenuMove);
 					h_as_timer = 0;
+					arrowTimer = 0;
 			    }
     
     
