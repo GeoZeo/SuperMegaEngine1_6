@@ -7,6 +7,7 @@ if pickupID != -15
 
 if teleport {
 	var myTeleport = instance_create(mask_get_xcenter_object(other), mask_get_ycenter_object(other), objTeleport);
+	myTeleport.fromItem = true;
 	myTeleport.toX = toX;
 	myTeleport.toY = toY;
 	myTeleport.drawLED = false;

@@ -68,7 +68,7 @@ if room == rmInit {
     application_surface_draw_enable(true);
 }
 
-pressBufferCount = 0;
+buffer = false;
 
 //Hide midground tiles/tile animation frames at start
 curr_back_layer = global.ini_back_layer;

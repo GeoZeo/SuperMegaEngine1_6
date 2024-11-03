@@ -9,6 +9,13 @@ if on && createScenery {
 }
 
 if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporting)) {
+	if fromItem {
+		var myPlayer = instance_nearest(x, y, prtPlayer);
+		x = mask_get_xcenter_object(myPlayer);
+		y = mask_get_ycenter_object(myPlayer);
+		origX = x;
+		origY = y;
+	}
 	if sprite_index == prtPlayer.spriteTeleport {
 	    if image_index >= 2 {
 	        if !out {
@@ -69,7 +76,8 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 	            prtPlayer.image_xscale = toDir;
 	            x = origX;
 	            y = origY;            
-	            visible = false;
+	            if flashLEDOnce visible = false;
+				else visible = true;
 	            sprite_index = sprTeleport;
 				image_speed = 1;
 	            out = false;

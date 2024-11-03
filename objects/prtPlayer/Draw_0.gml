@@ -54,7 +54,6 @@ else if teleporting == true
             sprite_index = spriteStand;
 			image_speed = speedStand;
             instance_activate_all();
-			with objGlobalControl pressBufferCount = 2;
             exit;
         }
         

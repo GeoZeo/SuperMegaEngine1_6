@@ -15,7 +15,7 @@ switch phase {
     break;
     
     case 1: //Fading out
-        event_user(0); //Moving the selection
+        //event_user(0); //Moving the selection
             
         blackAlphaTimer++;
         if blackAlphaTimer >= blackAlphaTimerMax {

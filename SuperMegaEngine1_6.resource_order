@@ -390,7 +390,6 @@
     {"name":"bgMainMenu","order":5,"path":"sprites/bgMainMenu/bgMainMenu.yy",},
     {"name":"objSplashH","order":9,"path":"objects/objSplashH/objSplashH.yy",},
     {"name":"bgPlayerSelect","order":6,"path":"sprites/bgPlayerSelect/bgPlayerSelect.yy",},
-    {"name":"playerPressBuffer","order":22,"path":"scripts/playerPressBuffer/playerPressBuffer.yy",},
     {"name":"bgProtomanShop","order":7,"path":"sprites/bgProtomanShop/bgProtomanShop.yy",},
     {"name":"bgMTK","order":1,"path":"sprites/bgMTK/bgMTK.yy",},
     {"name":"bgWilyIntro","order":2,"path":"sprites/bgWilyIntro/bgWilyIntro.yy",},

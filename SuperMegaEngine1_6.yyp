@@ -484,7 +484,6 @@
     {"id":{"name":"bgMainMenu","path":"sprites/bgMainMenu/bgMainMenu.yy",},},
     {"id":{"name":"objSplashH","path":"objects/objSplashH/objSplashH.yy",},},
     {"id":{"name":"bgPlayerSelect","path":"sprites/bgPlayerSelect/bgPlayerSelect.yy",},},
-    {"id":{"name":"playerPressBuffer","path":"scripts/playerPressBuffer/playerPressBuffer.yy",},},
     {"id":{"name":"bgProtomanShop","path":"sprites/bgProtomanShop/bgProtomanShop.yy",},},
     {"id":{"name":"bgCity","path":"sprites/bgCity/bgCity.yy",},},
     {"id":{"name":"bgMTK","path":"sprites/bgMTK/bgMTK.yy",},},

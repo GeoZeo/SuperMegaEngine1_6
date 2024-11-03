@@ -8,6 +8,7 @@ if on && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !othe
 	other.x = x;
     y = other.y;
     visible = true;
+	fromItem = false;
     sprite_index = prtPlayer.spriteTeleport;
     image_speed = prtPlayer.speedTeleport;
     with other {
@@ -19,6 +20,11 @@ if on && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !othe
 	    drawHitspark = false;
 	    hitTimer = 0;
 		invincibilityTimer = 0;
+		
+		if !cfgSwitchWeaponsWhileLocked {
+			drawWeaponIconTimer = -1;
+			drawWeaponIcon = false;
+		}
     }
 		
     //instance_deactivate_object(objMegaman);

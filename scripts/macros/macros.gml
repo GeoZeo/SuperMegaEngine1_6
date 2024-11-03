@@ -1,10 +1,10 @@
 function macros() {
-#macro initialRoom rmDisclaimer
+#macro initialRoom rmBeta
 #macro cfgEnableSlideKey false
 #macro cfgEnableDamageNumbers false
 #macro cfgEnableCharge true
 #macro cfgEnableSlide true
-#macro cfgEnablePressBuffer false
+#macro cfgEnableBuffering true
 #macro cfgPushStartingPosBack true
 #macro cfgEnableScrews true
 #macro cfgMaxNumberOfBusterShots 3

@@ -20,7 +20,21 @@ if !global.frozen {
 		x = round(global.viewX + ((((global.viewX + global.viewWidth) - global.viewX) / 4) * 3));
 	}
 	if vspeed >= 0 && insideView() {
-	    __background_set( e__BG.Visible, 1, true );
+	    revealBackground = true;
+	}
+	if revealBackground && blackAlpha < 1 {
+		blackAlphaTimer += 1;
+
+		if blackAlphaTimer >= blackAlphaTimerMax {
+		    blackAlpha += blackAlphaIncrease;
+		    blackAlphaTimer = 0;
+			
+			if blackAlpha >= 1 {
+				blackAlpha = 1;
+			}
+			
+			__background_set( e__BG.Alpha, 1, blackAlpha );
+		}
 	}
 
 	if instance_exists(prtPlayer) and prtPlayer.visible {

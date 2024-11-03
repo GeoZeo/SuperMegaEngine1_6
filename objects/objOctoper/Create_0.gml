@@ -3,6 +3,8 @@ event_inherited();
 healthpointsStart = 20;
 healthpoints = healthpointsStart;
 
+blackenBackground = true;
+
 contactDamage = 4;
 
 xspeed = image_xscale * 0.5;
@@ -18,7 +20,7 @@ hitbox_bottom = 1;
 
 damage[objWindStorm] = 2;
 
-explosionTime = 10;
+explosionTime = 18;
 explosionTimer = 0;
 explosionMax = 5;
 explosionCounter = 0;

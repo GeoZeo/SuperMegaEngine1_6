@@ -3,7 +3,7 @@
   "resourceVersion": "1.0",
   "name": "tstBeta_V2",
   "bbox_bottom": 67,
-  "bbox_left": 17,
+  "bbox_left": 0,
   "bbox_right": 119,
   "bbox_top": 0,
   "bboxMode": 0,

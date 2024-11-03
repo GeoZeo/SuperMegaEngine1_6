@@ -845,6 +845,8 @@ function playerStep() {
 			canMove = false;
 		}
 	}
+	
+	
 
 
 	//Jumping
