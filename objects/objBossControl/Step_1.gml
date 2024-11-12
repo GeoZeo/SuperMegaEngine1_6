@@ -91,6 +91,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 			        playerFreeMovement();
 			        myBoss.startFight = true;
 			        myBoss.healthpoints = myBoss.healthpointsStart;
+					myBoss.canHit = true;
 			        fillingHealthBar = false;
 			    }
 			}

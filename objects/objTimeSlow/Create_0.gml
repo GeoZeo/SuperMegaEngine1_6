@@ -12,6 +12,6 @@ destroyOnPause = false;
 destroyOnScroll = false;
 doesNotCount = true;
 defaultDamage = 1;  //While Time Slow doesn't inflict damage, only
-defaultBossDamage = 0;  //vulnerable (damage > 0) bosses are affected
+defaultBossDamage = 0;  //vulnerable (damage != 0) bosses are affected
 reflectible = false;
 

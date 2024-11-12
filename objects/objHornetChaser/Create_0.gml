@@ -1,9 +1,17 @@
 event_inherited();
 
+dir = 1;
 spd = 1.703125;
 
-xspeed = spd;
-yspeed = -(spd/2);
+if image_xscale >= 0
+	ang = 22.5;
+else
+	ang = 157.5;
+	
+turningSpd = 12.96875;
+
+xspeed = cos(degtorad(ang)) * spd;
+yspeed = -sin(degtorad(ang)) * spd;
 
 img_speed = 30 / room_speed;
 

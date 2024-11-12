@@ -12,11 +12,11 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 	&& instance_exists(myPickup)
 	&& insideViewObj(myPickup)
 	&& myPickup.targetable
-	&& myPickup.targetedBy != object_index
-	&& (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy != id))    //If touching an item
+	&& myPickup.targetedBy < 0
+	&& (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy < 0))    //If touching an item
 	{
 		target = myPickup.id;
-		myPickup.targetedBy = object_index;
+		myPickup.targetedBy = id;
 		targetLocked = true;
 	}
 	
@@ -29,7 +29,7 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 	&& insideViewObj(myEnemy)
 	&& !myEnemy.dead && !myEnemy.dying
 	&& myEnemy.targetable
-	&& myEnemy.targetedBy != object_index)    //If touching an enemy
+	&& myEnemy.targetedBy != id)    //If touching an enemy
 	{
 		targetLocked = true;
 	}
@@ -45,7 +45,16 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 		//Find a target, either an enemy or an item, whichever's closest.
 		if target < 0 {
 		    var n = 1;
-		    while target < 0 or (object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying)) or (object_is_ancestor(target.object_index, prtPickup) and target.grabbedBy == id) or !insideViewObj(target) or !target.targetable  {
+			var deadEnemies = [];
+			with prtEnemy {
+				if dead || dying {
+					array_push(deadEnemies, id);
+					instance_deactivate_object(id);
+				}
+			}
+		    while target < 0 or (object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying)) or (object_is_ancestor(target.object_index, prtPickup) and target.grabbedBy > -1)
+			or ((!insideViewObj(target) and (object_is_ancestor(target.object_index, prtPickup) or (object_is_ancestor(target.object_index, prtEnemy) and !target.checkFullSprite))) or (!insideViewObj_Spr(target) and (object_is_ancestor(target.object_index, prtEnemy) and target.checkFullSprite)))
+			or !target.targetable  {
 		        if n > instance_number(prtEnemy) + instance_number(prtPickup) {
 		            target = -1;
 		            break;
@@ -55,8 +64,8 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 				myEnemy = instance_nth_nearest(x, y, prtEnemy, n);
 				if myEnemy > -1 && instance_exists(myEnemy)
 				{
-					e_dx = sprite_get_xcenter_object(myEnemy.id) - x;
-				    e_dy = sprite_get_ycenter_object(myEnemy.id) - y;
+					e_dx = sprite_get_xcenter_object(myEnemy) - x;
+				    e_dy = sprite_get_ycenter_object(myEnemy) - y;
 				}
 				var e_len = sqrt(e_dx*e_dx + e_dy*e_dy);
 			
@@ -65,57 +74,75 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 				myPickup = instance_nth_nearest(x, y, prtPickup, n);
 				if myPickup > -1 && instance_exists(myPickup)
 				{
-					p_dx = sprite_get_xcenter_object(myPickup.id) - x;
-				    p_dy = sprite_get_ycenter_object(myPickup.id) - y;
+					p_dx = sprite_get_xcenter_object(myPickup) - x;
+				    p_dy = sprite_get_ycenter_object(myPickup) - y;
 				}
 				var p_len = sqrt(p_dx*p_dx + p_dy*p_dy);
 			
 				if ((abs(e_len) <= abs(p_len)
 				or (myPickup < 0 or (!insideViewObj(myPickup) or !myPickup.targetable)
-				or (object_is_ancestor(myPickup.object_index, prtPickup) and myPickup.grabbedBy == id)))
-				&& (myEnemy.targetedBy != object_index or n < instance_number(object_index))
-				&& myEnemy > -1 && !myEnemy.dead && !myEnemy.dying && insideViewObj(myEnemy) && myEnemy.targetable) {
+				or (object_is_ancestor(myPickup.object_index, prtPickup) and (myPickup.grabbedBy > -1 or (myPickup.grabbedBy < 0 and myPickup.targetedBy > -1)))))
+				&& (myEnemy.targetedBy < 0 or n < instance_number(object_index))
+				&& myEnemy > -1 && !myEnemy.dead && !myEnemy.dying
+				&& ((insideViewObj(myEnemy) and !myEnemy.checkFullSprite) or (insideViewObj_Spr(myEnemy) and myEnemy.checkFullSprite))
+				&& myEnemy.targetable) {
 					target = myEnemy.id;
-					myEnemy.targetedBy = object_index;
+					myEnemy.targetedBy = id;
 					targetLocked = true;
 				}
-				else if myPickup > -1 && insideViewObj(myPickup) && myPickup.targetable && myPickup.targetedBy != object_index
-				&& (object_is_ancestor(myPickup.object_index, prtPickup)
-				and myPickup.grabbedBy != id) {
+				else if myPickup > -1 && insideViewObj(myPickup) && myPickup.targetable
+				&& myPickup.targetedBy < 0 && myPickup.grabbedBy < 0
+				&& object_is_ancestor(myPickup.object_index, prtPickup) {
 			
 					target = myPickup.id;
-					myPickup.targetedBy = object_index;
+					myPickup.targetedBy = id;
 					targetLocked = true;
 				}
 		        n++;
 		    }
+			for (var i = 0; i < array_length_1d(deadEnemies); i++) {
+				instance_activate_object(deadEnemies[i]);
+			}
 		}
 	}
 }
 
 if target > -1 {    //Chasing
     if instance_exists(target) {
-		if (object_is_ancestor(target.object_index, prtPickup) and target.grabbedBy == id) {
+		if (object_is_ancestor(target.object_index, prtPickup) and target.grabbedBy > -1) {
 			target = -1;
 		}
 		else {
-			var dx = sprite_get_xcenter_object(target.id) - x;
-	        var dy = sprite_get_ycenter_object(target.id) - y;
-	        var len = sqrt(dx*dx + dy*dy);
-			xspeed = dx * spd / len;
-			yspeed = dy * spd / len;
+			var _targetAng = point_direction(x, y, sprite_get_xcenter_object(target), sprite_get_ycenter_object(target));
+			var _targetDir = sign(angle_difference(_targetAng, ang));
+			if ang != _targetAng {
+				ang += turningSpd * _targetDir;
+				if sign(angle_difference(_targetAng, ang)) != _targetDir
+					ang = _targetAng;
+			}
+			xspeed = cos(degtorad(ang)) * spd;
+			yspeed = -sin(degtorad(ang)) * spd;
 		}
     }
     else {
         target = -1;
     }
-    if object_is_ancestor(target.object_index, prtPickup) and place_meeting(x, y, target)
-	and target.grabbedBy != id {
-        item = target.id;
-		if (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy < 0) item.grabbedBy = id;
-        target = -1;
+    if object_is_ancestor(target.object_index, prtPickup) {
+		if place_meeting(x, y, target) and target.grabbedBy < 0 {
+	        item = target;
+			if (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy < 0) item.grabbedBy = id;
+	        target = -1;
+		}
+		else if !insideViewObj(target) {
+			targetLocked = false;	
+			target.targetedBy = -1;
+	        target = -1;
+		}
     }
     else if object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying) {
+		if ((!insideViewObj(target) and !target.checkFullSprite) or (!insideViewObj_Spr(target) and target.checkFullSprite)) {
+			targetLocked = false;	
+		}
 		target.targetedBy = -1;
         target = -1;
     }
@@ -124,11 +151,15 @@ if target > -1 {    //Chasing
 if target < 0 and item > -1 and instance_exists(item) {   //Bringing item
     if instance_exists(item) and place_meeting(x, y, item) and (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy == id) {
         if instance_exists(prtPlayer) {
-            var dx = sprite_get_xcenter_object(prtPlayer) - x;
-            var dy = sprite_get_ycenter_object(prtPlayer) - y;
-            var len = sqrt(dx*dx + dy*dy);
-			xspeed = dx * spd / len;
-			yspeed = dy * spd / len;
+            var _targetAng = point_direction(x, y, sprite_get_xcenter_object(prtPlayer), sprite_get_ycenter_object(prtPlayer));
+			var _targetDir = sign(angle_difference(_targetAng, ang));
+			if ang != _targetAng {
+				ang += turningSpd * _targetDir;
+				if sign(angle_difference(_targetAng, ang)) != _targetDir
+					ang = _targetAng;
+			}
+			xspeed = cos(degtorad(ang)) * spd;
+			yspeed = -sin(degtorad(ang)) * spd;
         }
         item.x = x + sprite_get_xoffset(item.sprite_index);
         item.y = y + sprite_get_yoffset(item.sprite_index) - (8 - item.sprite_height / 2);
@@ -137,7 +168,7 @@ if target < 0 and item > -1 and instance_exists(item) {   //Bringing item
             if item.sprite_width > 8 {
                 item.x += (8 - item.sprite_width / 2);
             }
-			else if item.sprite_width <= 8 {
+			else if item.sprite_width <= 12 {
 		        item.x += item.sprite_width / 2;
 		    }
         }
@@ -146,6 +177,9 @@ if target < 0 and item > -1 and instance_exists(item) {   //Bringing item
         }
 		if item.sprite_height <= 8 {
 			item.y += item.sprite_height / 2 + 2;
+		}
+		else if item.sprite_height <= 12 {
+			item.y += item.sprite_height / 6;
 		}
         item.yspeed = 0;
         item.xspeed = 0;

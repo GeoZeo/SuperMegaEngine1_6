@@ -17,7 +17,7 @@ if !global.frozen {
     
     if alarm[1] > 0 {
         with prtEnemy {
-            if insideView() and damage[objTimeSlow] > 0
+            if insideView() and damage[objTimeSlow] != 0
                 update_rate = 0.2;
         }
         with prtEnemyProjectile {

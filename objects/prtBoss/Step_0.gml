@@ -36,7 +36,6 @@ if !global.frozen {
     if startFight {
         startFight = false;
         isFight = true;
-        canHit = true;
     }
     
     
