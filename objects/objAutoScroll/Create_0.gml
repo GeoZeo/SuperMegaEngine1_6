@@ -13,6 +13,10 @@ yaccel = 0;
 started = false;
 fixed = true;
 
+activateCheckpoints = false;
+xx = x;
+yy = y;
+
 if cfgDebug || debug_mode {
     visible = true;
 }

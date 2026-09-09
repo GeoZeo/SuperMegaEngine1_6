@@ -13,10 +13,10 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a9001e1c-2143-4d5a-9942-d7a818061139",},
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3f75f015-5989-4f84-b0bc-7f7a9ff95a9c",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b4602c70-95fb-416d-a0f4-e545468aef0b",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"d277d38c-bd80-4cf5-b67f-f8a0b04624ec",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a9001e1c-2143-4d5a-9942-d7a818061139",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"3f75f015-5989-4f84-b0bc-7f7a9ff95a9c",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -57,10 +57,10 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"a9001e1c-2143-4d5a-9942-d7a818061139","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"2f264b45-f3f3-4e11-806e-4ad105032a13","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"3f75f015-5989-4f84-b0bc-7f7a9ff95a9c","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"ff4a81ad-edd5-4361-9909-e06bdcecb417","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b4602c70-95fb-416d-a0f4-e545468aef0b","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"4661a88e-c311-4512-b35f-a2a4c500b85c","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"d277d38c-bd80-4cf5-b67f-f8a0b04624ec","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"8039aa15-612b-451c-bdf8-632f8bea326a","IsCreationKey":false,"Key":3.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b4602c70-95fb-416d-a0f4-e545468aef0b","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"4661a88e-c311-4512-b35f-a2a4c500b85c","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"d277d38c-bd80-4cf5-b67f-f8a0b04624ec","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"8039aa15-612b-451c-bdf8-632f8bea326a","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"a9001e1c-2143-4d5a-9942-d7a818061139","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"2f264b45-f3f3-4e11-806e-4ad105032a13","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"3f75f015-5989-4f84-b0bc-7f7a9ff95a9c","path":"sprites/sprOctoShot/sprOctoShot.yy",},},},"Disabled":false,"id":"ff4a81ad-edd5-4361-9909-e06bdcecb417","IsCreationKey":false,"Key":3.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

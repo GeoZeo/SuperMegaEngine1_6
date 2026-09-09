@@ -7,6 +7,7 @@ teleportTimer = 0;
 teleportY = 0;
 teleportingUp = false;
 currentTeleportSpeed = 0;
+playTeleportSound = true;
 sprite_index = sprRushTeleport;
 yspeed = 0;
 xspeed = 0;
@@ -14,6 +15,7 @@ decreaseAmmoTimerIncrement = 0;
 decreaseAmmoTimer = 0;
 decreaseAmmoTimerMax = 60;
 shouldLand = true;
+recalcSpawn = true;
 
 spd = 1;
 ySpd = 1;

@@ -12,6 +12,14 @@ weaponID = -1;
 utilityID = -1;
 bossID = -1;
 
+healthBarPrimaryCol = make_color_rgb(255, 160, 68); //Orange
+healthBarSecondaryCol = c_white;
+healthBarFlash = false;
+
+healthBarTimerMax = noone;
+
+landed = false;
+
 //Do we always have to fight this boss even if it's already been beaten once?
 bPersistent = true;
 
@@ -42,6 +50,15 @@ prevHealthPoints = healthpoints;
 canHit = false;
 drawHitSpark = false;
 drawBoss = true; //Should we be visible? (Can't use the 'visible' variable as this prevents the Draw event from executing)
+checkPlayerSpriteCenter = false;
+invincibilityTime = 45;
+canEndStep = true;
+repeatHitSound = true;
+projCanTouchStart = true;
+shieldCanTouchStart = true;
+flashTime = 2;
+
+explosionDepth = -1;
 
 alarm[8] = 1;
 

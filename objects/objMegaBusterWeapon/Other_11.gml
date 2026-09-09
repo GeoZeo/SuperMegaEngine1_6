@@ -2,12 +2,12 @@
 event_inherited();
 if !ok return false;    //This line should be on every weapon
 
-var _refs = 0;
-with objReflectedProjectile {
-	if id_of_origin == prtPlayer _refs++;
+var _defs = 0;
+with objDeflectedProjectile {
+	if id_of_origin == prtPlayer _defs++;
 }
 
-if instance_number(objBusterShot) + instance_number(objBusterShotHalfCharged) + _refs < maxshots {
+if instance_number(objBusterShot) + instance_number(objBusterShotHalfCharged) + _defs < maxshots {
 
     attackID = instance_create(box + prtPlayer.image_xscale * 4, yy, objBusterShot);
 

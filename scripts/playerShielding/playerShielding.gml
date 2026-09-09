@@ -3,7 +3,7 @@
 function playerShielding(argument0) {
 	//Reflects/deflects enemy projectiles if the character has a valid reflector hitbox
 	
-	if teleporting or showReady
+	if teleporting or showReady or landing
 		return false;
 	
 	if argument0 == true {
@@ -33,7 +33,11 @@ function playerShielding(argument0) {
 		{
 			with myProj
 			{
-				with other event_user(1); //Reflection
+				if !pierceReflectors
+				{
+					reflected = true;
+					with other event_user(1); //Reflection
+				}
 			}	
 			
 			shotID[totalProjs] = myProj;

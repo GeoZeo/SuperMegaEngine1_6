@@ -1,10 +1,13 @@
-/// @description playerGetHit(health)
-function playerGetHit(argument0) {
+/// @description playerGetHit(health, bypassImmunityChecks)
+function playerGetHit(argument0, argument1) {
 	//Call it like this: with prtPlayer playerGetHit();
 	//Makes the player get hit
 	assert(argument0 >= 0, "playerGetHit: Damage must be non-negative");
+	assert(argument1 == 0 or argument1 == 1, "playerGetHit: Value for bypassing immunity checks must be boolean");
+	
+	var _isImmune = instance_exists(objChargeKick); //Add additional immunity checks as they come
 
-	if canHit {
+	if canHit && (!_isImmune or argument1) {
 	    if argument0 != 0 drawDamageNumber(prtPlayer.x, prtPlayer.y, ceil(argument0 * damageMultiplier * global.damageMultiplier));
 	    global._health -= ceil(argument0 * damageMultiplier * global.damageMultiplier);
     
@@ -33,16 +36,47 @@ function playerGetHit(argument0) {
     
 	    //When sliding and there's a solid above us, we should not experience knockback
 	    //If we did, we would clip inside the ceiling above us
-	    if !locked && !((isSlide or isStun) && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+	    if !superArmour && !locked && !((isSlide or isStun) && (place_meeting(x, y-(7+(2*isDash)), objSolid) || place_meeting(x, y-(7+(2*isDash)), prtMovingPlatformSolid))) {
 	        canMove = false;
 	        canSpriteChange = false;
 	        isSlide = false;
+			isDash = false;
 			isStun = false;
 			stunTimer = 0;
+			flying = false;
+			rollbackMovement = false;
 	        mask_index = mskMegaman;
 			
 			if global._health > 0 {
-		        global.xspeed = image_xscale * -knockbackAmount;
+				
+		        if knockbackAmount != 0
+				{
+					var _total_xspeed = global.xspeed + global.xforce;
+					var _total_yspeed = global.yspeed + global.yforce;
+					
+					var _xc;
+					if image_xscale < 0 { _xc = clamp(abs(_total_xspeed), 0.5, 1); }
+					else { _xc = clamp(abs(_total_xspeed), 0.500005, 1); }
+			
+					if (image_xscale >= 0 and !(bbox_left+_total_xspeed-_xc < sectionLeft or bbox_left+_total_xspeed-_xc < 0))
+					|| (image_xscale < 0 and !(bbox_right+_total_xspeed+_xc > sectionRight or bbox_right+_total_xspeed+_xc > room_width))
+					{
+				        if !place_meeting(x-(_xc * image_xscale), y, objSolid) && !place_meeting(x-(_xc * image_xscale), y, prtMovingPlatformSolid)
+				            global.xspeed = image_xscale * -knockbackAmount;
+				        else if place_meeting(x-(_xc * image_xscale), y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+				        {
+				            if instance_place(x-(_xc * image_xscale), y, prtMovingPlatformSolid).dead == true
+				                global.xspeed = image_xscale * -knockbackAmount;
+				        }
+					}
+				}
+				else
+				{
+					//If we don't have any knockback, we just get hitstunned. Enabling super armour is how we remove both hitstun and knockback.
+					if !place_meeting(x, y+1, objIce)
+						global.xspeed = 0;
+				}
+				
 		        global.yspeed = 0;
         
 	            sprite_index = spriteHit;

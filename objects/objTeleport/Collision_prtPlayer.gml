@@ -1,4 +1,4 @@
-if on && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !other.teleporting and !other.isHit) && !global.frozen //&& other.ground
+if on && sprite_index != prtPlayer.spriteTeleport && sprite_index != prtPlayer.spriteLand && (!other.showReady and !other.teleporting and !other.landing and !other.isHit) && !global.frozen //&& other.ground
 && (round(other.x) == x || (abs(global.xspeed+other.pltSpeedX) > 1 and (other.x >= (x-other.image_xscale)-2 and other.x <= (x-other.image_xscale)+2) and sign(global.xspeed+other.pltSpeedX) != sign(other.x - x)) || (abs(global.xspeed+other.pltSpeedX) <= 1 and round(other.x) == (x-other.image_xscale))) {
     if image_xscale != other.image_xscale
 		image_xscale = other.image_xscale;
@@ -28,6 +28,7 @@ if on && sprite_index != prtPlayer.spriteTeleport && (!other.showReady and !othe
     }
 		
     //instance_deactivate_object(objMegaman);
+	with other canPause = false;
 	with objPauseMenu instance_destroy();
 	stopSFX(sfxPause);
     playerLockMovement();

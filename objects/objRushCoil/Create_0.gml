@@ -5,6 +5,14 @@ teleportTimer = 0;
 teleportY = 0;
 teleportingUp = false;
 currentTeleportSpeed = 0;
+playTeleportSound = true;
+
+upperSpawnCap = 64;
+lowerSpawnCap = 48;
+upperPriority = true;
+newSystem = true;
+recalcSpawn = true;
+
 sprite_index = sprRushTeleport;
 yspeed = 0;
 xspeed = 0;

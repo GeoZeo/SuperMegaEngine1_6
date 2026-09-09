@@ -1,10 +1,12 @@
 if activating {
     radius += 8;
-    global.frozen = true;    
+    global.frozen = true;
+	with prtPlayer canPause = false;
 }
 if activating and radius > 256 {
     activating = false;
     global.frozen = false;
+	with prtPlayer canPause = true;
     alarm[1] = room_speed * 5;
     
 }
@@ -21,15 +23,15 @@ if !global.frozen {
                 update_rate = 0.2;
         }
         with prtEnemyProjectile {
-            if insideView()
+            if insideView() and damage[objTimeSlow] != 0
                 update_rate = 0.2;
         }
         with prtGimmick {
-            if insideView()
-                update_rate = 0.2;
+            if insideView() and damage[objTimeSlow] != 0 and object_index != objRushJet
+				update_rate = 0.2;
         }
         with prtSolidGimmick {
-            if insideView()
+            if insideView() and damage[objTimeSlow] != 0
                 update_rate = 0.2;
         }
     }

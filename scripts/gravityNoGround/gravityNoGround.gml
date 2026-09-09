@@ -6,8 +6,10 @@ function gravityNoGround() {
 	if yspeed > cfgMaxFallingSpeed
 	    yspeed = cfgMaxFallingSpeed;
 		
-	if object_is_ancestor(object_index, prtEnemyProjectile)
+	if object_is_ancestor(object_index, prtEnemyProjectile) {
 		destroyOnReflect = true;
+		explosionEffectReflect = true;
+	}
 
 
 

@@ -26,6 +26,7 @@ if global.keyPausePressed && canProceed {
         }
     }
     else {
+		if cfgRememberLastMenuOption global.lastOption = 0;
         ID.myRoom = rmMainMenu;
     }
 }

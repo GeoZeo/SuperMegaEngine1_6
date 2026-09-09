@@ -6,8 +6,8 @@ row = 0;
 col = 0;
 color = 0; //0 = red; 1 = blue; change to 1 if you'd rather have blue be the default colour when you enter this menu
 password = string_repeat("0", 64);
-finished = false;
 cursorTimer = 0;
+errorPhase = false;
 if !audio_is_playing(bgmPassScreen) {
     playMusicVolume(bgmPassScreen, 1);
 }

@@ -1,0 +1,4 @@
+if insideView() {
+	drawSelf();
+}
+

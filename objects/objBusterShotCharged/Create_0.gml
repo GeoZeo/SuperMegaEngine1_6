@@ -1,6 +1,6 @@
 event_inherited();
 
-xspeed = 5.5
+xspeed = 5.5;
 img_speed = 0.5;
 
 passThrough = true;

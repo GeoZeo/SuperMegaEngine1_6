@@ -8,14 +8,26 @@ xforce = 0;
 currentXforce = 0;
 
 affectEnemies = false;
+affectEnemiesGround = false;
+affectEnemiesAir = false;
+
 affectPlayer = true;
-affectProjectiles = false;
+affectPlayerGround = true;
+affectPlayerAir = true;
+
 affectBosses = false;
+affectBossesGround = false;
+affectBossesAir = false;
+
 affectItems = false;
+affectItemsGround = false;
+affectItemsAir = false;
+
+affectProjectiles = false;
 
 playerTeleporting = false;
 
-if instance_exists(prtPlayer) && !prtPlayer.showReady && prtPlayer.teleporting
+if instance_exists(prtPlayer) && !prtPlayer.showReady && prtPlayer.teleporting && !prtPlayer.landing
 && instance_exists(objTeleport)
 {
 	with objTeleport
@@ -27,4 +39,6 @@ if instance_exists(prtPlayer) && !prtPlayer.showReady && prtPlayer.teleporting
 		}
 	}
 }
+
+alarm[0] = 1;
 

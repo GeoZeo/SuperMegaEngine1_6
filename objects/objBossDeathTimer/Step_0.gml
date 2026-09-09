@@ -13,14 +13,18 @@ if !global.frozen {
 			if control > -1
 			&& (control.centreExit
 			or (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)) and !global.weaponID.unlocked))
+			{
 				destX = round(global.viewX + (global.viewWidth/2)) - cfgPushStartingPosBack;
+			}
 			else
+			{
 				destX = x;
+			}
         
 	        checkGround();
 			checkWater();
 			
-			if !canInitJump currentGrav = gravWater;
+			if !canInitJump currentGrav = cfgGravityWater;
 			
 			if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime
 				gravityCheckGroundExt(currentGrav);
@@ -31,6 +35,8 @@ if !global.frozen {
 			{
 		        if (x < destX-2 || x > destX+2) && !noBoss
 		        {
+					if !ground stepTimer = stepTime;
+					
 					if stepTimer < stepTime
 					{
 						if x < destX
@@ -84,10 +90,18 @@ if !global.frozen {
 		                if ((position_meeting(bbox_right+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_right+xspeed*8, bbox_top, prtMovingPlatformSolid))
 		                && image_xscale == 1)
 		                || ((position_meeting(bbox_left+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_left+xspeed*8, bbox_top, prtMovingPlatformSolid))
-		                && image_xscale == -1) //If we are blocked by a wall of at least 2 blocks high, perform a high jump
+		                && image_xscale == -1) { //If we are blocked by a wall of at least 2 blocks high, perform a high jump
 		                    yspeed = -5.25;
-		                else //Else, perform a short, 1-block-high jump
+							ground = false;
+							sprite_index = prtPlayer.spriteJump;
+							image_speed = prtPlayer.speedJump;
+						}
+		                else { //Else, perform a short, 1-block-high jump
 		                    yspeed = -3.5;
+							ground = false;
+							sprite_index = prtPlayer.spriteJump;
+							image_speed = prtPlayer.speedJump;
+						}
 		            }
 				
 					//Jumping over pits in the arena (comment this out if you wish to troll people somehow)
@@ -114,10 +128,18 @@ if !global.frozen {
 						|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
 						|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
 						|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
-						&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
-							yspeed = -5.25
-						else //Else, perform a short, 1-block-high jump
+						&& image_xscale == -1) { //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
+							yspeed = -5.25;
+							ground = false;
+							sprite_index = prtPlayer.spriteJump;
+							image_speed = prtPlayer.speedJump;
+						}
+						else { //Else, perform a short, 1-block-high jump
 							yspeed = -3.5;
+							ground = false;
+							sprite_index = prtPlayer.spriteJump;
+							image_speed = prtPlayer.speedJump;
+						}
 					}
             
 		            if ground == true
@@ -155,9 +177,10 @@ if !global.frozen {
 		                    canInitJump = false;
 					
 		                    x = destX;
+							ground = false;
 		                    sprite_index = prtPlayer.spriteJump;
 							image_speed = prtPlayer.speedJump;
-							currentGrav = gravWater;
+							currentGrav = cfgGravityWater;
 		                    yspeed = -4.85;
 		                }
 		                else
@@ -169,6 +192,7 @@ if !global.frozen {
 		                    playSFX(sfxTeleportOut);
 		                    sprite_index = prtPlayer.spriteTeleport;
 							image_speed = prtPlayer.speedTeleport;
+							landTimer = landTime;
 		                }
 		            }
             
@@ -259,6 +283,8 @@ if !global.frozen {
 							instance_deactivate_object(self.id);
 						}
 				
+						isFly = true;
+						flying = true;
 						if !instance_exists(objBeat)
 						{
 							var myBeat = instance_create(x, round(global.viewY-3), objBeat);
@@ -300,8 +326,24 @@ if !global.frozen {
 	    }
 	    else
 	    {
+			if prtPlayer.spriteAbsorbTransition != noone && !(!absorbTransit and image_index == 0)
+			{
+				sprite_index = prtPlayer.spriteAbsorbTransition;
+				image_speed = prtPlayer.speedAbsorbTransition;
+				if absorbTransit
+				{
+					image_index = 0;
+				}
+				absorbTransit = false;
+			}
+			else if prtPlayer.spriteAbsorb != noone
+			{
+				sprite_index = prtPlayer.spriteAbsorb;
+				image_speed = prtPlayer.speedAbsorb;
+			}
+			
 	        //Absorbing the boss's power
-	        if !instance_exists(objAbsorbEffect)
+	        if !audio_is_playing(sfxAbsorb)
 	        {
 	            if absorbAmount < 3
 	            {
@@ -317,44 +359,58 @@ if !global.frozen {
 	                {
 	                    angle += 0.25*pi;
                     
-	                    ID = instance_create(sprite_get_xcenter() + radius*cos(angle), sprite_get_ycenter() + radius*sin(angle), objAbsorbEffect);
+	                    ID = instance_create(x+image_xscale + radius*cos(angle), y+4 + radius*sin(angle), objAbsorbEffect);
 	                        ID.spd = fastSpd;
-	                    ID = instance_create(sprite_get_xcenter() + radius*cos(angle), sprite_get_ycenter() + radius*sin(angle), objAbsorbEffect);
+	                    ID = instance_create(x+image_xscale + radius*cos(angle), y+4 + radius*sin(angle), objAbsorbEffect);
 	                        ID.spd = slowSpd; 
 	                }
 	            }
-	            else
+	            else if !instance_exists(objAbsorbEffect)
 	            {
-	                checkGround();
-					if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
-	                generalCollision();
+					if landTimer < landTime
+						landTimer++;
+						
+					if landTimer >= landTime
+					{
+						landTimer = landTime;
+						
+		                checkGround();
+						if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime gravityCheckGroundExt(currentGrav);
+		                generalCollision();
                 
-	                if ground == true
-	                {
-						currentGrav = grav;
-	                    sprite_index = prtPlayer.spriteStand;
-	                    image_speed = prtPlayer.speedStand;
-						if startTeleportTimer <= 0 {
-							image_index = 0;
+		                if ground == true
+		                {
+							currentGrav = grav;
+		                    sprite_index = prtPlayer.spriteStand;
+		                    image_speed = prtPlayer.speedStand;
+							if startTeleportTimer <= 0 {
+								prtPlayer.blinkTimer = 0;
+								prtPlayer.blinkImage = 0;
 					
-							if !teleporting
-								playSFX(sfxLand);
-						}
+								if !teleporting
+									playSFX(sfxLand);
+							}
                     
-	                    startTeleportTimer += 1;
-	                    if startTeleportTimer >= 55
-	                    {
-	                        startTeleportTimer = 0;
-	                        yspeed = 0;
-	                        teleporting = true;
-	                        alarm[2] = 60;
-	                        playSFX(sfxTeleportOut);
-	                        sprite_index = prtPlayer.spriteTeleport;
-							image_speed = prtPlayer.speedTeleport;
-	                    }
-	                }
+		                    startTeleportTimer += 1;
+		                    if startTeleportTimer >= 55
+		                    {
+		                        startTeleportTimer = 0;
+		                        yspeed = 0;
+		                        teleporting = true;
+		                        alarm[2] = 60;
+		                        playSFX(sfxTeleportOut);
+		                        sprite_index = prtPlayer.spriteTeleport;
+								image_speed = prtPlayer.speedTeleport;
+		                    }
+		                }
+						else
+						{
+							sprite_index = prtPlayer.spriteJump;
+		                    image_speed = prtPlayer.speedJump;
+						}
                 
-	                y += yspeed;
+		                y += yspeed;
+					}
 	            }
 	        }
 	    }
@@ -373,6 +429,8 @@ if !global.frozen {
 	}
 }
 else {
+	image_speed = 0;
+	
 	if alarm[0] > 0 {
         alarm[0]++;
     }

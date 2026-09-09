@@ -9,8 +9,8 @@ else {
 }
 playerLockMovement();
 if warpTime <= 0 {
-	x = prtPlayer.x;
-	y = prtPlayer.y;
+	x = mask_get_xcenter_object(prtPlayer);
+	y = mask_get_ycenter_object(prtPlayer);
 	on = true;
 }
 

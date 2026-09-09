@@ -2,8 +2,10 @@
 teleportingUp = true;
 sprite_index = sprRushTeleport;
 
-if !instance_exists(objPauseMenu)
+if playTeleportSound {
 	playSFX(sfxTeleportOut);
+	playTeleportSound = false;
+}
 	
 dead = true;
 xspeed = 0;

@@ -3,6 +3,7 @@ event_inherited();
 spd = 6;
 contactDamage = 4;
 destroyOnReflect = true;
+explosionEffectReflect = true;
 
 hspeed = player_x - x;
 vspeed = player_y - y;

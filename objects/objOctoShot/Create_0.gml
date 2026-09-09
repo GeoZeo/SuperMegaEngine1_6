@@ -1,10 +1,13 @@
 event_inherited();
 
+image_speed = 1/3;
+
 spd = 2;
 
 contactDamage = 3;
 
 destroyOnReflect = true;
+explosionEffectReflect = true;
 
 xspeed = player_x - x;
 yspeed = player_y - y;

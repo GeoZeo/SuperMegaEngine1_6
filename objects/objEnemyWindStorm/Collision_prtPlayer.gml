@@ -1,2 +1,2 @@
-with other playerGetHit(other.contactDamage);
+with other playerGetHit(other.contactDamage, false);
 

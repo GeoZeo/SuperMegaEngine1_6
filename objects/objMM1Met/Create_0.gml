@@ -3,6 +3,8 @@ event_inherited();
 image_xscale = -1;
 
 reflectProjectiles = true;
+instantItemSpawn = true;
+spawnGrounded = true;
 
 //Enemy specific code
 radius = 4 * 16; //Four blocks; the radius that MM needs to enter to trigger the shooting of the Met

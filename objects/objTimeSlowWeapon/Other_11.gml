@@ -2,7 +2,7 @@
 event_inherited();
 if instance_exists(objTimeSlow) {
     if ok
-        ammo += consumption;
+        ammo = old_ammo;
     with global.defaultWeapon event_user(1);
     return false;
 }

@@ -5,12 +5,15 @@ else {
     __background_set_colour( c_black );
 }
 
-if alarm[6] == -1 && instance_exists(objMapDrawer) {
-    alarm[6] = time_to_start;
+if alarm[7] == -1 && instance_exists(objMapDrawer) {
+    alarm[7] = time_to_start;
     with objMapDrawer {
-        if draw_speed > 0 && step < ds_list_size(lines) {
-            other.alarm[6] = -1;
+        if draw_speed > 0 && step < array_length_1d(keys) {
+            other.alarm[7] = -1;
         }
     }
+	if alarm[7] != -1 {
+		stopSFX(sfxEnergyRestore);
+	}
 }
 

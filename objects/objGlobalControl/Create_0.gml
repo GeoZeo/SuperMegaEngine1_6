@@ -1,12 +1,10 @@
-if global.screen_shader != noone {
-    application_surface_draw_enable(false);
-}
-
 //Views (for easy access, as GMS2 doesn't have view variables anymore)
 //Make sure that any references to these variables are used AFTER objGlobalControl's Create event
 global.view = view_get_camera(camera_create_view(0, 0, 256, 224, 0, noone, 0, 0, 9999, 9999));
 global.viewX = 0;
 global.viewY = 0;
+global.shakeX = 0;
+global.shakeY = 0;
 global.viewWidth = camera_get_view_width(global.view);
 global.viewHeight = camera_get_view_height(global.view);
 
@@ -36,7 +34,7 @@ if room == rmInit {
 	global.volume = -1;
 	global.length = -1;
     
-    display_reset(0, true); //Enables V-synch to make everything look nicer (without V-sync, GM Studio games tend to look pretty bad)
+    display_reset(0, true); //Enables V-sync to make everything look nicer (without V-sync, GM Studio games tend to look pretty bad)
     stopAllSFX();
         
     // Max values for several vitals.
@@ -64,8 +62,6 @@ if room == rmInit {
     for(i = 0; i < global.totalWeapons; i++) {
         global.ammo[i] = global.maxAmmo;
     }
-    
-    application_surface_draw_enable(true);
 }
 
 buffer = false;

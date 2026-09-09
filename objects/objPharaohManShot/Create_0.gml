@@ -3,6 +3,7 @@ event_inherited();
 contactDamage = 2;
 
 destroyOnReflect = true;
+explosionEffectReflect = true;
 
 var spd;
 spd = 5;

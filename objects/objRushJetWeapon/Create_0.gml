@@ -9,5 +9,7 @@ sfx = noone;
 primaryCol = make_color_rgb(216, 40, 0);
 secondaryCol = make_color_rgb(255, 255, 255);
 
+demoTime = 5.5;
+
 ds_list_add(exceptCharacters, objProtoman);
 

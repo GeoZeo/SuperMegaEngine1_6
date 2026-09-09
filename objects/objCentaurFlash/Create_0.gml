@@ -1,16 +1,17 @@
 if !global.frozen {
-    alarm[0] = 0.35 * room_speed;
+    alarm[0] = (23 / room_speed) * room_speed;
     global.frozen = true;
+	with prtPlayer canPause = false;
     playSFX(sfxCentaurFlash);
-    with prtEnemy {
-        if projCanTouch && damage[objCentaurFlash] != 0 && !dead && !dying && canHit && !reflectProjectiles && ((insideView() and !checkFullSprite) or (insideView_Spr() and checkFullSprite)) {
-            healthpoints -= damage[objCentaurFlash];
-            playSFX(sfxEnemyHit);
-            check_enemy_death();
-        }    
-    }
 }
+
+backShader = -1
+backShaderReset = -1;
+frontShader = -1;
+frontShaderReset = -1;
+
 defaultDamage = 4;
 defaultBossDamage = 0;
 reflectible = false;
+allowHitSound = false;
 

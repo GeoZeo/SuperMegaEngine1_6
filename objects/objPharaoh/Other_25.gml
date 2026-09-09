@@ -1,3 +1,3 @@
 /// @description  onDeath
-add_achievement(objPentawerAchievement);
+if !instance_exists(objMegamanDeathTimer) add_achievement(objPentawerAchievement);
 

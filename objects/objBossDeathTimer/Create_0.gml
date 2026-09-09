@@ -3,7 +3,8 @@
 
 myBoss = instance_nearest(x, y, prtBoss);
 control = instance_nearest(x, y, objBossControl);
-bossID = myBoss.bossID;
+bossID = -1;
+if myBoss > -1 bossID = myBoss.bossID;
 noBoss = false;
 
 bossRush = control.bossRush;
@@ -25,24 +26,26 @@ with objTeleport {
 				inst.targetable = false;
 			}
 		}
-        global.bossRushDefeated[other.bossID] = true;
-        if numRushBossesDefeated() == 8 {
-			instance_activate_object(objBossDoor);
-			with objBossDoor {
-				if rushExit
-					canOpen = true;
-			}
-			instance_activate_object(objBossDoorH);
-			with objBossDoorH {
-				if rushExit
-					canOpen = true;
-			}
+		if !instance_exists(objMegamanDeathTimer) {
+	        global.bossRushDefeated[other.bossID] = true;
+	        if numRushBossesDefeated() == 8 {
+				instance_activate_object(objBossDoor);
+				with objBossDoor {
+					if rushExit
+						canOpen = true;
+				}
+				instance_activate_object(objBossDoorH);
+				with objBossDoorH {
+					if rushExit
+						canOpen = true;
+				}
 			
-			with objTeleport {
-				if rushExit
-					on = true;
-			}
-        }
+				with objTeleport {
+					if rushExit
+						on = true;
+				}
+	        }
+		}
         with other instance_destroy();
         with objBossControl {
             drawHealthBar = false;
@@ -60,7 +63,7 @@ if bossRush {
 		inst.toX = control.toX;
 		inst.toY = control.toY;
 	}
-	else {
+	else if !instance_exists(objMegamanDeathTimer) {
 		var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 		with myTeleport {
 			image_xscale = 1/16;
@@ -78,24 +81,26 @@ if bossRush {
 			inst.targetable = false;
 		}
 	}
-	global.bossRushDefeated[other.bossID] = true;
-    if numRushBossesDefeated() == 8 {
-        instance_activate_object(objBossDoor);
-		with objBossDoor {
-			if rushExit
-				canOpen = true;
-		}
-		instance_activate_object(objBossDoorH);
-		with objBossDoorH {
-			if rushExit
-				canOpen = true;
-		}
+	if !instance_exists(objMegamanDeathTimer) {
+		global.bossRushDefeated[other.bossID] = true;
+	    if numRushBossesDefeated() == 8 {
+	        instance_activate_object(objBossDoor);
+			with objBossDoor {
+				if rushExit
+					canOpen = true;
+			}
+			instance_activate_object(objBossDoorH);
+			with objBossDoorH {
+				if rushExit
+					canOpen = true;
+			}
 			
-		with objTeleport {
-			if rushExit
-				on = true;
-		}
-    }
+			with objTeleport {
+				if rushExit
+					on = true;
+			}
+	    }
+	}
     instance_destroy();
     with objBossControl {
         drawHealthBar = false;
@@ -109,7 +114,7 @@ if !control.endLevel {
 	instance_activate_object(objBossDoor);
 	with objBossDoor
 	{
-		if insideView() && ((dir == 1 && prtPlayer.x > x) or (dir == -1 && prtPlayer.x <= x)) {
+		if insideViewPoint(sprite_get_xcenter(), sprite_get_ycenter(), true, true) && ((dir == 1 && prtPlayer.x > x) or (dir == -1 && prtPlayer.x <= x)) {
 			canOpen = true;
 			warp = false;
 		}
@@ -117,7 +122,7 @@ if !control.endLevel {
 	instance_activate_object(objBossDoorH);
 	with objBossDoorH
 	{
-		if insideView() && ((dir == 1 && prtPlayer.y > y) or (dir == -1 && prtPlayer.y <= y)) {
+		if insideViewPoint(sprite_get_xcenter(), sprite_get_ycenter(), true, true) && ((dir == 1 && prtPlayer.y > y) or (dir == -1 && prtPlayer.y <= y)) {
 			canOpen = true;
 			warp = false;
 		}
@@ -141,25 +146,27 @@ if !control.endLevel {
 			inst.toX = control.toX;
 			inst.toY = control.toY;
 			
-			if (!is_string(control.endMusic) and control.endMusic > -1) || (is_string(control.endMusic) and control.endMusic != noone) {
+			if !instance_exists(objMegamanDeathTimer) {
+				if (!is_string(control.endMusic) and control.endMusic > -1) || (is_string(control.endMusic) and control.endMusic != noone) {
 						
-				var myPlayer = instance_create(x, y, objMusicPlayer)
-				with myPlayer
-				{
-					myBGM = other.control.endMusic;
-					myVolume = other.control.endMusicVolume;
-					myLoopStart = other.control.endMusicLoopPointStart;
-					myLoopEnd = other.control.endMusicLoopPointEnd;
-					destroyOnActivation = other.control.endMusicDestroyOnActivate;
+					var myPlayer = instance_create(x, y, objMusicPlayer)
+					with myPlayer
+					{
+						myBGM = other.control.endMusic;
+						myVolume = other.control.endMusicVolume;
+						myLoopStart = other.control.endMusicLoopPointStart;
+						myLoopEnd = other.control.endMusicLoopPointEnd;
+						destroyOnActivation = other.control.endMusicDestroyOnActivate;
 							
-					event_user(0);
+						event_user(0);
+					}
+				}
+				else if control.triggerNearestMusicPlayer {
+					with instance_nearest(x, y, objMusicPlayer) event_user(0);
 				}
 			}
-			else if control.triggerNearestMusicPlayer {
-				with instance_nearest(x, y, objMusicPlayer) event_user(0);
-			}
 		}
-		else {
+		else if !instance_exists(objMegamanDeathTimer) {
 			var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 			with myTeleport {
 				image_xscale = 1/16;
@@ -192,22 +199,24 @@ if !control.endLevel {
 			}
 		}
 		
-		if (!is_string(control.endMusic) and control.endMusic > -1) || (is_string(control.endMusic) and control.endMusic != noone) {
+		if !instance_exists(objMegamanDeathTimer) {
+			if (!is_string(control.endMusic) and control.endMusic > -1) || (is_string(control.endMusic) and control.endMusic != noone) {
 						
-			var myPlayer = instance_create(x, y, objMusicPlayer)
-			with myPlayer
-			{
-				myBGM = other.control.endMusic;
-				myVolume = other.control.endMusicVolume;
-				myLoopStart = other.control.endMusicLoopPointStart;
-				myLoopEnd = other.control.endMusicLoopPointEnd;
-				destroyOnActivation = other.control.endMusicDestroyOnActivate;
+				var myPlayer = instance_create(x, y, objMusicPlayer)
+				with myPlayer
+				{
+					myBGM = other.control.endMusic;
+					myVolume = other.control.endMusicVolume;
+					myLoopStart = other.control.endMusicLoopPointStart;
+					myLoopEnd = other.control.endMusicLoopPointEnd;
+					destroyOnActivation = other.control.endMusicDestroyOnActivate;
 							
-				event_user(0);
+					event_user(0);
+				}
 			}
-		}
-		else if control.triggerNearestMusicPlayer {		
-			with instance_nearest(x, y, objMusicPlayer) event_user(0);
+			else if control.triggerNearestMusicPlayer {		
+				with instance_nearest(x, y, objMusicPlayer) event_user(0);
+			}
 		}
 	}
 	
@@ -227,8 +236,14 @@ if !noBoss
 
 xspeed = 0;
 yspeed = 0;
-grav = cfgGravity;
-gravWater = cfgGravityWater;
+xaccel = 0;
+yaccel = 0;
+isFly = false;
+flying = false;
+isRollback = false;
+rollbackMovement = false;
+grav = global.grav;
+gravWater = global.gravWater;
 currentGrav = grav;
 canSplash = true;
 bubbleTimer = 0;
@@ -241,15 +256,23 @@ inWater = false;
 canInitJump = true;
 absorbing = false;
 absorbAmount = 0;
+absorbTransit = true;
+landTime = 30;
+landTimer = 0;
 startTeleportTimer = 0;
 teleporting = false;
 teleportTimer = 0;
 teleportY = 0;
 currentTeleportSpeed = 0;
 update_rate = 1;
+startingDepth = depth;
 
 with prtPlayer canPause = false;
 with objPauseMenu instance_destroy();
 stopSFX(sfxPause);
-with prtPlayerProjectile instance_destroy();
+with prtPlayerProjectile {
+	if object_index != objChargeKick {
+		instance_destroy();
+	}
+}
 

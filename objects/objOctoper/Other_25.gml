@@ -8,7 +8,7 @@ if alive {
 	hitbox_right = 0;
 	hitbox_bottom = 0;
 	contactDamage = 0;
-	nullifyDeath(false);
+	nullifyDeath(false, true);
 	dying = true;
 	xspeed = 0;
 	yspeed = 0;

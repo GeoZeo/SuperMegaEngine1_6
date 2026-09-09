@@ -11,13 +11,6 @@ if !instance_exists(objFadeIn)
 //map_surf = drawMap(room, 1/48, x, y);
 
 playerCameraInit();
-//if sectionRight - global.viewWidth != sectionLeft
-//&& ((global.viewX >= sectionRight - global.viewWidth and x <= round(global.viewWidth - global.viewX) / 2)
-//or (global.viewX <= sectionLeft and x >= round(global.viewWidth - global.viewX) / 2))
-//{
-//	cameraXOffset = round(x - (global.viewWidth - global.viewX) / 2) - (round(image_xscale) * !climbing);
-//	print(cameraXOffset);
-//}
 
 if instance_exists(objMusicPlayer)
 {
@@ -37,6 +30,9 @@ bgmLoopStart = global.loopStart;
 bgmLoopEnd = global.loopEnd;
 bgmVolume = global.volume;
 bgmLength = global.length;
+
+objBeatEquip.count = objBeatEquip.maxUnits;
+//objEddieEquip.count = objEddieEquip.maxUnits;
 
 //Play starting jingle
 if (!is_string(jingle) and jingle > -1) || (is_string(jingle) and jingle != noone)

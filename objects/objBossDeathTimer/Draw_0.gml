@@ -53,7 +53,7 @@ if isMM == true
 			}
         }
         
-        drawSpriteColorSwap(prtPlayer.spriteTeleport, image_index, round(x), round(y+teleportY), global.charPrimaryColor, global.charSecondaryColor, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
+        drawSpriteColorSwap3(prtPlayer.spriteTeleport, image_index, round(x), round(y+teleportY), global.charPrimaryColor, global.charSecondaryColor, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
     }
 	
 	//Weapon icon (when using quick weapon switching)

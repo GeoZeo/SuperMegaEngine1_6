@@ -1,3 +1,13 @@
+useShader = false;
+if whiteTimer > 0 && whiteTimer < 8 {
+    shader_set(shBossHit);
+    useShader = true;
+}
+else if alarm[1] > 0 {
+    shader_set(shBossDefeated);
+    useShader = true;
+}
+
 if current_state == block_states.IDLE {
     var left = col * 16 + 10;
     var top = row * 16;
@@ -29,23 +39,14 @@ if current_state == block_states.IDLE {
     if image_xscale == -1 {
         x_ += 16;
     }
-    useShader = false;
     subimg = 0;
-    if instance_exists(objYellowDevil) && objYellowDevil.alarm[9] > 1 {
-        shader_set(shBossHit);
-        useShader = true;
-    }
-    else if alarm[1] > 0 {
-        shader_set(shBossDefeated);
-        useShader = true;
-    }
-    
     draw_sprite_part_ext(sprYellowDevil, subimg, left, top, width, height, x_, y_, image_xscale, 1, c_white, 1);
-    if useShader {
-        shader_reset();
-    }
 }
-else {
+else if insideView() {
     drawSelf();
+}
+
+if useShader {
+    shader_reset();
 }
 

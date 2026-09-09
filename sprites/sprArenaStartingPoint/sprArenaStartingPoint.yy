@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"319d0d9c-a81e-4ae2-9e9d-7bd6bfcdb0e9","path":"sprites/sprArenaStartingPoint/sprArenaStartingPoint.yy",},},},"Disabled":false,"id":"c4fbd906-efd0-4202-b846-22cd1c0db217","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"319d0d9c-a81e-4ae2-9e9d-7bd6bfcdb0e9","path":"sprites/sprArenaStartingPoint/sprArenaStartingPoint.yy",},},},"Disabled":false,"id":"cfdc1378-ce7f-4388-b913-8a9abed019e9","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

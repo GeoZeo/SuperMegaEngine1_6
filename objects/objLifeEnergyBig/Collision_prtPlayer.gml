@@ -3,13 +3,14 @@ event_inherited();
 if global._health < global._maxHealth
 {
     global.frozen = true;
+	with prtPlayer canPause = false;
 	with objPauseMenu instance_destroy();
 	with objFadeIn instance_destroy();
 	with objFadeout instance_destroy();
     with objHealthWeaponBar
     {
         increaseHealth = true;
-        increaseHealthAmount = other.itemAmount;
+        increaseHealthAmount += other.itemAmount;
     }
     
     stopSFX(sfxEnergyRestore);

@@ -2,15 +2,28 @@ canDamage = true;
 
 if !global.frozen {
 	if (instance_exists(prtPlayer)) {
-		player_x = prtPlayer.x;
-		player_y = prtPlayer.y;
+		if !checkPlayerSpriteCenter
+		{
+			player_x = prtPlayer.x;
+			player_y = prtPlayer.y;
+		}
+		else
+		{
+			player_x = sprite_get_xcenter_object(prtPlayer);
+			player_y = sprite_get_ycenter_object(prtPlayer);
+		}
 		section_bottom = prtPlayer.sectionBottom;
 	}
 	
 	if pose > -1 && isIntro {
-        if y < ystart {
+        
+		if y < ystart && !landed {
             update_rate = 1;
-            gravityNoGround();
+			gravityNoGround();
+			if y+yspeed >= ystart {
+				generalCollision();
+				landed = true;
+			}
         }
         else {
             y = ystart;
@@ -37,53 +50,6 @@ if !global.frozen {
         startFight = false;
         isFight = true;
     }
-    
-    
-    //Hitspark and death
-    if healthpoints < prevHealthPoints {
-        event_user(14);
-        if healthpoints > 0 {
-            canHit = false;
-            alarm[9] = 1;
-            alarm[10] = 45; //Being able to get hit again
-            drawBoss = true;
-            drawHitSpark = false;
-            
-            global.bossHealth = healthpoints;
-        }
-        else {
-            global.bossHealth = 0;
-            healthpoints = 0;
-            dead = true;
-            event_user(15);
-            if dead {
-                stopAllSFX();
-                playSFX(sfxDeath);
-                
-                var i, explosionID;
-                    
-                doExplosion(sprite_get_xcenter(), sprite_get_ycenter(), 1.5);
-                
-                doExplosion(sprite_get_xcenter(), sprite_get_ycenter(), 2.5);
-                
-                instance_activate_object(objTeleport);
-                with objTeleport {
-                    if !insideView() and boss == other.bossID {
-                        instance_destroy();
-                    }
-                }
-    
-				if cfgDestroyBossProjectilesOnBossDeath
-					with prtEnemyProjectile instance_destroy();
-	
-				instance_create(x, y, objBossDeathTimer);
-                instance_destroy();
-            }
-            
-        }
-    }
-    
-    prevHealthPoints = healthpoints;
  
     x += xspeed * update_rate;
     y += yspeed * update_rate; 

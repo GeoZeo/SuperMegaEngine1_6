@@ -1,0 +1,2 @@
+shader = shMinibossHit;
+canShade = false;

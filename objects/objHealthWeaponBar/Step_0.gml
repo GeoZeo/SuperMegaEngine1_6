@@ -13,17 +13,22 @@ if increaseHealth {
             increaseHealthAmount -= 1;
             increaseTimer = 0;
         }
+		stopSFX(sfxLand);
     }
     else {
+		increaseHealthAmount = 0;
         increaseHealth = false;
         if global._health > global._maxHealth
             global._health = global._maxHealth;
-        global.frozen = false;
+        if (!increaseAmmo and !increaseAmmoOffscreen) {
+			global.frozen = false;
+			with prtPlayer canPause = true;
+		}
         increaseTimer = 0;
-        stopSFX(sfxEnergyRestore);
+        if (!increaseAmmo and !increaseAmmoOffscreen) stopSFX(sfxEnergyRestore);
     }
 }
-else if increaseAmmo {
+if increaseAmmo && !increaseHealth {
     if increaseAmmoAmount > 0 && global.weapons[global.currentWeapon].ammo < global.maxAmmo {
         increaseTimer++;
         if increaseTimer >= 3 {
@@ -33,17 +38,22 @@ else if increaseAmmo {
             increaseAmmoAmount -= 1;
             increaseTimer = 0;
         }
+		stopSFX(sfxLand);
     }
     else {
+		if !increaseAmmoOffscreen increaseAmmoAmount = 0;
         increaseAmmo = false;
         if global.weapons[global.currentWeapon].ammo > global.maxAmmo
             global.weapons[global.currentWeapon].ammo = global.maxAmmo;
-        global.frozen = false;
+        if !increaseAmmoOffscreen {
+			global.frozen = false;
+			with prtPlayer canPause = true;
+		}
         increaseTimer = 0;
-        stopSFX(sfxEnergyRestore);
+        if !increaseAmmoOffscreen stopSFX(sfxEnergyRestore);
     }
 }
-else if increaseAmmoOffscreen {
+if increaseAmmoOffscreen && !increaseAmmo && !increaseHealth {
     if increaseAmmoAmount > 0 && global.weapons[weaponToIncreaseIndex].ammo < global.maxAmmo {
         increaseTimer++;
         if increaseTimer >= 3 {
@@ -53,12 +63,15 @@ else if increaseAmmoOffscreen {
             increaseAmmoAmount--;
             increaseTimer = 0;
         }
+		stopSFX(sfxLand);
     }
     else {
+		increaseAmmoAmount = 0;
         increaseAmmoOffscreen = false;
         if global.weapons[weaponToIncreaseIndex].ammo > global.maxAmmo
             global.weapons[weaponToIncreaseIndex].ammo = global.maxAmmo;
         global.frozen = false;
+		with prtPlayer canPause = true;
         increaseTimer = 0;
         stopSFX(sfxEnergyRestore);
     }

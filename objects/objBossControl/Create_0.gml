@@ -8,24 +8,37 @@
 //musicLoopPointEnd = 0-1 (the ending of the loop of the music; if musicLoopPointStart is used, this one is required)
 //healthBarPrimaryCol = [col] (the color of the left/right of the boss's health bar)
 //healthBarSecondaryCol = [col] (the color of the middle of the boss's health bar)
+//healthBarFlash = true/false (whether the bar flashes with the boss when they are hit)
+//healthBarTimerMax = 0-[time (in frames)] (the amount of time by which to delay the boss energy bar filling up)
 //bossTime = 0-[time (in frames)] (the amount of time by which to delay the boss spawn)
 //bossSpawnItem = true/false (whether we spawn a health pickup that warps the player out of a boss rush arena, or we set a timer for the warp (only applicable if there is no teleporter already in room) and/or spawn an item in the teleporter room)
 //centreExit = true/false (whether or not MM runs to the centre of the arena in order to teleport)
     
 healthBarPrimaryCol = make_color_rgb(255, 160, 68); //Orange
-    
 healthBarSecondaryCol = c_white;
-    
+healthBarFlash = false;
+
+hitWhite = false;   
 drawHealthBar = false;
 canFillHealthBar = true;
 fillingHealthBar = false;
 healthBarTimer = 0;
 healthBarTimerMax = 100;
+healthBarInterval = 3;
 
 bossTime = 0;
 bossTimer = 0;
 
 canInitDeactivation = true;
+startMusic = true; //Start music before the timer before boss spawn finishes?
+stopInitMusic = true; //Stop music that was playing before?
+stopInitMusicGround = false; //Limit the above to when we land?
+musicStarted = false;
+
+beginLock = false;
+lockPlayer = true;
+lockOnGround = false;
+playerDir = 1;
 
 //Will defeating the boss end the level if we aren't in a boss rush room?
 endLevel = true;
@@ -34,7 +47,10 @@ endLevel = true;
 bossRush = false;
 
 bossIsClone = false;
+
+//Start bossTimer when player is on the ground?
 checkForGround = false;
+playerGroundCheck = true;
 
 bossSpawnItem = true;
 itemToSpawn = objLifeEnergyBig;

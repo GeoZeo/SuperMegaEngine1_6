@@ -9,8 +9,10 @@ function gravityCheckGround() {
 	        yspeed = cfgMaxFallingSpeed;
 	}
 
-	if object_is_ancestor(object_index, prtEnemyProjectile)
+	if object_is_ancestor(object_index, prtEnemyProjectile) {
 		destroyOnReflect = true;
+		explosionEffectReflect = true;
+	}
 
 
 

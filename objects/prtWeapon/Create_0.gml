@@ -37,6 +37,8 @@ persistent = true;
 primaryCol = make_color_rgb(0, 120, 248);
 secondaryCol = make_color_rgb(0, 232, 216);
 
+demoTime = 4.5; //How long the weapon demo lasts in seconds (if weapon demos are enabled)
+
 exceptCharacters = ds_list_create();
 
 ID = -1;

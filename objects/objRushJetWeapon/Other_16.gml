@@ -2,6 +2,7 @@
 
 if shots == 0 {
 	event_user(1);
+	with prtPlayer playerShoot();
 	shots++;
 }
 if instance_exists(objRushJet) && objRushJet.sprite_index == sprRushJet {

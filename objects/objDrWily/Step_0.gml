@@ -9,18 +9,23 @@ if !global.frozen {
 	    while place_meeting(x, y, objSolid) {
 	        y--;
 	    }
-	    add_achievement(objJusticeAchievement);
+	    if !instance_exists(objMegamanDeathTimer) add_achievement(objJusticeAchievement);
 	}
 	
 	if sprite_index == sprWilySorry && image_speed == 0 {
 		image_speed = ((240 / 119) * 2) / room_speed;
 	}
 
-	if !insideView_Spr() {
+	if !insideView() {
+		if !finishedMove {
+			gravity = 0;
+			vspeed = 0;
+		}
 		x = round(global.viewX + ((((global.viewX + global.viewWidth) - global.viewX) / 4) * 3));
-	}
-	if vspeed >= 0 && insideView() {
-	    revealBackground = true;
+		if moveMM {
+			instance_create(572, 592, objArenaStartingPoint);
+			moveMM = false;
+		}
 	}
 	if revealBackground && blackAlpha < 1 {
 		blackAlphaTimer += 1;
@@ -31,27 +36,11 @@ if !global.frozen {
 			
 			if blackAlpha >= 1 {
 				blackAlpha = 1;
+				gravity = 0.25;
 			}
 			
 			__background_set( e__BG.Alpha, 1, blackAlpha );
 		}
-	}
-
-	if instance_exists(prtPlayer) and prtPlayer.visible {
-	    if prtPlayer.x > x {
-	        image_xscale = -1;
-	    }
-	    else {
-	        image_xscale = 1;
-	    }
-	}
-	else if instance_exists(objBossDeathTimer) {
-	    if objBossDeathTimer.x > x {
-	        image_xscale = -1;
-	    }
-	    else {
-	        image_xscale = 1;
-	    }
 	}
 }
 else {

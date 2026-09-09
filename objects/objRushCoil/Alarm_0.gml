@@ -3,8 +3,10 @@ teleportingUp = true;
 sprite_index = sprRushTeleport;
 mask_index = sprRushTeleport;
 
-if !instance_exists(objPauseMenu)
+if playTeleportSound {
 	playSFX(sfxTeleportOut);
+	playTeleportSound = false;
+}
 	
 canCoil = false;
 

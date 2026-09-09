@@ -46,42 +46,55 @@ if isFight && !global.frozen {
             visible = true;
             image_index -= 0.2;
 			if image_index <= 1 {
-				if alarm[9] == -1 canHit = true;
+				if enableHit {
+					canHit = true;
+					enableHit = false;
+				}
 				projCanTouch = true;
+				shieldCanTouch = true;
 			}
             if image_index <= 0 {
 				image_index = 0;
                 current_state = yd_states.SHOOTING;
+				enableHit = true;
                 show_debug_message("SHOOTING " + string(image_index) + " visible? " + string(visible));
             }
         break;
         case yd_states.SHOOTING:
             visible = true;
-            if alarm[9] == -1 canHit = true;
             image_index = 0;
             if alarm[1] == -1 && !instance_exists(objYellowDevilBullet) {
 				var shootID = instance_create(x, y, objYellowDevilBullet);
 				shootID.player_x = player_x;
 				shootID.player_y = player_y;
-				with shootID event_user(0);
+				with shootID event_user(1);
 				playSFX(sfxEnemyShootClassic);
                 alarm[1] = room_speed * 1;
             }
         break;
         case yd_states.CLOSING:
             visible = true;
-            if alarm[9] == -1 canHit = true;
             image_index += 0.2;
 			if image_index >= 2 {
-				canHit = false;
+				if disableHit {
+					canHit = false;
+					drawBoss = true;
+	                drawHitSpark = false;
+					canPlayHitSound = true;
+					alarm[10] = -1;
+					
+					disableHit = false;
+				}
+				
 				projCanTouch = false;
+				shieldCanTouch = false;
 			}
             if image_index >= 3 {
                 show_debug_message("CLOSED");
                 current_state = yd_states.CLOSED;
+				disableHit = true;
                 image_xscale *= -1;
                 y = global.viewY - 16;
-                drawHitSpark = false;
                 alarm[9] = -1;
                 with objYellowDevilBlock {
                     if block_id == 0 {

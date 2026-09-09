@@ -13,10 +13,11 @@ if sprite_index == sprWilyMachine4a {
     damage[objPharaohShotCharged] = 0;
     damage[objWindStorm] = 7;
     alarm[0] = -1;
-    nullifyDeath(false);
+    nullifyDeath(false, true);
+	with objWilyMachine4Smoke instance_destroy();
 }
 else if !dying {
-	add_achievement(objLudditeAchievement);
+	if !instance_exists(objMegamanDeathTimer) add_achievement(objLudditeAchievement);
 	
 	//Death animation
 	hitbox_left = 0;
@@ -26,7 +27,7 @@ else if !dying {
 	contactDamage = 0;
 	explosionTimer = 0;
 	alarm[0] = -1;
-	nullifyDeath(false);
+	nullifyDeath(false, true);
 	dying = true;
 	xspeed = 0;
 	yspeed = 0.1311051;

@@ -16,6 +16,8 @@ damage[objSilverTomahawk] = 2;
 
 damage[objWindStorm] = 2;
 
+instantItemSpawn = true;
+
 
 //Enemy specific code
 col = 0; //0 = red; 1 = orange; 2 = blue

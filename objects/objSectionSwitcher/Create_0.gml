@@ -1,11 +1,14 @@
 door = false;
 
 global.frozen = true;
-global.switchingSections = true;
+with prtPlayer canPause = false;
 
 with prtEnemy beenOutsideView = true;
 with prtPlayerProjectile if destroyOnScroll instance_destroy();
+with objDeflectedProjectile instance_destroy();
 with objReflectedProjectile instance_destroy();
+with objEddie if called instance_destroy();
+with objBeat instance_destroy();
 with objMegamanExplosion instance_destroy();
 with objPauseMenu instance_destroy();
 stopSFX(sfxPause);
@@ -25,11 +28,14 @@ initScaleX = 0;
 with prtEnemyProjectile instance_destroy();
 deactivateUnimportantObjects();
 
+sliding = false;
+
 if instance_exists(prtPlayer)
 {	
     //Basically copy the player's appearance, so that the object can return to its original behaviour when done switching sections
     with prtPlayer visible = false;
     sprite_index = prtPlayer.sprite_index;
+	sliding = (sprite_index == prtPlayer.spriteSlide);
     image_index = prtPlayer.image_index;
     imgSpd = prtPlayer.image_speed;
     image_speed = imgSpd;
@@ -55,6 +61,9 @@ playerSpeedVert = 0.4; //Same as above but if travelling vertically
 playerSpeedHorDoor = 0.7; //The speed that Mega Man will move at if travelling horizontally through a door
 playerSpeedVertDoor = 0.9; //The speed that Mega Man will move at if travelling vertically through a door
 
+canStopSwitching = true; //Whether or not to freeze weapon switching partway through a transition
+canStopMusic = true; //Whether or not to stop level BGM partway through a transition into an empty boss room
+
 
 //Variables that cannot be modified
 climbTimer = 0;
@@ -62,6 +71,9 @@ canProgressDoor = false;
 canStep = false;
 plt = -1;
 cancelSlide = false;
+canLock = true;
+stopMusic = false;
+timerDone = false;
 
 if !(cfgContinueChargeAnimWhileLocked || cfgChargeWhileLocked) && !cfgFadeOutChargedSound
 	stopSFX(global.weapons[global.currentWeapon].chargedSFX);

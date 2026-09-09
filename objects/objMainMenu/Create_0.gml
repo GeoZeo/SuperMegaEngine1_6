@@ -38,7 +38,8 @@ menu[current_item] = "RETURN TO TITLE";
 
 num_menu_items = array_length_1d(menu);
 
-selected = 0;
+if cfgRememberLastMenuOption selected = global.lastOption;
+else selected = 0;
 
 timer = 0;
 

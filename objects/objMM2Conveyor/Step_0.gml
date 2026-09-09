@@ -5,16 +5,13 @@ if !global.frozen and !dead {
     
     x -= xspeed * update_rate;
 	
-	if instance_exists(prtPlayer)
+	with prtPlayer
 	{
-		with prtPlayer
+		//Push them down if they're at a standstill prior to being dragged off the conveyor
+		if !ground && place_meeting(x - sign(other.xspeed),y+1, other.id) && bbox_bottom <= other.bbox_top
 		{
-			//Push the player down if they're at a standstill prior to being dragged off the conveyor
-			if !ground && place_meeting(x - sign(other.xspeed),y+1, other.id) && bbox_bottom <= other.bbox_top
-			{
-				x += sign(other.xspeed);
-				y++;
-			}
+			x += sign(other.xspeed);
+			y++;
 		}
 	}
 }

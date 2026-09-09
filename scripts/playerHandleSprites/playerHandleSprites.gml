@@ -4,7 +4,11 @@ function playerHandleSprites() {
 	//Note that some sprites like sliding are static and are thus not altered in this script
 	if !instance_exists(global.character) exit;
 
-	spriteStandDefault = asset_get_index("spr" + global.character.sprName + "Stand");
+	if blinkImage == 0 or asset_get_index("spr" + global.character.sprName + "StandBlink") == -1
+		spriteStandDefault = asset_get_index("spr" + global.character.sprName + "Stand");
+	else
+		spriteStandDefault = asset_get_index("spr" + global.character.sprName + "StandBlink");
+	
 	spriteStepDefault = asset_get_index("spr" + global.character.sprName + "Step");
 	spriteJumpDefault = asset_get_index("spr" + global.character.sprName + "Jump");
 	spriteWalkDefault = asset_get_index("spr" + global.character.sprName + "Walk");
@@ -42,8 +46,12 @@ function playerHandleSprites() {
 		speedGetup = speedGetupThrow;
 	}
 	else {
-	    spriteStand = asset_get_index("spr" + global.character.sprName + "Stand");
-	    spriteStep = asset_get_index("spr" + global.character.sprName + "Step");
+		if blinkImage == 0 or asset_get_index("spr" + global.character.sprName + "StandBlink") == -1
+			spriteStand = asset_get_index("spr" + global.character.sprName + "Stand");
+		else
+			spriteStand = asset_get_index("spr" + global.character.sprName + "StandBlink");
+	    
+		spriteStep = asset_get_index("spr" + global.character.sprName + "Step");
 	    spriteJump = asset_get_index("spr" + global.character.sprName + "Jump");
 	    spriteWalk = asset_get_index("spr" + global.character.sprName + "Walk");
 	    spriteClimb = asset_get_index("spr" + global.character.sprName + "Climb");

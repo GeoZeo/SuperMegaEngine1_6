@@ -8,10 +8,15 @@ var yy = 174;
 draw_set_colour(c_white);
 draw_set_font(global.MM3font);
 draw_set_halign(fa_left);
-draw_text(xx + 10, yy, string_hash_to_newline("INPUT PASSWORD"));
-if cfgTwoPasswordColours draw_text(xx - 30, yy + 16, string_hash_to_newline("JUMP:  SET - SEL: COLOR"));
-else draw_text(xx - 30, yy + 16, string_hash_to_newline("      JUMP:   SET"));
-draw_text(xx - 30, yy + 26, string_hash_to_newline("FIRE: BACK - PAUSE: END"));
+if !errorPhase {
+	draw_text(xx + 10, yy, string_hash_to_newline("INPUT PASSWORD"));
+	if cfgTwoPasswordColours draw_text(xx - 30, yy + 16, string_hash_to_newline("JUMP:  SET - SEL: COLOR"));
+	else draw_text(xx - 30, yy + 16, string_hash_to_newline("      JUMP:   SET"));
+	draw_text(xx - 30, yy + 26, string_hash_to_newline("FIRE: BACK - PAUSE: END"));
+}
+else {
+	draw_text(xx + 2, yy + 8, string_hash_to_newline("PASSWORD ERROR!!"));
+}
 
 var posx = 21;
 var posy = 17;
@@ -21,10 +26,12 @@ var offset = 3;
 draw_password(password);
 
 //Password cursor
-draw_sprite(sprPassCursorTopLeft, floor(cursorTimer), posx + col * size + offset, posy + row * size + offset);
-draw_sprite(sprPassCursorTopRight, floor(cursorTimer), (posx + col * size + offset) + 7, posy + row * size + offset);
-draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), posx + col * size + offset, (posy + row * size + offset) + 7);
-draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), (posx + col * size + offset) + 7, (posy + row * size + offset) + 7);
+if !errorPhase {
+	draw_sprite(sprPassCursorTopLeft, floor(cursorTimer), posx + col * size + offset, posy + row * size + offset);
+	draw_sprite(sprPassCursorTopRight, floor(cursorTimer), (posx + col * size + offset) + 7, posy + row * size + offset);
+	draw_sprite(sprPassCursorBottomLeft, floor(cursorTimer), posx + col * size + offset, (posy + row * size + offset) + 7);
+	draw_sprite(sprPassCursorBottomRight, floor(cursorTimer), (posx + col * size + offset) + 7, (posy + row * size + offset) + 7);
+}
 
 //Selected color
 if cfgTwoPasswordColours {

@@ -1,6 +1,8 @@
 /// @description playerShoot()
 function playerShoot() {
 	//Handles Mega Man's shooting
+	
+	var _xscale = image_xscale;
 
 	if !instance_exists(objSectionSwitcher)
 	{
@@ -23,7 +25,7 @@ function playerShoot() {
 
 		//Shooting
 		var _chargeShotsReflected = 0;
-		with objReflectedProjectile
+		with objDeflectedProjectile
 		{
 			if id_of_origin == prtPlayer 
 			&& string_contains(sprite_get_name(sprite_index), "Buster")
@@ -32,7 +34,7 @@ function playerShoot() {
 		}
 		
 		if global.keyShootPressed && global.weapons[global.currentWeapon].chargeTimer <= 0 && canShoot && (canMove || climbing || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet))
-		&& instance_number(objBusterShotCharged) + _chargeShotsReflected < 1 && global.ammo[global.currentWeapon] > 0
+		&& instance_number(objBusterShotCharged) + instance_number(objProtoBusterShotCharged) + _chargeShotsReflected < 1 && global.ammo[global.currentWeapon] > 0
 		{   
 		    if climbing {
 		        image_xscale = climbShootXscale;
@@ -51,6 +53,7 @@ function playerShoot() {
 						if image_xscale != prevXScale {
 							if !global.weapons[global.currentWeapon].freeShot {
 								x = round(x) + -image_xscale*2;
+								x += !place_free(x, y);
 							}
 						}
 					}
@@ -61,6 +64,7 @@ function playerShoot() {
 						if image_xscale != prevXScale {
 							if !global.weapons[global.currentWeapon].freeShot {
 								x = round(x) + -image_xscale*2;
+								x -= !place_free(x, y);
 							}
 						}
 					}
@@ -95,6 +99,7 @@ function playerShoot() {
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
+								x += !place_free(x, y);
 							}
 						}
 					}
@@ -103,6 +108,7 @@ function playerShoot() {
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
+								x -= !place_free(x, y);
 							}
 						}
 					}
@@ -110,6 +116,7 @@ function playerShoot() {
 			
 				if ground /*&& shootTimer == 0 */&& !climbing { //Only do this on the ground on the first frame
 			        canWalk = false;
+					isDash = false;
 			        
 					if !place_meeting(x, y+1, objIce)
 						global.xspeed = 0;
@@ -119,7 +126,7 @@ function playerShoot() {
 			        sprite_index = spriteStand;
 					image_speed = speedStand;
 			        if shootTimer == 0
-						shootTimer = 5; //20 frames is too much to be frozen for. However, when not frozen, 20 frames looks better
+						shootTimer += 5; //20 frames is too much to be frozen for. However, when not frozen, 20 frames looks better
 			    }
 			
 				if !ground && !climbing {
@@ -149,6 +156,7 @@ function playerShoot() {
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
+								x += !place_free(x, y);
 							}
 						}
 					}
@@ -157,6 +165,7 @@ function playerShoot() {
 						if canInitStep && !canTurnaroundStep {
 							if image_xscale != prevXScale {
 								x = round(x) + -image_xscale*2;
+								x -= !place_free(x, y);
 							}
 						}
 					}
@@ -164,6 +173,7 @@ function playerShoot() {
 			
 				if ground /*&& shootTimer == 0 */&& !climbing { //Only do this on the ground on the first frame
 			        canWalk = false;
+					isDash = false;
 					
 					if !place_meeting(x, y+1, objIce)
 						global.xspeed = 0;
@@ -173,7 +183,7 @@ function playerShoot() {
 			        sprite_index = spriteStand;
 					image_speed = speedStand;
 			        if shootTimer == 0
-						shootTimer = 5; //20 frames is too much to be frozen for. However, when not frozen, 20 frames looks better
+						shootTimer += 5; //20 frames is too much to be frozen for. However, when not frozen, 20 frames looks better
 			    }
 			
 				if !ground && !climbing {
@@ -206,6 +216,8 @@ function playerShoot() {
 	        with global.weapons[global.currentWeapon] event_user(4);
 	    }
 	}
+	
+	if global.weapons[global.currentWeapon].freeShot && !climbing image_xscale = _xscale;	// Fixes a bug that causes MM to get crushed upon turning into a wall and shooting on the same frame.
 
 
 

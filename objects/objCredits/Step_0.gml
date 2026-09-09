@@ -1,6 +1,6 @@
+__background_set(e__BG.HSpeed, 0, -1);
+
 if !(instance_exists(objFadeIn)) {
-	
-	__background_set(e__BG.HSpeed, 0, -1);
 	
 	if y < scroll_threshold {
 	    vspeed = 0;
@@ -15,17 +15,48 @@ if !(instance_exists(objFadeIn)) {
 	    }
 	    else {
 	        megamansprite = global.spriteJump;
+			megamanimgspeed = global.speedJump;
 	    }
 	
 		if sprite_get_number(megamansprite) > 1 {
-			if floor(megaImg) == 0 {
-			    megaImg += 1 / global.blinkTimerMax;
-			}
-			else {
-			    megaImg += 1 / global.blinkDuration;
-			}
-			if megaImg >= 2 {
+			megaImg += megamanimgspeed;
+			if megaImg >= sprite_get_number(megamansprite) {
 			    megaImg = 0;
+			}
+		}
+		if sprite_get_number(jetsprite) > 1 {
+			jetImg += jetspeed;
+			if jetImg >= sprite_get_number(jetsprite) {
+			    jetImg = 0;
+			}
+		}
+		
+		if megamansprite == megamanspritestand || (megamanspriteblink != -1 and megamansprite == megamanspriteblink) {
+		    blinktimer++;
+		    if blinkimage == 0 {
+		        if blinktimer >= blinktimermax {
+		            blinkimage = 1;
+		            blinktimer = 0;
+		        }
+		    }
+		    else {
+		        if blinktimer >= blinkduration {
+		            blinkimage = 0;
+		            blinktimer = 0;
+		        }
+		    }
+		}
+		else {
+		    blinktimer = 0;
+		    blinkimage = 0;
+		}
+		
+		if megamansprite != megamanspritejump {
+			if blinkimage == 0 {
+				megamansprite = megamanspritestand;
+			}
+			else if megamanspriteblink > -1 {
+				megamansprite = megamanspriteblink;
 			}
 		}
 	

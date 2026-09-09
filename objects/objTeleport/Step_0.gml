@@ -8,7 +8,7 @@ if on && createScenery {
 	createScenery = false;
 }
 
-if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporting)) {
+if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporting and !prtPlayer.landing)) {
 	if fromItem {
 		var myPlayer = instance_nearest(x, y, prtPlayer);
 		x = mask_get_xcenter_object(myPlayer);
@@ -40,6 +40,7 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 					    global.passPlayVictory = true;
 					}
 					else if !global.fortressStarted {
+						if cfgRememberLastMenuOption global.lastOption = 0;
 					    ID.myRoom = rmPass;
 					    global.passPlayVictory = false;
 					}
@@ -59,60 +60,130 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 				}
 	        }
 	        else {
-	            //instance_activate_object(objMegaman);
-				if instance_exists(objBossControl) {
-					with instance_nearest(toX - (cfgPushStartingPosBack * toDir), toY, objBossControl) {
-		                if !insideView() or (bossID > -1 and global.bossRushDefeated[bossID]) {
-		                    playerFreeMovement();
-		                }
-		            }
+				if prtPlayer.spriteLand == noone {
+		            //instance_activate_object(objMegaman);
+					if instance_exists(objBossControl) {
+						with instance_nearest(toX - (cfgPushStartingPosBack * toDir), toY, objBossControl) {
+			                if !insideView() or (bossID > -1 and global.bossRushDefeated[bossID]) {
+			                    playerFreeMovement();
+			                }
+			            }
+					}
+					else {
+						playerFreeMovement();
+					}
+		            prtPlayer.x = toX - (cfgPushStartingPosBack * toDir);
+		            prtPlayer.y = toY;
+		            prtPlayer.visible = true;
+		            prtPlayer.image_xscale = toDir;
+		            x = origX;
+		            y = origY;            
+		            if flashLEDOnce visible = false;
+					else visible = true;
+		            sprite_index = sprTeleport;
+					image_speed = 1;
+		            out = false;
+					with objWind playerTeleporting = false;
+		            instance_activate_object(objSolid);
+					instance_activate_object(objTopSolid);
+					instance_activate_object(prtMovingPlatformSolid);
+					instance_activate_object(prtMovingPlatformJumpthrough);
+				
+					with prtPlayer {
+					
+						if !canHit
+							canHit = true;
+						
+						canPause = true;
+						
+						global.yspeed = 0;
+						stopSFX(sfxLand);
+					
+						if place_meeting(x, y+1, objSolid)
+						|| (place_meeting(x, y+1, objTopSolid) && bbox_bottom <= instance_place(x, y+1, objTopSolid).bbox_top+1)
+						|| (place_meeting(x, y+1, prtMovingPlatformSolid) and !instance_place(x, y+1, prtMovingPlatformSolid).dead)
+						|| ((place_meeting(x, y+1, prtMovingPlatformJumpthrough) && bbox_bottom <= instance_place(x, y+1, prtMovingPlatformJumpthrough).bbox_top+1) and !instance_place(x, y+1, prtMovingPlatformJumpthrough).dead) {
+						
+							ground = true;
+							sprite_index = spriteStand;
+							image_speed = speedStand;
+							blinkTimer = 0;
+							blinkImage = 0;
+						
+						}
+					}
+				
+					if image_xscale != 1
+						image_xscale = 1;
+					if image_yscale != 1
+						image_yscale = 1;
 				}
 				else {
-					playerFreeMovement();
+					sprite_index = prtPlayer.spriteLand;
+					image_speed = prtPlayer.speedLand;
+					image_index = 0;
 				}
-	            prtPlayer.x = toX - (cfgPushStartingPosBack * toDir);
-	            prtPlayer.y = toY;
-	            prtPlayer.visible = true;
-	            prtPlayer.image_xscale = toDir;
-	            x = origX;
-	            y = origY;            
-	            if flashLEDOnce visible = false;
-				else visible = true;
-	            sprite_index = sprTeleport;
-				image_speed = 1;
-	            out = false;
-				with objWind playerTeleporting = false;
-	            instance_activate_object(objSolid);
-				instance_activate_object(objTopSolid);
-				instance_activate_object(prtMovingPlatformSolid);
-				instance_activate_object(prtMovingPlatformJumpthrough);
-				
-				with prtPlayer {
-					
-					if !canHit
-						canHit = true;
-						
-					global.yspeed = 0;
-					stopSFX(sfxLand);
-					
-					if place_meeting(x, y+1, objSolid)
-					|| (place_meeting(x, y+1, objTopSolid) && bbox_bottom <= instance_place(x, y+1, objTopSolid).bbox_top+1)
-					|| (place_meeting(x, y+1, prtMovingPlatformSolid) and !instance_place(x, y+1, prtMovingPlatformSolid).dead)
-					|| ((place_meeting(x, y+1, prtMovingPlatformJumpthrough) && bbox_bottom <= instance_place(x, y+1, prtMovingPlatformJumpthrough).bbox_top+1) and !instance_place(x, y+1, prtMovingPlatformJumpthrough).dead) {
-						
-						ground = true;
-						sprite_index = spriteStand;
-						image_speed = speedStand;
-						
-					}
-				}
-				
-				if image_xscale != 1
-					image_xscale = 1;
-				if image_yscale != 1
-					image_yscale = 1;
 	        }
 	    }
+	}
+	else if sprite_index == prtPlayer.spriteLand {
+		if image_index == 0 {
+			//instance_activate_object(objMegaman);
+			if instance_exists(objBossControl) {
+				with instance_nearest(toX - (cfgPushStartingPosBack * toDir), toY, objBossControl) {
+			        if !insideView() or (bossID > -1 and global.bossRushDefeated[bossID]) {
+			            playerFreeMovement();
+			        }
+			    }
+			}
+			else {
+				playerFreeMovement();
+			}
+		    prtPlayer.x = toX - (cfgPushStartingPosBack * toDir);
+		    prtPlayer.y = toY;
+		    prtPlayer.visible = true;
+		    prtPlayer.image_xscale = toDir;
+		    x = origX;
+		    y = origY;            
+		    if flashLEDOnce visible = false;
+			else visible = true;
+		    sprite_index = sprTeleport;
+			image_speed = 1;
+		    out = false;
+			with objWind playerTeleporting = false;
+		    instance_activate_object(objSolid);
+			instance_activate_object(objTopSolid);
+			instance_activate_object(prtMovingPlatformSolid);
+			instance_activate_object(prtMovingPlatformJumpthrough);
+				
+			with prtPlayer {
+					
+				if !canHit
+					canHit = true;
+					
+				canPause = true;
+						
+				global.yspeed = 0;
+				stopSFX(sfxLand);
+					
+				if place_meeting(x, y+1, objSolid)
+				|| (place_meeting(x, y+1, objTopSolid) && bbox_bottom <= instance_place(x, y+1, objTopSolid).bbox_top+1)
+				|| (place_meeting(x, y+1, prtMovingPlatformSolid) and !instance_place(x, y+1, prtMovingPlatformSolid).dead)
+				|| ((place_meeting(x, y+1, prtMovingPlatformJumpthrough) && bbox_bottom <= instance_place(x, y+1, prtMovingPlatformJumpthrough).bbox_top+1) and !instance_place(x, y+1, prtMovingPlatformJumpthrough).dead) {
+						
+					ground = true;
+					sprite_index = spriteStand;
+					image_speed = speedStand;
+					blinkTimer = 0;
+					blinkImage = 0;
+				}
+			}
+				
+			if image_xscale != 1
+				image_xscale = 1;
+			if image_yscale != 1
+				image_yscale = 1;
+		}
 	}
 	
 	if prtPlayer.ground && playerLocked {
@@ -122,8 +193,8 @@ if (instance_exists(prtPlayer) && (!prtPlayer.showReady and !prtPlayer.teleporti
 		}
 		else {
 			playerLocked = false;
-			x = prtPlayer.x;
-			y = prtPlayer.y;
+			x = mask_get_xcenter_object(prtPlayer);
+			y = mask_get_ycenter_object(prtPlayer);
 			on = true;
 		}
 	}

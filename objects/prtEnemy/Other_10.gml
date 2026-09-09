@@ -2,12 +2,13 @@ if sprite_index > -1 and !dead and other.reflectible {
 	if !(other.object_index == objReflectedProjectile && other.id_of_origin != prtPlayer) {
 		if !other.destroyOnReflect {
 		    with other {
-		        var ID = instance_create(x, y, objReflectedProjectile);
+		        var ID = instance_create(x, y, objDeflectedProjectile);
 				ID.id_of_origin = prtPlayer;
 		        ID.sprite_index = sprite_index;
 		        ID.image_index = 0;//image_index;
 		        ID.image_speed = 0;//image_speed;
 		        ID.image_xscale = image_xscale;
+				ID.depth = depth;
 		        ID.dir = sign(xspeed);
             
 		        instance_destroy();
@@ -15,7 +16,7 @@ if sprite_index > -1 and !dead and other.reflectible {
 		}
 		else {
 			with other {
-				instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
+				if explosionEffect instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
 				instance_destroy();
 			}
 			exit;

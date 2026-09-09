@@ -1,10 +1,20 @@
 event_inherited();
 
-charName = "Proto Man";
+switch global.language {
+	case 0: charName = "Blues"; break; //Japanese
+	case 1: charName = "Proto Man"; break; //English (US)
+	//Add cases for 2, 3, etc. when you add more languages
+	default: charName = "Proto Man"; break; //Default: English (US)
+								
+}
+	
 sprName = "Protoman";
 
 enableSlide = true;
 enableCharge = true;
+enableDash = false;
+
+dust_xoffset = 11;
 
 damageMultiplier = 2;
 knockbackAmount = cfgKnockback * 2;
@@ -15,18 +25,22 @@ spriteHit = sprProtomanHit;
 spriteStun = sprProtomanStun;
 spriteTeleport = sprProtomanTeleport;
 
+spriteShop = sprProtomanShop;
 spriteLife = sprProtomanLife;
 spriteStageSelect = sprPMStageSelect;
 stageSelectFollow = false;
-spriteShopNPC = spr5QuestionMarks;
+speedStageSelect = 0.5;
+shopNPC = obj5QuestionMarks;
+shopBackground = bgProtomanShop;
 
 //Sprite animation speeds
-speedStandDefault = 0.15;
-speedStepDefault = 0.15;
-speedSlide = 1/6;
+speedStandDefault = 1/9;
+speedStepDefault = 1/9;
+speedSlide = 0.25;
+speedShop = 1/12;
 
-blinkTimerMax = 6;
-blinkDuration = 6;
+blinkTimerMax = 0;
+blinkDuration = 0;
 
 reflector_x = 14; 
 reflector_y = 2;

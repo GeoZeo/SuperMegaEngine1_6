@@ -1,9 +1,15 @@
 event_inherited();
 
 dead = false;
+dying = false;
 
-healthpoints = 1;
+healthpointsStart = 1;
+healthpoints = healthpointsStart;
+projCanTouch = true;
+shieldCanTouch = true;
+damageable = true;
 
-hitWhite = false; //Flicker white instead of transparent upon being hit?
-isHit = false;
+reflectProjectiles = false;
+reflectProjectilesLeft = false;
+reflectProjectilesRight = false;
 

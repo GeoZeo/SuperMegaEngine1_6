@@ -103,6 +103,7 @@ if closing {
         with objSectionSwitcher {
 			x = prtPlayer.x;
             global.frozen = false;
+			with prtPlayer canPause = true;
             prtPlayer.visible = true;
             instance_destroy();
             with prtPlayer playerDeactivateObjects();

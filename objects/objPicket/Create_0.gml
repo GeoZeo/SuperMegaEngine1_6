@@ -52,5 +52,5 @@ if dy == -18
 else
     ddy = dy;
     
-xspeed = dx / ( (3 + (ddy / 6)) * const );
+xspeed = abs(dx / ( (3 + (ddy / 6)) * const )) * image_xscale;
 

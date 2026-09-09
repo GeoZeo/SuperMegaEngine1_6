@@ -1,16 +1,18 @@
-function makeLine(argument0, argument1, argument2, argument3) {
-	//makeLine(x1,y1,x2,y2)
-	assert(argument_count == 4, "makeLine has 4 input arguments.");
+function makeLine(argument0, argument1, argument2, argument3, argument4) {
+	//makeLine(x1,y1,x2,y2,order)
+	assert(argument_count == 5, "makeLine has 5 input arguments.");
 	assert(is_real(argument0), "makeLine argument 0 must be a real number.");
 	assert(is_real(argument1), "makeLine argument 1 must be a real number.");
 	assert(is_real(argument2), "makeLine argument 2 must be a real number.");
 	assert(is_real(argument3), "makeLine argument 3 must be a real number.");
+	assert(is_real(argument4), "makeLine argument 4 must be a real number.");
 
 	var line;
 	line[0] = argument0;
 	line[1] = argument1;
 	line[2] = argument2;
 	line[3] = argument3;
+	line[4] = argument4;
 
 	return line;
 

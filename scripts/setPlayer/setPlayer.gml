@@ -17,16 +17,33 @@ function setPlayer(argument0) {
 	global.spriteLife = char.spriteLife;
 	global.spriteStageSelect = char.spriteStageSelect;
 	global.stageSelectFollow = char.stageSelectFollow;
-	global.spriteShopNPC = char.spriteShopNPC;
+	global.speedStageSelect = char.speedStageSelect;
+	global.spriteShop = char.spriteShop;
+	global.speedShop = char.speedShop;
+	global.shopX = char.shopX;
+	global.shopY = char.shopY;
+	global.shopXScale = char.shopXScale;
+	global.shopYScale = char.shopYScale;
+	global.shopNPC = char.shopNPC;
+	global.shopBackground = char.shopBackground;
 	global.shopBGM = char.shopBGM;
 	global.shopVolume = char.shopBGMvolume;
 	global.shopLoopStart = char.shopBGMloopStart;
 	global.shopLoopEnd = char.shopBGMloopEnd;
 	global.jetSprite = char.jetSprite;
+	global.jetSpeed = char.jetSpeed;
 	global.charPrimaryColor = char.primary_color;
 	global.charSecondaryColor = char.secondary_color;
 	global.spriteStand = asset_get_index("spr" + char.sprName + "Stand");
+	global.speedStand = char.speedStandDefault;
+	
+	if asset_get_index("spr" + char.sprName + "StandBlink") > -1
+		global.spriteBlink = asset_get_index("spr" + char.sprName + "StandBlink");
+	else
+		global.spriteBlink = -1;
+		
 	global.spriteJump = asset_get_index("spr" + char.sprName + "Jump");
+	global.speedJump = char.speedJump;
 	global.blinkTimerMax = char.blinkTimerMax;
 	global.blinkDuration = char.blinkDuration;
 	global.src_col1 = char.src_col1;

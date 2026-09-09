@@ -58,7 +58,7 @@ function drawSave(argument0, argument1, argument2) {
 		        //    count = map[? "lives"];
 		        //    global.items[i].sprite_index = global.spriteLife;
 		        //}
-		        if count > 0 {
+		        if count > 0 || global.items[j+(i*7)].showZero {
 		            //print(global.items[i].name, object_get_name(global.items[i].object_index), global.items[i].sprite_index);
 					if !object_is_ancestor(global.items[j+(i*7)].object_index, prtPlateEquip) {
 			            draw_sprite_ext(global.items[j+(i*7)].sprite_index, 0, room_width - x1 - 20 - (144 - (j-1) * 24), y1 + 56 + i * 36, 1, 1, 0, c_white, 1);
@@ -75,7 +75,21 @@ function drawSave(argument0, argument1, argument2) {
 		for (var i = 0; i < array_length_1d(global.items); i++) {
 			if object_get_parent(global.items[i].object_index) == prtPlateEquip && i != prtPlateEquip {
 				if map[? ("itemCount" + string(i))] > 0 {
-					draw_sprite_ext(global.items[i].sprite_index, 0, room_width - x1 - 20 - (144 - plateNum * 16), y1 + 128, 1, 1, 0, c_white, 1);
+					var _sprStr = "sprPlateMenu";
+					var _letter = string_char_at(sprite_get_name(global.items[i].sprite_index), string_length(sprite_get_name(global.items[i].sprite_index)));
+					_sprStr = _sprStr + _letter;
+					if _letter == "A" {
+						switch global.language {
+							case 0: _sprStr = _sprStr + "_JP"; break; //Japanese
+							case 1: _sprStr = _sprStr + "_US"; break; //English (US)
+							//Add cases for 2, 3, etc. when you add more languages
+							default: _sprStr = _sprStr + "_US"; break; //English (US)
+								
+						}
+					}
+					var _plateSpr = asset_get_index(_sprStr);
+					
+					draw_sprite_ext(_plateSpr, 0, room_width - x1 - 20 - (144 - plateNum * 16), y1 + 128, 1, 1, 0, c_white, 1);
 				}
 				plateNum++;
 			}

@@ -1,144 +1,13 @@
 /// @description playerStep()
 function playerStep() {
 	//Handles general step event code for the player
+	
+	//We're checking all "collisions" against our current speed as well as total force exerted
+	var _total_xspeed = global.xspeed + global.xforce;
+	var _total_yspeed = global.yspeed + global.yforce;
 
-	//Check for ground
-	if place_meeting(x, y+global.yspeed+1, objSolid) || (place_meeting(x, y+global.yspeed+1, objTopSolid)  && global.yspeed >= 0)
-	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformJumpthrough) && global.yspeed >= 0)
-	|| (place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid) && !place_meeting(x, y, prtMovingPlatformSolid))
-	{
-		var endCheck = false;
-		
-	    //We are only on the ground if the moving platform is not 'dead' (despawned and ready to respawn)
-	    if place_meeting(x, y+global.yspeed+1, objSolid)
-	    {	
-	        ground = true;
-			endCheck = true;
-	    }
-		
-		var tpsld, totalTSs;
-		tpsld = collision_rectangle(bbox_left, bbox_bottom+global.yspeed, bbox_right, bbox_bottom+global.yspeed+1, objTopSolid, false, true);
-		totalTSs = 0;
-		while tpsld >= 0 && endCheck == false
-		{
-			if bbox_bottom <= tpsld.bbox_top
-			{
-				ground = true;
-				endCheck = true;
-				break;
-			}
-			else if !onRushJet
-				ground = false;
-        
-			platformID[totalTSs] = tpsld;
-			instance_deactivate_object(tpsld);
-			totalTSs += 1;
-			tpsld = collision_rectangle(bbox_left, bbox_bottom+global.yspeed, bbox_right, bbox_bottom+global.yspeed+1, objTopSolid, false, true);
-		}
-		if place_meeting(x, y+global.yspeed+1, objTopSolid) && endCheck == false
-			if tpsld < 0 && !onRushJet
-				ground = false;
-    
-		var i;
-		for(i = 0; i < totalTSs; i += 1)
-			instance_activate_object(platformID[i]);
-
-		var pltfm, totalPlatforms;
-	    pltfm = collision_rectangle(bbox_left, bbox_bottom+global.yspeed, bbox_right, bbox_bottom+global.yspeed+1, prtMovingPlatformJumpthrough, false, true);
-	    totalPlatforms = 0;
-	    while pltfm >= 0 && endCheck == false
-	    {
-			if ground && (movedPlatformID != 20 and pltfm.id != movedPlatformID) && (instance_exists(movedPlatformID) and place_free(x, y - (abs(movedPlatformID.yspeed) + abs(global.yspeed))))
-				break;
-			
-	        if pltfm.id == movedPlatformID || movedPlatformID == -20
-	        {
-	            if pltfm.dead == false
-	            {
-	                if bbox_bottom <= pltfm.bbox_top
-	                {
-						if !prevGround && global.yspeed <= 0
-						{
-							global.yspeed = 0;
-							
-							if playLandSound && !audio_is_playing(sfxLand)
-								canPlayLandSound = true;
-						}
-						
-	                    ground = true;
-	                    endCheck = true;
-	                }
-	                else
-	                    ground = false;
-	            }
-	            else if !onRushJet
-	                ground = false;
-                
-	            break;
-	        }
-        
-	        platformID[totalPlatforms] = pltfm;
-	        instance_deactivate_object(pltfm);
-	        totalPlatforms += 1;
-	        pltfm = collision_rectangle(bbox_left, bbox_bottom+global.yspeed, bbox_right, bbox_bottom+global.yspeed+1, prtMovingPlatformJumpthrough, false, true);
-	    }
-		if place_meeting(x, y+global.yspeed+1, prtMovingPlatformJumpthrough) && endCheck == false
-			if pltfm < 0 && !onRushJet
-				ground = false;
-		
-	    for(i = 0; i < totalPlatforms; i += 1)
-	        instance_activate_object(platformID[i]);
-    
-	    //The extra code is to check for multiple moving platforms at once
-	    //Otherwise the game could detect a dead platform while we're also above a living platform, causing us to fall through it
-	    var maxID;
-	    maxID = -1;
-	    while place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid) && !endCheck
-	    {
-	        maxID += 1;
-	        ID[maxID] = instance_place(x, y+global.yspeed+1, prtMovingPlatformSolid);
-        
-	        if ID[maxID].dead == false
-	        {		
-				if !prevGround && global.yspeed <= 0
-				{
-					global.yspeed = 0;
-							
-					if playLandSound && !audio_is_playing(sfxLand)
-						canPlayLandSound = true;
-				}
-				
-	            ground = true;
-	            //endCheck = true;
-	        }
-	        else
-	            ground = false;
-            
-	        instance_deactivate_object(ID[maxID]);
-	    }
-    
-	    for(i = 0; i <= maxID; i += 1) //Re-activate the platforms
-	    {
-	        instance_activate_object(ID[i]);
-	    }
-    
-	    if !place_meeting(x, y+global.yspeed+1, objSolid) && !place_meeting(x, y+global.yspeed+1, objTopSolid)
-	    && !place_meeting(x, y+global.yspeed+1, prtMovingPlatformJumpthrough) && !place_meeting(x, y+global.yspeed+1, prtMovingPlatformSolid)
-	    {
-	        ground = true;
-	    }
-	}
-	else
-	{
-	    ground = false;
-		canJump = false;
-	    if prevGround == true
-	        y += 1; //To make Mega Man able to fall through 1-block wide gaps
-	}
-
-
-	//Can we do a short hop? (Placed earlier in the code to fix the 'jump on the frame you land and you can't do a short hop' bug
-	if !(ground == false && canJump == false && place_free(x, y-2) && canGravity == true)
+	//Can we do a short hop? (Placed earlier in the code to fix the 'jump on the frame you land and you can't do a short hop' bug)
+	if !(ground == false && canJump == false && jumps >= maxJumps && place_free(x, y-2) && canGravity == true)
 	    canMinJump = true;
 
 
@@ -155,11 +24,13 @@ function playerStep() {
 	
 
 	//Movement (includes initializing sidestep while on the ground)
+	var _xc = clamp(abs(_total_xspeed), 0.5, 1);
+	if global.keyLeft && !global.keyRight { _xc = clamp(abs(_total_xspeed), 0.500005, 1); }
 	var _frictionApplied = false;
 	if canMove == true
 	{
 	    if ground == true
-	    {
+	    {	
 	        if global.keyLeft && !global.keyRight && canWalk
 	        {
 	            if canInitStep == true
@@ -173,37 +44,44 @@ function playerStep() {
 	                if !place_meeting(x, y+1, objIce)
 	                {
 	                    //Normal physics
-	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
+	                    if !place_meeting(x-_xc, y, objSolid) && !place_meeting(x-_xc, y, prtMovingPlatformSolid)
 	                        global.xspeed = -walkSpeed;
-	                    else if place_meeting(x-1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    else if place_meeting(x-_xc, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
 	                    {
-	                        if instance_place(x-1, y, prtMovingPlatformSolid).dead == true
+	                        if instance_place(x-_xc, y, prtMovingPlatformSolid).dead == true
 	                            global.xspeed = -walkSpeed;
 	                    }
 	                }
 	                else if global.xspeed > 0
 	                {
 	                    //Ice physics
-	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
-	                        global.xspeed -= iceDecWalk;
-	                    else if place_meeting(x-1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
-	                    {
-	                        if instance_place(x-1, y, prtMovingPlatformSolid).dead == true
-	                            global.xspeed -= iceDecWalk;
-	                    }
+						if global.xspeed - iceDecWalk < 0
+						{
+		                    if !place_meeting(x-_xc, y, objSolid) && !place_meeting(x-_xc, y, prtMovingPlatformSolid)
+		                        global.xspeed -= iceDecWalk;
+		                    else if place_meeting(x-_xc, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+		                    {
+		                        if instance_place(x-_xc, y, prtMovingPlatformSolid).dead == true
+		                            global.xspeed -= iceDecWalk;
+		                    }
+						}
+						else
+						{
+							global.xspeed -= iceDecWalk;
+						}
 	                }
 					else if global.xspeed > -walkSpeed
 					{
 						//Ice physics
-	                    if !place_meeting(x-1, y, objSolid) && !place_meeting(x-1, y, prtMovingPlatformSolid)
+	                    if !place_meeting(x-_xc, y, objSolid) && !place_meeting(x-_xc, y, prtMovingPlatformSolid)
 						{
 							global.xspeed -= iceAccWalk;
 							if global.xspeed <= -walkSpeed
 								global.xspeed = -walkSpeed;
 						}
-	                    else if place_meeting(x-1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    else if place_meeting(x-_xc, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
 	                    {
-	                        if instance_place(x-1, y, prtMovingPlatformSolid).dead == true
+	                        if instance_place(x-_xc, y, prtMovingPlatformSolid).dead == true
 	                        {
 								global.xspeed -= iceAccWalk;
 								if global.xspeed <= -walkSpeed
@@ -230,41 +108,49 @@ function playerStep() {
 	                image_xscale = 1;
 	            }
 	            else if isStep == false
-	            {
-	                if !place_meeting(x, y+1, objIce)
+	            {	
+	                if !place_meeting(x, y+_xc, objIce)
 	                {
 	                    //Normal physics
-	                    if !place_meeting(x+1, y, objSolid) && !place_meeting(x+1, y, prtMovingPlatformSolid)
+	                    if !place_meeting(x+_xc, y, objSolid) && !place_meeting(x+_xc, y, prtMovingPlatformSolid)
 	                        global.xspeed = walkSpeed;
-	                    else if place_meeting(x+1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    else if place_meeting(x+_xc, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
 	                    {
-	                        if instance_place(x+1, y, prtMovingPlatformSolid).dead == true
+	                        if instance_place(x+_xc, y, prtMovingPlatformSolid).dead == true
 	                            global.xspeed = walkSpeed;
 	                    }
 	                }
 	                else if global.xspeed < 0
 	                {
+						
 	                    //Ice physics
-	                    if !place_meeting(x+1, y, objSolid) && !place_meeting(x+1, y, prtMovingPlatformSolid)
-	                        global.xspeed += iceDecWalk;
-	                    else if place_meeting(x+1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
-	                    {
-	                        if instance_place(x+1, y, prtMovingPlatformSolid).dead == true
-	                            global.xspeed += iceDecWalk;
-	                    }
+						if global.xspeed + iceDecWalk > 0
+						{
+		                    if !place_meeting(x+_xc, y, objSolid) && !place_meeting(x+_xc, y, prtMovingPlatformSolid)
+		                        global.xspeed += iceDecWalk;
+		                    else if place_meeting(x+_xc, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+		                    {
+		                        if instance_place(x+_xc, y, prtMovingPlatformSolid).dead == true
+		                            global.xspeed += iceDecWalk;
+		                    }
+						}
+						else
+						{
+							global.xspeed += iceDecWalk;
+						}
 	                }
 					else if global.xspeed < walkSpeed
 					{
 						//Ice physics
-	                    if !place_meeting(x+1, y, objSolid) && !place_meeting(x+1, y, prtMovingPlatformSolid)
+	                    if !place_meeting(x+_xc, y, objSolid) && !place_meeting(x+_xc, y, prtMovingPlatformSolid)
 						{
 							global.xspeed += iceAccWalk;
 							if global.xspeed >= walkSpeed
 								global.xspeed = walkSpeed;
 						}
-	                    else if place_meeting(x+1, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+	                    else if place_meeting(x+_xc, y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
 	                    {
-	                        if instance_place(x+1, y, prtMovingPlatformSolid).dead == true
+	                        if instance_place(x+_xc, y, prtMovingPlatformSolid).dead == true
 	                        {
 								global.xspeed += iceAccWalk;
 								if global.xspeed >= walkSpeed
@@ -318,7 +204,6 @@ function playerStep() {
 	                else {
 	                    sprite_index = spriteStand;
 						image_speed = speedStand;
-	                    image_index = blinkImage;
 	                }
 	            }
 	        }
@@ -330,38 +215,40 @@ function playerStep() {
 			stepTimer = 0;
 			cancelStep = false;
         
-	        if canSpriteChange == true
+	        if canSpriteChange == true {
 	            sprite_index = spriteJump;
+				image_index = speedJump;
+			}
+			
+			var _moveSpeed = iif(!isDash, walkSpeed, dashSpeed);
             
-	        if global.keyLeft && !global.keyRight && !place_meeting(x-1, y, objSolid) && canWalk
+	        if global.keyLeft && !global.keyRight && !place_meeting(x-_xc, y, objSolid) && canWalk
 	        {
-	            if !place_meeting(x-1, y, prtMovingPlatformSolid)
+				image_xscale = -1;
+	            if !place_meeting(x-_xc, y, prtMovingPlatformSolid)
 	            {
-	                global.xspeed = -walkSpeed;
-	                image_xscale = -1;
+	                global.xspeed = -_moveSpeed;
 	            }
 	            else
 	            {
-	                if instance_place(x-1, y, prtMovingPlatformSolid).dead == true //Still allow movement when the moving platform is despawned
+	                if instance_place(x-_xc, y, prtMovingPlatformSolid).dead == true //Still allow movement when the moving platform is despawned
 	                {
-	                    global.xspeed = -walkSpeed;
-	                    image_xscale = -1;
+	                    global.xspeed = -_moveSpeed;
 	                }
 	            }
 	        }
-	        else if global.keyRight && !global.keyLeft && !place_meeting(x+1 + (prevXScale == -1), y, objSolid) && canWalk //For some reason, being on the left of the wall and facing left, then jumping and holding right would clip you through it. Prevented by checking if the player was facing left on the previous frame, and if so, disallow Mega Man to move if 2 pixels away from the wall instead of 1
+	        else if global.keyRight && !global.keyLeft && !place_meeting(x+_xc + (prevXScale == -1), y, objSolid) && canWalk //For some reason, being on the left of the wall and facing left, then jumping and holding right would clip you through it. Prevented by checking if the player was facing left on the previous frame, and if so, disallow Mega Man to move if 2 pixels away from the wall instead of 1
 	        {
-	            if !place_meeting(x+1 + (prevXScale == -1), y, prtMovingPlatformSolid)
+				image_xscale = 1;
+	            if !place_meeting(x+_xc + (prevXScale == -1), y, prtMovingPlatformSolid)
 	            {
-	                global.xspeed = walkSpeed;
-	                image_xscale = 1;
+	                global.xspeed = _moveSpeed;
 	            }
 	            else
 	            {
-	                if instance_place(x+1 + (prevXScale == -1), y, prtMovingPlatformSolid).dead == true //Still allow movement when the moving platform is despawned
+	                if instance_place(x+_xc + (prevXScale == -1), y, prtMovingPlatformSolid).dead == true //Still allow movement when the moving platform is despawned
 	                {
-	                    global.xspeed = walkSpeed;
-	                    image_xscale = 1;
+	                    global.xspeed = _moveSpeed;
 	                }
 	            }
 	        }
@@ -381,30 +268,51 @@ function playerStep() {
 	else if canSpriteChange == true
 	{
 	    //Even if canMove is false, we should still be able to change sprites
-	    if ground == true
-	    {
-	        if global.xspeed == 0
-	        {
-	            sprite_index = spriteStand;
-	            image_index = blinkImage;
-	            image_speed = speedStand;
-	        }
-	        else
-	        {
-	            sprite_index = spriteWalk;
-	            image_speed = speedWalk;
-	        }
-	    }
-	    else
-	    {
-	        sprite_index = spriteJump;
-			image_speed = speedJump;
-	    }
+		if !climbing
+		{
+		    if ground == true
+		    {
+		        if global.xspeed == 0
+		        {
+		            sprite_index = spriteStand;
+		            image_speed = speedStand;
+		        }
+		        else
+		        {
+		            sprite_index = spriteWalk;
+		            image_speed = speedWalk;
+		        }
+		    }
+		    else
+		    {
+		        sprite_index = spriteJump;
+				image_speed = speedJump;
+		    }
+		}
+		else
+		{
+			//Getup sprite
+		    if !position_meeting(x, bbox_top+11, objLadder) && position_meeting(x, bbox_bottom+1, objLadder) //The second check is to make sure the getup animation is not shown when on the BOTTOM of a ladder that's placed in the air
+		    {
+		        sprite_index = spriteGetup;
+				image_speed = speedGetup;
+		        if sprite_index == spriteGetupDefault //not when shooting
+		            image_xscale = 1;
+		    }
+		    else
+		    {
+		        sprite_index = spriteClimb;
+				image_speed = speedClimb;
+		    }
+		}
 	}
+	
+	_total_xspeed = global.xspeed + global.xforce;
+	_total_yspeed = global.yspeed + global.yforce;
 
 
 	//Blinking animation
-	if sprite_index == asset_get_index("spr" + global.sprName + "Stand") { //Don't use spriteStand as this could also be sprMegamanStandShoot!
+	if sprite_index == asset_get_index("spr" + global.sprName + "Stand") || (asset_get_index("spr" + global.sprName + "StandBlink") != -1 and sprite_index == asset_get_index("spr" + global.sprName + "StandBlink")) { //Don't use spriteStand as this could also be sprMegamanStandShoot!
 	    blinkTimer++;
 	    if blinkImage == 0 {
 	        if blinkTimer >= blinkTimerMax {
@@ -426,6 +334,7 @@ function playerStep() {
 
 
 	//Sidestepping
+	var turned = false;
 	if isStep {
     
 		var _resetStep = false;
@@ -472,6 +381,7 @@ function playerStep() {
 						x = round(x) - image_xscale;
 					else
 						x -= image_xscale;
+					turned = true;
 				}
 			}
 			cancelStep = true;
@@ -502,7 +412,6 @@ function playerStep() {
 	    if canSpriteChange {
 			if sprite_index == spriteStep && _resetStep {
 		        sprite_index = spriteStand;
-				image_index = blinkImage;
 				image_speed = speedStand;
 			}
 			else {
@@ -517,10 +426,40 @@ function playerStep() {
 	        stepTimer = 0;
 	    }
 	}
-	
 
+
+	//Save position to roll back to if necessary
+	if rollbackMovement
+	{
+		var __old_x = x;
+		var __old_y = y;
+	}
+	
+	
 	//Allow movement
-	move(global.xspeed, global.yspeed);
+	_total_xspeed = global.xspeed + global.xforce;
+	_total_yspeed = global.yspeed + global.yforce;
+	move(_total_xspeed, _total_yspeed);
+	_total_xspeed = global.xspeed + global.xforce;
+	_total_yspeed = global.yspeed + global.yforce;
+	
+	
+	//If Beat physics are enabled, roll back our position and reset the collision bools
+	if rollbackMovement
+	{
+		if (_total_xspeed > 0 and againstWallRight) || (_total_xspeed < 0 and againstWallLeft)
+		{
+			x = __old_x;
+		}
+		if (_total_yspeed > 0 and againstGround) || (_total_yspeed < 0 and againstCeiling)
+		{
+			y = __old_y;
+		}
+		againstGround = false;
+		againstWallLeft = false;
+		againstWallRight = false;
+		againstCeiling = false;
+	}
 	
 	
 	//This (temporarily) fixes a glitch where MM's x-position is rounded/shuffled awkwardly when moving in integer steps while his x-position has a remainder of exactly 0.5
@@ -532,24 +471,24 @@ function playerStep() {
 
 
 	//Avoids free movement on screen above
-	if (!ground && !climbing && !instance_exists(objSectionSwitcher) && sprite_get_bottom() < sectionTop && global.yspeed <= currentJumpSpeed) {
+	if (!ground && !climbing && !instance_exists(objSectionSwitcher) && sprite_get_bottom() < sectionTop && _total_yspeed <= -currentJumpSpeed) {
 	    y = sectionTop - sprite_height;
 	}
 
 
 	//Stop movement at section borders
 	var endBeatCheck = false;
-	if ((canMove or (instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime)) || isSlide || isHit || isStun) && visible {
-	    if x > sectionRight-6 && !place_meeting(x+6, y, objSectionArrowRight) && !place_meeting(x-global.xspeed, y, objSectionArrowRight) {
-	        x = sectionRight-6;
+	if ((canMove or (instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime)) || isSlide || isHit || isStun) && (visible or (instance_exists(objBeat) and objBeat.transportTimer < objBeat.transportTime)) {
+	    if x > sectionRight-(7 - (image_xscale < 0)) && ((!place_meeting(x+(7 - (image_xscale < 0)), y, objSectionArrowRight) && !place_meeting(x-_total_xspeed, y, objSectionArrowRight)) or (instance_exists(objBeat) && objBeat.transportTimer < objBeat.transportTime)) {
+	        x = sectionRight-(7 - (image_xscale < 0));
 	        global.xspeed = 0;
 	    }
-	    else if x < sectionLeft+6 && !place_meeting(x-6, y, objSectionArrowLeft) && !place_meeting(x-global.xspeed, y, objSectionArrowLeft) {
-	        x = sectionLeft+6;
+	    else if x < sectionLeft+(7 - (image_xscale > 0)) && ((!place_meeting(x-(7 - (image_xscale > 0)), y, objSectionArrowLeft) && !place_meeting(x-_total_xspeed, y, objSectionArrowLeft)) or (instance_exists(objBeat) && objBeat.transportTimer < objBeat.transportTime)) {
+	        x = sectionLeft+(7 - (image_xscale > 0));
 	        global.xspeed = 0;
 	    }    
-	    if y < sectionTop-32 {
-	        y = sectionTop-32;
+	    if y < sectionTop - sprite_height {
+	        y = sectionTop - sprite_height;
 	    }
 	    else if bbox_top > sectionBottom && !place_meeting(x, y, objSectionArrowDown) {
 			
@@ -563,70 +502,78 @@ function playerStep() {
 				else if global._health > 0 && !dead {
 					objBeatEquip.count--;
 					
-					var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
-					var _attempts = 0;
-					var _old_x = x;
-					while !place_free(x, y-_ceil) && _attempts < 500
-					{
-						if abs(global.xspeed) >= 1
-						{
-							x -= global.xspeed;
-							_attempts += abs(global.xspeed);
-						}
-						else
-						{
-							if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
-							|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
-							{
-								x -= 1;
-								_attempts++;
-							}
-							else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
-							|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
-							{
-								x += 1;
-								_attempts++;
-							}
-						}
-					}
-					if !place_free(x, y-_ceil)
-						x = _old_x;
+					//var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
+					//var _attempts = 0;
+					//var _old_x = x;
+					//while !place_free(x, y-_ceil) && _attempts < 500
+					//{
+					//	if abs(global.xspeed) >= 1
+					//	{
+					//		x -= global.xspeed;
+					//		_attempts += abs(global.xspeed);
+					//	}
+					//	else
+					//	{
+					//		if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
+					//		|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
+					//		{
+					//			x -= 1;
+					//			_attempts++;
+					//		}
+					//		else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
+					//		|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
+					//		{
+					//			x += 1;
+					//			_attempts++;
+					//		}
+					//	}
+					//}
+					//if !place_free(x, y-_ceil)
+					//	x = _old_x;
 					
 					global.xspeed = 0;
-					if y > round((global.viewY+global.viewHeight)+30)
+					if y >= round((global.viewY+global.viewHeight)+30)
 					{
 						y = round((global.viewY+global.viewHeight)+30);
 						global.yspeed = 0;
-						
-						if isStun
-						{
-							stunTimer = 0;
-							isStun = false;
-							canMove = true;
-							canWalk = true;
-						}
-			
-						if isSlide
-						{
-							slideTimer = 0;
-							isSlide = false;
-					        canMove = true;
-							canWalk = true;
-						}
-			
-						if climbing
-						{
-							climbing = false;
-							canMove = true;
-						}
-			
-						canSpriteChange = false;
-						mask_index = mskMegaman;
-						sprite_index = spriteJump;
-						image_speed = speedJump;
-						
-						instance_deactivate_object(self.id);
 					}
+					
+					if isStun
+					{
+						stunTimer = 0;
+						isStun = false;
+						canMove = true;
+						canWalk = true;
+					}
+			
+					if isSlide
+					{
+						slideTimer = 0;
+						isSlide = false;
+					    canMove = true;
+						canWalk = true;
+					}
+			
+					if climbing
+					{
+						climbing = false;
+						canMove = true;
+					}
+					
+					isShoot = false;
+					isThrow = false;
+					
+					isDash = false;
+			
+					canSpriteChange = false;
+					isFly = true;
+					flying = true;
+					playerHandleSprites();
+					mask_index = mskMegaman;
+					sprite_index = spriteJump;
+					image_speed = speedJump;
+						
+					//instance_deactivate_object(self.id);
 					canMove = false;
 					
 					if !instance_exists(objBeat)
@@ -654,55 +601,57 @@ function playerStep() {
 				playChargeSound = true;
 				playChargedSound = true;
 			}
-			else if !objBeat.carrying {
-				global.xspeed = 0;
-				if y > round((global.viewY+global.viewHeight)+30)
-				{
-					y = round((global.viewY+global.viewHeight)+30);
-					global.yspeed = 0;
+			//else if !objBeat.carrying {
+			//	global.xspeed = 0;
+			//	if y > round((global.viewY+global.viewHeight)+30)
+			//	{
+			//		y = round((global.viewY+global.viewHeight)+30);
+			//		global.yspeed = 0;
 					
-					if isStun
-					{
-						stunTimer = 0;
-						isStun = false;
-						canMove = true;
-						canWalk = true;
-					}
+			//		if isStun
+			//		{
+			//			stunTimer = 0;
+			//			isStun = false;
+			//			canMove = true;
+			//			canWalk = true;
+			//		}
 			
-					if isSlide
-					{
-						slideTimer = 0;
-						isSlide = false;
-					    canMove = true;
-						canWalk = true;
-					}
+			//		if isSlide
+			//		{
+			//			slideTimer = 0;
+			//			isSlide = false;
+			//		    canMove = true;
+			//			canWalk = true;
+			//		}
 			
-					if climbing
-					{
-						climbing = false;
-						canMove = true;
-					}
+			//		if climbing
+			//		{
+			//			climbing = false;
+			//			canMove = true;
+			//		}
 			
-					canSpriteChange = false;
-					mask_index = mskMegaman;
-					sprite_index = spriteJump;
-					image_speed = speedJump;
+			//		canSpriteChange = false;
+			//		mask_index = mskMegaman;
+			//		sprite_index = spriteJump;
+			//		image_speed = speedJump;
 						
-					instance_deactivate_object(self.id);
-				}
-				canMove = false;
-			}
+			//		instance_deactivate_object(self.id);
+			//	}
+			//	canMove = false;
+			//}
 	    }
 	}   
     
 	//Stop movement at room borders
-	if x > room_width-6
-	    x = room_width-6;
-	else if x < 6
-	    x = 6;
+	if x > room_width-(7 - (image_xscale < 0)) {
+	    x = room_width-(7 - (image_xscale < 0));
+	}
+	else if x < (7 - (image_xscale > 0)) {
+	    x = (7 - (image_xscale > 0));
+	}
     
-	if y < -32
-	    y = -32;
+	if y < -sprite_height
+	    y = -sprite_height;
 	else if bbox_top > room_height
 	{
 	    if !instance_exists(objBeat) || objBeat.transportTimer >= objBeat.transportTime {
@@ -716,70 +665,78 @@ function playerStep() {
 			else if global._health > 0 && !dead && !endBeatCheck {
 				objBeatEquip.count--;
 				
-				var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
-				var _attempts = 0;
-				var _old_x = x;
-				while !place_free(x, y-_ceil) && _attempts < 500
-				{
-					if abs(global.xspeed) >= 1
-					{
-						x -= global.xspeed;
-						_attempts += abs(global.xspeed);
-					}
-					else
-					{
-						if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
-						|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
-						{
-							x -= 1;
-							_attempts++;
-						}
-						else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
-						|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
-						{
-							x += 1;
-							_attempts++;
-						}
-					}
-				}
-				if !place_free(x, y-_ceil)
-					x = _old_x;
+				//var _ceil = abs(bbox_top-round(global.viewY+global.viewHeight))+1;
+				//var _attempts = 0;
+				//var _old_x = x;
+				//while !place_free(x, y-_ceil) && _attempts < 500
+				//{
+				//	if abs(global.xspeed) >= 1
+				//	{
+				//		x -= global.xspeed;
+				//		_attempts += abs(global.xspeed);
+				//	}
+				//	else
+				//	{
+				//		if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) >= x
+				//		|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) >= x
+				//		{
+				//			x -= 1;
+				//			_attempts++;
+				//		}
+				//		else if (instance_place(x, y-_ceil, objSolid) >= 0 && sprite_get_xcenter_object(instance_place(x, y-_ceil, objSolid))) < x
+				//		|| (instance_place(x, y-_ceil, prtMovingPlatformSolid) >= 0 && !instance_place(x, y-_ceil, prtMovingPlatformSolid).dead && sprite_get_xcenter_object(instance_place(x, y-_ceil, prtMovingPlatformSolid))) < x
+				//		{
+				//			x += 1;
+				//			_attempts++;
+				//		}
+				//	}
+				//}
+				//if !place_free(x, y-_ceil)
+				//	x = _old_x;
 				
 				global.xspeed = 0;
-				if y > round((global.viewY+global.viewHeight)+30)
+				if y >= round((global.viewY+global.viewHeight)+30)
 				{
 					y = round((global.viewY+global.viewHeight)+30);
 					global.yspeed = 0;
-					
-					if isStun
-					{
-						stunTimer = 0;
-						isStun = false;
-						canMove = true;
-						canWalk = true;
-					}
-			
-					if isSlide
-					{
-						slideTimer = 0;
-						isSlide = false;
-				        canMove = true;
-						canWalk = true;
-					}
-			
-					if climbing
-					{
-						climbing = false;
-						canMove = true;
-					}
-			
-					canSpriteChange = false;
-					mask_index = mskMegaman;
-					sprite_index = spriteJump;
-					image_speed = speedJump;
-					
-					instance_deactivate_object(self.id);
 				}
+					
+				if isStun
+				{
+					stunTimer = 0;
+					isStun = false;
+					canMove = true;
+					canWalk = true;
+				}
+			
+				if isSlide
+				{
+					slideTimer = 0;
+					isSlide = false;
+				    canMove = true;
+					canWalk = true;
+				}
+			
+				if climbing
+				{
+					climbing = false;
+					canMove = true;
+				}
+					
+				isShoot = false;
+				isThrow = false;
+				
+				isDash = false;
+			
+				canSpriteChange = false;
+				isFly = true;
+				flying = true;
+				playerHandleSprites();
+				mask_index = mskMegaman;
+				sprite_index = spriteJump;
+				image_speed = speedJump;
+					
+				//instance_deactivate_object(self.id);
 				canMove = false;
 				
 				if !instance_exists(objBeat)
@@ -806,175 +763,223 @@ function playerStep() {
 			playChargeSound = true;
 			playChargedSound = true;
 		}
-		else if !objBeat.carrying {
-			global.xspeed = 0;
-			if y > round((global.viewY+global.viewHeight)+30)
-			{
-				y = round((global.viewY+global.viewHeight)+30);
-				global.yspeed = 0;
+		//else if !objBeat.carrying {
+		//	global.xspeed = 0;
+		//	if y > round((global.viewY+global.viewHeight)+30)
+		//	{
+		//		y = round((global.viewY+global.viewHeight)+30);
+		//		global.yspeed = 0;
 				
-				if isStun
-				{
-					stunTimer = 0;
-					isStun = false;
-					canMove = true;
-					canWalk = true;
-				}
+		//		if isStun
+		//		{
+		//			stunTimer = 0;
+		//			isStun = false;
+		//			canMove = true;
+		//			canWalk = true;
+		//		}
 			
-				if isSlide
-				{
-					slideTimer = 0;
-					isSlide = false;
-				    canMove = true;
-					canWalk = true;
-				}
+		//		if isSlide
+		//		{
+		//			slideTimer = 0;
+		//			isSlide = false;
+		//		    canMove = true;
+		//			canWalk = true;
+		//		}
 			
-				if climbing
-				{
-					climbing = false;
-					canMove = true;
-				}
+		//		if climbing
+		//		{
+		//			climbing = false;
+		//			canMove = true;
+		//		}
 			
-				canSpriteChange = false;
-				mask_index = mskMegaman;
-				sprite_index = spriteJump;
-				image_speed = speedJump;
+		//		canSpriteChange = false;
+		//		mask_index = mskMegaman;
+		//		sprite_index = spriteJump;
+		//		image_speed = speedJump;
 					
-				instance_deactivate_object(self.id);
-			}
-			canMove = false;
-		}
+		//		instance_deactivate_object(self.id);
+		//	}
+		//	canMove = false;
+		//}
 	}
+	
+	_total_xspeed = global.xspeed + global.xforce;
+	_total_yspeed = global.yspeed + global.yforce;
 	
 	
 
 
 	//Jumping
-	if (canMove || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet)) && ground && canJump && place_free(x, y-2) && global.keyJumpPressed && (!global.keyDown || onRushJet)
+	var _shouldJump = (cfgEnableBuffering and global.keyJump and !global.hasJumped and room != rmWeaponGet) || global.keyJumpPressed;
+	if _shouldJump
 	{
-	    if ((isThrow or isShoot) and !global.weapons[global.currentWeapon].freeShot) {  //We can jump-cancel the throwing animation (after throwing a Metal Blade, Pharaoh Shot etc)
-	        canMove = true;
-	        canSpriteChange = true;
-	        shootTimer -= 5; //20 frames for freezing was too long so it was changed to 15. However, when not frozen, 20 looks better
-	    }
-	    else if onRushJet {
-	        canMove = true;
-	    }
+		if (!locked && !showReady && !teleporting && !landing) && !instance_exists(objChargeKick) global.hasJumped = true;
+		
+		if (canMove || (isThrow and room != rmWeaponGet) || (onRushJet and room != rmWeaponGet)) && ((ground and canJump) or jumps < maxJumps) && place_free(x, y-2) && (!global.keyDown || onRushJet)
+		{
+		    if ((isThrow or isShoot) and !global.weapons[global.currentWeapon].freeShot) {  //We can jump-cancel the throwing animation (after throwing a Metal Blade, Pharaoh Shot etc)
+		        canMove = true;
+		        canSpriteChange = true;
+		        shootTimer -= 5; //20 frames for freezing was too long so it was changed to 15. However, when not frozen, 20 looks better
+		    }
+		    else if onRushJet {
+		        canMove = true;
+		    }
     
-	    global.yspeed = -currentJumpSpeed;
-	    ground = false;
-		canJump = false;
-	    canMinJump = true;
-	    y -= 1; //To negate the prevGround y += 1
-	    sprite_index = spriteJump;
-		image_speed = speedJump;
+		    global.yspeed = -currentJumpSpeed;
+			_total_yspeed = global.yspeed + global.yforce;
+		    ground = false;
+			canJump = false;
+			jumps++;
+		    canMinJump = true;
+		    y -= 1; //To negate the prevGround y += 1
+		    sprite_index = spriteJump;
+			image_speed = speedJump;
+		}
 	}
 
 
 	//Minjumping (lowering jump when the jump button is released)
-	if ground == false && global.yspeed < 0 && !global.keyJump && canMinJump == true && !(instance_exists(objBeat) and objBeat.carrying and objBeat.transportTimer < objBeat.transportTime)
+	if ground == false && global.yspeed < 0 && !global.keyJump && canMinJump == true
 	{
 	    canMinJump = false;
 	    global.yspeed = 0;
+		_total_yspeed = global.yspeed + global.yforce;
 	}
 
 
-	//Sliding
+	//Sliding (or dashing)
+	var _shouldSlide = global.enableSlideKey && ((cfgEnableBuffering and global.keySlide and !global.hasSlid and room != rmWeaponGet) or global.keySlidePressed);
+	
 	var box;
 	if image_xscale == 1
 	    box = bbox_right;
 	else
 	    box = bbox_left;
-    
-	if enableSlide {
-	    if ground && !isSlide && ((global.keyJumpPressed && global.keyDown) || (global.enableSlideKey && global.keySlidePressed)) 
-	        && (canMove || (isThrow and room != rmWeaponGet)) && !position_meeting(box+image_xscale*5, bbox_bottom-8, objSolid)
-			&& !onRushJet && room != rmWeaponGet
+	
+	if (enableSlide or global.weapons[global.currentWeapon].newID == objChargeKickWeapon.newID or instance_exists(objChargeKick)) {
+		
+		var _spd, _frames, _spr, _fr, _msk;
+		if !enableDash or global.weapons[global.currentWeapon].newID == objChargeKickWeapon.newID or instance_exists(objChargeKick)
+		{
+			_spd = slideSpeed;
+			_frames = slideFrames;
+			_spr = spriteSlide;
+			_fr = speedSlide;
+			_msk = mskMegamanSlide;
+		}
+		else
+		{
+			_spd = dashSpeed;
+			_frames = dashFrames;
+			_spr = spriteDash;
+			_fr = speedDash;
+			_msk = mskMegamanDash;
+		}
+		
+		var canDash = (enableDash && global.weapons[global.currentWeapon].newID != objChargeKickWeapon.newID && !instance_exists(objChargeKick));
+		
+		if ((_shouldJump && global.keyDown) || _shouldSlide)
+		&& !(image_xscale > 0 && (((x+_spd) > sectionRight-(7 - (image_xscale < 0)) && !place_meeting(x+(7 - (image_xscale < 0)), y, objSectionArrowRight) && !place_meeting(x-_total_xspeed, y, objSectionArrowRight)) || (x+_spd > room_width-(7 - (image_xscale < 0)))))
+		&& !(image_xscale < 0 && (((x-_spd) < sectionLeft+(7 - (image_xscale > 0)) && !place_meeting(x-(7 - (image_xscale > 0)), y, objSectionArrowLeft) && !place_meeting(x-_total_xspeed, y, objSectionArrowLeft)) || (x-_spd < (7 - (image_xscale > 0)))))
 	    {
-	        var canSld = false;
-        
-	        if !position_meeting(box+image_xscale*5, bbox_bottom-8, prtMovingPlatformSolid) {
-	            canSld = true;
-	        }
-	        else {
-	            if instance_position(box+image_xscale*5, bbox_bottom-8, prtMovingPlatformSolid).dead == true //We can still slide if the moving platform is despawned
-	                canSld = true;
-	        }
-        
-        
-	        if canSld {
-	            if isThrow {
-	                isThrow = false;
-	                shootTimer -= 5; //20 frames for freezing was too long so it was changed to 15. However, when not frozen, 20 looks better
-	            }
-				if isShoot {
-	                isShoot = false;
-	                shootTimer -= 5; //20 frames for freezing was too long so it was changed to 15. However, when not frozen, 20 looks better
-	            }
-            
-	            isSlide = true;
-	            canMove = false;
-				canWalk = false;
-	            canSpriteChange = false;
-	            sprite_index = spriteSlide;
-	            mask_index = mskMegamanSlide;
-            
-	            if image_xscale == -1
-	                with instance_create(bbox_right-2, bbox_bottom-2, objSlideDust) image_xscale = -1;
-	            else
-	                instance_create(bbox_left+2, bbox_bottom-2, objSlideDust);
-            
-				//Updated wall escape code. Previous version of the code results in zips through tight gaps.
-				var endLoop, attempts;
-	            endLoop = false;
-				attempts = 0;
-	            while (place_meeting(x, y, objSolid) || place_meeting(x, y, prtMovingPlatformSolid)) && endLoop == false && attempts < abs(round((sprite_get_width(mask_index) * image_xscale) / 2))
-	            {
-	                if !place_meeting(x, y, objSolid) && place_meeting(x, y, prtMovingPlatformSolid)
-	                {
-	                    if instance_place(x, y, prtMovingPlatformSolid).dead == true
-	                        endLoop = true;
-	                }
-                
-	                x += image_xscale;
-					attempts++;
-	            }
-				if (place_meeting(x, y, objSolid) || (place_meeting(x, y, prtMovingPlatformSolid) and !instance_place(x, y, prtMovingPlatformSolid).dead)) && !endLoop
-				{
-					x -= attempts * image_xscale;
-				}
-				//
+			if (_shouldJump && global.keyDown && !instance_exists(objChargeKick)) && (!locked && !showReady && !teleporting && !landing) global.hasJumped = true;
+			if (_shouldSlide && !instance_exists(objChargeKick)) && (!locked && !showReady && !teleporting && !landing) global.hasSlid = true;
 			
-	            /*while position_meeting(x, y+5, objSolid) || (position_meeting(x, y+5, prtMovingPlatformSolid) && !instance_position(x, y+5, prtMovingPlatformSolid).dead) {
-	                x += image_xscale;
-	            }*/
+			if ground && !isSlide
+		        && (canMove || (isThrow and room != rmWeaponGet)) && !position_meeting(box+image_xscale*(5+(3*canDash)), bbox_bottom-(8+(10*canDash)), objSolid)
+				&& !onRushJet
+			{
+		        var canSld = false;
+        
+		        if !position_meeting(box+image_xscale*(5+(3*canDash)), bbox_bottom-(8+(10*canDash)), prtMovingPlatformSolid) {
+		            canSld = true;
+		        }
+		        else {
+					if !position_meeting(box+image_xscale*(5+(3*canDash)), bbox_bottom-(8+(10*canDash)), prtMovingPlatformSolid)
+						canSld = true;
+		            else if instance_position(box+image_xscale*(5+(3*canDash)), bbox_bottom-(8+(10*canDash)), prtMovingPlatformSolid).dead == true //We can still slide if the moving platform is despawned
+		                canSld = true;
+		        }
+        
+        
+		        if canSld {
+		            if isThrow {
+		                isThrow = false;
+		                shootTimer -= 5; //20 frames for freezing was too long so it was changed to 15. However, when not frozen, 20 looks better
+		            }
+					if isShoot {
+		                isShoot = false;
+		                shootTimer -= 5; //20 frames for freezing was too long so it was changed to 15. However, when not frozen, 20 looks better
+		            }
             
-	            global.xspeed = slideSpeed * image_xscale;
-	        }
+		            isSlide = true;
+		            canMove = false;
+					canWalk = false;
+		            canSpriteChange = false;
+					isDash = canDash;
+		            sprite_index = _spr;
+		            mask_index = _msk;
+            
+		            if image_xscale == -1
+		                with instance_create(bbox_right-dust_xoffset, bbox_bottom-dust_yoffset, objSlideDust) image_xscale = -1;
+		            else
+		                instance_create(bbox_left+dust_xoffset, bbox_bottom-dust_yoffset, objSlideDust);
+            
+					//Updated wall escape code. Previous version of the code results in zips through tight gaps.
+					var endLoop, attempts;
+		            endLoop = false;
+					attempts = 0;
+		            while (place_meeting(x, y, objSolid) || place_meeting(x, y, prtMovingPlatformSolid)) && endLoop == false && attempts < abs(round((sprite_get_width(mask_index) * image_xscale) / 2))
+		            {
+		                if !place_meeting(x, y, objSolid) && place_meeting(x, y, prtMovingPlatformSolid)
+		                {
+		                    if instance_place(x, y, prtMovingPlatformSolid).dead == true
+		                        endLoop = true;
+		                }
+                
+		                x += image_xscale;
+						attempts++;
+		            }
+					if (place_meeting(x, y, objSolid) || (place_meeting(x, y, prtMovingPlatformSolid) and !instance_place(x, y, prtMovingPlatformSolid).dead)) && !endLoop
+					{
+						x -= attempts * image_xscale;
+						print("BACK");
+					}
+					//
+			
+		            /*while position_meeting(x, y+5, objSolid) || (position_meeting(x, y+5, prtMovingPlatformSolid) && !instance_position(x, y+5, prtMovingPlatformSolid).dead) {
+		                x += image_xscale;
+		            }*/
+            
+		            global.xspeed = slideSpeed * image_xscale;
+					_total_xspeed = global.xspeed + global.xforce;
+		        }
+			}
 	    }
     
     
 	    //While sliding
 	    if isSlide {
-	        image_speed = speedSlide;
+	        image_speed = _fr;
 	        isStep = false;
 	        canInitStep = false;
 			stepTimer = 0;
 			cancelStep = false;
 	        slideTimer++;
-			
-			//show_debug_message("SlideTime: {0}/{1}", slideTimer, slideFrames);
         
 	        var canProceed = true;
         
-	        if (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid)) && (ground == true || place_meeting(x-(slideSpeed-1), y+1, objSolid) || place_meeting(x-(slideSpeed-1), y+1, objTopSolid) || place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough) || place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid)
-	        || place_meeting(x+(slideSpeed-1), y, objSolid) || place_meeting(x+(slideSpeed-1), y, prtMovingPlatformSolid)) //Extra check because if Mega Man falls down while sliding and a wall is on the other side of him and a ceiling is on top of him, when turning around on the right frame he would zip through the solids
+			print("Meeting: " + string(place_meeting(x, y-1, objSolid) or place_meeting(x, y-1, prtMovingPlatformSolid)))
+		
+	        if (place_meeting(x, y-(7+(2*canDash)), objSolid) || place_meeting(x, y-(7+(2*canDash)), prtMovingPlatformSolid)) && (ground == true || place_meeting(x-(_spd-1), y+1, objSolid) || place_meeting(x-(_spd-1), y+1, objTopSolid) || place_meeting(x-(_spd-1), y+1, prtMovingPlatformJumpthrough) || place_meeting(x-(_spd-1), y+1, prtMovingPlatformSolid)
+	        || place_meeting(x+(_spd-1), y, objSolid) || place_meeting(x+(_spd-1), y, prtMovingPlatformSolid)) //Extra check because if Mega Man falls down while sliding and a wall is on the other side of him and a ceiling is on top of him, when turning around on the right frame he would zip through the solids
 	        {   
-				if place_meeting(x-(slideSpeed-1), y+1, objTopSolid)
+				if place_meeting(x-(_spd-1), y+1, objTopSolid)
 	            {
 					//This fixes a glitch where sliding under a solid ceiling with topsolids underneath allows us to infinitely fly under those ceilings.
 					var tpsld, totalTSs, endCheck;
-					tpsld = instance_place(x-(slideSpeed-1), y+1, objTopSolid);
+					tpsld = instance_place(x-(_spd-1), y+1, objTopSolid);
 					totalTSs = 0;
 					endCheck = false;
 					
@@ -988,35 +993,35 @@ function playerStep() {
 						pltID[totalTSs] = tpsld;
 						instance_deactivate_object(tpsld);
 						totalTSs += 1;
-						tpsld = instance_place(x-(slideSpeed-1), y+1, objTopSolid);
+						tpsld = instance_place(x-(_spd-1), y+1, objTopSolid);
 					}
-					if !endCheck && !(ground == true || place_meeting(x-(slideSpeed-1), y+1, objSolid) || (place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid) and !instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformSolid).dead))
+					if !endCheck && !(ground == true || place_meeting(x-(_spd-1), y+1, objSolid) || (place_meeting(x-(_spd-1), y+1, prtMovingPlatformSolid) and !instance_place(x-(_spd-1), y+1, prtMovingPlatformSolid).dead))
 						canProceed = false;
     
 					var i;
 					for(i = 0; i < totalTSs; i += 1)
 						instance_activate_object(pltID[i]);
 	            }
-	            if place_meeting(x, y-7, prtMovingPlatformSolid)
+	            if place_meeting(x, y-(7+(2*canDash)), prtMovingPlatformSolid)
 	            {
-	                if instance_place(x, y-7, prtMovingPlatformSolid).dead == true
+	                if instance_place(x, y-(7+(2*canDash)), prtMovingPlatformSolid).dead == true
 	                    canProceed = false;
 	            }
-	            if place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid)
+	            if place_meeting(x-(_spd-1), y+1, prtMovingPlatformSolid)
 	            {
-	                if instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformSolid).dead == true
+	                if instance_place(x-(_spd-1), y+1, prtMovingPlatformSolid).dead == true
 						canProceed = false;
 	            }
-	            if place_meeting(x+(slideSpeed-1), y, prtMovingPlatformSolid)
+	            if place_meeting(x+(_spd-1), y, prtMovingPlatformSolid)
 	            {
-	                if instance_place(x+(slideSpeed-1), y, prtMovingPlatformSolid).dead == true
+	                if instance_place(x+(_spd-1), y, prtMovingPlatformSolid).dead == true
 	                    canProceed = false;
 	            }
-	            if place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough)
+	            if place_meeting(x-(_spd-1), y+1, prtMovingPlatformJumpthrough)
 	            {
 	                //This fixes a glitch where sliding under a solid ceiling with moving topsolids underneath allows us to infinitely fly under those ceilings.
 					var pltfm, totalPlatforms, endCheck;
-				    pltfm = instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough);
+				    pltfm = instance_place(x-(_spd-1), y+1, prtMovingPlatformJumpthrough);
 				    totalPlatforms = 0;
 					endCheck = false;
 				    while pltfm >= 0 && !endCheck
@@ -1032,25 +1037,30 @@ function playerStep() {
 				        pltID[totalPlatforms] = pltfm;
 				        instance_deactivate_object(pltfm);
 				        totalPlatforms += 1;
-				        pltfm = instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformJumpthrough);
+				        pltfm = instance_place(x-(_spd-1), y+1, prtMovingPlatformJumpthrough);
 				    }
-					if !endCheck && !(ground == true || place_meeting(x-(slideSpeed-1), y+1, objSolid) || (place_meeting(x-(slideSpeed-1), y+1, prtMovingPlatformSolid) and !instance_place(x-(slideSpeed-1), y+1, prtMovingPlatformSolid).dead))
+					if !endCheck && !(ground == true || place_meeting(x-(_spd-1), y+1, objSolid) || (place_meeting(x-(_spd-1), y+1, prtMovingPlatformSolid) and !instance_place(x-(_spd-1), y+1, prtMovingPlatformSolid).dead))
 						canProceed = false;
 		
 				    for(var i = 0; i < totalPlatforms; i += 1)
 				        instance_activate_object(pltID[i]);
 	            }
             
-	            if canProceed {
-	                if global.keyLeft && !global.keyRight
+	            if canProceed
+				&& !(image_xscale > 0 && (x > sectionRight-(7 - (image_xscale < 0)) && place_meeting(x-_total_xspeed+(7 - (image_xscale < 0)), y, objSectionArrowRight) && !collision_rectangle(sectionRight+1, bbox_top, sectionRight+2, bbox_bottom, objSolid, false, false)))
+				&& !(image_xscale < 0 && (x < sectionLeft+(7 - (image_xscale > 0)) && place_meeting(x-_total_xspeed-(7 - (image_xscale > 0)), y, objSectionArrowLeft) && !collision_rectangle(sectionLeft-1, bbox_top, sectionLeft-2, bbox_bottom, objSolid, false, false)))
+				{
+	                if global.keyLeft && !global.keyRight && (!instance_exists(objChargeKick) or image_xscale == -1 or ((!place_free(x+(_spd-1), y) or x >= sectionRight-(7 - (image_xscale < 0)) or x >= room_width-(7 - (image_xscale < 0))) and !place_free(x, y-(7+(2*canDash)))))
 	                {
 	                    image_xscale = -1;
-	                    global.xspeed = -slideSpeed;
+	                    global.xspeed = -_spd;
+						_total_xspeed = global.xspeed + global.xforce;
 	                }
-	                else if global.keyRight && !global.keyLeft
+	                else if global.keyRight && !global.keyLeft && (!instance_exists(objChargeKick) or image_xscale == 1 or ((!place_free(x-(_spd-1), y) or x <= sectionLeft+(7 - (image_xscale > 0)) or x <= (7 - (image_xscale > 0))) and !place_free(x, y-(7+(2*canDash)))))
 	                {
 	                    image_xscale = 1;
-	                    global.xspeed = slideSpeed;
+	                    global.xspeed = _spd;
+						_total_xspeed = global.xspeed + global.xforce;
 	                }
                 
 	                ground = true;  //For the bugfix as explained on the second line of the place_meeting checks
@@ -1063,18 +1073,25 @@ function playerStep() {
         
         
 	        if !canProceed {
-	            if !ground || (global.keyLeft && !global.keyRight && image_xscale == 1)
-	            || (global.keyRight && !global.keyLeft && image_xscale == -1)
-	            || slideTimer >= slideFrames || (global.keyJumpPressed && !global.keyDown)
+	            if !ground || (global.keyLeft && !global.keyRight && image_xscale == 1 && !instance_exists(objChargeKick))
+	            || (global.keyRight && !global.keyLeft && image_xscale == -1 && !instance_exists(objChargeKick))
+	            || slideTimer >= _frames || (_shouldJump && !global.keyDown && !instance_exists(objChargeKick))
 	            || place_meeting(x+image_xscale*3, y, objSolid) || place_meeting(x+image_xscale*3, y, prtMovingPlatformSolid)
+				|| (image_xscale > 0 && (((x+_spd) > sectionRight-(7 - (image_xscale < 0)) && !place_meeting((x+_spd)+(7 - (image_xscale < 0)), y, objSectionArrowRight) && !place_meeting(x-_total_xspeed, y, objSectionArrowRight)) || (x+_spd > room_width-(7 - (image_xscale < 0)))))
+				|| (image_xscale < 0 && (((x-_spd) < sectionLeft+(7 - (image_xscale > 0)) && !place_meeting((x-_spd)-(7 - (image_xscale > 0)), y, objSectionArrowLeft) && !place_meeting(x-_total_xspeed, y, objSectionArrowLeft)) || (x-_spd < (7 - (image_xscale > 0)))))
 	            {
+					if (_shouldJump && !global.keyDown && !instance_exists(objChargeKick)) && (!locked && !showReady && !teleporting && !landing) global.hasJumped = true;
+					
 	                var stopSld = true;
                 
-	                if !ground || (global.keyLeft && !global.keyRight && image_xscale == 1)
-	                || (global.keyRight && !global.keyLeft && image_xscale == -1)
-	                || slideTimer >= slideFrames || (global.keyJumpPressed && !global.keyDown)
+	                if !ground || (global.keyLeft && !global.keyRight && image_xscale == 1 && !instance_exists(objChargeKick))
+	                || (global.keyRight && !global.keyLeft && image_xscale == -1 && !instance_exists(objChargeKick))
+	                || slideTimer >= _frames || (_shouldJump && !global.keyDown && !instance_exists(objChargeKick))
+					|| (image_xscale > 0 && (((x+_spd) > sectionRight-(7 - (image_xscale < 0)) && !place_meeting((x+_spd)+(7 - (image_xscale < 0)), y, objSectionArrowRight) && !place_meeting(x-_total_xspeed, y, objSectionArrowRight)) || (x+_spd > room_width-(7 - (image_xscale < 0)))))
+					|| (image_xscale < 0 && (((x-_spd) < sectionLeft+(7 - (image_xscale > 0)) && !place_meeting((x-_spd)-(7 - (image_xscale > 0)), y, objSectionArrowLeft) && !place_meeting(x-_total_xspeed, y, objSectionArrowLeft)) || (x-_spd < (7 - (image_xscale > 0)))))
 	                || place_meeting(x+image_xscale*3, y, objSolid)
 	                {
+						if (_shouldJump && !global.keyDown && !instance_exists(objChargeKick)) && (!locked && !showReady && !teleporting && !landing) global.hasJumped = true;
 	                    stopSld = true;
 	                }
 	                else if place_meeting(x+image_xscale*3, y, prtMovingPlatformSolid)
@@ -1085,12 +1102,41 @@ function playerStep() {
                 
 	                if stopSld {
 						
-	                    isSlide = false;
+	                    var stopDash = true;
+						
+						isSlide = false;
 	                    canMove = true;
 						canWalk = true;
 	                    canSpriteChange = true;
 	                    mask_index = mskMegaman;
 	                    slideTimer = 0;
+						
+						//You might wanna comment this out if you're not including Charge Kick (or similar) in your game, you might not I dunno...
+						//----------------------------------------------------------------------------------------------------------------------//
+						if ground == true
+						{
+						    if ((global.keyLeft && !global.keyRight) || (global.keyRight && !global.keyLeft))
+						    {
+								sprite_index = spriteWalk;
+								image_speed = speedWalk;
+							}
+							else
+							{
+								sprite_index = spriteStand;
+								image_speed = speedStand;
+							}
+						}
+						else
+						{
+							sprite_index = spriteJump;
+							image_speed = spriteJump;
+						}
+						
+						if global.keyLeft && !global.keyRight
+							image_xscale = -1;
+						else if global.keyRight && !global.keyLeft
+							image_xscale = 1;
+						//----------------------------------------------------------------------------------------------------------------------//
                     
 	                    var endLoop = false;
 					
@@ -1109,6 +1155,8 @@ function playerStep() {
 								image_speed = speedJump;
 	                            ground = false;
 								canJump = false;
+								if jumps < 1 jumps = 1;
+								stopDash = false;
 	                        }
 	                    }
                         
@@ -1117,13 +1165,29 @@ function playerStep() {
 	                    else
 	                        global.xspeed = walkSpeed * image_xscale;
                     
-	                    if global.keyJumpPressed && !global.keyDown && canJump && place_free(x, y-2)
+	                    if _shouldJump && !global.keyDown && !instance_exists(objChargeKick)
 	                    {
-	                        global.yspeed = -jumpSpeed;
-	                        ground = false;
-							canJump = false;
-	                        y -= 1; //To negate the prevGround y += 1
+							if (!locked && !showReady && !teleporting && !landing) global.hasJumped = true;
+							
+							if jumps < maxJumps && place_free(x, y-2)
+							{
+		                        global.yspeed = -jumpSpeed;
+		                        ground = false;
+								canJump = false;
+								if jumps < 1 jumps = 1;
+								global.canBufferJump = false;
+		                        y -= 1; //To negate the prevGround y += 1
+								sprite_index = spriteJump;
+								image_speed = speedJump;
+								stopDash = false;
+							}
 	                    }
+						
+						if stopDash
+							isDash = false;
+						
+						_total_xspeed = global.xspeed + global.xforce;
+						_total_yspeed = global.yspeed + global.yforce;
 	                }
 	            }
 	        }
@@ -1139,50 +1203,66 @@ function playerStep() {
 	var ladder, ladderDown;
 	ladder = collision_rectangle(sprite_get_xcenter()-3, bbox_top+4, sprite_get_xcenter()+3, bbox_bottom-1, objLadder, false, false);
 	ladderDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, objLadder, false, false);
-	var solidDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, objSolid, false, false);
-	var movingSolidDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, prtMovingPlatformSolid, false, false);
-	var solidAbove = false;
-	if (ladderDown >= 0) {
-	    with ladderDown {
-			for (var i = 1; i < 15; i++) {
-				if !place_free(x, y - i) {
-					solidAbove = true;
-					break;
+	if ((ladder >= 0 && global.keyUp && !global.keyDown) || (ladderDown >= 0 && global.keyDown && !global.keyUp)) && (canMove == true || isSlide == true) && !climbing {
+		var solidDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, objSolid, false, false);
+		var movingSolidDown = collision_rectangle(sprite_get_xcenter()-1, bbox_bottom+1, sprite_get_xcenter()+1, bbox_bottom+2, prtMovingPlatformSolid, false, false);
+		var solidAbove = false;
+		if (ladderDown >= 0) {
+		    with ladderDown {
+				for (var i = 1; i < 15; i++) {
+					if !collision_rectangle_free(bbox_left+2, bbox_top - i, bbox_left+15, bbox_top + 16 - i, false, true, true) {
+						solidAbove = true;
+						break;
+					}
 				}
+				var _jumpThrough = collision_rectangle(bbox_left+2, bbox_top+5, bbox_left+15, bbox_top+15, prtMovingPlatformJumpthrough, false, true);
+				if _jumpThrough >= 0 and _jumpThrough.bbox_top >= bbox_top+5 {
+					solidAbove = true;
+				}
+		    }
+		}
+	
+		if ((ladder >= 0 && collision_rectangle_free(ladder.bbox_left+2, bbox_top, ladder.bbox_left+15, bbox_bottom, false, true, true) && global.keyUp && !global.keyDown)
+		|| (ladderDown >= 0 and solidDown < 0 and movingSolidDown < 0 and !solidAbove and ground and !isSlide and global.keyDown and !global.keyUp))
+		&& sprite_get_ycenter() >= sectionTop + 7 && sprite_get_ycenter() <= sectionBottom - 7
+		&& (canMove == true || isSlide == true) {
+			isSlide = false;
+			isDash = false;
+			mask_index = mskMegamanClimb;
+			slideTimer = 0;
+    
+			climbing = true;
+			canMove = false;
+			canWalk = false;
+			canSpriteChange = false;
+			canGravity = false;
+    
+			global.xspeed = 0;
+			global.yspeed = 0;
+		
+			_total_xspeed = global.xspeed + global.xforce;
+			_total_yspeed = global.yspeed + global.yforce;
+    
+			if ladder >= 0 && global.keyUp && !global.keyDown
+			    x = ladder.x+8;
+			else if ladderDown >= 0
+			{
+			    x = ladderDown.x+8;
+			    y += climbSpeed * 2 + 2;
+			    ground = false;
+				canJump = false;
+				if jumps < 1 jumps = 1;
 			}
-	    }
-	}
-	if ((ladder >= 0 && global.keyUp && !global.keyDown)
-	|| (ladderDown >= 0 and solidDown < 0 and movingSolidDown < 0 and !solidAbove and ground and !isSlide and global.keyDown and !global.keyUp))
-	&& (canMove == true || isSlide == true) && sprite_get_bottom() > sectionTop {
-	    isSlide = false;
-	    mask_index = mskMegaman;
-	    slideTimer = 0;
     
-	    climbing = true;
-	    canMove = false;
-		canWalk = false;
-	    canSpriteChange = false;
-	    canGravity = false;
+			sprite_index = spriteClimb;
+			image_speed = speedClimb;
+		
+			if y < -sprite_height
+				y = -sprite_height;
     
-	    global.xspeed = 0;
-	    global.yspeed = 0;
-    
-	    if ladder >= 0 && global.keyUp && !global.keyDown
-	        x = ladder.x+8;
-	    else if ladderDown >= 0
-	    {
-	        x = ladderDown.x+8;
-	        y += climbSpeed * 2 + 2;
-	        ground = false;
-			canJump = false;
-	    }
-    
-	    sprite_index = spriteClimb;
-	    image_speed = speedClimb;
-    
-	    ladderXScale = image_xscale;
-	    climbShootXscale = ladderXScale;
+			ladderXScale = image_xscale;
+			climbShootXscale = ladderXScale;
+		}
 	}
 
 
@@ -1193,7 +1273,7 @@ function playerStep() {
 	    canInitStep = false;
 		stepTimer = 0;
 		cancelStep = false;
-    
+
 	    //Movement
 	    if global.keyUp && !global.keyDown && isShoot == false && isThrow == false
 	    {
@@ -1209,6 +1289,8 @@ function playerStep() {
 	    {
 	        global.yspeed = 0;
 	    }
+		
+		_total_yspeed = global.yspeed + global.yforce;
     
 	    //Left/right
 	    if global.keyRight && !global.keyLeft
@@ -1235,13 +1317,19 @@ function playerStep() {
 	        sprite_index = spriteClimb;
 			image_speed = speedClimb;
 	    }
+		
+		if y < -sprite_height
+			y = -sprite_height;
     
 	    //Releasing the ladder
-	    if (ground == true && !global.keyUp) || !place_meeting(x, y, objLadder) || (global.keyJumpPressed && !global.keyUp)
+	    if (ground == true && global.keyDown) || !place_meeting(x, y, objLadder) || (_shouldJump && !global.keyUp)
 	    {
+			mask_index = mskMegaman;
+			if (_shouldJump && !global.keyUp) && (!locked && !showReady && !teleporting && !landing) global.hasJumped = true;
 	        climbing = false;
 	        canMove = true;
 			canJump = true;
+			jumps = 0;
 			if (!isShoot and !isThrow) or global.weapons[global.currentWeapon].freeShot
 			{
 				canWalk = true;
@@ -1272,6 +1360,7 @@ function playerStep() {
 				
 	            ground = true;  //To avoid "falling" after climbing (shouldn't play the landing sfx)
 				canJump = true;
+				jumps = 0;
 	            if (global.keyRight && !global.keyLeft) || (global.keyLeft && !global.keyRight) {
 	                sprite_index = spriteWalk;
 					image_speed = speedWalk;
@@ -1303,9 +1392,13 @@ function playerStep() {
 	                y = topSolidID.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
                 
 				canJump = true;
+				jumps = 0;
 	            playLandSound = false;
 	            playLandSoundTimer = 0;
 	        }
+			
+			_total_xspeed = global.xspeed + global.xforce;
+			_total_yspeed = global.yspeed + global.yforce;
 	    }
 	}
 
@@ -1319,28 +1412,28 @@ function playerStep() {
 		currentWater = instance_place(x, y, objWater);
 		if currentWater >= 0 && (insideViewObj_Spr(currentWater) or currentWater.bbox_bottom <= sectionTop)
 		{
-		    if bbox_bottom <= currentWater.bbox_top+global.yspeed+1
+		    if bbox_bottom <= currentWater.bbox_top+_total_yspeed+1
 			&& currentWater.bbox_top < sectionBottom
 			&& currentWater.bbox_top > sectionTop
 		    {
 				instance_create(x, currentWater.bbox_top+1, objSplash);
 				playSFX(sfxSplash);
 		    }
-			else if bbox_top >= currentWater.bbox_bottom+global.yspeed-1
+			else if bbox_top >= currentWater.bbox_bottom+_total_yspeed-1
 			&& currentWater.bbox_bottom < sectionBottom
 			{
 				var splash = instance_create(x, currentWater.bbox_bottom-1, objSplash);
 				splash.image_yscale = -1;
 				playSFX(sfxSplash);
 			}
-			if bbox_right <= currentWater.bbox_left+global.xspeed+1
+			if bbox_right <= currentWater.bbox_left+_total_xspeed+1
 			&& currentWater.bbox_left > sectionLeft
 			&& currentWater.bbox_left < sectionRight
 		    {
 				instance_create(currentWater.bbox_left+1, y, objSplashH);
 				playSFX(sfxSplash);
 		    }
-			else if bbox_left >= currentWater.bbox_right+global.xspeed-1
+			else if bbox_left >= currentWater.bbox_right+_total_xspeed-1
 			&& currentWater.bbox_right > sectionLeft
 			&& currentWater.bbox_right < sectionRight
 			{
@@ -1396,8 +1489,8 @@ function playerStep() {
 	if inWater == true
 	{
 	    var wtr;
-	    wtr = instance_place(x-global.xspeed, y-global.yspeed, objWater);
-	    if wtr >= 0 && !place_meeting(x+sign(global.xspeed), y+sign(global.yspeed), objWater)
+	    wtr = instance_place(x-_total_xspeed, y-_total_yspeed, objWater);
+	    if wtr >= 0 && !place_meeting(x+sign(_total_xspeed), y+sign(_total_yspeed), objWater)
 	    {
 	        if bbox_bottom < wtr.bbox_top+1
 	        {
@@ -1478,24 +1571,32 @@ function playerStep() {
 		//Just in case we get into a situation that results in the sprite and image speeds not matching when the hit animation is cancelled
 		if sprite_index != spriteHit {
 			
-			if sprite_index = spriteStand
+			if sprite_index == spriteStand
 				image_speed = speedStand;
-			else if sprite_index = spriteStep
+			else if sprite_index == spriteStep
 				image_speed = speedStep;
-			else if sprite_index = spriteJump
+			else if sprite_index == spriteJump
 				image_speed = speedJump;
-			else if sprite_index = spriteWalk
+			else if sprite_index == spriteWalk
 				image_speed = speedWalk;
-			else if sprite_index = spriteSlide
+			else if sprite_index == spriteSlide
 				image_speed = speedSlide;
-			else if sprite_index = spriteStun
+			else if sprite_index == spriteDash
+				image_speed = speedDash;
+			else if sprite_index == spriteStun
 				image_speed = speedStun;
-			else if sprite_index = spriteClimb
+			else if sprite_index == spriteClimb
 				image_speed = speedClimb;
-			else if sprite_index = spriteGetup
+			else if sprite_index == spriteGetup
 				image_speed = speedGetup;
-			else if sprite_index = spriteTeleport
+			else if sprite_index == spriteTeleport
 				image_speed = speedTeleport;
+			else if sprite_index == spriteLand
+				image_speed = speedLand;
+			else if sprite_index == spriteAbsorbTransition
+				image_speed = speedAbsorbTransition;
+			else if sprite_index == spriteAbsorb
+				image_speed = speedAbsorb;
 			
 		}
 		
@@ -1507,10 +1608,17 @@ function playerStep() {
         
 	        //When sliding and there's a solid above us, we should not experience knockback
 	        //If we did, we would clip inside the ceiling above us
-	        if !locked && !((isSlide or isStun) && (place_meeting(x, y-7, objSolid) || place_meeting(x, y-7, prtMovingPlatformSolid))) {
+	        if !locked && !((isSlide or isStun) && (place_meeting(x, y-(7+(2*isDash)), objSolid) || place_meeting(x, y-(7+(2*isDash)), prtMovingPlatformSolid))) {
 	            canMove = true;
 				canWalk = true;
 	            canSpriteChange = true;
+				
+				if isFly && !flying {
+					flying = true;
+				}
+				if isRollback && !rollbackMovement {
+					rollbackMovement = true;
+				}
 	        }
         
 	        invincibilityTimer = invincibilityTime;
@@ -1520,7 +1628,33 @@ function playerStep() {
 	            drawHitspark = true;
 	        else
 	            drawHitspark = false;
+			
+			if knockbackAmount != 0
+			{
+				if image_xscale < 0 { _xc = clamp(abs(_total_xspeed), 0.5, 1); }
+				else { _xc = clamp(abs(_total_xspeed), 0.500005, 1); }
+			
+				if (image_xscale >= 0 and !(bbox_left+_total_xspeed-_xc < sectionLeft or bbox_left+_total_xspeed-_xc < 0))
+				|| (image_xscale < 0 and !(bbox_right+_total_xspeed+_xc > sectionRight or bbox_right+_total_xspeed+_xc > room_width))
+				{
+			        if !place_meeting(x-(_xc * image_xscale), y, objSolid) && !place_meeting(x-(_xc * image_xscale), y, prtMovingPlatformSolid)
+			            global.xspeed = image_xscale * -knockbackAmount;
+			        else if place_meeting(x-(_xc * image_xscale), y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+			        {
+			            if instance_place(x-(_xc * image_xscale), y, prtMovingPlatformSolid).dead == true
+			                global.xspeed = image_xscale * -knockbackAmount;
+			        }
+				}
+			}
+			else
+			{
+				if !place_meeting(x, y+1, objIce)
+					global.xspeed = 0;
+			}
 	    }
+		
+		_total_xspeed = global.xspeed + global.xforce;
+		_total_yspeed = global.yspeed + global.yforce;
 	}
 
 
@@ -1537,10 +1671,14 @@ function playerStep() {
 	    }
 	    else
 	    {
-	        if invincibilityTimer mod 2 == 1 //(invincibilityTimer mod 4 == 3 or invincibilityTimer mod 4 == 2)
+	        if (invincibilityTimer mod 4 == 3 or invincibilityTimer mod 4 == 2)
+			{
 	            visible = false;
+			}
 	        else
+			{
 	            visible = true;
+			}
 	    }
 	}
 	
@@ -1554,33 +1692,34 @@ function playerStep() {
 			stunTimer = 0;
 			isStun = false;
 			
+			if stunKnockbackSpeed != 0
+			{
+				if !place_meeting(x, y+1, objIce)
+					global.xspeed = 0;
+					
+				_total_xspeed = global.xspeed + global.xforce;
+					
+				stunKnockbackSpeed = 0;
+			}
+			
 	        if !locked {
-				var mySolid = instance_place(x, y+1, objSolid);
-				if mySolid < 0
-					if place_meeting(x, y+1, prtMovingPlatformSolid) && !instance_place(x, y+1, prtMovingPlatformSolid).dead
-						mySolid = instance_place(x, y+1, prtMovingPlatformSolid);
-						
-				if mySolid >= 0 {
-					instance_deactivate_object(mySolid.id);
-					if (collision_rectangle(bbox_left+(3-(image_xscale < 0)), bbox_top-2, bbox_right-(2+(image_xscale < 0)), bbox_bottom, objSolid, false, false) >= 0
-					|| (collision_rectangle(bbox_left+(3-(image_xscale < 0)), bbox_top-2, bbox_right-(2+(image_xscale < 0)), bbox_bottom, prtMovingPlatformSolid, false, false) >= 0 and !collision_rectangle(bbox_left+(3-(image_xscale < 0)), bbox_top-2, bbox_right-(2+(image_xscale < 0)), bbox_bottom, prtMovingPlatformSolid, false, false).dead)) {
-						global._health = 0;
-						sprite_index = spriteStand;
-						image_speed = speedStand;
-					}
-					else {
-						canMove = true;
-						canWalk = true;
-			            canSpriteChange = true;
-						mask_index = mskMegaman;
-					}
-					instance_activate_object(mySolid.id);
+				canMove = true;
+				canWalk = true;
+		        canSpriteChange = true;
+				
+				if isFly && !flying {
+					flying = true;
 				}
-				else {
-					canMove = true;
-					canWalk = true;
-		            canSpriteChange = true;
-					mask_index = mskMegaman;
+				if isRollback && !rollbackMovement {
+					rollbackMovement = true;
+				}
+				
+				mask_index = mskMegaman;
+				playerCrush();
+				if global._health <= 0
+				{
+					sprite_index = spriteStand;
+					image_speed = speedStand;
 				}
 	        }
 			else {
@@ -1589,9 +1728,32 @@ function playerStep() {
 		}
 		else
 		{
-			if !place_meeting(x, y+1, objIce)
-				global.xspeed = 0;
+			if stunKnockbackSpeed != 0
+			{
+				if image_xscale < 0 { _xc = clamp(abs(_total_xspeed), 0.5, 1); }
+				else { _xc = clamp(abs(_total_xspeed), 0.500005, 1); }
+			
+		        if (image_xscale >= 0 and !(bbox_left+_total_xspeed-_xc < sectionLeft or bbox_left+_total_xspeed-_xc < 0))
+				|| (image_xscale < 0 and !(bbox_right+_total_xspeed+_xc > sectionRight or bbox_right+_total_xspeed+_xc > room_width))
+				{
+					if !place_meeting(x-(_xc * image_xscale), y, objSolid) && !place_meeting(x-(_xc * image_xscale), y, prtMovingPlatformSolid)
+			            global.xspeed = stunKnockbackSpeed;
+			        else if place_meeting(x-(_xc * image_xscale), y, prtMovingPlatformSolid) //Still walk when the moving platform is despawned
+			        {
+			            if instance_place(x-(_xc * image_xscale), y, prtMovingPlatformSolid).dead == true
+			                global.xspeed = stunKnockbackSpeed;
+			        }
+				}
+			}
+			else
+			{
+				if !place_meeting(x, y+1, objIce)
+					global.xspeed = 0;
+			}
 		}
+		
+		_total_xspeed = global.xspeed + global.xforce;
+		_total_yspeed = global.yspeed + global.yforce;
 	}
 	
 	
@@ -1610,6 +1772,7 @@ function playerStep() {
 	if global._health <= 0 {
 		dead = true;
 		canPause = false;
+		with objPauseMenu instance_destroy();
 		invincibilityTimer = 0;
 		
 		if killTime <= 0 {
@@ -1619,8 +1782,21 @@ function playerStep() {
 		        i = 0;
 		        repeat 8 {
 		            explosionID = instance_create(x, y, objMegamanExplosion);
+					explosionID.depth = -3;
 		            explosionID.dir = i;
 		            explosionID.spd = 1.5;
+					with objBossDeathTimer {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
+					with objArenaStartingPoint {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
                 
 		            i += 45;
 		        }
@@ -1628,8 +1804,21 @@ function playerStep() {
 		        i = 0;
 		        repeat 8 {
 		            explosionID = instance_create(x, y, objMegamanExplosion);
+					explosionID.depth = -3;
 		            explosionID.dir = i;
 		            explosionID.spd = 2.5;
+					with objBossDeathTimer {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
+					with objArenaStartingPoint {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
                 
 		            i += 45;
 		        }
@@ -1653,6 +1842,13 @@ function playerStep() {
 		}
 		else {
 			global.frozen = true;
+			visible = false;
+			with objBossDeathTimer {
+				if isMM visible = false;
+			}
+			with objArenaStartingPoint {
+				if isMM visible = false;
+			}
 			stopAllSFX();
 		}
 	}
@@ -1669,6 +1865,8 @@ function playerStep() {
 	{
 	    canMinJump = true;
 	}
+	
+	_total_yspeed = global.yspeed + global.yforce;
 
 
 	if pltSpeedX == 0 && pltSpeedY == 0 && prevPltSpeedX == 0 && prevPltSpeedY == 0 && !pushedBySpawnedSolid
@@ -1687,26 +1885,36 @@ function playerStep() {
                     meetingPlatform = true;
             }
                 
-            if !meetingPlatform
+            if !meetingPlatform && !crushed
 				escapeWall(true, true, true, true);
 				
 			instance_activate_object(myPlt.id);
 		}
 		else
 		{
-			escapeWall(true, true, true, true);
+			if !crushed escapeWall(true, true, true, true);
 		}
 	}
 	
-	if global.yspeed == 0 && !place_meeting(x, y+2, objSolid) && (!place_meeting(x, y+2, prtMovingPlatformSolid)
+	if _total_yspeed == 0 && !place_meeting(x, y+2, objSolid) && (!place_meeting(x, y+2, prtMovingPlatformSolid)
 	|| instance_place(x, y+2, prtMovingPlatformSolid).dead) && movedPlatformID == -20 && !pushedBySpawnedSolid
-		escapeWall(false, false, false, true);
+	{
+		if !crushed
+			escapeWall(false, false, false, true);
+	}
 
 	if place_free(x, y)
 	{
 		prevPltSpeedX = pltSpeedX;
 		prevPltSpeedY = pltSpeedY;
 	}
+	
+	
+	//global.xspeed += global.xforce;
+	//global.yspeed += global.yforce;
+	//_x_rb = global.xspeed;
+	//_y_rb = global.yspeed;
+	print(global.xspeed);
 
 
 

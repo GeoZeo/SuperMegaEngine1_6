@@ -8,6 +8,9 @@ function deactivateUnimportantObjects() {
 	if (!instance_exists(objBeat) or !objBeat.target_found) instance_activate_object(prtPlayer);
 	instance_activate_object(objGlobalControl);
 	instance_activate_object(objHealthWeaponBar);
+	instance_activate_object(objCheckpointFlag);
+	instance_activate_object(objAutoScroll);
+	instance_activate_object(objGravityChanger);
 	instance_activate_object(objMusicPlayer);
 
 	instance_activate_object(objBossDoor);
@@ -15,13 +18,23 @@ function deactivateUnimportantObjects() {
 	instance_activate_object(objTeleport);
 	
 	instance_activate_object(prtScenery);
+	
+	instance_activate_object(objBackTileShader);
+	instance_activate_object(objBackTileShaderReset);
+	instance_activate_object(objFrontTileShader);
+	instance_activate_object(objBackTileShaderReset);
+	
+	instance_activate_object(objBackgroundFX);
+	
+	instance_activate_object(objAchievementBox);
+	instance_activate_object(objAchievementBoxSmall);
 
 
 	//Objects that should remain activated, but without animation (disabled animation code is in the object itself)
 	instance_activate_object(objMM2Conveyor);
 	
 	
-	//Player projectiles that persist during 
+	//Player projectiles that persist during a scroll
 	instance_activate_object(prtPlayerProjectile);
 	with prtPlayerProjectile
 	{
@@ -38,16 +51,30 @@ function deactivateUnimportantObjects() {
 	{
 	    instance_activate_object(prtPlayerProjectile);
 	    instance_activate_object(prtEnemyProjectile);
+		instance_activate_object(objDeflectedProjectile);
 	    instance_activate_object(objReflectedProjectile);
 	    instance_activate_object(prtEffect);
 	    instance_activate_object(prtRush);
-	    instance_activate_object(objRushJet); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
+	    instance_activate_object(objRushJet); //Could not be parented to prtRush since it's parented to prtMovingPlatformJumpthrough
 	    instance_activate_object(prtPickup);
     
 	    //Objects that have different code off-screen
 	    instance_activate_object(prtEnemy);
 	    instance_activate_object(prtGimmick);
+		instance_activate_object(prtSolidGimmick);
 	    instance_activate_object(objBossControl);
+		instance_activate_object(objEddie);
+		
+		with objEddie
+		{
+			if !called
+			{
+				if global.eddieInstance == id global.eddieInstance = -1;
+				if itemCollected instance_destroy();
+				event_user(0);
+				instance_deactivate_object(id);
+			}
+		}
 	}
 
 	instance_activate_object(prtMovingPlatformSolid);   //Moving platforms with keepOnSwitch should be kept visibile and moving

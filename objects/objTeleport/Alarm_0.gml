@@ -1,7 +1,7 @@
 /// @description  Go to destination
 
 //Move camera to destination
-if !prtPlayer.showReady && !prtPlayer.teleporting
+if !prtPlayer.showReady && !prtPlayer.teleporting && !prtPlayer.landing
 {
 	prtPlayer.x = toX - (cfgPushStartingPosBack * toDir);
 	prtPlayer.y = toY;

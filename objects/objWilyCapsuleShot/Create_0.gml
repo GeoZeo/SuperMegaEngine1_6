@@ -5,5 +5,6 @@ alarm[0] = room_speed * 0.5;
 contactDamage = 8;
 reflectible = false;
 destroyOnReflect = true;
-image_speed = 0.5;
+explosionEffectReflect = true;
+image_speed = 20 / room_speed;
 

@@ -8,9 +8,20 @@ eyeTimer = 0;
 hitWhite = false;
 makeShadow = false;
 projCanTouch = false;
+shieldCanTouch = false;
+projCanTouchStart = projCanTouch;
+shieldCanTouchStart = shieldCanTouch;
+invincibilityTime = 8;
 depthFinalised = false;
+repeatHitSound = false;
+
+enableHit = true;
+disableHit = true;
 
 contactDamage = 4;
+
+healthBarPrimaryCol = make_color_rgb(228, 0, 88);
+healthBarSecondaryCol = make_color_rgb(252, 252, 252);
 
 damage[objStarCrash] = 4;
 

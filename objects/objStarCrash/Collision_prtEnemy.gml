@@ -1,36 +1,42 @@
-if !other.projCanTouch return false;
+if cfgEnableProjectileCollisionStacking return false;
+
+if !other.shieldCanTouch return false;
 
 with other {
-    if reflectProjectiles == false && damage[other.object_index] != 0
-    && !(reflectProjectilesLeft == true && sprite_get_xcenter_object(other.id) < sprite_get_xcenter())
-    && !(reflectProjectilesRight && sprite_get_xcenter_object(other.id) > sprite_get_xcenter())
-    && (!useHitBox || collision_rectangle(x + hitbox_left * sign(image_xscale), y + hitbox_top, x + hitbox_right * sign(image_xscale), y + hitbox_bottom, other, false, true)) {
-        if dead == false && dying == false
-        {
-            if canHit == true
-            {
-                drawDamageNumber(x, y, damage[other.object_index]);
-                healthpoints -= damage[other.object_index];
-                if !hitWhite || healthpoints <= 0 visible = false;
-            }
-            alarm[11] = 2;
-            with other instance_destroy();
+	if (!reflectProjectiles or other.pierceReflectors) && damage[other.object_index] != 0
+	&& (!(reflectProjectilesLeft && sprite_get_xcenter_object(other.id) < sprite_get_xcenter()) or other.pierceReflectors)
+	&& (!(reflectProjectilesRight && sprite_get_xcenter_object(other.id) > sprite_get_xcenter()) or other.pierceReflectors)
+	&& (!useHitBox || collision_rectangle(x + hitbox_left * sign(image_xscale), y + hitbox_top, x + hitbox_right * sign(image_xscale), y + hitbox_bottom, other, false, true)) {
+		if dead == false && dying == false
+		{
+			if canHit == true
+			{
+			    drawDamageNumber(x, y, damage[other.object_index]);
+			    healthpoints -= damage[other.object_index];
+			    if !object_is_ancestor(object_index, prtBoss) {
+					if !hitWhite || healthpoints <= 0 visible = false;
+					event_user(14);
+				}
+			}
+			alarm[11] = flashTime;
+			with other
+			{
+				event_user(15);
+				instance_destroy();
+			}
             
-            if other.xspeed == 0 //When it is not yet fired
-            {
-                global.weapons[global.currentWeapon].ammo -= global.weapons[global.currentWeapon].consumptionContact;
-                if global.weapons[global.currentWeapon].ammo <= 0
-                    global.weapons[global.currentWeapon].ammo = 0;
-            }
+			with other event_user(14);
+			event_user(14);
+			if (playHitSound and canPlayHitSound) && other.allowHitSound playSFX(sfxEnemyHit);
             
-            playSFX(sfxEnemyHit);
-            
-            check_enemy_death();
-        }
-    }
-    else
-    {
-        event_user(0); //Reflect the projectiles
-    }
+			check_enemy_death();
+		}
+	}
+	else
+	{
+		other.reflected = true;
+		with other event_user(14);
+		with other event_user(15);
+		event_user(0); //Reflect the projectiles
+	}
 }
-

@@ -1,10 +1,13 @@
 event_inherited();
 
-maxRadius = 64;
+maxRadius = 72;
 centerX = 0;
 centerY = 0;
 
 contactDamage = 6;
+
+healthBarPrimaryCol = make_color_rgb(72, 205, 222);
+healthBarTimerMax = 0;
 
 damage[objPharaohShot] = 2;
 damage[objPharaohShotCharging] = 2;
@@ -27,7 +30,10 @@ damage[objDrillBombExplosion] = 0;
 
 sprite_index = -1;
 
+explosionDepth = 0;
+
 hitSpark = true;
 hitWhite = false;
 makeShadow = false;
+isFlash = false;
 

@@ -28,6 +28,9 @@ function save_configs() {
 	ds_map_add(map, "selectButton", global.selectButton);
 	ds_map_add(map, "weaponSwitchLeftButton", global.weaponSwitchLeftButton);
 	ds_map_add(map, "weaponSwitchRightButton", global.weaponSwitchRightButton);
+	
+	//Window configurations
+	//ds_map_add(map, "")
 
 	ds_map_secure_save(map, "config.dat");
 

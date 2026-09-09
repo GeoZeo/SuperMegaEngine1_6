@@ -3,7 +3,7 @@ function projectileCount() {
 
 	var count = 0;
 	
-	with objReflectedProjectile {
+	with objDeflectedProjectile {
 		if id_of_origin == prtPlayer count++;
 	}
 

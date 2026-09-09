@@ -14,9 +14,7 @@ function playerPause() {
 		drawWeaponIcon = false;
 		drawWeaponIconTimer = -1;
 
-	    global.frozen = true;
-	    instance_create(x, y, objPauseMenu);
-	    playSFX(sfxPause);
+	    pause = true;
 	}
 
 

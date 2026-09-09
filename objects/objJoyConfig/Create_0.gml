@@ -33,7 +33,7 @@ key[9] = global.selectButton;
 
 var current_item = 10;
 if cfgEnableSlideKey {
-    menu[current_item] = "SLIDE";
+    menu[current_item] = "SLIDE/DASH";
     key[current_item] = global.slideButton;
     current_item++;
 }
@@ -48,6 +48,8 @@ selected = 0;
 
 surePhase = false;
 isSure = false;
+
+confirmedPhase = false;
 
 timer = 0;
 

@@ -27,13 +27,13 @@ function loadGame(argument0) {
 	        }
 	    }
 	}
-	for (var i = 0; object_exists(i); i++) {
-		if object_get_parent(i) == prtAchievement {
-			if map[? ("achievement" + string(i))] == true {
-				add_achievement(i);
-			}
-		}
-	}
+	//for (var i = 0; object_exists(i); i++) {
+	//	if object_get_parent(i) == prtAchievement {
+	//		if map[? ("achievement" + string(i))] == true {
+	//			add_achievement(i, false);
+	//		}
+	//	}
+	//}
 	show_debug_message("Game loaded.");
 
 

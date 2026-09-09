@@ -6,8 +6,10 @@ else if teleporting == true
 {
     if round(global.viewY-16+teleportY) >= y && shouldLand == true
     {
-        if teleportTimer == 0
+        if teleportTimer == 0 && playTeleportSound {
             playSFX(sfxTeleportIn);
+			playTeleportSound = false;
+		}
         
         //Done teleporting; play a little animation before giving Mega Man control
         if teleportTimer != 9   //Rush disappears for one frame
@@ -19,15 +21,22 @@ else if teleporting == true
             image_index = 0;
         else if teleportTimer == 6
             image_index = 2;
-        else if (teleportTimer = 9 && !collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false))
-        || (teleportTimer == 15 && collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false))
+        else if (teleportTimer = 9
+		&& !(collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false)
+		or collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objBossDoor, false, false)
+		or (collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, prtMovingPlatformSolid, false, false)
+		and !collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, prtMovingPlatformSolid, false, false).dead)))
+        || (teleportTimer == 15
+		&& (collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false)
+		or collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objBossDoor, false, false)
+		or (collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, prtMovingPlatformSolid, false, false)
+		and !collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, prtMovingPlatformSolid, false, false).dead)))
         {
             teleporting = false;
             teleportTimer = 0;
             teleportY = 0;
 			currentTeleportSpeed = 0;
-            if !collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false)
-                canCoil = true;
+			playTeleportSound = true;
             sprite_index = sprRushJet;
             dead = false;
             exit;
@@ -47,37 +56,41 @@ else if teleporting == true
     {
         //Teleporting downwards
         draw_sprite_ext(sprite_index, image_index, round(x), round(global.viewY-16+teleportY), image_xscale, image_yscale, image_angle, c_white, 1);
-        if !prtPlayer.ground && !place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, objSolid)
-		&& (!place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid) or instance_place(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid).dead){
-            y = round(sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed);
+        
+		if recalcSpawn
+		{
+			if !prtPlayer.ground && !place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, objSolid)
+			&& (!place_meeting(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid) or instance_place(x, sprite_get_ycenter_object(prtPlayer) + 16, prtMovingPlatformSolid).dead) {
+	            y = round(sprite_get_ycenter_object(prtPlayer) + 24 + global.yspeed);
 			
-			//This pushes us out of ceiling/ground solids we may be jumping into if needs be.
-			if place_meeting(x, y, objSolid)
-			{
-				var mySolid = instance_place(x, y, objSolid)
-				if mySolid >= 0
+				//This pushes us out of ceiling/ground solids we may be jumping into if needs be.
+				if place_meeting(x, y, objSolid)
 				{
-					if y <= round(mySolid.y)
-						y += round(mySolid.bbox_top - bbox_bottom);
-					else
-						y += round(mySolid.bbox_bottom - bbox_top);
+					var mySolid = instance_place(x, y, objSolid)
+					if mySolid >= 0
+					{
+						if y <= round(mySolid.y)
+							y += round(mySolid.bbox_top - bbox_bottom);
+						else
+							y += round(mySolid.bbox_bottom - bbox_top);
+					}
 				}
-			}
-			else if place_meeting(x, y, prtMovingPlatformSolid)
-			{
-				var mySolid = instance_place(x, y, prtMovingPlatformSolid)
-				if mySolid >= 0 && !mySolid.dead
+				else if place_meeting(x, y, prtMovingPlatformSolid)
 				{
-					if y <= round(mySolid.y)
-						y += round(mySolid.bbox_top - bbox_bottom);
-					else
-						y += round(mySolid.bbox_bottom - bbox_top);
+					var mySolid = instance_place(x, y, prtMovingPlatformSolid)
+					if mySolid >= 0 && !mySolid.dead
+					{
+						if y <= round(mySolid.y)
+							y += round(mySolid.bbox_top - bbox_bottom);
+						else
+							y += round(mySolid.bbox_bottom - bbox_top);
+					}
 				}
-			}
-        }
-        else {
-            y = round(sprite_get_ycenter_object(prtPlayer) - 8);
-        }
+	        }
+	        else {
+	            y = round(sprite_get_ycenter_object(prtPlayer) - 8);
+	        }
+		}
 		
         if global.frozen == false {
 			if abs(cfgRushTeleportAcc) > 0 {

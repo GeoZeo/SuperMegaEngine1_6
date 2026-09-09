@@ -3,7 +3,9 @@ function playerSwitchWeapons() {
 	//Allows for quick weapon switching
 	//If you do not want quick weapon switching in your game, simply remove the script from prtPlayer's step event
 
-	if (canSwitch || cfgSwitchWeaponsWhileLocked) && ((!instance_exists(objArenaStartingPoint) or !objArenaStartingPoint.isMM) or cfgSwitchWeaponsWhileTransitioning) {
+	if (canSwitch || cfgSwitchWeaponsWhileLocked)
+	&& (!(instance_exists(objBossDeathTimer) and locked) or !cfgLockSwitchingOnBossDeath)
+	&& ((!instance_exists(objArenaStartingPoint) or !objArenaStartingPoint.isMM) or cfgSwitchWeaponsWhileTransitioning) {
 		if global.totalWeapons < 2 or room == rmWeaponGet {
 		    return false;
 		}
@@ -11,7 +13,10 @@ function playerSwitchWeapons() {
 		var switched = false;
 
 		//Switching to the left
-		if global.keyWeaponSwitchLeftPressed {
+		var _shouldLSwitch = (!cfgSwitchWeaponsWhileLocked and cfgEnableBuffering and global.keyWeaponSwitchLeft and !global.hasSwitchedL and room != rmWeaponGet) || global.keyWeaponSwitchLeftPressed;
+		if _shouldLSwitch {
+			if (!locked && !showReady && !teleporting && !landing) global.hasSwitchedL = true;
+			
 		    global.weapons[global.currentWeapon].initChargeTimer = 0;
 		    global.weapons[global.currentWeapon].chargeTimer = 0;
 			global.weapons[global.currentWeapon].chargeAnimTimer = 0;
@@ -33,7 +38,7 @@ function playerSwitchWeapons() {
 		    event_user(0); //Colors
     
 		    with prtPlayerProjectile if destroyOnSwitch instance_destroy();
-		    with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+		    with objDeflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 		    with prtRush instance_destroy();
 		    with objRushJet instance_destroy();
 		    shootTimer = 20;
@@ -51,7 +56,10 @@ function playerSwitchWeapons() {
 		}
 
 		//Switching to the right
-		if global.keyWeaponSwitchRightPressed {
+		var _shouldRSwitch = (!cfgSwitchWeaponsWhileLocked and cfgEnableBuffering and global.keyWeaponSwitchRight and !global.hasSwitchedR and room != rmWeaponGet) || global.keyWeaponSwitchRightPressed;
+		if _shouldRSwitch {
+			if (!locked && !showReady && !teleporting && !landing) global.hasSwitchedR = true;
+			
 		    global.weapons[global.currentWeapon].initChargeTimer = 0;
 		    global.weapons[global.currentWeapon].chargeTimer = 0;
 			global.weapons[global.currentWeapon].chargeAnimTimer = 0;
@@ -73,7 +81,7 @@ function playerSwitchWeapons() {
 		    event_user(0); //Colors
     
 		    with prtPlayerProjectile if destroyOnSwitch instance_destroy();
-		    with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+		    with objDeflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 		    with prtRush instance_destroy();
 		    with objRushJet instance_destroy();
 		    shootTimer = 20;
@@ -91,7 +99,7 @@ function playerSwitchWeapons() {
 		}
 
 		//Holding the left and right weapon switch keys at the same time results in the default weapon being selected
-		if global.keyWeaponSwitchLeft && global.keyWeaponSwitchRight && global.weapon != global.defaultWeapon.ID {
+		if global.keyWeaponSwitchLeft && global.keyWeaponSwitchRight && global.weapon != objMegaBusterWeapon.ID {
 		    global.weapons[global.currentWeapon].initChargeTimer = 0;
 		    global.weapons[global.currentWeapon].chargeTimer = 0;
 			global.weapons[global.currentWeapon].chargeAnimTimer = 0;
@@ -110,7 +118,7 @@ function playerSwitchWeapons() {
 		    event_user(0); //Colors
     
 		    with prtPlayerProjectile if destroyOnSwitch instance_destroy();
-		    with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+		    with objDeflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 		    with prtRush instance_destroy();
 		    with objRushJet instance_destroy();
 		    shootTimer = 20;
@@ -132,7 +140,7 @@ function playerSwitchWeapons() {
 			if (instance_exists(objSectionSwitcher) && cfgSwitchWeaponsWhileTransitioning) {
 				if (isShoot or isThrow)
 				{
-					if !isSlide && !isHit && !teleporting && !climbing
+					if !isSlide && !isHit && !teleporting && !landing && !climbing
 					{
 						with objSectionSwitcher
 						{
@@ -145,6 +153,8 @@ function playerSwitchWeapons() {
 							{
 								sprite_index = other.spriteStandDefault;
 								image_speed = other.speedStandDefault;
+								other.blinkTimer = 0;
+								other.blinkImage = 0;
 							}
 							else if sprite_index = other.spriteWalk && sprite_index != other.spriteWalkDefault 
 							{

@@ -9,11 +9,6 @@ if !global.frozen && !dead && !dying {
         else
             image_xscale = -1;
     }
-    
-	if instance_exists(prtPlayer) {
-		player_x = sprite_get_xcenter_object(prtPlayer);
-		player_y = sprite_get_ycenter_object(prtPlayer);
-	}
 	
 	dirX = player_x - sprite_get_xcenter();
     dirY = player_y - sprite_get_ycenter();
@@ -26,10 +21,11 @@ if !global.frozen && !dead && !dying {
         //generalCollision();
         if !place_free(x, y + yspeed) && place_free(x, y) {
             
-			var mySolid = instance_place(x, y + yspeed, objSolid)
+			var mySolid = instance_place(x, y + yspeed, objSolid);
+			if mySolid < 0 mySolid = instance_place(x, y + yspeed, objBossDoorH);
 			if mySolid < 0
 				if place_meeting(x, y + yspeed, prtMovingPlatformSolid) && !instance_place(x, y + yspeed, prtMovingPlatformSolid).dead
-					mySolid = instance_place(x, y + yspeed, prtMovingPlatformSolid)
+					mySolid = instance_place(x, y + yspeed, prtMovingPlatformSolid);
 					
 			if mySolid >= 0
 			{
@@ -40,6 +36,10 @@ if !global.frozen && !dead && !dying {
 			}
 			
 			yspeed = 0;
+		}
+		else if !place_free(x, y) {
+			escapeWall(true, true, false, false);
+			xspeed = 0;
 		}
         
         if (yspeed == 0) {
@@ -57,10 +57,10 @@ if !global.frozen && !dead && !dying {
             if canMoveTimer moveTimer += update_rate;
             xspeed = 0;
             if (moveTimer >= 180) {
-                image_speed = 0.1;
+                image_speed = 0.2;
             }
             
-            if (floor(image_index) == 2) {
+            if (floor(image_index) == 4) {
                 moving = true;
 				canMoveTimer = false;
                 image_speed = 0;
@@ -83,19 +83,19 @@ if !global.frozen && !dead && !dying {
         image_speed = 0;
         counter += update_rate;
         
-        if floor(counter) == 8 {
-            counter = 9;
-            if (floor(image_index) == 2) {
+        if floor(counter) == 5 {
+            counter = 6;
+            if (floor(image_index) == 4) {
                 counter = 0;
-                image_index = 3;
+                image_index = 5;
             }
-            else if (floor(image_index) == 3) {
+            else if (floor(image_index) == 5) {
+                counter = 0;
+                image_index = 6;
+            }
+            else if (floor(image_index) == 6) {
                 counter = 0;
                 image_index = 4;
-            }
-            else if (floor(image_index) == 4) {
-                counter = 0;
-                image_index = 2;
             }
         }
     }

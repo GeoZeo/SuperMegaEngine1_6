@@ -2,12 +2,12 @@
 event_inherited();
 if !ok return false;    //This line must be on every weapon
 
-var _chargeShotsReflected = 0;
-with objReflectedProjectile
+var _chargeShotsDeflected = 0;
+with objDeflectedProjectile
 {
 	if id_of_origin == prtPlayer 
 	&& sprite_get_name(sprite_index) == "sprPharaohShotCharged"
-		_chargeShotsReflected++;
+		_chargeShotsDeflected++;
 }
 
 if !instance_exists(objPharaohShotCharged)
@@ -21,7 +21,7 @@ if !instance_exists(objPharaohShotCharged)
 	else
 	    attackID.yspeed = 0;
 }
-else if _chargeShotsReflected <= 0 {  //Big shot
+else if _chargeShotsDeflected <= 0 {  //Big shot
 	stopSFX(sfxPharaohShot);
 	
 	with objPharaohShotCharged {

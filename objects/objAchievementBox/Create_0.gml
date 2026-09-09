@@ -6,9 +6,11 @@ arrowTimer = 0;
 phase = 0;
 duration = 2;
 txt = "";
-y = global.viewY + global.viewHeight / 2 - (height / 2) * 8;
-oldFrozen = global.frozen;	
+oldFrozen = global.frozen;
+oldPause = false;
+with prtPlayer other.oldPause = canPause;
 global.frozen = true;
+with prtPlayer canPause = false;
 with objPauseMenu instance_destroy();
 stopSFX(sfxPause);
 

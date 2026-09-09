@@ -11,6 +11,7 @@ healthpointsStart = 2;
 healthpoints = healthpointsStart;
 contactDamage = 4;
 reflectProjectiles = true;
+checkPlayerSpriteCenter = true;
 
 damage[objMetalBlade] = 2;
 
@@ -20,6 +21,10 @@ damage[objPharaohShotCharging] = 2;
 damage[objSilverTomahawk] = 2;
 
 damage[objWindStorm] = 2;
+
+hitWhite = true;
+flashTime = 0.5;
+instantItemSpawn = true;
 
 //Enemy specific code
 canMoveTimer = false;
@@ -33,6 +38,9 @@ image_index = 0;
 dirX = 0;
 dirY = 0;
 len = 0;
+col = 0; //0 = pink wings; 1 = red wings
+
+alarm[0] = 1;
 
 counter = 0;
 

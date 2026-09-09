@@ -1,4 +1,12 @@
+var _oldActive = instance_exists(prtAchievement);
+if !_oldActive instance_activate_object(prtAchievement);
+
 global.frozen = true;
+with prtPlayer canPause = false;
+if timer == 0 {
+	pauseAllSFX();
+	audio_resume_sound(sfxAchievement);
+}
 timer++;
 if timer % 3 == 0 {
     if phase == 0 {
@@ -6,9 +14,6 @@ if timer % 3 == 0 {
         if height >= maxHeight {
             phase = 1;
             timer = 0;
-			if audio_system() == audio_new_system {
-			    audio_pause_all();
-			}
 			playSFX(sfxAchievement);
         }
     }
@@ -25,10 +30,17 @@ if timer % 3 == 0 {
 				if array_length_1d(global.achievementQueue) > 0 {
 					for (var i = 0; i < array_length_1d(global.achievementQueue); i++) {
 						if global.achievementQueue[i] != achievement_index {
-							var box = instance_create(0, 0, objAchievementBox);
+							
+							if !global.achievementQueue[i].smallBox
+								var box = instance_create(0, 0, objAchievementBox);
+							else
+								var box = instance_create(0, 0, objAchievementBoxSmall);
+								
 							box.txt = global.achievementQueue[i].achName;
 							box.achievement_index = global.achievementQueue[i];
-							box.oldFrozen = oldFrozen;
+							if box.object_index == objAchievementBox
+								box.oldFrozen = oldFrozen;
+								
 							achievementFound = true;
 							break;
 						}
@@ -36,9 +48,8 @@ if timer % 3 == 0 {
 				}
 				else {
 					global.frozen = oldFrozen;
-					if audio_system() == audio_new_system {
-					    audio_resume_all();
-					}
+					with prtPlayer canPause = other.oldPause;
+					resumeAllSFX();
 				}
 				instance_destroy();
 			}
@@ -50,14 +61,12 @@ if timer % 3 == 0 {
 					}
 				}
 	            global.frozen = oldFrozen;
-				if audio_system() == audio_new_system {
-				    audio_resume_all();
-				}
+				with prtPlayer canPause = other.oldPause;
+				resumeAllSFX();
 			}
 			instance_destroy();
         }
     }
-    y = global.viewY + global.viewHeight / 2 - (height / 2) * 8;
 }
 if phase == 1 {
 	if !audio_is_playing(sfxAchievement)
@@ -67,4 +76,6 @@ if phase == 1 {
 	)
 		phase = 2;
 }
+
+if !_oldActive instance_deactivate_object(prtAchievement);
 

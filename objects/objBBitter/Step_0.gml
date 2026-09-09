@@ -89,6 +89,9 @@ else {
     }
 	if global.frozen {
 		image_speed = 0;
+		if alarm[10] > 0 {
+			alarm[10]++;
+		}
 	}
 }
 

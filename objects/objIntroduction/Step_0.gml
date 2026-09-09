@@ -1,3 +1,5 @@
+if instance_exists(objFadeout) exit;
+
 //Moving the lines
 var i;
 
@@ -33,6 +35,9 @@ for(i = 0; i < totalLinesDown; i += 1)
         createLineDown[i] = false;
     }
 }
+
+
+if instance_exists(objFadeIn) exit;
 
 
 //Boss animation

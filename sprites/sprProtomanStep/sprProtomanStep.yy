@@ -13,8 +13,8 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f663e74c-7d04-4831-bb18-b0afe8ae10ed",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"89c3a55b-ce68-479e-b405-1496b26ca8ca",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f663e74c-7d04-4831-bb18-b0afe8ae10ed",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -55,8 +55,8 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"f663e74c-7d04-4831-bb18-b0afe8ae10ed","path":"sprites/sprProtomanStep/sprProtomanStep.yy",},},},"Disabled":false,"id":"d95af213-61c3-495f-ad02-15448e563596","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"89c3a55b-ce68-479e-b405-1496b26ca8ca","path":"sprites/sprProtomanStep/sprProtomanStep.yy",},},},"Disabled":false,"id":"f096e7cc-14e4-4571-bc3b-ab1d15fe1b24","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"89c3a55b-ce68-479e-b405-1496b26ca8ca","path":"sprites/sprProtomanStep/sprProtomanStep.yy",},},},"Disabled":false,"id":"f096e7cc-14e4-4571-bc3b-ab1d15fe1b24","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"f663e74c-7d04-4831-bb18-b0afe8ae10ed","path":"sprites/sprProtomanStep/sprProtomanStep.yy",},},},"Disabled":false,"id":"d95af213-61c3-495f-ad02-15448e563596","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

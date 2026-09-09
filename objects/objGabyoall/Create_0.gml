@@ -6,31 +6,32 @@ event_inherited();
 
 contactDamage = 3;
 
-//Example of how to use the spawning/action radii.
-//NOTE: Only use for the default of this enemy by uncommenting and removing from creation code on all instances if you're not too fazed about accuracy to MM1.
-//Highly recommended that you remove any overlap between these and section borders/scroll arrow blocks without changing the positions if you can (check the blue Gabyoall instance creation code in rmBeta for more details).
-//mySpawnArea = instance_create(x-12, bbox_bottom-8, objEnemySpawnArea);
-//mySpawnArea.image_xscale = 1.5;
-//mySpawnArea.image_yscale = 1/2;
-//mySpawnArea.x = x-12; //Demonstration of specifically how to set position on instances; not actually necessary here.
-//mySpawnArea.y = bbox_bottom-8;
-
-//myActionArea = instance_create(x-24, bbox_bottom-8, objEnemyActionArea);
-//myActionArea.image_xscale = 3;
-//myActionArea.image_yscale = 1/2;
-//myActionArea.x = x-24;
-//myActionArea.y = bbox_bottom-8;
-
 var damages = array_length_1d(damage);
 for (var i = 0; i < damages; i++) {
     damage[i] = 0;
 }
 
+damage[objBusterShot] = 0;
+damage[objBusterShotHalfCharged] = 0;
+damage[objBusterShotCharged] = 0;
+damage[objProtoBusterShotHalfCharged] = 0;
+damage[objProtoBusterShotCharged] = 0;
+damage[objMetalBlade] = 0;
+damage[objNeedleCannon] = 0;
+damage[objChargeKick] = 0;
 damage[objPharaohShot] = 1;
 damage[objPharaohShotCharging] = 1;
 damage[objPharaohShotCharged] = 1;
+damage[objDrillBomb] = 0;
 damage[objDrillBombExplosion] = 1;
+damage[objStarCrash] = 0;
+damage[objCentaurFlash] = 0;
+damage[objSilverTomahawk] = 0;
+damage[objWindStorm] = 0;
+damage[objHornetChaser] = 0;
 damage[objTimeSlow] = 1;
+
+instantItemSpawn = true;
 
 //Enemy specific code
 col = 0; //0 = red; 1 = orange; 2 = blue

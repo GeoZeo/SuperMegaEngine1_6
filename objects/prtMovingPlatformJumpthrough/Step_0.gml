@@ -36,12 +36,14 @@ if dead == false
 		with prtPlayer
 			other.placeFree = place_free(x, y - (abs(other.yspeed) + abs(global.yspeed)))
 	
-	    if place_meeting(x, y, prtPlayer) && prtPlayer.bbox_bottom <= bbox_top + abs(yspeed) + abs(global.yspeed) && yspeed < 0 && (insideView_Spr() or insideViewObj_Spr(prtPlayer))
+	    var releaseLadder = false;
+		
+		if place_meeting(x, y, prtPlayer) && prtPlayer.bbox_bottom <= bbox_top + abs(yspeed) + abs(global.yspeed) && yspeed < 0 && (insideView_Spr() or insideViewObj_Spr(prtPlayer))
 	    {
 			// Carry the player upwards off of another platform
 			if placeFree
 			{
-				if prtPlayer.teleporting == false && prtPlayer.showReady == false
+				if prtPlayer.teleporting == false && prtPlayer.showReady == false && prtPlayer.landing == false
 		        {
 		            var upDist, attempts;
 		            upDist = 0;
@@ -57,6 +59,8 @@ if dead == false
 		            prtPlayer.y -= upDist;
 					if yspeed >= 0 && !is_int((yspeed * update_rate) + (y - prev_y))
 						prtPlayer.y += ((yspeed * update_rate) + (y - prev_y)) % 1;
+					releaseLadder = true;
+					
 				}
 			}
 			//Drop the player if they hit a ceiling while on a platform
@@ -64,7 +68,7 @@ if dead == false
 			{
 				with prtPlayer
 				{
-					if teleporting == false && showReady == false
+					if teleporting == false && showReady == false && landing == false
 			        {	
 			            var downDist, attempts;
 			            downDist = 0;
@@ -77,6 +81,7 @@ if dead == false
 			            }
   
 			            y += downDist;
+						releaseLadder = true;
 					
 						if place_meeting(x, y+1, prtMovingPlatformSolid)
 						{
@@ -85,17 +90,105 @@ if dead == false
 								if myPlt >= 0 && !myPlt.dead
 								{
 									ground = true;
+									yspeedRollback = global.yspeed;
 									global.yspeed = 0;
 								
-									//Crush the player if necessary
-									if place_free(x, y - (abs(other.yspeed) + abs(global.yspeed)))
-										y = myPlt.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+									if place_free(x, y - (abs(other.yspeed) + abs(global.yspeed))) && !place_meeting(x, y, myPlt)
+									{
+										if !crushed y = myPlt.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+									}
 									else
-										global._health = 0;
+									{
+										global._health = 0; ////Crush the player if necessary
+										crushed = true;
+									}
 								}
 							}
 						}
 					}
+				}
+			}
+		}
+		
+		if releaseLadder
+		{
+			if prtPlayer.climbing
+			{
+				with prtPlayer
+				{
+					mask_index = mskMegaman;
+					var _shouldJump = (cfgEnableBuffering and global.keyJump and !global.hasJumped and room != rmWeaponGet) || global.keyJumpPressed;
+					if (_shouldJump && !global.keyUp) && (!locked && !showReady && !teleporting && !landing) global.hasJumped = true;
+				    climbing = false;
+				    canMove = true;
+					canJump = true;
+					jumps = 0;
+					if (!isShoot and !isThrow) or global.weapons[global.currentWeapon].freeShot
+					{
+						canWalk = true;
+					}
+				    canSpriteChange = true;
+				    canGravity = true;
+				    image_xscale = ladderXScale;
+				    global.yspeed = 0;
+        
+				    if position_meeting(x, bbox_bottom+15, objTopSolid) || ground == true {
+				
+						if position_meeting(x, bbox_bottom+climbSpeed, objSolid) {
+							var mySolid = instance_position(x, bbox_bottom+climbSpeed, objSolid);
+							y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+						}
+						else if position_meeting(x, bbox_bottom+climbSpeed, objTopSolid) {
+							var mySolid = instance_position(x, bbox_bottom+climbSpeed, objTopSolid);
+							y = mySolid.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+						}
+						else if position_meeting(x, bbox_bottom+climbSpeed, prtMovingPlatformSolid) {
+							var mySolid = instance_position(x, bbox_bottom+climbSpeed, prtMovingPlatformSolid);
+							y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+						}
+						else if position_meeting(x, bbox_bottom+climbSpeed, prtMovingPlatformJumpthrough) {
+							var mySolid = instance_position(x, bbox_bottom+climbSpeed, prtMovingPlatformJumpthrough);
+							y = mySolid.bbox_top - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+						}
+				
+				        ground = true;  //To avoid "falling" after climbing (shouldn't play the landing sfx)
+						canJump = true;
+						jumps = 0;
+				        if (global.keyRight && !global.keyLeft) || (global.keyLeft && !global.keyRight) {
+				            sprite_index = spriteWalk;
+							image_speed = speedWalk;
+                
+				            if global.keyRight {
+				                global.xspeed = walkSpeed;
+				                image_xscale = 1;
+				            }
+				            else if global.keyLeft {
+				                global.xspeed = -walkSpeed;
+				                image_xscale = -1;
+				            }
+				        }
+				        else {
+				            sprite_index = spriteStand;
+							image_speed = speedStand;
+				        }
+				    }
+				    else {
+				        sprite_index = spriteJump;
+						image_speed = speedJump;
+				    }
+        
+				    if !place_meeting(x, y+1, objLadder)
+				    {
+				        var topSolidID;
+				        topSolidID = instance_place(x, y+2, objTopSolid);
+				        if topSolidID >= 0
+				            y = topSolidID.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
+                
+						canJump = true;
+						jumps = 0;
+				        playLandSound = false;
+				        playLandSoundTimer = 0;
+				    }
 				}
 			}
 		}
@@ -121,7 +214,7 @@ if dead == false
             
 	        if prtPlayer.ground == true && prtPlayer.bbox_bottom <= bbox_top + abs(yspeed) + abs(global.yspeed) + 2
 	        && prtPlayer.movedByPlatform == false && canProceed == true
-			&& !(instance_exists(objBeat) and objBeat.carrying)
+			&& prtPlayer.flying == false
 	        {
 	            with prtPlayer
 	            {	
@@ -264,6 +357,11 @@ if dead == false
 						
 						x += xsp;
 	                    y += ysp;
+						
+						//if disableSpeedResetting and global.yspeed >= 0.5 
+						//{
+						//	y -= global.yspeed;
+						//}
                     
 	                    if ysp < 0
 	                    {
@@ -295,6 +393,8 @@ if dead == false
 	                    ground = true;
 						
 						escapeWall(true, true, false, false);
+						
+						playerCamera();
 	                }
 	            }
 	        }

@@ -6,6 +6,9 @@ function playerCamera() {
 	var _xOffset = round(image_xscale) * !climbing;
 	var _yOffset = round(image_yscale);
 	
+	var oldEpsilon = math_get_epsilon();
+	math_set_epsilon(1/global.viewWidth);
+	
 	//Set the correct camera center position (horizontal)
 	if sectionLeft != sectionRight - global.viewWidth && cameraXOffset != 0.5
 	{
@@ -42,6 +45,11 @@ function playerCamera() {
 		cameraXOffset = 0.5;
 	}
 	
+	math_set_epsilon(oldEpsilon);
+	
+	oldEpsilon = math_get_epsilon();
+	math_set_epsilon(1/global.viewHeight);
+	
 	//Set the correct camera center position (vertical)
 	if sectionTop != sectionBottom - global.viewHeight && cameraYOffset != 0.5
 	{
@@ -77,6 +85,8 @@ function playerCamera() {
 	{
 		cameraYOffset = 0.5;
 	}
+	
+	math_set_epsilon(oldEpsilon);
 	
 	//Follow the player
 	global.viewX = round(x - (global.viewWidth * cameraXOffset)) + _xOffset;

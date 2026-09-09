@@ -22,6 +22,7 @@ if !global.frozen and !dead {
 							while place_meeting(x, y, other) {
 								y -= 1; //If the Yoku Block spawns "inside" Mega Man, push Mega Man upwards'. This way, it's much more fair
 								ground = true;
+								if global.yspeed >= 0 global.yspeed = 0;
 								_pushed = true;
 							}
 							if _pushed y = other.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
@@ -74,6 +75,7 @@ if !global.frozen and !dead {
 							if x != _prevX || y != _prevY _escaped = true;
 							if place_meeting(x, y+1, other.id) && _escaped {
 								ground = true;
+								if global.yspeed >= 0 global.yspeed = 0;
 								y = other.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 							}
 						}
@@ -84,6 +86,10 @@ if !global.frozen and !dead {
                 if insideView() {
                     playSFX(sfxYokuBlock);
                     visible = true;
+					
+					if instance_exists(mySolid)
+						with mySolid instance_destroy();
+					
                     mySolid = instance_create(x, y, objSolid);
                 }
             }
@@ -107,8 +113,14 @@ if !global.frozen and !dead {
                 visible = false;
                 image_index = 0;
                 
-                if instance_exists(mySolid)
+                var _oldActive = instance_exists(mySolid)
+				if !_oldActive instance_activate_object(mySolid);
+				
+				if instance_exists(mySolid) {
                     with mySolid instance_destroy();
+				}
+				
+				if !_oldActive instance_deactivate_object(mySolid);
             }
         break;
         
@@ -133,6 +145,7 @@ if !global.frozen and !dead {
 							while place_meeting(x, y, other.id) {
 								y -= 1; //If the Yoku Block spawns "inside" Mega Man, push Mega Man upwards'. This way, it's much more fair
 								ground = true;
+								if global.yspeed >= 0 global.yspeed = 0;
 								_pushed = true;
 							}
 							if _pushed y = other.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
@@ -185,6 +198,7 @@ if !global.frozen and !dead {
 							if x != _prevX || y != _prevY _escaped = true;
 							if place_meeting(x, y+1, other.id) && _escaped {
 								ground = true;
+								if global.yspeed >= 0 global.yspeed = 0;
 								y = other.y - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index)) + (sprite_get_height(mask_index) - sprite_get_bbox_bottom(mask_index)) - 1;
 							}
 						}
@@ -195,6 +209,10 @@ if !global.frozen and !dead {
                 {
                     playSFX(sfxYokuBlock);
                     visible = true;
+					
+					if instance_exists(mySolid)
+						with mySolid instance_destroy();
+					
                     mySolid = instance_create(x, y, objSolid);
                 }
             }

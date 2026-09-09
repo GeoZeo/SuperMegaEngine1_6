@@ -3,9 +3,15 @@
 global.bossHealth = 0;
 healthpoints = 0;
 dead = true;
+canEndStep = false;
 event_user(15);
 if dead {
-    stopAllSFX();
+    if !control.stopInitMusic && control.music == -1 && !control.endLevel {
+		stopAllSFXsansMusic();
+	}
+	else {
+		stopAllSFX();
+	}
     playSFX(sfxDeath);
                 
     var i, explosionID;

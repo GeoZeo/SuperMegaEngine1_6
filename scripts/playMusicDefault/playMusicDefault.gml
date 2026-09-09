@@ -21,6 +21,7 @@ function playMusicDefault(argument0) {
 	if snd != noone {
 		global.length = audio_sound_length(snd);
 		global.bgm = snd;
+		global.volume = -1;
 		global.loopStart = 0;
 		global.loopEnd = global.length + 0.1;
 	}

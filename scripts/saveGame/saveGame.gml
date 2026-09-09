@@ -14,11 +14,11 @@ function saveGame(argument0) {
 	for (var i = 0; i < array_length_1d(global.items); i++) {
 	    map[? ("itemCount" + string(i))] = global.items[i].count;
 	}
-	for (var i = 0; object_exists(i); i++) {
-		if object_get_parent(i) == prtAchievement {
-			map[? ("achievement" + string(i))] = i.completed;
-		}
-	}
+	//for (var i = 0; object_exists(i); i++) {
+	//	if object_get_parent(i) == prtAchievement {
+	//		map[? ("achievement" + string(i))] = i.completed;
+	//	}
+	//}
 	ds_map_secure_save(map, "save" + string(argument0) + ".dat");
 	show_debug_message("Game saved.");
 

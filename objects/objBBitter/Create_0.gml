@@ -16,4 +16,8 @@ shooting = false;
 image_speed = 0;
 image_index = 0;
 player_distance = 0;
+resetIgnore = true;
+col = 0; //0 = yellow; 1 = apple green; 2 = mint green
+
+alarm[0] = 1;
 

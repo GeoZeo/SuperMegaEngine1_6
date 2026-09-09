@@ -49,8 +49,22 @@ function playerLockMovement() {
 	    canMove = false;
 	    canSpriteChange = true;
 	    isSlide = false;
+		isDash = false;
 	    canPause = false;
 	    onRushJet = false;
+		flying = false;
+		rollbackMovement = false;
+		
+		if cfgEnableBuffering && !instance_exists(objSectionSwitcher)
+		{
+			global.hasJumped = false;
+			global.hasSwitchedL = false;
+			global.hasSwitchedR = false;
+	
+			if global.enableSlideKey
+				global.hasSlid = false;
+		}
+		
 	    mask_index = mskMegaman;
 	    global.xspeed = 0;
 		

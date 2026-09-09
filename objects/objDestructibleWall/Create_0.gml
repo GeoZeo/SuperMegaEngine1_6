@@ -4,6 +4,7 @@ contactDamage = 0;
 respawn = false;    //Shouldn't come back when entering the screen again
 neverDespawn = true;    //Shouldn't be destroyed when outside of the screen
 canSpawnItem = false; //Shouldn't spawn an item upon destruction
+playHitSound = false; //Shouldn't play sfxEnemyHit upon destruction
 
 var damages = array_length_1d(damage);
 for (var i = 0; i < damages; i++) {

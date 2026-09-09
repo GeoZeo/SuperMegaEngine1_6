@@ -9,7 +9,7 @@ function string_contains(argument0, argument1) {
 	{
 	    var str = argument0;
 	    var substr = argument1;
-	    return string_pos(substr, str) >= 0 && string_pos(substr, str) <= (string_length(str) - 1)
+	    return string_pos(substr, str) >= 1 && string_last_pos(substr, str) <= string_length(str)
 	}
 
 

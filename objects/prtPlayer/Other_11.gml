@@ -5,9 +5,12 @@ if other.reflectible {
 	        var ID = instance_create(x, y, objReflectedProjectile);
 			ID.id_of_origin = id_of_origin;
 			ID.projID = object_index;
+			ID.explosionEffect = explosionEffectReflect;
+			ID.pierceReflectors = pierceReflectors;
 	        ID.sprite_index = sprite_index;
 	        ID.image_index = col;
-	        ID.image_speed = 0;
+	        ID.image_speed = image_speed;
+			ID.depth = depth;
 			
 			if xspeed == 0
 				ID.image_xscale = image_xscale;
@@ -28,7 +31,7 @@ if other.reflectible {
 	}
 	else {
 		with other {
-			instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
+			if explosionEffectReflect instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
 			instance_destroy();
 		}
 		exit;

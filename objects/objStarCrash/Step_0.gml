@@ -12,7 +12,9 @@ if !global.frozen {
     }
     
     //Sticking to the player until fired or destroyed in any way
-    if followPlayer && global.keyShootPressed && endInitTimer >= 8 { //Do not shoot the weapon until the init state is over
+    if followPlayer
+	&& (global.keyShootPressed and !prtPlayer.locked and !prtPlayer.showReady and !prtPlayer.teleporting and !prtPlayer.landing and !instance_exists(objSectionSwitcher))
+	&& endInitTimer >= 8 { //Do not shoot the weapon until the init state is over
         with prtPlayer {
             other.dir = sign(image_xscale);
         }

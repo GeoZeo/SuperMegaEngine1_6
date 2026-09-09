@@ -9,17 +9,17 @@ if teleporting == false && showReady == false
         draw_sprite_ext(sprHitspark, 0, sprite_get_xcenter(), sprite_get_ycenter(), image_xscale, image_yscale, 0, c_white, 1);
     }
     
-    //Weapon icon (when using quick weapon switching)
-	if instance_exists(objBeat) and objBeat.carrying and objBeat.target == self.id
-	{
-	    if drawWeaponIcon == true
-	    {
-	        if climbing == false
-	            draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8) + image_xscale, round(y-30), 1, 1, 0, c_white, 1);
-	        else
-	            draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8), round(y-30), 1, 1, 0, c_white, 1);
-	    }
-	}
+    ////Weapon icon (when using quick weapon switching)
+	//if instance_exists(objBeat) and objBeat.carrying and objBeat.target == self.id
+	//{
+	//    if drawWeaponIcon == true
+	//    {
+	//        if climbing == false
+	//            draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8) + image_xscale, round(y-30), 1, 1, 0, c_white, 1);
+	//        else
+	//            draw_sprite_ext(sprWeaponIconsColor, global.weapons[global.weapon].ID, round(x-8), round(y-30), 1, 1, 0, c_white, 1);
+	//    }
+	//}
 }
 else if teleporting == true
 {   
@@ -30,7 +30,19 @@ else if teleporting == true
         
         //Done teleporting; play a little animation before giving Mega Man control
         if teleportTimer != 9   //MM disappears for one frame in MM6
-            drawPlayer();
+		{
+			if teleportTimer == 10
+			{
+				if landing
+				{
+					image_index = 0;
+					landing = false;
+				}
+				sprite_index = spriteLand;
+				image_speed = speedLand;
+			}
+			drawPlayer();
+		}		
         
         if teleportTimer == 2
             image_index = 1;
@@ -38,23 +50,75 @@ else if teleporting == true
             image_index = 0;
         else if teleportTimer == 6
             image_index = 2;
-        else if teleportTimer = 9
+        else if teleportTimer == 9 or teleportTimer == 10
         {
-            teleporting = false;
-            teleportTimer = 0;
-			currentTeleportSpeed = 0;
-            canSpriteChange = true;
-            canMove = true;
-			canWalk = true;
-			canJump = true;
-            teleportY = 0;
-            canGravity = true;
-			canSwitch = true;
-            canPause = true;
-            sprite_index = spriteStand;
-			image_speed = speedStand;
-            instance_activate_all();
-            exit;
+			if spriteLand == noone || (sprite_index == spriteLand and image_index + speedLand >= sprite_get_number(spriteLand))
+			{
+	            teleporting = false;
+	            teleportTimer = 0;
+				currentTeleportSpeed = 0;
+	            canSpriteChange = true;
+	            canMove = true;
+				canWalk = true;
+				canJump = true;
+				jumps = 0;
+	            teleportY = 0;
+	            canGravity = true;
+				canSwitch = true;
+	            canPause = true;
+				superArmour = enableSuperArmour;
+	            sprite_index = spriteStand;
+				image_speed = speedStand;
+				blinkTimer = 0;
+				blinkImage = 0;
+	            instance_activate_all();
+				
+				var _resetGrav = true;
+				with objGravityChanger
+				{
+					if insideView_Spr()
+					{
+						_resetGrav = false;
+						event_user(0);
+						break;
+					}
+				}
+
+				if _resetGrav
+				{
+					global.grav = cfgGravity;
+					global.gravWater = cfgGravityWater;
+					with all
+					{
+						if variable_instance_exists(id, "grav")
+						&& variable_instance_exists(id, "gravWater")
+						&& variable_instance_exists(id, "currentGrav")
+						{
+							var _grav = grav;
+							var _gravWater = gravWater;
+							grav = global.grav;
+							gravWater = global.gravWater;
+							if currentGrav == _grav
+							{
+								currentGrav = grav;
+							}
+							else if currentGrav == _gravWater
+							{
+								currentGrav = gravWater;
+							}
+						}
+					}
+				}
+				
+	            exit;
+			}
+			else
+			{
+				if teleportTimer == 10
+					exit;
+				else
+					landing = true;
+			}
         }
         
         teleportTimer += 1;
@@ -63,7 +127,7 @@ else if teleporting == true
     {
         //Teleporting downwards
         image_index = 0;
-        drawSpriteColorSwap(spriteTeleport, image_index, round(x), round(global.viewY-16+teleportY), primary_color, secondary_color, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
+        drawSpriteColorSwap3(spriteTeleport, image_index, round(x), round(global.viewY-16+teleportY), primary_color, secondary_color, make_colour_rgb(1.0, 1.0, 1.0),global.primaryCol,global.secondaryCol, global.outlineCol);
         if abs(teleportAcc) > 0 {
 			currentTeleportSpeed += abs(teleportAcc);
 			if currentTeleportSpeed >= abs(teleportSpeed) {
@@ -85,7 +149,7 @@ else if showReady == true
     var readyIndicator;
     readyIndicator = readyTimer mod 12;
     if readyIndicator >= 6 && readyIndicator <= 11 //For the last 7 frames of every 14 frames, show the READY text
-        draw_sprite_ext(sprReady, 0, round(global.viewX+(global.viewWidth/2)), round(global.viewY+(global.viewHeight/2)), 1, 1, 0, c_white, 1);
+        draw_sprite_ext(sprReady, 0, round((global.viewX+global.shakeX)+(global.viewWidth/2)), round((global.viewY+global.shakeY)+(global.viewHeight/2)), 1, 1, 0, c_white, 1);
     
 	var _jingle = noone;
 	if is_string(jingle)

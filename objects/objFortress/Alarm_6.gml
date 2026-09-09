@@ -1,5 +1,6 @@
-/// @description  Go to level
-var ID = instance_create(0, 0, objFadeout);
-ID.type = "room";
-ID.myRoom = global.fortressLevels[global.currentFortressLevel];
+/// @description  Start drawing paths
+with objMapDrawer
+{
+	if !canDraw canDraw = true;
+}
 

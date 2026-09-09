@@ -26,7 +26,7 @@ if !global.frozen && !dead && !dying {
                 shootID.image_xscale = image_xscale;
 				shootID.player_x = player_x;
 				shootID.player_y = player_y;
-				with shootID event_user(0);
+				with shootID event_user(1);
             }
             shootAmount++;
         }

@@ -1,5 +1,5 @@
 useShader = false;
-if hitWhite && alarm[9] > 1 {
+if hitWhite && !drawBoss {
     shader_set(shBossHit);
     useShader = true;
 }

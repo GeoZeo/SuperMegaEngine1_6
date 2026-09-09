@@ -6,6 +6,7 @@ if shots == 3 {
 	    prtPlayer.canMove = true;
 	    event_user(4);
 	    prtPlayer.canMove = false;
+		with prtPlayer playerShoot();
 		shots++;
 	}
 }
@@ -15,13 +16,14 @@ if timer == 0 {
         case 2: global.keyUp = false; global.keyDown = true; global.keyRight = false; global.keyLeft = false; break;
         default: global.keyUp = false; global.keyDown = false; global.keyRight = false; global.keyLeft = false;
     }
-    with global.weapons[global.currentWeapon] {
-        ammo = global.maxAmmo;
-        if shots < 3 {
-            event_user(1);
-        }
-    }
-    if shots < 3 shots++;
+	if shots < 3 {
+	    with global.weapons[global.currentWeapon] {
+	        ammo = global.maxAmmo;
+	        event_user(1);
+	    }
+		with prtPlayer playerShoot();
+		shots++;
+	}
 }
 timer++;
 if timer > maxTimer {

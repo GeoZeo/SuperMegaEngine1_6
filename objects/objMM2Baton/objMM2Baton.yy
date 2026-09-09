@@ -7,6 +7,7 @@
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"prtPlayer","path":"objects/prtPlayer/prtPlayer.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objWater","path":"objects/objWater/objWater.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -34,8 +35,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprBaton",
-    "path": "sprites/sprBaton/sprBaton.yy",
+    "name": "sprBatonPink",
+    "path": "sprites/sprBatonPink/sprBatonPink.yy",
   },
   "spriteMaskId": null,
   "visible": true,

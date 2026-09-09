@@ -77,7 +77,7 @@ function apply_password(argument0) {
 	//for (var i = 0; object_exists(i); i++) {
 	//	if object_get_parent(i) == prtAchievement {
 	//		if string_copy(bin_pass, pos, 1) == "1" {
-	//			add_achievement(i);
+	//			add_achievement(i, false);
 	//		}
 	//		pos++;
 	//	}

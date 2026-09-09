@@ -18,6 +18,10 @@ damage[objSilverTomahawk] = 2;
 
 damage[objWindStorm] = 2;
 
+hitWhite = true;
+flashTime = 0.5;
+instantItemSpawn = true;
+
 //Enemy specific code
 shootTimer = 0;
 shooting = false;

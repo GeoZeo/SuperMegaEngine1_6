@@ -40,7 +40,10 @@ if !global.frozen {
 		}
 	}
     
-    if collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false) && sprite_index == sprRush {
+    if (collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objSolid, false, false)
+	or collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, objBossDoor, false, false)
+	or (collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, prtMovingPlatformSolid, false, false)
+	and !collision_rectangle(x-5, bbox_top, x+5, bbox_bottom, prtMovingPlatformSolid, false, false).dead)) && sprite_index == sprRush {
         event_perform(ev_alarm, 0);
     }
     

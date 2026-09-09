@@ -4,6 +4,7 @@ if !global.frozen {
     radius = 0;
     activating = true;
     global.frozen = true;
+	with prtPlayer canPause = false;
     playSFX(sfxCentaurFlash);
 }
 
@@ -14,4 +15,5 @@ doesNotCount = true;
 defaultDamage = 1;  //While Time Slow doesn't inflict damage, only
 defaultBossDamage = 0;  //vulnerable (damage != 0) bosses are affected
 reflectible = false;
+allowHitSound = false;
 

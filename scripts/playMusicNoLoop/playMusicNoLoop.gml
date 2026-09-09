@@ -1,6 +1,6 @@
 /// @description playMusicNoLoop(filename)
 function playMusicNoLoop(argument0) {
-	//Plays music without looping it
+	//Plays music without looping it, and at its default volume
 	//Example: playMusicNoLoop("CutMan.ogg")
 
 	stopSFX(global.bgm);
@@ -20,6 +20,9 @@ function playMusicNoLoop(argument0) {
 	}
 	if snd != noone {
 		global.bgm = snd;
+		global.volume = -1;
+		global.loopStart = -1;
+		global.loopEnd = -1;
 	}
 	if instance_exists(prtPlayer)
 	&& ((!is_string(prtPlayer.jingle) and prtPlayer.jingle > -1)

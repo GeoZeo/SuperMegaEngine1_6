@@ -1,4 +1,4 @@
-if (instance_exists(objFadeout)) exit;
+if (instance_exists(objFadeout) or instance_exists(objAchievementBox)) exit;
 
 var _oldPlayerActive = instance_exists(prtPlayer)
 if !_oldPlayerActive instance_activate_object(prtPlayer);
@@ -37,7 +37,7 @@ switch phase {
 			if (primedItemIndex == -1) {
 				with prtPlayer event_user(0);
 	            with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
-	            with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+	            with objDeflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 	            with prtRush instance_destroy();
 	            with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
 	            with prtPlayer {
@@ -68,7 +68,7 @@ switch phase {
 					global.weapon = option;
 					with prtPlayer event_user(0);
 	                with prtPlayerProjectile if ((destroyOnSwitch and other.oldWeapon != other.option) or destroyOnPause) instance_destroy();
-	                with objReflectedProjectile if id_of_origin == prtPlayer instance_destroy();
+	                with objDeflectedProjectile if id_of_origin == prtPlayer instance_destroy();
 	                with prtRush instance_destroy();
 	                with objRushJet instance_destroy(); //Could not be parented to prtRush since it's parented to prtMovingPlatformSolid
 	                with prtPlayer {
@@ -143,7 +143,7 @@ switch phase {
 				if prtPlayer.isShoot || prtPlayer.isThrow {
 					if global.weapons[global.currentWeapon].bThrow {
 						with prtPlayer {
-							if !isSlide && !isHit && !isStun && !teleporting {
+							if !isSlide && !isHit && !isStun && !teleporting && !landing {
 								isThrow = true;
 								isShoot = false;
 							}
@@ -151,32 +151,55 @@ switch phase {
 					}
 					else {
 						with prtPlayer {
-							if !isSlide && !isHit && !isStun && !teleporting {
+							if !isSlide && !isHit && !isStun && !teleporting && !landing {
 								isShoot = true;
 								isThrow = false;
 							}
 						}
 					}
-				}
-
-				with prtPlayer {
-					if isThrow {
-						if !global.weapons[global.currentWeapon].freeShot {
-							if ground && !climbing && !isSlide && !isHit && !isStun && !teleporting {
-								canWalk = false;
-								global.xspeed = 0;
-							}
-							else if !ground && !climbing && !isSlide && !isHit && !isStun && !teleporting  {
-								canWalk = true;
-								canSpriteChange = true;
+					
+					if global.weapons[oldWeapon].freeShot && !global.weapons[global.currentWeapon].freeShot {
+						with prtPlayer {
+							if !isSlide && !isHit && !isStun && !teleporting && !landing {
+								if ground && !climbing {
+									shootTimer += 5;
+								}
 							}
 						}
 					}
-					else
-					{
-						if ground && !isSlide && !isHit && !isStun && !teleporting {
-							canWalk = true;
-							canSpriteChange = true;
+					else if !global.weapons[oldWeapon].freeShot && global.weapons[global.currentWeapon].freeShot {
+						with prtPlayer {
+							if !isSlide && !isHit && !isStun && !teleporting && !landing {
+								if ground && !climbing {
+									if shootTimer >= 5 {
+										shootTimer -= 5;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				if !instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime {
+					with prtPlayer {
+						if isThrow {
+							if !global.weapons[global.currentWeapon].freeShot {
+								if ground && !climbing && !isSlide && !isHit && !isStun && !teleporting && !landing {
+									canWalk = false;
+									global.xspeed = 0;
+								}
+								else if !ground && !climbing && !isSlide && !isHit && !isStun && !teleporting && !landing  {
+									canWalk = true;
+									canSpriteChange = true;
+								}
+							}
+						}
+						else
+						{
+							if ground && !isSlide && !isHit && !isStun && !teleporting && !landing {
+								canWalk = true;
+								canSpriteChange = true;
+							}
 						}
 					}
 				}
@@ -191,8 +214,7 @@ switch phase {
             blackAlphaTimer = 0;
             blackAlpha -= blackAlphaIncrease;
             if blackAlpha <= 0 {
-                global.frozen = false;
-                instance_destroy();
+                unpause = true;
             }
         }
     break;

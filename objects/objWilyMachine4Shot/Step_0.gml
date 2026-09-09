@@ -1,24 +1,39 @@
 event_inherited();
 
 if !global.frozen {
-	image_speed = 10/60;
-    if image_index >= 7 and xspeed == 0 {
-        if instance_exists(objWilyMachine4) and objWilyMachine4.sprite_index == sprWilyMachine4b {
-            xspeed = min(-2, player_x - x);
-            yspeed = player_y - y;
-            var len = sqrt(power(xspeed, 2) + power(yspeed, 2));
-            xspeed = xspeed * 2 / len;
-            yspeed = yspeed * 2 / len;
-        }
-        else {
-            xspeed = -2;
-            yspeed = random(2) / 2;
-        }
+	if xspeed == 0 {
+		if image_index >= 0 and image_index < 1 {
+			image_speed = 12 / room_speed;
+		}
+		else if image_index >= 1 and image_index < 2 {
+			image_speed = 10 / room_speed;
+		}
+		else if image_index >= 2 and image_index < 4 {
+			image_speed = 20 / room_speed;
+		}
+		else if (image_index >= 4 and image_index < 5) or image_index >= 6 {
+			image_speed = 15 / room_speed;
+		}
+		else {
+			image_speed = 60 / room_speed;
+		}
+	}
+	else {
+		if image_index < 6 {
+			image_speed = 30 / room_speed;
+		}
+		else {
+			image_speed = 15 / room_speed;
+		}
+	}
+    if image_index > 6 and xspeed == 0 {
+        xspeed = shot_xspeed;
+		yspeed = shot_yspeed;
     }
-    if xspeed != 0 && image_index < 7 {
-        image_index = 7;
+    if xspeed != 0 && image_index < 5 {
+        image_index = 5;
     }
-    if image_index < 7 and instance_exists(objWilyMachine4) {
+    if image_index <= 6 and instance_exists(objWilyMachine4) and xspeed == 0 {
         x = objWilyMachine4.x + 20;
         y = objWilyMachine4.y + objWilyMachine4.sprite_height / 2 + 16;
     }

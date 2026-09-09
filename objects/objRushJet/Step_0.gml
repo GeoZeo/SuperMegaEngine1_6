@@ -48,13 +48,14 @@ if global.frozen == false
 				
 						//Set player properties
 		                prtPlayer.canWalk = false;
-		                global.xspeed = 0;
+		                if !prtPlayer.isHit global.xspeed = 0;
 						global.yspeed = 0;
 		                prtPlayer.onRushJet = true;
                 
 		                //Move vertically
 		                if global.keyUp && !place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, objSolid)
-		                && !place_meeting(x, y-abs(yspeed)-1, objSolid)
+		                && !place_meeting(x, y-abs(yspeed)-1, objSolid) && y-sprite_get_height(mskMegaman)-abs(yspeed)-1 > prtPlayer.sectionTop+1
+						&& y-sprite_get_height(mskMegaman)-abs(yspeed)-1 > 1
 		                {
 		                    if !place_meeting(prtPlayer.x, y-sprite_get_height(mskMegaman)-abs(yspeed)-1, prtMovingPlatformSolid)
 		                    && !place_meeting(x, y-abs(yspeed)-1, prtMovingPlatformSolid)
@@ -107,6 +108,9 @@ if global.frozen == false
         }
         
         if place_meeting(x, y, objSolid) {
+            event_perform(ev_alarm, 0);
+        }
+		else if place_meeting(x, y, objBossDoor) {
             event_perform(ev_alarm, 0);
         }
 		else if place_meeting(x, y, prtMovingPlatformSolid)

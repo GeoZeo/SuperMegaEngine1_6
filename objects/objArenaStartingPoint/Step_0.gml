@@ -13,6 +13,8 @@ if !global.frozen
 		{
 			if x < (xstart-cfgPushStartingPosBack)-2 || x > (xstart-cfgPushStartingPosBack)+2
 		    {
+				if !ground stepTimer = stepTime;
+				
 				if stepTimer < stepTime && ground && (sprite_index == prtPlayer.spriteStand or sprite_index == prtPlayer.spriteStep) && abs(xspeed) <= cfgStepSpeed * cfgStepFrames
 				{
 					if x < (xstart-cfgPushStartingPosBack)
@@ -66,10 +68,18 @@ if !global.frozen
 		            if ((position_meeting(bbox_right+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_right+xspeed*8, bbox_top, prtMovingPlatformSolid))
 		            && image_xscale == 1)
 		            || ((position_meeting(bbox_left+xspeed*8, bbox_top, objSolid) || position_meeting(bbox_left+xspeed*8, bbox_top, prtMovingPlatformSolid))
-		            && image_xscale == -1) //If we are blocked by a wall of at least 2 blocks high, perform a high jump
+		            && image_xscale == -1) { //If we are blocked by a wall of at least 2 blocks high, perform a high jump
 		                yspeed = -5.25;
-		            else //Else, perform a short, 1-block-high jump
+						ground = false;
+						sprite_index = prtPlayer.spriteJump;
+						image_speed = prtPlayer.speedJump;
+					}
+		            else { //Else, perform a short, 1-block-high jump
 		                yspeed = -3.5;
+						ground = false;
+						sprite_index = prtPlayer.spriteJump;
+						image_speed = prtPlayer.speedJump;
+					}
 		        }
 			
 				//Jumping over pits in the arena (comment this out if you wish to troll people somehow)
@@ -96,10 +106,18 @@ if !global.frozen
 					|| (place_meeting((x+xspeed)-16, y+1, objTopSolid) || place_meeting((x+xspeed)-32, y+1, objTopSolid))
 					|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformSolid) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformSolid))
 					|| (place_meeting((x+xspeed)-16, y+1, prtMovingPlatformJumpthrough) || place_meeting((x+xspeed)-32, y+1, prtMovingPlatformJumpthrough)))
-					&& image_xscale == -1) //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
-						yspeed = -5.25
-					else //Else, perform a short, 1-block-high jump
+					&& image_xscale == -1) { //If there's a gap 3 tiles or more in length in front of and right below us, perform a high jump
+						yspeed = -5.25;
+						ground = false;
+						sprite_index = prtPlayer.spriteJump;
+						image_speed = prtPlayer.speedJump;
+					}
+					else { //Else, perform a short, 1-block-high jump
 						yspeed = -3.5;
+						ground = false;
+						sprite_index = prtPlayer.spriteJump;
+						image_speed = prtPlayer.speedJump;
+					}
 				}
             
 		        if ground == true
@@ -136,17 +154,28 @@ if !global.frozen
 		            x = (xstart-cfgPushStartingPosBack);
 		            sprite_index = prtPlayer.spriteStand;
 					image_speed = prtPlayer.speedStand;
+					prtPlayer.blinkTimer = 0;
+					prtPlayer.blinkImage = 0;
 					prtPlayer.sprite_index = sprite_index;
 					prtPlayer.image_speed = image_speed;
 					prtPlayer.x = x;
 					prtPlayer.y = y;
+					depth = startingDepth;
 					global.xspeed = 0;
 					global.yspeed = 0;
 					xspeed = 0;
 		            yspeed = 0;
+					prtPlayer.isFly = isFly;
+					prtPlayer.flying = flying;
+					prtPlayer.isRollback = isRollback;
+					prtPlayer.rollbackMovement = rollbackMovement;
 					prtPlayer.inWater = inWater;
 					prtPlayer.bubbleTimer = bubbleTimer;
 					prtPlayer.visible = true;
+					with objBossDeathTimer {
+						x = other.x;
+						y = other.y;
+					}
 	                instance_destroy();
 		        }
 		    }
@@ -220,6 +249,8 @@ if !global.frozen
 						instance_deactivate_object(self.id);
 					}
 				
+					isFly = true;
+					flying = true;
 					if !instance_exists(objBeat)
 					{
 						var myBeat = instance_create(x, round(global.viewY-3), objBeat);
@@ -259,5 +290,9 @@ if !global.frozen
 			}
 		}
 	}
+}
+else
+{
+	image_speed = 0;
 }
 

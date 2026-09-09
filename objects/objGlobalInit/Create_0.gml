@@ -1,11 +1,53 @@
 // FOR GLOBAL VALUES THAT NEED TO BE INITIALIZED BEFORE objGLobalControl IS MADE.
 // USE ONLY IN rmINIT.
 
+//Display variables
+global.displayWidth = display_get_width();
+global.displayHeight = display_get_height();
+
+global.viewWidth = 256;
+global.viewHeight = 224;
+
+window_set_min_width(global.viewWidth);
+window_set_min_height(global.viewHeight);
+
+global.winWidthInit = 768;
+global.winHeightInit = 672;
+
+while (global.winWidthInit > global.displayWidth || global.winHeightInit > global.displayHeight)
+&& (global.winWidthInit > global.viewWidth || global.winHeightInit > global.viewHeight)
+{
+	global.winWidthInit -= global.viewWidth;
+	if global.winWidthInit <= global.viewWidth
+		global.winWidthInit = global.viewWidth;
+		
+	global.winHeightInit -= global.viewHeight;
+	if global.winHeightInit <= global.viewHeight
+		global.winHeightInit = global.viewHeight;
+}
+
+global.winWidth = global.winWidthInit;
+global.winHeight = global.winHeightInit;
+
+window_set_size(global.winWidth, global.winHeight);
+
+global.winX = window_get_x();
+global.winY = window_get_y();
+
+//Initialise screen scaling
+application_surface_draw_enable(false);
+toggleFullScreen( window_get_fullscreen() );
+
+//Game language
+//You can set the language by changing the number next to cfgLanguage in the macros script.
+//Feel free to implement support for as many languages as you wish!
+global.language = cfgLanguage; // 0 = Japanese, 1 (default) = English (US), etc...
+
 global._maxHealth = cfgMaxHealth;
 global.maxAmmo = cfgMaxAmmo;
 
 //Input key variables.
-global.enableSlideKey = cfgEnableSlideKey // Do we have an extra key dedicted to sliding?
+global.enableSlideKey = cfgEnableSlideKey // Do we have an extra key dedicated to sliding?
 
 //Option variables
 global.enableDamageNumbers = cfgEnableDamageNumbers; //Show damage numbers.
@@ -16,19 +58,41 @@ global.maxNumberOfBusterShots = cfgMaxNumberOfBusterShots;
 
 global.frozen = true;
 
+global.grav = cfgGravity;
+global.gravWater = cfgGravityWater;
+
 global.checkpoint = false;
+
+global.eddieInstance = -1;
+
+global.spriteStand = sprMegamanStand;
+global.spriteBlink = sprMegamanStandBlink;
+global.speedStand = 0;
+global.spriteJump = sprMegamanJump;
+global.speedJump = 0;
 
 global.spriteLife = sprLife;
 global.spriteStageSelect = sprMMStageSelect;
 global.stageSelectFollow = true;
+global.speedStageSelect = 0;
 
-global.spriteShopNPC = sprAuto;
+global.spriteShop = sprMegamanShop;
+global.speedShop = 0;
+global.shopX = 198;
+global.shopY = 145;
+global.shopXScale = -1;
+global.shopYScale = 1;
+global.shopNPC = objAuto;
+global.shopBackground = bgShop;
 global.shopBGM = bgmShop;
 global.shopVolume = 0.9;
 global.shopLoopStart = 0;
 global.shopLoopEnd = 1;
 
-global.jetSprite = -1;
+global.jetSprite = sprRushJet;
+global.jetSpeed = 0.25;
+
+if cfgRememberLastMenuOption global.lastOption = 0;
 
 //Characters
 var char_index = 0;
@@ -83,14 +147,14 @@ for (var i = 0; object_exists(i); i++) {
 }
 
 //Initialize all bosses as undefeated (this is the correct behavior)
-for(i = 0; i < 8; i++) {
+for(var i = 0; i < 8; i++) {
     global.bossDefeated[i] = false; 
     global.bossRushDefeated[i] = false; 
 }
 
 //While there are not other bosses, let's overwrite this for testing
 //Comment the following lines when your game has 8 bosses
-for(i = 0; i < 8; i++) {
+for(var i = 0; i < 8; i++) {
     global.bossDefeated[i] = true;  //All bosses are defeated
     global.bossRushDefeated[i] = true;  //All bosses are defeated
 }
@@ -146,6 +210,13 @@ global.screen_shaders[7] = shBlueish;
 global.num_screen_shaders = array_length_1d(global.screen_shaders);
 global.current_screen_shader = 0;
 
+global.screen_border = cfgScreenBorder;
+global.screen_borders[0] = noone;
+global.screen_borders[1] = 1;
+global.screen_borders[2] = 2;
+global.num_screen_borders = array_length_1d(global.screen_borders);
+global.current_screen_border = 1;
+
 global.passPlayVictory = false;
 global.lastSave = 0;
 
@@ -170,7 +241,7 @@ if cfgDebug || debug_mode {
     show_debug_overlay(true);
 }
 
-setPlayer(global.characters[0]);
+setPlayer(global.characters[cfgDefaultCharacter]);
 
 instance_create(0, 0, objGlobalControl);
 instance_destroy();

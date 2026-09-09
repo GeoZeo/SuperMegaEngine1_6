@@ -21,6 +21,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // prtWeapon
 	array_push(global.__objectDepths, 0); // prtPlayerProjectile
 	array_push(global.__objectDepths, 0); // prtShieldWeapon
+	array_push(global.__objectDepths, -1); // objDeflectedProjectile
 	array_push(global.__objectDepths, -1); // objReflectedProjectile
 	array_push(global.__objectDepths, -1); // objBusterShot
 	array_push(global.__objectDepths, -1); // objBusterShotHalfCharged
@@ -59,13 +60,19 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objRushJetWeapon
 	array_push(global.__objectDepths, 0); // objTimeSlowWeapon
 	array_push(global.__objectDepths, 0); // objTimeSlow
-	array_push(global.__objectDepths, 0); // objMegamanSweat
-	array_push(global.__objectDepths, 0); // objMegamanExplosion
+	array_push(global.__objectDepths, -3); // objMegamanSweat
+	array_push(global.__objectDepths, -1); // objMegamanExplosion
 	array_push(global.__objectDepths, -3); // objGuardPowerUpEffect
 	array_push(global.__objectDepths, -1001000); // objHealthWeaponBar
+	array_push(global.__objectDepths, -1100001); // objCheckpointFlag
 	array_push(global.__objectDepths, 0); // objMegamanDeathTimer
 	array_push(global.__objectDepths, -1100000); // objFadeIn
 	array_push(global.__objectDepths, -1100000); // objFadeout
+	array_push(global.__objectDepths, -1001000); // objBackgroundFX
+	array_push(global.__objectDepths, -1001000); // objFrontTileShaderReset
+	array_push(global.__objectDepths, -999999); // objFrontTileShader
+	array_push(global.__objectDepths, 16777215); // objBackTileShader
+	array_push(global.__objectDepths, 998999); // objBackTileShaderReset
 	array_push(global.__objectDepths, 0); // objMM1Met
 	array_push(global.__objectDepths, 0); // objSuzi
 	array_push(global.__objectDepths, 0); // objBeak
@@ -91,8 +98,6 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objColtonBullet
 	array_push(global.__objectDepths, 0); // prtEnemy
 	array_push(global.__objectDepths, 0); // prtEnemyProjectile
-	array_push(global.__objectDepths, -1001000); // objEnemyActionArea
-	array_push(global.__objectDepths, -1001000); // objEnemyActionArea
 	array_push(global.__objectDepths, 0); // objEnemyWindStorm
 	array_push(global.__objectDepths, 0); // prtMiniBoss
 	array_push(global.__objectDepths, -1001000); // objBossControl
@@ -104,20 +109,20 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objPharaohManShotBig
 	array_push(global.__objectDepths, 0); // prtBoss
 	array_push(global.__objectDepths, 0); // objBossDeathTimer
-	array_push(global.__objectDepths, 0); // objAbsorbEffect
+	array_push(global.__objectDepths, -5); // objAbsorbEffect
 	array_push(global.__objectDepths, 0); // prtFortressBoss
 	array_push(global.__objectDepths, 0); // objBossShadow
 	array_push(global.__objectDepths, 3); // objYellowDevil
 	array_push(global.__objectDepths, 3); // objYellowDevilBlock
 	array_push(global.__objectDepths, 0); // objYellowDevilBullet
-	array_push(global.__objectDepths, 0); // objWilyMachine4
+	array_push(global.__objectDepths, 2); // objWilyMachine4
 	array_push(global.__objectDepths, 0); // objWilyMachine4Shot
 	array_push(global.__objectDepths, 0); // objWilyMachine4Smoke
 	array_push(global.__objectDepths, 0); // objWilyPod4
-	array_push(global.__objectDepths, 0); // objWilyCapsule1
+	array_push(global.__objectDepths, 2); // objWilyCapsule1
 	array_push(global.__objectDepths, 0); // objWilyCapsuleEnergy
 	array_push(global.__objectDepths, 0); // objWilyCapsuleShot
-	array_push(global.__objectDepths, 0); // objDrWily
+	array_push(global.__objectDepths, -1); // objDrWily
 	array_push(global.__objectDepths, 0); // objBigEyeBoss
 	array_push(global.__objectDepths, 0); // prtPickup
 	array_push(global.__objectDepths, 0); // objLifeEnergySmall
@@ -146,7 +151,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objShake
 	array_push(global.__objectDepths, 10); // objTeleport
 	array_push(global.__objectDepths, 0); // objTellySpawner
-	array_push(global.__objectDepths, 0); // objMM2Conveyor
+	array_push(global.__objectDepths, 1); // objMM2Conveyor
 	array_push(global.__objectDepths, 0); // objWind
 	array_push(global.__objectDepths, 0); // objSparkmanPlatform
 	array_push(global.__objectDepths, 0); // objSparkmanPlatformStop
@@ -162,21 +167,22 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objDustBlock
 	array_push(global.__objectDepths, 0); // objAutoScroll
 	array_push(global.__objectDepths, -1001000); // objMusicPlayer
+	array_push(global.__objectDepths, -1001000); // objGravityChanger
 	array_push(global.__objectDepths, 0); // prtEffect
 	array_push(global.__objectDepths, 0); // objExplosion
 	array_push(global.__objectDepths, 0); // objItemExplosion
-	array_push(global.__objectDepths, 0); // objSlideDust
-	array_push(global.__objectDepths, 0); // objSplash
-	array_push(global.__objectDepths, 0); // objSplashH
+	array_push(global.__objectDepths, -4); // objSlideDust
+	array_push(global.__objectDepths, -4); // objSplash
+	array_push(global.__objectDepths, -4); // objSplashH
 	array_push(global.__objectDepths, -4); // objAirBubble
 	array_push(global.__objectDepths, -900); // objDmgText
 	array_push(global.__objectDepths, 0); // objFlash
 	array_push(global.__objectDepths, 0); // objExplosion4
-	array_push(global.__objectDepths, -1010000); // objPauseMenu
+	array_push(global.__objectDepths, -1100002); // objPauseMenu
 	array_push(global.__objectDepths, -1010000); // objPassMenu
 	array_push(global.__objectDepths, -1010000); // objPassInput
 	array_push(global.__objectDepths, 0); // objWeaponGet
-	array_push(global.__objectDepths, 0); // objStageSelect
+	array_push(global.__objectDepths, 1000000); // objStageSelect
 	array_push(global.__objectDepths, 0); // objIntroduction
 	array_push(global.__objectDepths, 0); // objDisclaimer
 	array_push(global.__objectDepths, 0); // objTitleScreen
@@ -226,7 +232,7 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objPlateIEquip
 	array_push(global.__objectDepths, 0); // objPlateMEquip
 	array_push(global.__objectDepths, 0); // objPlateEEquip
-	array_push(global.__objectDepths, 0); // objText
+	array_push(global.__objectDepths, -1001001); // objText
 	array_push(global.__objectDepths, 0); // prtCutscene
 	array_push(global.__objectDepths, 0); // objOpening
 	array_push(global.__objectDepths, 0); // objWilyUFO
@@ -239,12 +245,28 @@ function __global_object_depths() {
 	array_push(global.__objectDepths, 0); // objFortressDown
 	array_push(global.__objectDepths, 0); // objFortressRight
 	array_push(global.__objectDepths, 0); // objFortressLeft
+	array_push(global.__objectDepths, 0); // objFortressUpDown
+	array_push(global.__objectDepths, 0); // objFortressLeftRight
+	array_push(global.__objectDepths, 0); // objFortressUpRight
+	array_push(global.__objectDepths, 0); // objFortressDownRight
+	array_push(global.__objectDepths, 0); // objFortressDownLeft
+	array_push(global.__objectDepths, 0); // objFortressUpLeft
+	array_push(global.__objectDepths, 0); // objFortressUpLeftRight
+	array_push(global.__objectDepths, 0); // objFortressUpDownRight
+	array_push(global.__objectDepths, 0); // objFortressDownLeftRight
+	array_push(global.__objectDepths, 0); // objFortressUpDownLeft
 	array_push(global.__objectDepths, 0); // objFortressSpot
+	array_push(global.__objectDepths, 0); // objFortressPath
 	array_push(global.__objectDepths, 0); // objMapDrawer
 	array_push(global.__objectDepths, 0); // objEddie
 	array_push(global.__objectDepths, -3); // objBeat
-	array_push(global.__objectDepths, 0); // objAchievementBox
+	array_push(global.__objectDepths, 0); // prtShopNPC
+	array_push(global.__objectDepths, 0); // objAuto
+	array_push(global.__objectDepths, 0); // obj5QuestionMarks
+	array_push(global.__objectDepths, -1100004); // objAchievementBox
+	array_push(global.__objectDepths, -1100004); // objAchievementBoxSmall
 	array_push(global.__objectDepths, 0); // prtAchievement
+	array_push(global.__objectDepths, 0); // objWireAchievement
 	array_push(global.__objectDepths, 0); // objTimeLordAchievement
 	array_push(global.__objectDepths, 0); // objPentawerAchievement
 	array_push(global.__objectDepths, 0); // objEnergyBalancerAchievement
@@ -270,6 +292,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "prtWeapon");
 	array_push(global.__objectNames, "prtPlayerProjectile");
 	array_push(global.__objectNames, "prtShieldWeapon");
+	array_push(global.__objectNames, "objDeflectedProjectile");
 	array_push(global.__objectNames, "objReflectedProjectile");
 	array_push(global.__objectNames, "objBusterShot");
 	array_push(global.__objectNames, "objBusterShotHalfCharged");
@@ -312,9 +335,15 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objMegamanExplosion");
 	array_push(global.__objectNames, "objGuardPowerUpEffect");
 	array_push(global.__objectNames, "objHealthWeaponBar");
+	array_push(global.__objectNames, "objCheckpointFlag");
 	array_push(global.__objectNames, "objMegamanDeathTimer");
 	array_push(global.__objectNames, "objFadeIn");
 	array_push(global.__objectNames, "objFadeout");
+	array_push(global.__objectNames, "objBackgroundFX");
+	array_push(global.__objectNames, "objFrontTileShaderReset");
+	array_push(global.__objectNames, "objFrontTileShader");
+	array_push(global.__objectNames, "objBackTileShader");
+	array_push(global.__objectNames, "objBackTileShaderReset");
 	array_push(global.__objectNames, "objMM1Met");
 	array_push(global.__objectNames, "objSuzi");
 	array_push(global.__objectNames, "objBeak");
@@ -340,8 +369,6 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objColtonBullet");
 	array_push(global.__objectNames, "prtEnemy");
 	array_push(global.__objectNames, "prtEnemyProjectile");
-	array_push(global.__objectNames, "objEnemyActionArea");
-	array_push(global.__objectNames, "objEnemySpawnArea");
 	array_push(global.__objectNames, "objEnemyWindStorm");
 	array_push(global.__objectNames, "prtMiniBoss");
 	array_push(global.__objectNames, "objBossControl");
@@ -411,6 +438,7 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objDustBlock");
 	array_push(global.__objectNames, "objAutoScroll");
 	array_push(global.__objectNames, "objMusicPlayer");
+	array_push(global.__objectNames, "objGravityChanger");
 	array_push(global.__objectNames, "prtEffect");
 	array_push(global.__objectNames, "objExplosion");
 	array_push(global.__objectNames, "objItemExplosion");
@@ -488,12 +516,28 @@ function __global_object_depths() {
 	array_push(global.__objectNames, "objFortressDown");
 	array_push(global.__objectNames, "objFortressRight");
 	array_push(global.__objectNames, "objFortressLeft");
+	array_push(global.__objectNames, "objFortressUpDown");
+	array_push(global.__objectNames, "objFortressLeftRight");
+	array_push(global.__objectNames, "objFortressUpRight");
+	array_push(global.__objectNames, "objFortressDownRight");
+	array_push(global.__objectNames, "objFortressDownLeft");
+	array_push(global.__objectNames, "objFortressUpLeft");
+	array_push(global.__objectNames, "objFortressUpLeftRight");
+	array_push(global.__objectNames, "objFortressUpDownRight");
+	array_push(global.__objectNames, "objFortressDownLeftRight");
+	array_push(global.__objectNames, "objFortressUpDownLeft");
 	array_push(global.__objectNames, "objFortressSpot");
+	array_push(global.__objectNames, "objFortressPath");
 	array_push(global.__objectNames, "objMapDrawer");
 	array_push(global.__objectNames, "objEddie");
 	array_push(global.__objectNames, "objBeat");
+	array_push(global.__objectNames, "prtShopNPC");
+	array_push(global.__objectNames, "objAuto");
+	array_push(global.__objectNames, "obj5QuestionMarks");
 	array_push(global.__objectNames, "objAchievementBox");
+	array_push(global.__objectNames, "objAchievementBoxSmall");
 	array_push(global.__objectNames, "prtAchievement");
+	array_push(global.__objectNames, "objWireAchievement");
 	array_push(global.__objectNames, "objTimeLordAchievement");
 	array_push(global.__objectNames, "objPentawerAchievement");
 	array_push(global.__objectNames, "objEnergyBalancerAchievement");

@@ -2,13 +2,13 @@ function check_enemy_death() {
 	//check_enemy_death()
 	if !deathChecked {
 		if healthpoints <= 0 && object_get_parent(object_index) != prtMiniBoss && object_get_parent(object_index) != prtBoss && object_get_parent(object_index) != prtFortressBoss {
-		    if canSpawnItem {
+		    if canSpawnItem && room != rmWeaponGet {
 				if !instantItemSpawn && other.object_index != objHornetChaser {
 					var myExplosion = instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objItemExplosion);
 				}
 				else {
 					instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objExplosion);
-					randomDrop();
+					randomDrop(400, 105 * 2, 0, -2.125);
 					
 					if other.object_index == objHornetChaser {
 						with other {

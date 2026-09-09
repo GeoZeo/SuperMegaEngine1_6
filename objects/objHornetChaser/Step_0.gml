@@ -82,8 +82,8 @@ if target < 0 and item < 0 and !place_meeting(x, y, objItemExplosion) {    //Cho
 				if ((abs(e_len) <= abs(p_len)
 				or (myPickup < 0 or (!insideViewObj(myPickup) or !myPickup.targetable)
 				or (object_is_ancestor(myPickup.object_index, prtPickup) and (myPickup.grabbedBy > -1 or (myPickup.grabbedBy < 0 and myPickup.targetedBy > -1)))))
-				&& (myEnemy.targetedBy < 0 or n < instance_number(object_index))
 				&& myEnemy > -1 && !myEnemy.dead && !myEnemy.dying
+				&& (myEnemy.targetedBy < 0 or n < instance_number(object_index))
 				&& ((insideViewObj(myEnemy) and !myEnemy.checkFullSprite) or (insideViewObj_Spr(myEnemy) and myEnemy.checkFullSprite))
 				&& myEnemy.targetable) {
 					target = myEnemy.id;
@@ -127,25 +127,27 @@ if target > -1 {    //Chasing
     else {
         target = -1;
     }
-    if object_is_ancestor(target.object_index, prtPickup) {
-		if place_meeting(x, y, target) and target.grabbedBy < 0 {
-	        item = target;
-			if (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy < 0) item.grabbedBy = id;
-	        target = -1;
-		}
-		else if !insideViewObj(target) {
-			targetLocked = false;	
+	if target > -1 {
+	    if object_is_ancestor(target.object_index, prtPickup) {
+			if place_meeting(x, y, target) and target.grabbedBy < 0 {
+		        item = target;
+				if (object_is_ancestor(item.object_index, prtPickup) and item.grabbedBy < 0) item.grabbedBy = id;
+		        target = -1;
+			}
+			else if !insideViewObj(target) {
+				targetLocked = false;	
+				target.targetedBy = -1;
+		        target = -1;
+			}
+	    }
+	    else if object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying) {
+			if ((!insideViewObj(target) and !target.checkFullSprite) or (!insideViewObj_Spr(target) and target.checkFullSprite)) {
+				targetLocked = false;	
+			}
 			target.targetedBy = -1;
 	        target = -1;
-		}
-    }
-    else if object_is_ancestor(target.object_index, prtEnemy) and (target.dead or target.dying) {
-		if ((!insideViewObj(target) and !target.checkFullSprite) or (!insideViewObj_Spr(target) and target.checkFullSprite)) {
-			targetLocked = false;	
-		}
-		target.targetedBy = -1;
-        target = -1;
-    }
+	    }
+	}
 }
 
 if target < 0 and item > -1 and instance_exists(item) {   //Bringing item

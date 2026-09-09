@@ -7,4 +7,4 @@ createScenery = true;
 //exitStage = true;
 
 toX = 286;
-toY = 640;
+toY = 608;

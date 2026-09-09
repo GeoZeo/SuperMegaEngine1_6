@@ -8,6 +8,7 @@ function reset_achievements() {
 	    for (var i = 0; object_exists(i); i++) {
 	        if object_get_parent(i) == prtAchievement && instance_exists(i) {
 	            i.completed = false;
+				i.smallBox = i.smallBoxInit;
 	            print("Reset achievement " + i.achName + " to PENDING");
 	        }
 	    }

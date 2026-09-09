@@ -9,10 +9,12 @@ if global.weaponID > -1 and (global.weaponID.unlocked or (ds_list_find_index(glo
     playSFX(sfxMenuSelect);
         
     var ID = instance_create(x, y, objFadeout);
+	ID.depth = -1100003;
     ID.type = "room";
     ID.myRoom = rmPass;
     global.passPlayVictory = false;
     global.passContinueRoom = room;
+	if cfgRememberLastMenuOption global.lastOption = 0;
     
     return true;
 

@@ -2,17 +2,19 @@ if !global.frozen
 {
 	image_speed = 10 / room_speed;
 	
+	//If the player is present
 	if target != -1 && (instance_exists(target) or target_found)
 	{	
+		//Flying towards the bottom of the screen (to pick the player up)
 		if !carrying && transportTimer < transportTime
 		{
 			image_xscale = target.image_xscale;
 			tired = false;
 			transportTimer = 0;
 			
+			//If the player somehow recovered from a pitfall WITHOUT Beat, fly away and roll back Beat counter
 			if insideViewObj_Spr(target)
 			{
-				instance_activate_object(target);
 				target_found = false;
 				
 				if objBeatEquip.count < objBeatEquip.maxUnits
@@ -31,17 +33,22 @@ if !global.frozen
 				if object_is_ancestor(target.object_index, prtPlayer) target.canGravity = true;
 				if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
 				if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
+				if object_is_ancestor(target.object_index, prtPlayer) target.isFly = false;
+				if object_is_ancestor(target.object_index, prtPlayer) target.flying = false;
+				if object_is_ancestor(target.object_index, prtPlayer) target.isRollback = false;
+				if object_is_ancestor(target.object_index, prtPlayer) target.rollbackMovement = false;
 				target.visible = true;
 				yspeed = -normalSpd;	
 			}
 			
+			//Picking up the player
 			if bbox_top >= global.viewY + global.viewHeight
 			&& transportTimer < transportTime
 			{
-				instance_activate_object(target);
 				target_found = false;
 				xspeed = 0;
 				yspeed = 0;
+				
 				if object_is_ancestor(target.object_index, prtPlayer)
 				{
 					global.xspeed = xspeed;
@@ -82,480 +89,33 @@ if !global.frozen
 						isThrow = false;
 						isSlide = false;
 						onRushJet = false;
+						isFly = true;
+						flying = true;
+						isRollback = true;
+						rollbackMovement = true;
 						mask_index = mskMegaman;
 						invincibilityTimer = other.transportTime;
 					}
 				}
 				
 				carrying = true;
-				
-				with target escapeWall(false, false, true, true);
-			}
-			
-			if !carrying && !instance_exists(prtPlayer) && !instance_exists(objMegamanDeathTimer)
-			{
-				instance_activate_object(prtPlayer);
-				with prtPlayer playerPause();
-				with prtPlayer playerSwitchWeapons();
-				instance_deactivate_object(prtPlayer);
 			}
 		}
+		//Carrying the player
 		else if carrying && transportTimer < transportTime
 		{
 			transportTimer++;
+			
+			//While timer is still going
 			if transportTimer < transportTime
 			{
-				if transportTimer < 1 * 60
+				//If we're a second away from the end of the timer, switch to tired animation
+				if transportTimer >= transportTime - (1 * 60)
 				{
-					var _move = false;
-					with target
-						if place_free(x, y-1)
-							_move = true;
-					
-					if object_is_ancestor(target.object_index, prtPlayer)
-					{
-						if _move
-							global.yspeed = -pullSpd;
-					}
-					else
-					{
-						if _move
-							target.yspeed = -pullSpd;
-					}
-				}
-				else
-				{
-					//global.keyJumpPressed = true;
-					
-					if global.keyLeft && !global.keyRight
-					{
-						image_xscale = -1;
-						target.image_xscale = -1;
-						
-						var _move = false;
-						with target
-							if place_free(x-1, y)
-								_move = true;
-								
-						with target
-						{
-							var _attempts = 0;
-							while !place_free(x+1, y) && _attempts < 100
-							{
-								x -= other.transportAcc;
-								_attempts++;
-							}
-						}
-						
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{			
-							if _move
-							{
-								if global.xspeed > -transportSpd
-								{
-									global.xspeed -= transportAcc
-									if global.xspeed <= -transportSpd
-									{
-										global.xspeed = -transportSpd;
-									}
-								}
-							}
-						}
-						else
-						{
-							if _move
-							{
-								if target.xspeed > -transportSpd
-								{
-									target.xspeed -= transportAcc
-									if target.xspeed <= -transportSpd
-									{
-										target.xspeed = -transportSpd;
-									}
-								}
-							}
-						}
-						
-						if !_move
-							target.x = round(target.x);
-					}
-					else if global.keyRight && !global.keyLeft
-					{
-						image_xscale = 1;
-						target.image_xscale = 1;
-						
-						var _move = false;
-						with target
-							if place_free(x+1, y)
-								_move = true;
-								
-						with target
-						{
-							var _attempts = 0;
-							while !place_free(x-1, y) && _attempts < 100
-							{
-								x += other.transportAcc;
-								_attempts++;
-							}
-						}
-						
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{
-							if _move
-							{
-								if global.xspeed < transportSpd
-								{
-									global.xspeed += transportAcc
-									if global.xspeed >= transportSpd
-									{
-										global.xspeed = transportSpd;
-									}
-								}
-							}
-						}
-						else
-						{
-							if _move
-							{
-								if target.xspeed < transportSpd
-								{
-									target.xspeed += transportAcc
-									if target.xspeed >= transportSpd
-									{
-										target.xspeed = transportSpd;
-									}
-								}
-							}
-						}
-						
-						if !_move
-							target.x = round(target.x);
-					}
-					else
-					{
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{
-							var _move = false;
-							with target
-								if (place_free(x-1, y) and global.xspeed < 0) or (place_free(x+1, y) and global.xspeed > 0)
-									_move = true;
-									
-							with target
-							{
-								var _attempts = 0;
-								while !place_free(x+sign(global.xspeed), y) && _attempts < 100
-								{
-									x -= other.transportDec * sign(global.xspeed);
-									_attempts++;
-								}
-							}
-							
-							if _move
-							{
-								if global.xspeed < 0
-								{
-									global.xspeed += transportDec;
-									if global.xspeed >= 0
-									{
-										global.xspeed = 0;
-									}
-								}
-								else if global.xspeed > 0
-								{
-									global.xspeed -= transportDec;
-									if global.xspeed <= 0
-									{
-										global.xspeed = 0;
-									}
-								}
-							}
-							else
-							{
-								target.x = round(target.x);
-							}
-						}
-						else
-						{
-							var _move = false;
-							with target
-								if (place_free(x-1, y) and xspeed < 0) or (place_free(x+1, y) and xspeed > 0)
-									_move = true;
-									
-							with target
-							{
-								var _attempts = 0;
-								while !place_free(x+sign(xspeed), y) && _attempts < 100
-								{
-									x -= other.transportDec * sign(xspeed);
-									_attempts++;
-								}
-							}
-							
-							if _move
-							{
-								if target.xspeed < 0
-								{
-									target.xspeed += transportDec;
-									if target.xspeed >= 0
-									{
-										target.xspeed = 0;
-									}
-								}
-								else if target.xspeed > 0
-								{
-									target.xspeed -= transportDec;
-									if target.xspeed <= 0
-									{
-										target.xspeed = 0;
-									}
-								}
-							}
-							else
-							{
-								target.x = round(target.x);
-							}
-						}
-					}
-					
-					if global.keyUp && !global.keyDown
-					{
-						var _move = false;
-						with target
-							if place_free(x, y-1)
-								_move = true;
-								
-						with target
-						{
-							var _attempts = 0;
-							while !place_free(x, y+1) && _attempts < 100
-							{
-								y -= other.transportAcc;
-								_attempts++;
-							}
-						}
-						
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{
-							if _move
-							{
-								if global.yspeed > -transportSpd
-								{
-									//with target
-									//	if global.yspeed >= 0 && !place_free(x, y+1)
-									//		global.yspeed = 0;
-										
-									global.yspeed -= transportAcc
-									if global.yspeed <= -transportSpd
-									{
-										global.yspeed = -transportSpd;
-									}
-								}
-							}
-						}
-						else
-						{
-							if _move
-							{
-								if target.yspeed > -transportSpd
-								{
-									//with target
-									//	if yspeed >= 0 && !place_free(x, y+1)
-									//		yspeed = 0;
-									
-									target.yspeed -= transportAcc
-									if target.yspeed <= -transportSpd
-									{
-										target.yspeed = -transportSpd;
-									}
-								}
-							}
-						}
-						
-						if !_move
-							target.y = round(target.y);
-					}
-					else if global.keyDown && !global.keyUp
-					{
-						var _move = false;
-						with target
-							if place_free(x, y+1)
-								_move = true;
-								
-						with target
-						{
-							var _attempts = 0;
-							while !place_free(x, y-1) && _attempts < 100
-							{
-								y += other.transportAcc;
-								_attempts++;
-							}
-						}
-						
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{
-							if _move
-							{
-								if global.yspeed < transportSpd
-								{
-									global.yspeed += transportAcc
-									if global.yspeed >= transportSpd
-									{
-										global.yspeed = transportSpd;
-									}
-								}
-							}
-						}
-						else
-						{
-							if _move
-							{
-								if target.yspeed < transportSpd
-								{
-									target.yspeed += transportAcc
-									if target.yspeed >= transportSpd
-									{
-										target.yspeed = transportSpd;
-									}
-								}
-							}
-						}
-						
-						if !_move
-							target.y = round(target.y);
-					}
-					else
-					{
-						with target
-						{
-							var _attempts = 0;
-							while !place_free(x, y-1) && _attempts < 100
-							{
-								y += other.transportDec;
-								_attempts++;
-							}
-						}
-						
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{
-							var _move = false;
-							with target
-								if (place_free(x, y-1) and global.yspeed < 0) or (place_free(x, y+1) and global.yspeed >= 0)
-									_move = true;
-							
-							if _move
-							{
-								if global.yspeed < fallSpd
-								{
-									global.yspeed += transportDec;
-									if global.yspeed >= fallSpd
-									{
-										global.yspeed = fallSpd;
-									}
-								}
-								else if global.yspeed > fallSpd
-								{
-									global.yspeed -= transportDec;
-									if global.yspeed <= fallSpd
-									{
-										global.yspeed = fallSpd;
-									}
-								}
-							}
-							else
-							{
-								target.y = round(target.y);
-							}
-						}
-						else
-						{
-							var _move = false;
-							with target
-								if (place_free(x, y-1) and yspeed < 0) or (place_free(x, y+1) and yspeed >= 0)
-									_move = true;
-							
-							if _move
-							{
-								if target.yspeed < fallSpd
-								{
-									target.yspeed += transportDec;
-									if target.yspeed >= fallSpd
-									{
-										target.yspeed = fallSpd;
-									}
-								}
-								else if target.yspeed > fallSpd
-								{
-									target.yspeed -= transportDec;
-									if target.yspeed <= fallSpd
-									{
-										target.yspeed = fallSpd;
-									}
-								}
-							}
-							else
-							{
-								target.y = round(target.y);
-							}
-						}
-					}
-					
-					print(global.yspeed);
-					
-					if transportTimer >= 3 * 60
-					{
-						tired = true;
-					}
-					
-					if global.keyJumpPressed
-					{
-						transportTimer = transportTime;
-						carrying = false;
-						tired = false;
-						if object_is_ancestor(target.object_index, prtPlayer)
-						{
-							global.yspeed = 0;
-						}
-						else
-						{
-							target.yspeed = 0;
-						}
-						
-						with target
-						{
-							if !place_free(x, y+1)
-							{
-								ground = false;
-							}
-						}
-						
-						if object_is_ancestor(target.object_index, prtPlayer) target.canMove = true;
-						if object_is_ancestor(target.object_index, prtPlayer) target.canHit = true;
-						if object_is_ancestor(target.object_index, prtPlayer) target.canGravity = true;
-						if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
-						if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
-						target.visible = true;
-						yspeed = -normalSpd;
-					}
-				}
-				
-				if instance_exists(prtPlayer)
-				&& ((object_is_ancestor(target.object_index, prtPlayer) and target.bbox_bottom+1+global.yspeed > prtPlayer.sectionBottom) or (!object_is_ancestor(target.object_index, prtPlayer) and target.bbox_bottom+1+target.yspeed > prtPlayer.sectionBottom))
-				&& transportTimer >= 1 * 60
-				{
-					if object_is_ancestor(target.object_index, prtPlayer)
-					{
-						global.yspeed = 0;
-					}
-					else
-					{
-						target.yspeed = 0;
-					}
-					
-					with target
-						if place_free(x, y-(sprite_get_height(mask_index)-1))
-							y = round(prtPlayer.sectionBottom - (sprite_get_height(mask_index) - sprite_get_yoffset(mask_index))) - 1;
+					tired = true;
 				}
 			}
+			//Timer expired
 			else
 			{
 				transportTimer = transportTime;
@@ -563,11 +123,11 @@ if !global.frozen
 				tired = false;
 				if object_is_ancestor(target.object_index, prtPlayer)
 				{
-					global.yspeed = 0;
+					global.yspeed = 0; //TODO?: Reset only if speed is 0 or less?
 				}
 				else
 				{
-					target.yspeed = 0;
+					target.yspeed = 0; //TODO?: Reset only if speed is 0 or less?
 				}
 				
 				with target
@@ -583,10 +143,15 @@ if !global.frozen
 				if object_is_ancestor(target.object_index, prtPlayer) target.canGravity = true;
 				if object_is_ancestor(target.object_index, prtPlayer) target.invincibilityTimer = 0;
 				if object_is_ancestor(target.object_index, prtPlayer) target.canSpriteChange = true;
+				if object_is_ancestor(target.object_index, prtPlayer) target.isFly = false;
+				if object_is_ancestor(target.object_index, prtPlayer) target.flying = false;
+				if object_is_ancestor(target.object_index, prtPlayer) target.isRollback = false;
+				if object_is_ancestor(target.object_index, prtPlayer) target.rollbackMovement = false;
 				target.visible = true;
 				yspeed = -normalSpd;
 			}
 		}
+		//Transport timer expired and no longer carrying the player
 		else
 		{
 			yspeed = -normalSpd;
@@ -630,5 +195,5 @@ else
 			image_index += 4;
 	}
 }
-print(flapCounter);
+//print(flapCounter);
 

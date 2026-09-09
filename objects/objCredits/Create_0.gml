@@ -7,9 +7,22 @@ megamanx = 0;
 megamany = room_height;
 jetx = 0;
 jety = megamany + 19;
-megamansprite = global.spriteStand;
+megamanspritestand = global.spriteStand;
+megamanspriteblink = global.spriteBlink;
+megamanspeedstand = global.speedStand;
+megamanspritejump = global.spriteJump;
+megamanspeedjump = global.speedJump;
+megamansprite = megamanspritestand;
+megamanimgspeed = megamanspeedstand;
+blinktimer = 0;
+blinktimermax = global.blinkTimerMax;
+blinkduration = global.blinkDuration;
+blinkimage = 0;
+
 jetsprite = global.jetSprite;
+jetspeed = global.jetSpeed;
 megaImg = 0;
+jetImg = 0;
 scroll_threshold = -430;
 
 var fadein = instance_create(0,0, objFadeIn);

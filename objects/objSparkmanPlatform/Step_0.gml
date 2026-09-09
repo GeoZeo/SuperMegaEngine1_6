@@ -30,12 +30,12 @@ if !global.frozen && !dead {
             yspeed -= 1;
         }
         
-        if place_meeting(x, y, objSolid) || place_meeting(x, y, objSpike) || place_meeting(x, y, objSparkmanPlatformStop) || y < 0 {
+        if place_meeting(x, y, objSolid) || place_meeting(x, y, objSpike) || place_meeting(x, y, objBossDoorH) || place_meeting(x, y, objSparkmanPlatformStop) || y < 0 {
             y = round(y);
             
             var yy;
             yy = 0;
-            while place_meeting(x, y, objSolid) || place_meeting(x, y, objSpike) || place_meeting(x, y, objSparkmanPlatformStop) {
+            while place_meeting(x, y, objSolid) || place_meeting(x, y, objSpike) || place_meeting(x, y, objBossDoorH) || place_meeting(x, y, objSparkmanPlatformStop) {
                 y += 1;
                 yy += 1;
             }

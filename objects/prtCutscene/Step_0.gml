@@ -8,14 +8,34 @@ if instance_exists(objFadeIn) {
     }
 }
 
-var _fadeInExists = instance_exists(objFadeIn) && !objFadeIn.reverse;
+var _fadeIn = instance_exists(objFadeIn) && !objFadeIn.reverse;
+var _fadeOut = (instance_exists(objFadeIn) && objFadeIn.reverse) || instance_exists(objFadeout);
 
-if (can_skip && (global.keyPausePressed or global.keyJumpPressed) && (!_fadeInExists or skip_fade_ins) && !skip_fade_outs) {
-	if skip_fade_ins with objFadeIn if !reverse instance_destroy();
-	changeScene(final_scene, delay);
+if current_scene > final_scene || (can_skip && global.keyPausePressed && ((!_fadeIn or skip_fade_ins) and (!_fadeOut or skip_fade_outs))) {
+    if !(current_scene > final_scene) && ((can_skip && global.keyPausePressed && ((!_fadeIn or skip_fade_ins) and (!_fadeOut or skip_fade_outs))) && fade_out_skip) {
+		var ID = instance_create(0, 0, objFadeout);
+	    ID.type = "room";
+		ID.myRoom = next_room;
+		
+		with objFadeIn {
+			if reverse {
+				ID.blackAlpha = blackAlpha;
+				ID.blackAlphaDecrease = -blackAlphaDecrease;
+				ID.blackAlphaTimer = blackAlphaTimer;
+				ID.blackAlphaTimerMax = blackAlphaTimerMax;
+				instance_destroy();
+			}
+		}
+		
+		current_alarm = -1;
+	}
+	else {
+		instance_destroy();
+		room_goto(next_room);
+	}
 }
-if current_scene > final_scene || (can_skip && global.keyPausePressed && ((!_fadeInExists or skip_fade_ins) and skip_fade_outs)) {
-    instance_destroy();
-    room_goto(next_room);
+
+with objFadeout {
+	if _fadeIn blackAlpha = 0;
 }
 

@@ -6,7 +6,7 @@ if !cancelDestroyEvent {
 	with objWilyMachine4Shot {
 	    instance_destroy();
 	}
-	instance_create(x + 32, y, objWilyPod4);
+	instance_create(sprite_get_xcenter(), sprite_get_ycenter(), objWilyPod4);
 
 }
 

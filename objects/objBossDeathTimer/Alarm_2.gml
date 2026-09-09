@@ -12,6 +12,7 @@ if (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacte
     global.passPlayVictory = true;
 }
 else if !global.fortressStarted {
+	if cfgRememberLastMenuOption global.lastOption = 0;
     ID.myRoom = rmPass;
     global.passPlayVictory = false;
 }

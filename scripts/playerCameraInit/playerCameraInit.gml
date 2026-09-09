@@ -73,8 +73,15 @@ function playerCameraInit() {
 	//Set the correct camera center position
 	if variable_instance_exists(id, "climbing") && (variable_instance_exists(id, "showReady") and !showReady) && room != rmWeaponGet
 	{
+		var oldEpsilon = math_get_epsilon();
+		math_set_epsilon(1/global.viewWidth);
 		cameraXOffset = ((x + (round(image_xscale) * !climbing)) - global.viewX) / global.viewWidth;
+		math_set_epsilon(oldEpsilon);
+		
+		oldEpsilon = math_get_epsilon();
+		math_set_epsilon(1/global.viewHeight);
 		cameraYOffset = ((y + round(image_yscale)) - global.viewY) / global.viewHeight;
+		math_set_epsilon(oldEpsilon);
 	}
 	else
 	{

@@ -29,7 +29,8 @@ if !global.frozen and !dead and !dying {
         image_speed = 0.2 * update_rate;
     
         if (xspeed == 0 || 
-            !collision_rectangle(x+(startDir*8), y, x+(startDir*9), y+1, objSolid, false, false)) {
+            (!collision_rectangle(x+(startDir*8), y, x+(startDir*9), y+1, objSolid, false, false)
+			and !collision_rectangle(x+(startDir*8), y, x+(startDir*9), y+1, objBossDoorH, false, false))) {
             startDir = -startDir;   //Change the direction
         }
         
@@ -62,6 +63,9 @@ else {
 	if global.frozen {
 		
 		image_speed = 0;
+		
+		if instance_exists(objCentaurFlash)
+			frozeTimer = 120;
 	}
 }
 

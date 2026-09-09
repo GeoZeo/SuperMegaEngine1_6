@@ -7,5 +7,8 @@ for (var i = 0; i < global.totalWeapons; i++) {
     global.weapons[i].chargeConsumption /= 2;
 }
 
-add_achievement(objPowerGeneratorAchievement);
+if room == rmShop
+{
+	add_achievement(objPowerGeneratorAchievement);
+}
 

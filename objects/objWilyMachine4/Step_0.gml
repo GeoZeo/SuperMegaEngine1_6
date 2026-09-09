@@ -4,39 +4,30 @@ event_inherited();
 
 
 if !global.frozen {
-	
-	if instance_exists(prtPlayer) {
-		player_x = sprite_get_xcenter_object(prtPlayer);
-		player_y = sprite_get_ycenter_object(prtPlayer);
-	}
 
-    image_speed = 5 / room_speed * update_rate;
+    image_speed = (3.5294117647 / room_speed) * update_rate;
     if startIntro {
         y = ystart;
         x = xstart;
         yspeed = spd;
         startIntro = false;
-        smoke1 = instance_create(x + 64, sprite_get_bottom(), objWilyMachine4Smoke);
-        smoke2 = instance_create(x + 64 + 29, sprite_get_bottom(), objWilyMachine4Smoke);
+        smoke1 = instance_create(x + 64, sprite_get_bottom() - 3, objWilyMachine4Smoke);
+        smoke2 = instance_create(x + 64 + 28, sprite_get_bottom() - 3, objWilyMachine4Smoke);
     }
     if isFight {
-        if sprite_get_bottom() > global.viewY + global.viewHeight - 32 {
+        if sprite_get_bottom() > global.viewY + global.viewHeight - 64 {
             yspeed = -spd;
             with objWilyMachine4Smoke {
                 image_index = 0;
-                visible = true;
+				image_speed = 10 / room_speed;
             }
         }
-        else if sprite_get_bottom() < global.viewY + global.viewHeight - 64 or yspeed == 0 {
+        else if sprite_get_bottom() < global.viewY + global.viewHeight - 96 or yspeed == 0 {
             yspeed = spd;
         }
-        //if sprite_index == sprWilyMachine4b and ((yspeed < 0 and sprite_get_bottom() <= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45) or (yspeed > 0 and sprite_get_bottom() >= __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45)) {
-        //    yspeed = 0;
-        //    y = __view_get( e__VW.YView, 0 ) + __view_get( e__VW.HView, 0 ) - 45 - sprite_height;
-        //}
         if sprite_index == sprWilyMachine4b {
 			
-			var yCoord_phase2 = global.viewY + global.viewHeight - 38 - sprite_height;
+			var yCoord_phase2 = global.viewY + global.viewHeight - 70 - sprite_height;
 			
 			if y == yCoord_phase2 {
 				if !dying
@@ -92,7 +83,7 @@ if !global.frozen {
 					if explosionCounter >= explosionMax && !dying {
 						explosionCounter = explosionMax;
 						if y == yCoord_phase2 && global.bossHealth > 0 && !dead
-							nullifyDeath(true);
+							nullifyDeath(true, true);
 					}
 				}
 				explosionTimer++;
@@ -100,7 +91,7 @@ if !global.frozen {
 					explosionTimer = 0
 			}
 			else if global.bossHealth <= 0 && !dying && !dead && (!control.canFillHealthBar and !control.fillingHealthBar) {
-				nullifyDeath(true);
+				nullifyDeath(true, true);
 			}
 			if control.canFillHealthBar or control.fillingHealthBar or dying
 				alarm[0] = -1;
@@ -110,17 +101,18 @@ if !global.frozen {
 				yspeed = 0.1311051;
 			}
         }
-        with objWilyMachine4Smoke {
-            if image_index > 4 || other.dying {
-                visible = false;
-            }
-        }
+        //with objWilyMachine4Smoke {
+        //    if hide && (image_index <= 0 || other.dying) {
+        //        visible = false;
+		//		hide = false;
+        //    }
+        //}
         if alarm[0] <= 0 and instance_number(objWilyMachine4Shot) < 3 and !control.canFillHealthBar and !control.fillingHealthBar {
             alarm[0] = room_speed * 0.7 / update_rate;
         }
     }
     else if !dying {
-        if sprite_get_bottom() > global.viewY + global.viewHeight - 64 {
+        if sprite_get_bottom() > global.viewY + global.viewHeight - 80 {
             yspeed = 0;
             control.healthBarTimerMax = 10;
 			
@@ -132,12 +124,13 @@ if !global.frozen {
             control.canFillHealthBar = false;
         }
     }
-    bottom = sprite_get_bottom();
+    bottom = sprite_get_bottom() - 3;
     with objWilyMachine4Smoke {
         y = other.bottom;
     }
 }
 else {
+	image_speed = 0;
     if alarm[0] > 0 {
         alarm[0]++;
     }

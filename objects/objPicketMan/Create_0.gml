@@ -19,6 +19,8 @@ damage[objSilverTomahawk] = 2;
 
 damage[objWindStorm] = 2;
 
+instantItemSpawn = true;
+
 
 //Enemy specific code
 shootTimer = 0;

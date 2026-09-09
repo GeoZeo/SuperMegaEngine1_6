@@ -1,4 +1,4 @@
-playerLockMovement();
-vspeed = -2;
-image_speed = 10/ room_speed;
+playerLockMovement(true);
+vspeed = -1;
+image_speed = 15 / room_speed;
 

@@ -14,3 +14,5 @@ ypos = 0;
 
 delay = 26/60;
 
+whiteTimer = 0;
+

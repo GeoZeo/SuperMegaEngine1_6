@@ -5,6 +5,7 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
@@ -29,8 +30,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprWilyCapsule4Shot",
-    "path": "sprites/sprWilyCapsule4Shot/sprWilyCapsule4Shot.yy",
+    "name": "sprWilyCapsule4ShotEnergy",
+    "path": "sprites/sprWilyCapsule4ShotEnergy/sprWilyCapsule4ShotEnergy.yy",
   },
   "spriteMaskId": null,
   "visible": true,

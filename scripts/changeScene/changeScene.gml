@@ -15,6 +15,7 @@ function changeScene(argument0, argument1) {
 
 	if scene_number < 11 {
 	    alarm[scene_number + 1] = room_speed * delay;  //Default time for transitioning to next scene
+		current_alarm = alarm[scene_number + 1];
 	}
 
 	show_debug_message("Scene " + string(next_scene) + ". Next one in " + string(alarm[scene_number + 1]/room_speed) + " seconds.");

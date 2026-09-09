@@ -13,8 +13,8 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b46efc8d-2180-4e3c-80ab-13017b51b49a",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"ecd97f71-a228-449a-b54b-8009ac1cc3af",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b46efc8d-2180-4e3c-80ab-13017b51b49a",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -55,8 +55,8 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b46efc8d-2180-4e3c-80ab-13017b51b49a","path":"sprites/sprProtomanStand/sprProtomanStand.yy",},},},"Disabled":false,"id":"0a7dc3a2-bc13-477b-bfc3-f0a365697e16","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"ecd97f71-a228-449a-b54b-8009ac1cc3af","path":"sprites/sprProtomanStand/sprProtomanStand.yy",},},},"Disabled":false,"id":"aeb2bfd5-c28e-4436-b4e6-7dae7140161e","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"ecd97f71-a228-449a-b54b-8009ac1cc3af","path":"sprites/sprProtomanStand/sprProtomanStand.yy",},},},"Disabled":false,"id":"aeb2bfd5-c28e-4436-b4e6-7dae7140161e","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b46efc8d-2180-4e3c-80ab-13017b51b49a","path":"sprites/sprProtomanStand/sprProtomanStand.yy",},},},"Disabled":false,"id":"0a7dc3a2-bc13-477b-bfc3-f0a365697e16","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

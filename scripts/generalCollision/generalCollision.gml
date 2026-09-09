@@ -1,9 +1,12 @@
 /// @description generalCollision()
 function generalCollision() {
 	//Handles a general object's collision code.
+	
+	var _rollbackMovement = !(!(variable_instance_exists(id, "isMM") and isMM) || (!instance_exists(objBeat) or !objBeat.carrying or objBeat.target != id));
 
 	//Floor
 	var mySolid = instance_place(x, y+yspeed, objSolid);
+	if mySolid < 0 { mySolid = instance_place(x, y+yspeed, objBossDoorH); }
 	if mySolid >= 0 and yspeed > 0 {
 	    
 		if mask_index > -1
@@ -13,15 +16,20 @@ function generalCollision() {
 	    
 		while place_meeting(x, y, mySolid)
 	        y -= 1;
+			
+		if mySolid.object_index = objBossDoorH
+			y += 1;
     
 	    //y = mySolid.y - (sprite_height - sprite_yoffset);
 	    ground = true;
-	    yspeed = 0;
+	    if !_rollbackMovement
+			yspeed = 0;
 	}
 	
 	
 	//Wall
 	mySolid = instance_place(x+xspeed, y, objSolid);
+	if mySolid < 0 { mySolid = instance_place(x+xspeed, y, objBossDoor); }
 	if mySolid >= 0 && xspeed != 0 {    
 	    if xspeed < 0
 		{
@@ -44,14 +52,19 @@ function generalCollision() {
 				x = mySolid.x - (sprite_get_width(mask_index) - sprite_get_xoffset(mask_index)) + (sprite_get_width(mask_index) - sprite_get_bbox_right(mask_index)) - 1;
 			else
 				x = mySolid.x - (sprite_get_width(sprite_index) - sprite_get_xoffset(sprite_index)) + (sprite_get_width(sprite_index) - sprite_get_bbox_right(sprite_index)) - 1;
+				
+			if mySolid.object_index = objBossDoor
+				x += 1;
 		}
 		
-	    xspeed = 0;
+	    if !_rollbackMovement
+			xspeed = 0;
 	}
 
 
 	//Ceiling
 	mySolid = instance_place(x, y+yspeed, objSolid);
+	if mySolid < 0 { mySolid = instance_place(x, y+yspeed, objBossDoorH); }
 	if mySolid >= 0 && yspeed < 0 {
 		if mask_index > -1
 			y = mySolid.bbox_bottom + sprite_get_yoffset(mask_index) - sprite_get_bbox_top(mask_index);
@@ -61,7 +74,8 @@ function generalCollision() {
 	    while place_meeting(x, y, mySolid)
 	        y += 1;
 			
-	    yspeed = 0;
+	    if !_rollbackMovement
+			yspeed = 0;
 	}
 
 
@@ -80,7 +94,11 @@ function generalCollision() {
 				y = tpsld.y - (sprite_get_height(sprite_index) - sprite_get_yoffset(sprite_index)) + (sprite_get_height(sprite_index) - sprite_get_bbox_bottom(sprite_index)) - 1;
 				
 			ground = true;
-			yspeed = 0;
+			if !_rollbackMovement
+				yspeed = 0;
+			else
+				y -= yspeed;
+				
 			break;
 	    }
 		
@@ -112,7 +130,8 @@ function generalCollision() {
 				y += mySolid.yspeed * mySolid.update_rate;
 			
 	        ground = true;
-	        yspeed = 0;
+	        if !_rollbackMovement
+				yspeed = 0;
 	    }
 	}
 
@@ -154,7 +173,8 @@ function generalCollision() {
 				}
 			}
 			
-	        xspeed = 0;
+	        if !_rollbackMovement
+				xspeed = 0;
 	    }
 	}
 
@@ -170,7 +190,8 @@ function generalCollision() {
 			else
 				y = mySolid.bbox_bottom + sprite_get_yoffset(sprite_index) - sprite_get_bbox_top(sprite_index);
 				
-	        yspeed = 0;
+	        if !(variable_instance_exists(id, "isMM") and isMM) || (!instance_exists(objBeat) or !objBeat.carrying or objBeat.target != id)
+				yspeed = 0;
 	    }
 	}
 
@@ -192,7 +213,10 @@ function generalCollision() {
 					y += mySolid.yspeed * mySolid.update_rate;
 				
 	            ground = true;
-	            yspeed = 0;
+	            if !_rollbackMovement
+					yspeed = 0;
+				else
+					y -= yspeed;
 	        }
 	    }
 	}

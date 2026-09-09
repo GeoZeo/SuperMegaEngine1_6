@@ -1,3 +1,16 @@
+//var spawn_area_null = 
+//	spawn_area_x1 == noone || spawn_area_x2 == noone ||
+//	spawn_area_y1 == noone || spawn_area_y2 == noone
+//;
+
+//var action_area_null = 
+//	action_area_x1 == noone || action_area_x2 == noone ||
+//	action_area_y1 == noone || action_area_y2 == noone
+//;
+
+//var spawn_in_view = insideViewRect(spawn_area_x1, spawn_area_y1, spawn_area_x2, spawn_area_y2, true, false);
+//var action_in_view = insideViewRect(action_area_x1, action_area_y1, action_area_x2, action_area_y2, true, false);
+
 if !object_is_ancestor(object_index, prtBoss) && !object_is_ancestor(object_index, prtFortressBoss)
 {
 	useShader = false;
@@ -5,13 +18,21 @@ if !object_is_ancestor(object_index, prtBoss) && !object_is_ancestor(object_inde
 	{
 		if alarm[11] > -1 && healthpoints > 0 && !dying //Health check optional; comment it out if you don't want it
 		{
-		    shader_set(shBossHit);
+		    if object_is_ancestor(object_index, prtMiniBoss)
+			{
+				shader_set(minibossShader)
+			}
+			else
+			{
+				shader_set(shEnemyHit);
+			}
 		    useShader = true;
 		}
 	}
 }
 
-drawSelf();
+if (insideView() or checkFullSprite) && (hitWhite or (!object_is_ancestor(object_index, prtBoss) or drawBoss))
+	drawSelf();
 
 if !object_is_ancestor(object_index, prtBoss) && !object_is_ancestor(object_index, prtFortressBoss)
 {

@@ -2,6 +2,12 @@
 if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= global.viewX+global.viewWidth-1
 && y >= global.viewY && y <= global.viewY+global.viewHeight-1 && !insideViewAny_Spr(objArenaStartingPoint) && (!instance_exists(objBeat) or objBeat.transportTimer >= objBeat.transportTime)
 {	
+	if playerGroundCheck
+	{
+		with prtPlayer playerCheckGround();
+		playerGroundCheck = false;
+	}
+	
 	var _groundChecked = prtPlayer.ground || !checkForGround;
 	
 	if ((myBoss > -1 and (bossID > -1 and bossID < array_length_1d(global.bossDefeated) and !global.bossDefeated[bossID])) || (myBoss > -1 and (bossPersistent or bossIsClone)))
@@ -26,22 +32,32 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 				canInitDeactivation = false;
 			}
 			
-			if !prtPlayer.locked
-				playerLockMovement();
+			if prtPlayer.canShoot
+			{
+				prtPlayer.canShoot = false;
+				with prtPlayer.weapons[global.currentWeapon] alarm[11] = -1;
+			}
+			
+			prtPlayer.locked = true;
+			beginLock = true;
 				
 			with objPauseMenu instance_destroy();
 			stopSFX(sfxPause);
-				
-			stopSFX(global.bgm);
+			
+			if (!startMusic or (music == -1 and (_groundChecked or !stopInitMusicGround))) && stopInitMusic stopSFX(global.bgm);
 			
 			if bossTimer >= bossTime && _groundChecked
 			{
 				myBoss.startIntro = true;
-        
+				startMusic = true;
+			}
+			
+			if startMusic && !musicStarted
+			{
 				with prtPlayer.weapons[global.currentWeapon] stopSFX(chargeSFX);
 				with prtPlayer.weapons[global.currentWeapon] stopSFX(chargedSFX);
-		
-			    if music != -1
+				
+				if music != -1
 				{
 					if musicVolume != -1 && musicLoopPointStart != -1
 				        playMusicVolumeLoopPoint(music, musicVolume, musicLoopPointStart, musicLoopPointEnd);
@@ -52,8 +68,17 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 				    else
 				        playMusicDefault(music);
 				}
+				
+				musicStarted = true;
 			}
 	    }
+		
+		if beginLock && lockPlayer && (prtPlayer.ground or !lockOnGround)
+		{
+			playerLockMovement();
+			lockPlayer = false;
+			if playerDir != noone prtPlayer.image_xscale = playerDir;
+		}
     
 	    if bossTimer >= bossTime && _groundChecked
 		{
@@ -78,9 +103,10 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 			if fillingHealthBar == true
 			{
 			    healthBarTimer += 1;
-			    if healthBarTimer >= 3
+			    if healthBarTimer >= healthBarInterval
 			    {
 			        global.bossHealth += 1;
+					//playSFX(sfxEnergyRestore); //playing the restore sound once for each individual unit added may sound better than looping it to you but idk?
 			        healthBarTimer = 0;
 			    }
         
@@ -89,10 +115,14 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 			        global.bossHealth = myBoss.healthpointsStart;
 			        stopSFX(sfxEnergyRestore);
 			        playerFreeMovement();
+					prtPlayer.canShoot = true;
 			        myBoss.startFight = true;
 			        myBoss.healthpoints = myBoss.healthpointsStart;
+					myBoss.projCanTouch = myBoss.projCanTouchStart;
+					myBoss.shieldCanTouch = myBoss.shieldCanTouchStart;
 					myBoss.canHit = true;
 			        fillingHealthBar = false;
+					with myBoss event_user(12);
 			    }
 			}
 		}
@@ -106,28 +136,29 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 			
 			if endLevel
 			{
-				if !prtPlayer.locked
+				if prtPlayer.canShoot
 				{
-					playerLockMovement();
-				
-					if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
-						playerLockMovement(true);
+					prtPlayer.canShoot = false;
+					with prtPlayer.weapons[global.currentWeapon] alarm[11] = -1;
 				}
+				
+				prtPlayer.locked = true;
+				beginLock = true;
 				
 				with objPauseMenu instance_destroy();
 				stopSFX(sfxPause);
 			
-				stopSFX(global.bgm);
+				if _groundChecked || !stopInitMusicGround stopSFX(global.bgm);
 				
 				if _groundChecked alarm[0] = 240;
 			}
-			else
+			else //...unless this isn't actually the end of the level, in which case either unlock all exits or warp the player to the next section of the level.
 			{
 				var warp = true;
 				instance_activate_object(objBossDoor);
 				with objBossDoor
 				{
-					if insideView() && ((dir == 1 && prtPlayer.x > x) or (dir == -1 && prtPlayer.x <= x)) {
+					if insideViewPoint(sprite_get_xcenter(), sprite_get_ycenter(), true, true) && ((dir == 1 && prtPlayer.x > x) or (dir == -1 && prtPlayer.x <= x)) {
 						canOpen = true;
 						warp = false;
 					}
@@ -135,7 +166,7 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 				instance_activate_object(objBossDoorH);
 				with objBossDoorH
 				{
-					if insideView() && ((dir == 1 && prtPlayer.y > y) or (dir == -1 && prtPlayer.y <= y)) {
+					if insideViewPoint(sprite_get_xcenter(), sprite_get_ycenter(), true, true) && ((dir == 1 && prtPlayer.y > y) or (dir == -1 && prtPlayer.y <= y)) {
 						canOpen = true;
 						warp = false;
 					}
@@ -151,15 +182,16 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 				 
 				if warp {
 					
-					if !prtPlayer.locked
+					if prtPlayer.canShoot
 					{
-						playerLockMovement();
-				
-						if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
-							playerLockMovement(true);
+						prtPlayer.canShoot = false;
+						with prtPlayer.weapons[global.currentWeapon] alarm[11] = -1;
 					}
+					
+					prtPlayer.locked = true;
+					beginLock = true;
 			
-					stopSFX(global.bgm);
+					if _groundChecked || !stopInitMusicGround stopSFX(global.bgm);
 					
 					var myTeleport = instance_create(mask_get_xcenter_object(prtPlayer), mask_get_ycenter_object(prtPlayer), objTeleport);
 					with myTeleport {
@@ -193,6 +225,17 @@ if instance_exists(prtPlayer) && prtPlayer.visible && x >= global.viewX && x <= 
 					}
 				}
 			}
+		}
+		
+		if beginLock && lockPlayer && (prtPlayer.ground or !lockOnGround)
+		{
+			playerLockMovement();
+				
+			if !cfgChargeWhileLocked && !cfgContinueChargeAnimWhileLocked //Optional
+				playerLockMovement(true);
+						
+			lockPlayer = false;
+			if playerDir != noone prtPlayer.image_xscale = playerDir;
 		}
 	}
 }

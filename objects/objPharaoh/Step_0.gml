@@ -114,8 +114,6 @@ if global.frozen == false
                 }
             break;
             
-            
-            
             case 2: //Jumping 'n shooting
                 if attackTimer <= 0
                 {
@@ -124,23 +122,20 @@ if global.frozen == false
                     
                     startXScale = image_xscale;
                     yspeed = -5;
-                    sprite_index = sprPharaohJump;
+                    sprite_index = sprPharaohJumpShoot;
+                    image_index = 0;
+                    image_speed = 1/16 * update_rate;
+					if player_x > x
+						dir = 1;
+					else
+						dir = -1;
+						
                     ground = false;
                 }
                 
-                if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
+                if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
                 {
-                    jumpTimer += update_rate;
-                    if jumpTimer >= 10
-                    {
-                        sprite_index = sprPharaohJumpShoot;
-                        image_index = 0;
-                        image_speed = 6/60 * update_rate;
-                    }
-                }
-                else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
-                {
-                    if floor(image_index) == 1
+                    if floor(image_index) == 3
                     {
                         if canInitShoot == true
                         {
@@ -155,20 +150,39 @@ if global.frozen == false
                             shootID = instance_create(box, y-8, objPharaohManShot);
 								shootID.player_x = player_sprite_xcenter;
 								shootID.player_y = player_sprite_ycenter;
-								with shootID event_user(0);
+								shootID.dir = dir;
+								with shootID event_user(1);
                         }
                         
-                        image_speed = 6/60 * update_rate;
+                        image_speed = 0.1 * update_rate;
+						canInitJumpShoot = false;
                     }
-                    else if floor(image_index) == image_number-1
-                    {
-                        image_index = image_number-1;
-                        image_speed = 0;
-                    }
-                    else
-                    {
-                        image_speed = 6/60 * update_rate;
-                    }
+					else
+					{
+						if floor(image_index) >= 1
+						{
+							image_speed = 0.118 * update_rate;
+							canInitJumpShoot = false;
+						}
+						else if floor(image_index) == 0
+						{
+							if !canInitJumpShoot
+								image_speed = 0.118 * update_rate;
+							else
+								image_speed = 1/16 * update_rate;
+							
+							canInitShoot = true;
+						}
+					}
+                    //else if floor(image_index) == image_number-1
+                    //{
+                    //    image_index = image_number-1;
+                    //    image_speed = 0;
+                    //}
+                    //else
+                    //{
+                    //    image_speed = 6/60 * update_rate;
+                    //}
                 }
                 
                 if !place_meeting(x+startXScale * 2, y, objSolid) && !place_meeting(x+startXScale * 2, y, prtMovingPlatformSolid)
@@ -189,16 +203,21 @@ if global.frozen == false
                 {
                     if jumpAmount == 0
                     {
-                        sprite_index = sprPharaohJump;
+                        sprite_index = sprPharaohJumpShoot;
                         jumpTimer = 0;
                         jumpAmount = 1;
-                        canInitShoot = true;
+						if player_x > x
+							dir = 1;
+						else
+							dir = -1;
+                        //canInitShoot = true;
                         yspeed = -5;
                     }
                     else
                     {
                         jumpAmount = 0;
                         canInitShoot = true;
+						canInitJumpShoot = true;
                         phase = 0;
                         sprite_index = sprPharaohStand;
                         xspeed = 0;
@@ -208,40 +227,43 @@ if global.frozen == false
                     
                     
                 //Face the player
-                if startXScale == -1
-                {
-                    if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
-                    {
-                        if x > player_x
-                            sprite_index = sprPharaohJump;
-                        else
-                            sprite_index = sprPharaohJumpBack;
-                    }
-                    else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
-                    {
-                        if x > player_x
-                            sprite_index = sprPharaohJumpShoot;
-                        else
-                            sprite_index = sprPharaohJumpShootBack;
-                    }
-                }
-                else
-                {
-                    if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
-                    {
-                        if x > player_x
-                            sprite_index = sprPharaohJumpBack;
-                        else
-                            sprite_index = sprPharaohJump;
-                    }
-                    else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
-                    {
-                        if x > player_x
-                            sprite_index = sprPharaohJumpShootBack;
-                        else
-                            sprite_index = sprPharaohJumpShoot;
-                    }
-                }
+				if floor(image_index) == 0
+				{
+	                if startXScale == -1
+	                {
+	                    if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
+	                    {
+	                        if x > player_x
+	                            sprite_index = sprPharaohJump;
+	                        else
+	                            sprite_index = sprPharaohJumpBack;
+	                    }
+	                    else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
+	                    {
+	                        if x > player_x
+	                            sprite_index = sprPharaohJumpShoot;
+	                        else
+	                            sprite_index = sprPharaohJumpShootBack;
+	                    }
+	                }
+	                else
+	                {
+	                    if sprite_index == sprPharaohJump || sprite_index == sprPharaohJumpBack
+	                    {
+	                        if x > player_x
+	                            sprite_index = sprPharaohJumpBack;
+	                        else
+	                            sprite_index = sprPharaohJump;
+	                    }
+	                    else if sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack
+	                    {
+	                        if x > player_x
+	                            sprite_index = sprPharaohJumpShootBack;
+	                        else
+	                            sprite_index = sprPharaohJumpShoot;
+	                    }
+	                }
+				}
             break;
             
             
@@ -260,33 +282,42 @@ if global.frozen == false
                 if sprite_index == sprPharaohCharge //This extra code is to make sure the animation resumes after pausing and unpausing
                     image_speed = 0.25 * update_rate;
                 else if sprite_index == sprPharaohCharge2
-                    image_speed = 0.07 * update_rate;
+                    image_speed = 0.125 * update_rate;
                 else if sprite_index = sprPharaohCharge3
-                    image_speed = 1 * update_rate;
+                    image_speed = 0.25 * update_rate;
                 
                 jumpTimer += update_rate; //It's not really a timer for jumping, but rather for releasing the shot; however, reusing this variable saves initializing a new one
-                if jumpTimer >= 40
+                if jumpTimer >= 48
                 {                    
-                    if floor(jumpTimer) == 40
+                    if floor(jumpTimer) == 49
                     {
-                        jumpTimer = 41;
+                        jumpTimer = 50;
                         sprite_index = sprPharaohCharge2;
                         image_index = 0;
-                        image_speed = 0.07 * update_rate;
+                        image_speed = 0.125 * update_rate;
                     }
-                    else if floor(jumpTimer) == 60
+                    else if floor(jumpTimer) == 66
                     {
-                        jumpTimer = 61;
+                        jumpTimer = 67;
                         sprite_index = sprPharaohCharge3;
-                        image_index = 1;
-                        image_speed = 1 * update_rate;
+                        image_index = 0;
+                        image_speed = 0.25 * update_rate;
                     }
-                    else if floor(jumpTimer) == 70
-                    {
-                        jumpTimer = 71;
-                        sprite_index = sprPharaohShoot;
-                        
-                        var shootID, box;
+					else if floor(jumpTimer) == 75
+					{
+						jumpTimer = 76;
+						sprite_index = sprPharaohCharge3;
+						image_index = 0;
+						image_speed = 0.25 * update_rate;
+					}
+					else if floor(jumpTimer) == 77
+					{
+						jumpTimer = 78;
+						sprite_index = sprPharaohCharge3;
+                        image_index = 1;
+                        image_speed = 0.25 * update_rate;
+						
+						var shootID, box;
                         if image_xscale == 1
                             box = bbox_right+10;
                         else
@@ -294,10 +325,15 @@ if global.frozen == false
                             
                         shootID = instance_create(box, y+2, objPharaohManShotBig);
                             shootID.image_xscale = image_xscale;
-                    }
-                    else if floor(jumpTimer) == 75
+					}
+                    else if floor(jumpTimer) == 81
                     {
-                        jumpTimer = 76;
+                        jumpTimer = 82;
+                        sprite_index = sprPharaohShoot;
+                    }
+                    else if floor(jumpTimer) == 87
+                    {
+                        jumpTimer = 88;
                         phase = 0;
                         sprite_index = sprPharaohStand;
                         xspeed = 0;
@@ -309,15 +345,25 @@ if global.frozen == false
         
         
         //Face the player
-        if x > player_x
-            image_xscale = -1;
-        else
-            image_xscale = 1;
+		if floor(image_index) == 0 || !(sprite_index == sprPharaohJumpShoot || sprite_index == sprPharaohJumpShootBack)
+		{
+	        if x > player_x
+			{
+	            image_xscale = -1;
+				dir = -1;
+			}
+			else
+			{
+	            image_xscale = 1;
+				dir = 1;
+			}
+		}
 		
 		escapeWall(true, true, true, true);
     }
 }
 else {
+	if phase == 3 image_index -= image_speed;
     image_speed = 0;
 }
 

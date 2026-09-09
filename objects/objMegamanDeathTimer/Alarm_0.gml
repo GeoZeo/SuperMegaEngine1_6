@@ -13,6 +13,7 @@ else {
     ID.myRoom = rmPass;
     global.passPlayVictory = false;
     global.passContinueRoom = room;
+	if cfgRememberLastMenuOption global.lastOption = 0;
 }
     
 instance_destroy();

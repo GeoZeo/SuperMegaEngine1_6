@@ -13,6 +13,7 @@ on = true;
 boss = -1;
 rushExit = false;
 teleportSprite = -1;
+landSprite = -1;
 drawLED = true;
 timerLED = 0;
 createScenery = false;

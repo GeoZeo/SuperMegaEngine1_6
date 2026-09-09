@@ -134,30 +134,41 @@ if curr_front_layer < global.end_front_layer {
 //Restart the game
 if keyboard_check_pressed(vk_f1)
 {
-    application_surface_draw_enable(true);
     sound_stop_all();
     game_restart();
 }
 
 //Reset window transform to default
 if keyboard_check_pressed(vk_f2) {
-	window_set_size(768, 672);
 	
-	if window_get_showborder()
-		window_set_position(576, 215);
-	else
-		window_set_position(576, 204);
-		
-	window_set_fullscreen(false);
+	toggleFullScreen(false);
+	
+	window_set_size(global.winWidthInit, global.winHeightInit);
+	
+	if !keyboard_check(vk_alt) { 
+		window_set_position(global.winX, global.winY - (11 * !window_get_showborder()));
+	}
+	else {
+		window_set_showborder(true);
+		window_set_cursor(cr_default);
+		window_set_position(global.winX, global.winY);
+	}
 }
 
-//Toggle borderless window
-if keyboard_check_pressed(vk_f3)
-    window_set_showborder( !window_get_showborder() );
+//Match window dimensions to application surface dimensions (only works while un-maximised), or toggle borderless window
+if keyboard_check_pressed(vk_f3) {
+	if !keyboard_check(vk_alt) {
+		window_set_size(surface_get_width(application_surface), surface_get_height(application_surface));
+	}
+	else {
+		window_set_showborder( !window_get_showborder() );
+	}
+}
     
 //Toggle fullscreen
-if keyboard_check_pressed(vk_f4)
-    window_set_fullscreen( !window_get_fullscreen() );
+if keyboard_check_pressed(vk_f4) {
+    toggleFullScreen( !window_get_fullscreen() );
+}
 	
 //Toggle cursor visibility
 if keyboard_check_pressed(vk_f5) {
@@ -165,6 +176,25 @@ if keyboard_check_pressed(vk_f5) {
 		window_set_cursor(cr_none);
 	else
 		window_set_cursor(cr_default);
+}
+
+//Adjust screen dimensions and offsets in accordance with window size
+if !window_get_fullscreen() {
+	global.winWidth = window_get_width();
+	global.winHeight = window_get_height();
+	
+	var _mult = min(floor(global.winWidth / global.viewWidth), floor(global.winHeight / global.viewHeight));
+	
+	var _newWidth = global.viewWidth * _mult;
+	var _newHeight = global.viewHeight * _mult;
+	
+	if !(_newWidth < global.viewWidth || _newHeight < global.viewHeight)
+	{
+		surface_resize(application_surface, _newWidth, _newHeight);
+	
+		global.Xoffset = floor((global.winWidth - surface_get_width(application_surface)) / 2);
+		global.Yoffset = floor((global.winHeight - surface_get_height(application_surface)) / 2);
+	}
 }
     
 //Close the game
@@ -192,23 +222,51 @@ if keyboard_check(vk_add) global.screws = min(global.maxScrews, global.screws + 
 if keyboard_check(vk_subtract) global.screws = max(0, global.screws - 2);
 
 if keyboard_check_pressed(vk_f10) {
-    global.current_screen_shader++;
-    if global.current_screen_shader >= global.num_screen_shaders {
-        global.current_screen_shader = 0;
-        application_surface_draw_enable(true);
-    }
-    else {
-        application_surface_draw_enable(false);
-    }
-    global.screen_shader = global.screen_shaders[global.current_screen_shader];
-    show_debug_message("Current shader: " +  string(global.current_screen_shader));
+	if !keyboard_check(vk_alt) {
+	    global.current_screen_shader++;
+	    if global.current_screen_shader >= global.num_screen_shaders
+	        global.current_screen_shader = 0;
+		
+	    global.screen_shader = global.screen_shaders[global.current_screen_shader];
+	    show_debug_message("Current shader: " +  string(global.current_screen_shader));
+	}
+	else {
+		global.current_screen_border++;
+	    if global.current_screen_border >= global.num_screen_borders
+	        global.current_screen_border = 0;
+		
+	    global.screen_border = global.screen_borders[global.current_screen_border];
+	    show_debug_message("Current border: " +  string(global.current_screen_border));
+	}
 }
 
 if keyboard_check_pressed(vk_f11) {
-	//var myEnemy = instance_create(x + 64, y, objFanFiend);
-	with prtPlayer playerGetHit(0);
+	if keyboard_check(vk_alt) {
+		with objFanFiend {
+			if insideView() {
+				instance_destroy();
+			}
+		}
+	}
+	else {
+		var myEnemy = instance_create(x + 96, y - 64, objFanFiend);
+		myEnemy.dir = -1;
+		myEnemy.respawn = false;
+		//with prtPlayer playerStun(60, false, 0.125);
+	}
+	//instance_create(x, y, objShake);
 }
 
 if keyboard_check_pressed(vk_f12) {
-	reset_achievements();
+	
+	if keyboard_check(vk_alt) {
+		reset_achievements();
+	}
+	else {
+		for (var i = 0; object_exists(i); i++) {
+			if object_is_ancestor(i, prtAchievement) {
+				add_achievement(i, true);
+			}
+		}
+	}
 }

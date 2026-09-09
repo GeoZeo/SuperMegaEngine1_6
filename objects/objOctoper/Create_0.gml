@@ -3,12 +3,14 @@ event_inherited();
 healthpointsStart = 20;
 healthpoints = healthpointsStart;
 
-blackenBackground = true;
+playerCanTouch = false;
+projCanTouch = false;
+shieldCanTouch = false;
 
 contactDamage = 4;
 
-xspeed = image_xscale * 0.5;
-yspeed = -0.5;
+xspeed = image_xscale * 0.25;
+yspeed = -1;
 
 depth = 10000000;
 
@@ -26,4 +28,13 @@ explosionMax = 5;
 explosionCounter = 0;
 
 hitWhite = true;
+
+//Boss-specific code
+sprite_index = sprOctoperFadeIn;
+image_speed = 0;
+spriteTimer = 0;
+bounceCount = 0;
+top = y - (sprite_height - 48);
+bottom = y;
+
 

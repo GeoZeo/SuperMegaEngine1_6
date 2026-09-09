@@ -11,6 +11,8 @@ freeShot = false;
 initChargeTime = 30;
 chargeWhileLocked = true;
 
+demoTime = 5;
+
 primaryCol = make_color_rgb(248, 120, 88);
 secondaryCol = make_color_rgb(240, 208, 176);
 

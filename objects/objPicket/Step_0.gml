@@ -7,7 +7,7 @@ if !global.frozen {
     else
         ddy = dy;
     
-    xspeed = dx / ( (3 + (ddy / 6)) * const ) * image_xscale;
+    xspeed = abs(dx / ( (3 + (ddy / 6)) * const )) * image_xscale;
     
     event_inherited();
     

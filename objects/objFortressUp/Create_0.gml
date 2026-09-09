@@ -1,2 +1,7 @@
-dir = "up";
+event_inherited();
+
+up = true;
+right = false;
+down = false;
+left = false;
 

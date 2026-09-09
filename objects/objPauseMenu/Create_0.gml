@@ -3,7 +3,7 @@ blackAlphaIncrease = 0.2;
 blackAlphaTimer = 0;
 blackAlphaTimerMax = 2;
 weapons_per_col = global.weapons_per_col;
-playerSprite = prtPlayer.spriteStandDefault;
+playerSprite = global.spriteStand;
 
 phase = 0;  //0: increasing the black rectangle's alpha
 option = global.currentWeapon;
@@ -13,6 +13,18 @@ resetWeapon = false; //Should we, after exiting the menu, reset our weapon to th
 primedItemIndex = -1;
 
 arrowTimer = 0;
+
+unpause = false;
+
+with prtPlayer
+{
+	global.canBufferJump = true;
+	global.canBufferLSwitch = true;
+	global.canBufferRSwitch = true;
+	
+	if global.enableSlideKey
+		global.canBufferSlide = true;
+}
 
 with prtPlayer event_user(0);
 

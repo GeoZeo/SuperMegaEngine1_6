@@ -5,14 +5,19 @@ healthpoints = 0;
 dead = true;
 event_user(15);
 if dead {
-    stopAllSFX();
+    if !control.stopInitMusic && control.music == -1 && !control.endLevel {
+		stopAllSFXsansMusic();
+	}
+	else {
+		stopAllSFX();
+	}
     playSFX(sfxDeath);
                 
     var i, explosionID;
                     
-    doExplosion(sprite_get_xcenter(), sprite_get_ycenter(), 1.5);
+    doExplosion(sprite_get_xcenter(), sprite_get_ycenter(), 1.5, explosionDepth);
                 
-    doExplosion(sprite_get_xcenter(), sprite_get_ycenter(), 2.5);
+    doExplosion(sprite_get_xcenter(), sprite_get_ycenter(), 2.5, explosionDepth);
                 
     instance_activate_object(objTeleport);
     with objTeleport {

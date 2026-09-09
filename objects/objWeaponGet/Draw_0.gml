@@ -8,6 +8,8 @@ oldAlpha = draw_get_alpha();
 draw_set_color(c_white);
 draw_set_alpha(1);
 
+//draw_text(global.viewX + 64, global.viewY + 64, string(timer));
+
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -48,7 +50,7 @@ if phase >= 7 {
 		draw_text(textX, textY+50, string_hash_to_newline("AND " + global.utilityID.wpnName));
 	}
 	draw_set_alpha(1);
-	if doAgain drawSpriteColorSwap(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
+	if doAgain drawSpriteColorSwap3(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
 }
 
 if (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters))) {
@@ -57,7 +59,7 @@ if (global.weaponID > -1 and !(ds_list_find_index(global.weaponID.exceptCharacte
     secondaryCol = global.weaponID.secondaryCol; //The secondary color for the giant MM in the weapon get screen
 }
 if (global.utilityID > -1 and !(ds_list_find_index(global.utilityID.exceptCharacters, global.character) > -1 and ds_list_find_index(global.utilityID.exceptCharacters, global.character) < ds_list_size(global.utilityID.exceptCharacters)))
-&& doAgain {
+&& doAgain && (changeColAtUtil || cfgWeaponPreview) {
     primaryCol = global.utilityID.primaryCol; //The primary color for the giant MM in the weapon get screen
     primaryColDark = merge_color(primaryCol, c_black, 0.3); //The shading on the primary color
     secondaryCol = global.utilityID.secondaryCol; //The secondary color for the giant MM in the weapon get screen
@@ -65,12 +67,12 @@ if (global.utilityID > -1 and !(ds_list_find_index(global.utilityID.exceptCharac
 
 if phase == 8 {
     //Flickering
-    if timer mod 2 == 0 {
-        drawSpriteColorSwap(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
+    if timer mod 4 == 0 or timer mod 4 == 1 {
+        drawSpriteColorSwap3(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
     }
 }
 else if phase == 9 {
-    drawSpriteColorSwap(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
+    drawSpriteColorSwap3(megaSpr, megaImg, megaX, megaY, src_col1, src_col2, src_col3, primaryCol, primaryColDark, secondaryCol);
 }
 
 

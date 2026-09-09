@@ -5,6 +5,24 @@ function playerDeathTimer() {
 		
 		if !instance_exists(objPauseMenu)
 			killTimer++;
+			
+		if killTimer >= 2 {
+			var _show = true;
+			
+			with objBossDeathTimer {
+				if isMM {
+					visible = true;
+					_show = false;
+				}
+			}
+			with objArenaStartingPoint {
+				if isMM {
+					visible = true;
+					_show = false;
+				}
+			}
+			if _show visible = true;
+		}
 	
 		if killTimer >= killTime {
 			killTimer = killTime;
@@ -15,8 +33,21 @@ function playerDeathTimer() {
 		        i = 0;
 		        repeat 8 {
 		            explosionID = instance_create(x, y, objMegamanExplosion);
+					explosionID.depth = -3;
 		            explosionID.dir = i;
 		            explosionID.spd = 1.5;
+					with objBossDeathTimer {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
+					with objArenaStartingPoint {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
                 
 		            i += 45;
 		        }
@@ -24,8 +55,21 @@ function playerDeathTimer() {
 		        i = 0;
 		        repeat 8 {
 		            explosionID = instance_create(x, y, objMegamanExplosion);
+					explosionID.depth = -3;
 		            explosionID.dir = i;
 		            explosionID.spd = 2.5;
+					with objBossDeathTimer {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
+					with objArenaStartingPoint {
+						if isMM {
+							explosionID.x = x;
+							explosionID.y = y;
+						}
+					}
                 
 		            i += 45;
 		        }

@@ -15,6 +15,11 @@ healthpoints = healthpointsStart;
 prevHealthPoints = healthpoints;
 contactDamage = 2;
 
+hitWhite = false;
+
+healthBarPrimaryCol = make_color_rgb(0, 120, 255);
+healthBarSecondaryCol = make_color_rgb(248, 248, 248);
+
 damage[objMetalBlade] = 2;
 
 damage[objPharaohShot] = 2;

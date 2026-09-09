@@ -2,6 +2,6 @@
 
 if platesCount() == platesCollectedCount() {
     weapon.unlocked = true;
-    add_achievement(objTimeLordAchievement);
+    add_achievement(objTimeLordAchievement, room != rmLoadGame);
 }
 

@@ -1,6 +1,7 @@
 global.damageMultiplier = 1;
 
-option = 0;
+if cfgRememberLastMenuOption option = global.lastOption;
+else option = 0;
 timer = 0;
 selectedOption = false;
 global.checkpoint = false;

@@ -1,12 +1,12 @@
 /// @description  onReleaseCharge
 event_inherited();
 
-var _chargeShotsReflected = 0;
-with objReflectedProjectile
+var _chargeShotsDeflected = 0;
+with objDeflectedProjectile
 {
 	if id_of_origin == prtPlayer 
 	&& sprite_get_name(sprite_index) == "sprPharaohShotCharged"
-		_chargeShotsReflected++;
+		_chargeShotsDeflected++;
 }
 
 if instance_exists(objPharaohShotCharging) {
@@ -21,7 +21,7 @@ if instance_exists(objPharaohShotCharging) {
     }
 
 }
-else if instance_number(objPharaohShotCharged) == 1 && _chargeShotsReflected <= 0 && !objPharaohShotCharged.thrown {
+else if instance_number(objPharaohShotCharged) == 1 && _chargeShotsDeflected <= 0 && !objPharaohShotCharged.thrown {
 	if (prtPlayer.canMove || prtPlayer.climbing || prtPlayer.locked) {
 		if !instance_exists(objSectionSwitcher) && (!prtPlayer.locked or room == rmWeaponGet) {
 			
@@ -32,6 +32,8 @@ else if instance_number(objPharaohShotCharged) == 1 && _chargeShotsReflected <= 
 				
 				x = other.box + prtPlayer.image_xscale * 10;
 				y = other.yy;
+				new_x = x;
+				new_y = y;
 				
 				dir = sign(prtPlayer.image_xscale);
 				image_xscale = dir;
@@ -69,7 +71,7 @@ else {
     initChargeTimer = 0;
     chargeTimer = 0;
 	
-	if _chargeShotsReflected > 0
+	if _chargeShotsDeflected > 0
 		with objPharaohShotCharged instance_destroy();
 }
 

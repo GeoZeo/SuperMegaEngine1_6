@@ -59,6 +59,10 @@ if !global.frozen {
         case block_states.IDLE:   
         break;
     }
+	whiteTimer--;
+	if whiteTimer <= 0 {
+		whiteTimer = 0;
+	}
 }
 else {
     if alarm[0] > 0 {

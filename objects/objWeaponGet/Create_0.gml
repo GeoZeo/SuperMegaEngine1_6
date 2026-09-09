@@ -9,6 +9,13 @@ text1Alpha = 0;
 text2Alpha = 0;
 text3Alpha = 0;
 
+changeColAtUtil = false;
+
+//global.weaponID = objPharaohShotWeapon;
+//if !objRushJetWeapon.unlocked global.utilityID = objRushJetWeapon; //Uncomment these lines for testing
+//global.passContinueRoom = rmBeta;
+//global.passPlayVictory = true;
+
 global.checkpoint = false;
 
 if global.bossID > -1 {
@@ -29,7 +36,6 @@ if numBossesDefeated() >= 8 {
 
 ///-----------------------------------------------------------------------------------///
 
-//global.weaponID = objPharaohShotWeapon; //For testing
 if global.weaponID > -1
 && !(ds_list_find_index(global.weaponID.exceptCharacters, global.character) > -1
 and ds_list_find_index(global.weaponID.exceptCharacters, global.character) < ds_list_size(global.weaponID.exceptCharacters)) {

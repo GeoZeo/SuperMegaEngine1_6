@@ -1,5 +1,11 @@
-if !global.frozen {
+if !global.frozen && !instance_exists(objSectionSwitcher) {
+	var _oldActive = instance_exists(prtPlayer);
+	if !_oldActive instance_activate_object(prtPlayer);
 	if instance_exists(prtPlayer) {
+		if prtPlayer.showReady or prtPlayer.teleporting or prtPlayer.landing {
+			exit;
+		}
+		
 		player_x = prtPlayer.x;
 		player_y = prtPlayer.y;
 		
@@ -101,7 +107,10 @@ if !global.frozen {
                 instance_destroy();
             }
 		}
+		
+		with prtPlayer playerCamera();
     }
+	if !_oldActive instance_deactivate_object(prtPlayer);
 }
 
 

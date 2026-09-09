@@ -2,6 +2,17 @@
 event_inherited();
 
 control = instance_nearest(x, y, objBossControl);
+
+if healthBarPrimaryCol != noone
+	control.healthBarPrimaryCol = healthBarPrimaryCol;
+if healthBarSecondaryCol != noone
+	control.healthBarSecondaryCol = healthBarSecondaryCol;
+	
+control.healthBarFlash = healthBarFlash;
+
+if healthBarTimerMax != noone
+	control.healthBarTimerMax = healthBarTimerMax;
+	
 if bossID > -1
 {
 	with objTeleport

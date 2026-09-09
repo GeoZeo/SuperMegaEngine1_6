@@ -12,25 +12,25 @@ var prevX = x;
 
 if newSectionXOffset > 0 //Switching to the right
 {
-    x = sectionRight-6;
+    x = sectionRight-7;
     playerCameraInit();
     with instance_create(x, y, objSectionSwitcher) dir = "right";
 }
 else if newSectionXOffset < 0 //Switching to the left
 {
-    x = sectionLeft+6;
+    x = sectionLeft+7;
     playerCameraInit();
     with instance_create(x, y, objSectionSwitcher) dir = "left";
 }
 else if newSectionYOffset > 0 //Switching down
 {
-    y  = sectionBottom-6 + sprite_yoffset - (sprite_height/2);
+    y  = sectionBottom-7 + sprite_yoffset - (sprite_height/2);
     playerCameraInit();
     with instance_create(x, y, objSectionSwitcher) dir = "down";
 }
 else if newSectionYOffset < 0 //Switching up
 {
-    y  = sectionTop+6 + sprite_yoffset - (sprite_height/2);
+    y  = sectionTop+7 + sprite_yoffset - (sprite_height/2);
     playerCameraInit();
     with instance_create(x, y, objSectionSwitcher) dir = "up";
 }

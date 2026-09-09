@@ -7,4 +7,8 @@ move_speed = 0.3;
 dirX = 0;
 dirY = 0;
 len = 0;
+checkPlayerSpriteCenter = true;
+hitWhite = true;
+flashTime = 0.5;
+instantItemSpawn = true;
 

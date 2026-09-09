@@ -22,6 +22,8 @@ function playMusicNoLoopVolume(argument0, argument1) {
 	    audio_sound_gain(snd, argument1, 0);
 	    global.bgm = snd;
 		global.volume = argument1;
+		global.loopStart = -1;
+		global.loopEnd = -1;
 	}
 	if instance_exists(prtPlayer)
 	&& ((!is_string(prtPlayer.jingle) and prtPlayer.jingle > -1)
