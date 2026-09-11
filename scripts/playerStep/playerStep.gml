@@ -88,7 +88,7 @@ function playerStep() {
 									global.xspeed = -walkSpeed;
 							}
 	                    }
-					}
+					} //TODO: Review if we're supposed to keep our dash jump momentum while running on ice
                     
 	                image_xscale = -1;
                             

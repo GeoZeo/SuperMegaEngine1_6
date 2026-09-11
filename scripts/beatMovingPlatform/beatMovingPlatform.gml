@@ -253,7 +253,7 @@ function beatMovingPlatform() {
 	if array_length_1d(floors) > 0
 	{
 		global.yspeed = 0;
-		isDash = false;
+		if !isSlide isDash = false;
 		
 		array_sort(floors, true);
 		//yDiff = floors[0] - y;

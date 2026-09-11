@@ -12,7 +12,7 @@ sprName = "Megaman";
 
 enableSlide = cfgEnableSlide;
 enableCharge = cfgEnableCharge;
-//enableDash = true;
+enableDash = false;
 
 //Static sprites
 spriteSlide = sprMegamanSlide;

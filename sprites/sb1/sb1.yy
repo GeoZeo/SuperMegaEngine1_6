@@ -48,8 +48,8 @@
   },
   "origin": 0,
   "parent": {
-    "name": "Borders",
-    "path": "folders/Sprites/Borders.yy",
+    "name": "PictureBorders",
+    "path": "folders/Sprites/Borders/PictureBorders.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -214,6 +214,8 @@ global.screen_border = cfgScreenBorder;
 global.screen_borders[0] = noone;
 global.screen_borders[1] = 1;
 global.screen_borders[2] = 2;
+global.screen_borders[3] = 3;
+global.screen_borders[4] = 4;
 global.num_screen_borders = array_length_1d(global.screen_borders);
 global.current_screen_border = 1;
 
