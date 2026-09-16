@@ -250,7 +250,9 @@ if keyboard_check_pressed(vk_f11) {
 	}
 	else {
 		var myEnemy = instance_create(x + 96, y - 64, objFanFiend);
-		myEnemy.dir = -1;
+		myEnemy.dir = 1;
+		myEnemy.windXspeed = myEnemy.dir * 1;
+		myEnemy.windYspeed = 0;
 		myEnemy.respawn = false;
 		//with prtPlayer playerStun(60, false, 0.125);
 	}

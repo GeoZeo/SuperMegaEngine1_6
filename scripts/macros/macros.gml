@@ -1,5 +1,5 @@
 function macros() {
-#macro initialRoom rmBeta
+#macro initialRoom rmDebugRoom
 #macro cfgLanguage 1
 #macro cfgDefaultCharacter 0
 #macro cfgEnableSlideKey false
@@ -14,7 +14,7 @@ function macros() {
 #macro cfgEnableProjectileCollisionStacking false
 #macro cfgMaxHealth 28
 #macro cfgMaxAmmo 28
-#macro cfgDebug false
+#macro cfgDebug true
 #macro cfgEnableDebugKeys true
 #macro cfgWeaponPreview true
 #macro cfgSwitchWeaponsWhileLocked true

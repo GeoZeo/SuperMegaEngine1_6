@@ -944,7 +944,6 @@ function playerStep() {
 					if (place_meeting(x, y, objSolid) || (place_meeting(x, y, prtMovingPlatformSolid) and !instance_place(x, y, prtMovingPlatformSolid).dead)) && !endLoop
 					{
 						x -= attempts * image_xscale;
-						print("BACK");
 					}
 					//
 			
@@ -969,8 +968,6 @@ function playerStep() {
 	        slideTimer++;
         
 	        var canProceed = true;
-        
-			print("Meeting: " + string(place_meeting(x, y-1, objSolid) or place_meeting(x, y-1, prtMovingPlatformSolid)))
 		
 	        if (place_meeting(x, y-(7+(2*canDash)), objSolid) || place_meeting(x, y-(7+(2*canDash)), prtMovingPlatformSolid)) && (ground == true || place_meeting(x-(_spd-1), y+1, objSolid) || place_meeting(x-(_spd-1), y+1, objTopSolid) || place_meeting(x-(_spd-1), y+1, prtMovingPlatformJumpthrough) || place_meeting(x-(_spd-1), y+1, prtMovingPlatformSolid)
 	        || place_meeting(x+(_spd-1), y, objSolid) || place_meeting(x+(_spd-1), y, prtMovingPlatformSolid)) //Extra check because if Mega Man falls down while sliding and a wall is on the other side of him and a ceiling is on top of him, when turning around on the right frame he would zip through the solids
@@ -1150,7 +1147,7 @@ function playerStep() {
 	                        }
                         
 	                        if !endLoop {
-	                            y++;
+	                            if _total_yspeed >= 0 y++;
 	                            sprite_index = spriteJump;
 								image_speed = speedJump;
 	                            ground = false;

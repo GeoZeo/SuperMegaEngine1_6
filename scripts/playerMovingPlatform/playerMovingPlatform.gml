@@ -61,7 +61,7 @@ function playerMovingPlatform() {
 					//}
 					
 					ground = true;
-					isDash = false;
+					if !isSlide isDash = false;
 			        if playLandSound == true
 			            canPlayLandSound = true;
 	            }
@@ -93,7 +93,7 @@ function playerMovingPlatform() {
 			//	global.yspeed = 0;
         
 			ground = true;
-			isDash = false;
+			if !isSlide isDash = false;
 		    if playLandSound == true
 		        canPlayLandSound = true;
         

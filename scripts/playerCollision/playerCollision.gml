@@ -7,7 +7,7 @@ function playerCollision() {
 	var _total_xspeed = global.xspeed + global.xforce;
 	var _total_yspeed = global.yspeed + global.yforce;
 	
-	print(x);
+	//print(x);
 	
 	
 	//Adjust the offset for surface checks in case the player's speed (positive or negative) is less than the minimum collision check threshold (which is 0.5 (0.500005 for going left))
@@ -39,7 +39,7 @@ function playerCollision() {
 			//againstGround = true;
 		}
 	    ground = true;
-		isDash = false;
+		if !isSlide isDash = false;
 		
 		if (!place_meeting(x, (y + _total_yspeed) + (_yAdd * place_meeting(x, y+1, objBossDoorH)), objBossDoorH)
 		or instance_place(x, (y + _total_yspeed) + (_yAdd * place_meeting(x, y+1, objBossDoorH)), objBossDoorH).dir == 1)// and !disableSpeedResetting
@@ -147,7 +147,7 @@ function playerCollision() {
 				//againstGround = true;
 			}
 	        ground = true;
-			isDash = false;
+			if !isSlide isDash = false;
 			global.yspeed = 0;
 			_total_yspeed = global.yspeed + global.yforce;
 	        //if !disableSpeedResetting

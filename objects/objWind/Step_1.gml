@@ -40,6 +40,8 @@ if !global.frozen && insideView() {
 				
 					global.xforce += _xadd;
 					global.yforce += _yadd;
+					
+					print("Y: " + string(y));
 	        
 				}
 				else {

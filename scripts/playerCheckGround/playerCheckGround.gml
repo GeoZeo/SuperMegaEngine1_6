@@ -139,7 +139,7 @@ function playerCheckGround() {
 	    ground = false;
 		canJump = false;
 		if jumps < 1 jumps = 1;
-	    if prevGround == true && !flying
+	    if prevGround == true && !flying && _total_yspeed >= 0
 	        y += 1; //To make Mega Man able to fall through 1-block wide gaps
 	}
 	

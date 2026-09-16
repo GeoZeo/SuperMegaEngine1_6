@@ -14,6 +14,10 @@ function playerCollisionEnd() {
 	pltSpeedY = 0;
 	
 	
+	print(x);
+	print(y);
+	
+	
 	//if xspeedRollback != -1000000
 	//	xspeedRollback -= global.xforce;
 	

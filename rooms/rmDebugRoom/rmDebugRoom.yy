@@ -28,10 +28,9 @@
 -32,-2147483648,-2,0,-15,-2147483648,1,0,-15,-2147483648,1,0,-15,-2147483648,1,0,
 -15,-2147483648,1,0,-15,-2147483648,1,0,-5,-2147483648,-3,0,-6,-2147483648,-5,2,
 6,-2147483648,0,0,2,0,0,-5,-2147483648,12,2,0,-2147483648,-2147483648,0,0,
--2147483648,-2147483648,2,-2147483648,0,0,-4,-2147483648,1,2,-3,-2147483648,-2,0,-3,2,
--2,-2147483648,1,0,-4,-2147483648,1,2,-3,-2147483648,8,0,-2147483648,0,0,2,
--2147483648,-2147483648,0,-4,-2147483648,-4,19,-2,2,-3,19,-7,2,1,-2147483648,-6,
-0,-9,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"tstBeta_V2_tileset","path":"tilesets/tstBeta_V2_tileset/tstBeta_V2_tileset.yy",},"userdefinedDepth":true,"visible":true,"x":0,"y":0,},
+-2147483648,-2147483648,2,-2147483648,0,0,-4,-2147483648,1,2,-3,-2147483648,-4,0,4,2,
+-2147483648,-2147483648,0,-4,-2147483648,1,2,-3,-2147483648,8,0,-2147483648,0,0,2,-2147483648,
+-2147483648,0,-4,-2147483648,-16,2,1,-2147483648,-6,0,-9,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"tstBeta_V2_tileset","path":"tilesets/tstBeta_V2_tileset/tstBeta_V2_tileset.yy",},"userdefinedDepth":true,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tstMM2_V2_1000000","depth":1000000,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":14,"SerialiseWidth":16,"TileCompressedData":[
 -132,-2147483648,-2,0,-62,-2147483648,-2,0,-26,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"tstMM2_V2_tileset","path":"tilesets/tstMM2_V2_tileset/tstMM2_V2_tileset.yy",},"userdefinedDepth":true,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Compatibility_Background_0","animationFPS":1.0,"animationSpeedType":1,"colour":4294967295,"depth":16777214,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":{"name":"bgBeta","path":"sprites/bgBeta/bgBeta.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":true,"visible":true,"vspeed":0.0,"vtiled":true,"x":0,"y":0,},

@@ -15,10 +15,13 @@ function playerCrush() {
 	
 	var _yc = clamp(abs(_total_yspeed), 0.5, 1);
 	print(x);
+	print(y);
+	print("Total: " + string(_total_yspeed));
 	
 	//Crushing vertically
 	if !skipCrushY
 	{
+		///NEW
 		if !collision_rectangle_free(bbox_left, bbox_top+_total_yspeed, bbox_right, mask_get_ycenter()+_total_yspeed, false, true, true)
 		|| !collision_rectangle_free(bbox_left, mask_get_ycenter()+_total_yspeed, bbox_right, bbox_bottom+_total_yspeed, false, true, true)
 		{
@@ -74,6 +77,7 @@ function playerCrush() {
 				if _ground > -1 { instance_activate_object(_ground); }
 			}
 		}
+		////OLD
 		//if !collision_rectangle_free(bbox_left, mask_get_ycenter()+_total_yspeed, bbox_right, bbox_bottom+_total_yspeed+1, false, true, true)
 		//|| !collision_rectangle_free(bbox_left, mask_get_ycenter()+_total_yspeed, bbox_right, bbox_bottom+_total_yspeed, false, true, true)
 		//{
@@ -346,6 +350,7 @@ function playerCrush() {
 	//Crushing horizontally
 	if !skipCrushX
 	{
+		///NEW
 		if !collision_rectangle_free(bbox_left+_total_xspeed, bbox_top, mask_get_xcenter()+_total_xspeed, bbox_bottom, false, true, true)
 		|| !collision_rectangle_free(mask_get_xcenter()+_total_xspeed, bbox_top, bbox_right+_total_xspeed, bbox_bottom, false, true, true)
 		{
@@ -400,6 +405,7 @@ function playerCrush() {
 				if _right > -1 { instance_activate_object(_right); }
 			}
 		}
+		///OLD
 		//if !collision_rectangle_free(mask_get_xcenter()+_total_xspeed, bbox_top, bbox_right+_total_xspeed+1, bbox_bottom, false, true, true)
 		//|| !collision_rectangle_free(mask_get_xcenter()+_total_xspeed, bbox_top, bbox_right+_total_xspeed, bbox_bottom, false, true, true)
 		//{
